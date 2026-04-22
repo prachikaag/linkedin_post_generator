@@ -7,9 +7,9 @@ pyyaml>=6.0.0
 click>=8.1.0
 rich>=13.7.0
 
-# News fetching
-feedparser>=6.0.10
+# HTTP (used for NewsAPI and direct Notion API fallback)
 requests>=2.31.0
 
-# Google Trends
-pytrends>=4.9.2
+# Optional fallbacks (not required when running inside Claude Code)
+# feedparser>=6.0.10   — RSS fetching fallback if Claude CLI unavailable
+# pytrends>=4.9.2      — Google Trends fallback if Claude CLI unavailable

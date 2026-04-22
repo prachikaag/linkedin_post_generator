@@ -1,9 +1,11 @@
-import time
-from typing import Optional
+import json
+import re
+import shutil
+import subprocess
 
 
 class TrendingTracker:
-    """Fetches trending search queries related to AI topics via Google Trends."""
+    """Fetches trending AI topics via Claude WebSearch MCP, with pytrends fallback."""
 
     def __init__(self, topics_config: dict):
         self.topics_config = topics_config
@@ -14,32 +16,82 @@ class TrendingTracker:
 
     def get_trending_keywords(self) -> list[str]:
         """Return a deduplicated list of trending keywords, falling back gracefully."""
-        keywords: list[str] = []
+        # Primary: Claude WebSearch MCP
+        if shutil.which("claude"):
+            keywords = self._fetch_via_claude_websearch()
+            if keywords:
+                return _deduplicate(keywords)[:20]
 
-        related = self._fetch_related_queries()
-        keywords.extend(related)
+        # Secondary: pytrends (requires local internet access + package)
+        keywords = self._fetch_via_pytrends()
+        if keywords:
+            return _deduplicate(keywords)[:20]
 
-        realtime = self._fetch_realtime_trending()
-        keywords.extend(realtime)
+        # Final fallback: seed terms from config
+        return self.seed_terms[:10]
 
-        if not keywords:
-            return self.seed_terms[:10]
+    # ── Claude WebSearch MCP path ──────────────────────────────────────────────
 
-        return _deduplicate(keywords)[:20]
+    def _fetch_via_claude_websearch(self) -> list[str]:
+        seeds_str = ", ".join(self.seed_terms[:8])
 
-    # ── Private helpers ────────────────────────────────────────────────────────
+        prompt = f"""Search the web for the most recent trending AI news topics from the past 7 days.
 
-    def _fetch_related_queries(self) -> list[str]:
+Focus on topics related to: {seeds_str}
+
+Use WebSearch to find what's happening in AI right now — new model releases, funding announcements, product launches, research breakthroughs, regulation news.
+
+Return ONLY a JSON array of 15–20 trending keyword phrases (short phrases of 2–5 words each).
+
+Format: ["keyword phrase 1", "keyword phrase 2", ...]
+
+Return ONLY the raw JSON array starting with [ — no markdown code fences, no explanation.
+"""
+
+        result = subprocess.run(
+            [
+                "claude", "-p",
+                "--model", "haiku",
+                "--tools", "WebSearch",
+                "--no-session-persistence",
+            ],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            cwd="/tmp",
+            timeout=90,
+        )
+
+        if result.returncode != 0 or not result.stdout.strip():
+            return []
+
+        raw = result.stdout.strip()
+        raw = re.sub(r"^```[a-z]*\n?", "", raw, flags=re.MULTILINE)
+        raw = re.sub(r"\n?```\s*$", "", raw, flags=re.MULTILINE)
+        raw = raw.strip()
+
+        match = re.search(r"\[.*\]", raw, re.DOTALL)
+        if not match:
+            return []
+
         try:
+            keywords = json.loads(match.group(0))
+            return [k for k in keywords if isinstance(k, str)][:20]
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    # ── pytrends fallback ──────────────────────────────────────────────────────
+
+    def _fetch_via_pytrends(self) -> list[str]:
+        try:
+            import time
             from pytrends.request import TrendReq
         except ImportError:
-            print("  [skip] pytrends not installed — skipping Google Trends")
             return []
 
         results: list[str] = []
         try:
             pytrends = TrendReq(hl="en-US", tz=360, timeout=(5, 15))
-            # Google Trends accepts at most 5 terms per payload
             for i in range(0, len(self.seed_terms), 5):
                 batch = self.seed_terms[i : i + 5]
                 try:
@@ -52,7 +104,7 @@ class TrendingTracker:
                         top = data.get("top")
                         if top is not None and not top.empty:
                             results.extend(top["query"].tolist()[:5])
-                    time.sleep(1)  # be polite to the Trends API
+                    time.sleep(1)
                 except Exception as exc:
                     print(f"  [skip] Trends batch {batch}: {exc}")
                     results.extend(batch)
@@ -61,23 +113,6 @@ class TrendingTracker:
             return self.seed_terms[:5]
 
         return results
-
-    def _fetch_realtime_trending(self) -> list[str]:
-        try:
-            from pytrends.request import TrendReq
-        except ImportError:
-            return []
-
-        ai_markers = {"ai", "gpt", "claude", "gemini", "llm", "artificial", "openai", "chatbot"}
-        try:
-            pytrends = TrendReq(hl="en-US", tz=360, timeout=(5, 15))
-            rt = pytrends.realtime_trending_searches(pn=self.geo)
-            if rt.empty or "title" not in rt.columns:
-                return []
-            titles: list[str] = rt["title"].tolist()[:20]
-            return [t for t in titles if any(m in t.lower() for m in ai_markers)][:5]
-        except Exception:
-            return []
 
 
 # ── Utility ────────────────────────────────────────────────────────────────────

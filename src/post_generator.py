@@ -213,8 +213,8 @@ Currently trending (weave in naturally): {trending_str}
                         "--model", self.model,
                         "--no-session-persistence",
                         "--tools", "",   # text-only — no tool calls, no WebFetch preamble
-                        user_prompt,
                     ],
+                    input=user_prompt,   # pass via stdin, not positional arg
                     capture_output=True,
                     text=True,
                     timeout=180,
