@@ -7,6 +7,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from .news_gatherer import Article, NewsGatherer
+from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
 from .trending_tracker import TrendingTracker
 
@@ -106,6 +107,20 @@ class Pipeline:
                 console.print("  [red]✗[/] Generation failed — skipping.")
 
         self._display_posts(generated)
+
+        # ── Step 4: Push to Notion (if configured) ──────────────────────────
+        notion = NotionPublisher()
+        if notion.is_configured():
+            console.print("\n[bold cyan]Step 4 / 4 — Publishing to Notion[/]")
+            pushed = notion.publish_batch(generated)
+            console.print(
+                f"[green]✓[/] {pushed}/{len(generated)} post(s) added to Notion."
+            )
+        else:
+            console.print(
+                "\n[dim]Notion not configured — set NOTION_API_KEY + NOTION_PAGE_ID in .env to enable.[/]"
+            )
+
         return generated
 
     # ── Display helpers ────────────────────────────────────────────────────────

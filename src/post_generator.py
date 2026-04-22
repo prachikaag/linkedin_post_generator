@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
+import requests
 import yaml
 
 from .news_gatherer import Article
@@ -47,13 +48,20 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 - Every claim that came from a source must be traceable to one of the cited URLs
 - The post must read like a researched commentary piece, not a reaction to a single article
 
+## ⚠️ CRITICAL URL RULE (zero exceptions)
+- You may ONLY use the exact URLs that appear in the "URL:" fields of the Source Material
+- NEVER construct, guess, infer, complete, or recall any URL from your training data
+- NEVER modify or shorten a provided URL
+- If a source does not have a "URL:" field or it is blank, write "[URL not provided]" in the sources list — do not invent a URL
+- Every URL in your Sources section must be copied character-for-character from the Source Material
+
 ## Hashtag Rules
 - Always include: {always_hashtags}
 - Choose from this rotation list to reach exactly {max_hashtags} total: {rotate_hashtags}
 - Place all hashtags on the very last line of the post
 
 ## Output Rules
-- Output ONLY the LinkedIn post text — no preamble, no "Here's the post:" label
+- Output ONLY the LinkedIn post text — no preamble, no "Here's the post:" label, no commentary
 - Target length: {post_length}
 - Write as {author_name} in first person
 - Make it sound like a real person who has done their homework, not a press release
@@ -78,11 +86,24 @@ class PostGenerator:
         """Generate one research-style LinkedIn post from a cluster of articles."""
         if not articles:
             return None
+
+        provided_urls = [a.url for a in articles if a.url]
         user_prompt = self._build_user_prompt(articles, trending_keywords)
-        content = self._call_claude(user_prompt)
-        if content:
-            return self._save_post(articles, content, trending_keywords)
-        return None
+        raw = self._call_claude(user_prompt)
+        if not raw:
+            return None
+
+        content = _strip_preamble(raw)
+        content, url_report = self._validate_source_urls(content, provided_urls)
+
+        broken = [u for u, s in url_report.items() if s == "broken"]
+        unverified = [u for u, s in url_report.items() if s == "unverified"]
+        if broken:
+            print(f"  [⚠️  {len(broken)} broken URL(s) flagged in post — fix before publishing]")
+        if unverified:
+            print(f"  [ℹ️  {len(unverified)} URL(s) could not be verified (no network?) — check before publishing]")
+
+        return self._save_post(articles, content, trending_keywords, url_report)
 
     # ── Prompt construction ────────────────────────────────────────────────────
 
@@ -134,7 +155,7 @@ class PostGenerator:
             sources_block += f"\n### Source {i}{label}\n"
             sources_block += f"Publication: {a.source_name}\n"
             sources_block += f"Title: {a.title}\n"
-            sources_block += f"URL: {a.url}\n"
+            sources_block += f"URL: {a.url}\n"       # ← exact URL Claude must copy verbatim
             sources_block += f"Date: {pub}\n"
             sources_block += f"Summary: {a.summary[:600] if a.summary else 'N/A'}\n"
 
@@ -152,36 +173,35 @@ Research and write a LinkedIn post synthesising ALL {len(articles)} of the follo
 Source 1 is the primary anchor story. Sources 2–{len(articles)} provide supporting evidence, \
 additional context, and citation depth.
 
-HARD REQUIREMENT: You must cite all {len(articles)} sources in the post body and/or the Sources \
-section at the end. The minimum is {self.min_sources} sources — never go below this.
+HARD REQUIREMENT: Cite all {len(articles)} sources. Minimum {self.min_sources} — never fewer.
 
-For any direct verbatim quotes, you must attribute them explicitly:
-"[exact quote]" — Full Name, Title, Company
+⚠️ URL RULE: Copy every source URL character-for-character from the "URL:" fields below.
+Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing, write [URL not provided].
+
+For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
 
 ## Source Material
 {sources_block}
-
 ## Context
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
-Currently trending (weave in naturally where relevant): {trending_str}
+Currently trending (weave in naturally): {trending_str}
 
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
-- Add your genuine perspective: what does this mean specifically for brands and marketers?
-- For product launches / new features: explain what it practically enables for a marketing team
-- For funding news: explain what the investment signals about where the AI space is heading
-- For research breakthroughs: explain in plain language why it changes what brands can do
+- Add your genuine perspective on what this means for brands and marketers specifically
+- For launches/features: explain the practical implication for a marketing team
+- For funding: explain what the investment signals about the AI landscape
 - End with an engaging question that invites comments
-- List all sources at the bottom under "Sources:" — one per line, with full URL
+- List all sources at the bottom under "Sources:" with full URLs copied from above
 """
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 
     def _call_claude(self, user_prompt: str) -> Optional[str]:
         """
-        Attempt generation via Claude CLI first (no API key needed in Claude Code
-        environments), then fall back to the Anthropic Python SDK if available.
+        Attempt generation via Claude CLI first (works in Claude Code environments
+        without an API key), then fall back to the Anthropic Python SDK.
         """
         # ── 1. Claude CLI (Claude Code MCP connection) ─────────────────────────
         if shutil.which("claude"):
@@ -192,14 +212,13 @@ Currently trending (weave in naturally where relevant): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # disable all tools — text-only generation
+                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
                         user_prompt,
                     ],
                     capture_output=True,
                     text=True,
                     timeout=180,
-                    # Run from /tmp so the repo's git hooks don't intercept the call
-                    cwd="/tmp",
+                    cwd="/tmp",   # avoids triggering repo git hooks
                 )
                 if result.returncode == 0 and result.stdout.strip():
                     return result.stdout.strip()
@@ -240,10 +259,65 @@ Currently trending (weave in naturally where relevant): {trending_str}
         )
         return None
 
+    # ── URL validation ─────────────────────────────────────────────────────────
+
+    def _validate_source_urls(
+        self, content: str, provided_urls: list[str]
+    ) -> tuple[str, dict]:
+        """
+        Scan the Sources section of the post.
+        - URLs matching the provided article list → 'source-verified' (came from RSS, real at fetch time)
+        - Any extra URL Claude added → HEAD-checked live
+        - Broken URLs → annotated with ⚠️ warning in the post text
+        - Unverifiable URLs (no network) → annotated with [unverified]
+        Returns (annotated_content, {url: status})
+        """
+        url_pattern = re.compile(r"https?://[^\s\)\]\>\"\'<]+")
+        provided_set = {u.rstrip("/") for u in provided_urls if u}
+
+        lines = content.split("\n")
+        result_lines: list[str] = []
+        in_sources = False
+        url_statuses: dict[str, str] = {}
+
+        for line in lines:
+            stripped_upper = line.strip().upper()
+            # Detect start of the Sources section
+            if stripped_upper.startswith("SOURCES") or re.match(r"^\[1\][\.\)]", line.strip()):
+                in_sources = True
+
+            if in_sources:
+                for url in url_pattern.findall(line):
+                    clean = url.rstrip("/.,")
+                    if clean in provided_set or url.rstrip("/.,") in provided_set:
+                        url_statuses[url] = "source-verified"
+                        # No annotation needed — came from RSS
+                    elif url not in url_statuses:
+                        status = _check_url(url)
+                        url_statuses[url] = status
+                        if status == "broken":
+                            line = line.replace(
+                                url,
+                                f"{url} ⚠️ [BROKEN LINK — remove before publishing]",
+                            )
+                        elif status == "unverified":
+                            line = line.replace(
+                                url,
+                                f"{url} [unverified — check before publishing]",
+                            )
+
+            result_lines.append(line)
+
+        return "\n".join(result_lines), url_statuses
+
     # ── Persistence ────────────────────────────────────────────────────────────
 
     def _save_post(
-        self, articles: list[Article], content: str, trending_keywords: list[str]
+        self,
+        articles: list[Article],
+        content: str,
+        trending_keywords: list[str],
+        url_report: dict | None = None,
     ) -> dict:
         primary = articles[0]
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -253,6 +327,9 @@ Currently trending (weave in naturally where relevant): {trending_str}
 
         all_companies = sorted({c for a in articles for c in a.matched_companies})
         all_categories = sorted({c for a in articles for c in a.matched_categories})
+
+        broken_count = sum(1 for s in (url_report or {}).values() if s == "broken")
+        unverified_count = sum(1 for s in (url_report or {}).values() if s == "unverified")
 
         frontmatter = {
             "title": primary.title,
@@ -264,6 +341,11 @@ Currently trending (weave in naturally where relevant): {trending_str}
                 for a in articles
             ],
             "source_count": len(articles),
+            "url_validation": {
+                "source_verified": sum(1 for s in (url_report or {}).values() if s == "source-verified"),
+                "broken": broken_count,
+                "unverified": unverified_count,
+            },
             "trending_keywords": trending_keywords[:5],
             "matched_companies": all_companies,
             "matched_categories": all_categories,
@@ -291,4 +373,43 @@ Currently trending (weave in naturally where relevant): {trending_str}
             "source_url": primary.url,
             "source_name": primary.source_name,
             "source_count": len(articles),
+            "broken_urls": broken_count,
         }
+
+
+# ── Module-level helpers ───────────────────────────────────────────────────────
+
+def _strip_preamble(content: str) -> str:
+    """
+    Remove any explanatory text Claude emits before the actual post.
+    If there's a '---' separator (Claude explaining something first, then writing
+    the post after a divider), take everything after the first separator.
+    """
+    if "\n---\n" in content:
+        parts = content.split("\n---\n", 1)
+        candidate = parts[1].strip()
+        if len(candidate) > 100:   # real post, not just an empty section
+            return candidate
+    return content
+
+
+def _check_url(url: str, timeout: int = 6) -> str:
+    """
+    HEAD-check a URL and return one of: 'verified', 'broken', 'unverified'.
+    'unverified' means the network is unavailable or the check timed out —
+    the URL may still be valid; the user should check manually before publishing.
+    """
+    try:
+        resp = requests.head(
+            url,
+            allow_redirects=True,
+            timeout=timeout,
+            headers={"User-Agent": "LinkedInPostBot/1.0"},
+        )
+        return "verified" if resp.status_code < 400 else "broken"
+    except requests.exceptions.HTTPError:
+        return "broken"
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
+        return "unverified"
+    except Exception:
+        return "unverified"
