@@ -1,0 +1,166 @@
+# ============================================================
+# NEWS SOURCES
+# Edit this file to add or remove RSS feeds and APIs.
+# Priority: high = fetched first, low = fetched if time permits.
+# Set enabled: false to skip any feed without deleting it.
+# ============================================================
+
+rss_feeds:
+
+  # ── General AI News ─────────────────────────────────────
+  ai_news:
+    - name: "TechCrunch AI"
+      url: "https://techcrunch.com/category/artificial-intelligence/feed/"
+      priority: high
+      enabled: true
+
+    - name: "The Verge AI"
+      url: "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml"
+      priority: high
+      enabled: true
+
+    - name: "VentureBeat AI"
+      url: "https://venturebeat.com/category/ai/feed/"
+      priority: high
+      enabled: true
+
+    - name: "Wired AI"
+      url: "https://www.wired.com/feed/tag/ai/latest/rss"
+      priority: medium
+      enabled: true
+
+    - name: "MIT Technology Review"
+      url: "https://www.technologyreview.com/feed/"
+      priority: medium
+      enabled: true
+
+    - name: "Ars Technica Tech"
+      url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+      priority: medium
+      enabled: true
+
+    - name: "AI News"
+      url: "https://www.artificialintelligence-news.com/feed/"
+      priority: medium
+      enabled: true
+
+    - name: "The Information AI"
+      url: "https://www.theinformation.com/feed"
+      priority: low
+      enabled: true
+
+    - name: "CNBC Tech"
+      url: "https://www.cnbc.com/id/19854910/device/rss/rss.html"
+      priority: low
+      enabled: true
+
+  # ── AI Company Blogs ────────────────────────────────────
+  company_blogs:
+    - name: "OpenAI Blog"
+      url: "https://openai.com/blog/rss/"
+      priority: high
+      enabled: true
+
+    - name: "Anthropic Blog"
+      url: "https://www.anthropic.com/rss.xml"
+      priority: high
+      enabled: true
+
+    - name: "Google AI Blog"
+      url: "https://blog.research.google/feeds/posts/default?alt=rss"
+      priority: high
+      enabled: true
+
+    - name: "DeepMind Blog"
+      url: "https://deepmind.google/blog/rss.xml"
+      priority: high
+      enabled: true
+
+    - name: "Meta AI Blog"
+      url: "https://ai.meta.com/blog/rss/"
+      priority: medium
+      enabled: true
+
+    - name: "Microsoft AI Blog"
+      url: "https://blogs.microsoft.com/ai/feed/"
+      priority: medium
+      enabled: true
+
+    - name: "Hugging Face Blog"
+      url: "https://huggingface.co/blog/feed.xml"
+      priority: medium
+      enabled: true
+
+    - name: "Mistral AI Blog"
+      url: "https://mistral.ai/news/feed.xml"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity Blog"
+      url: "https://blog.perplexity.ai/rss"
+      priority: medium
+      enabled: true
+
+    - name: "ElevenLabs Blog"
+      url: "https://elevenlabs.io/blog/rss"
+      priority: medium
+      enabled: true
+
+  # ── Startup & Funding News ──────────────────────────────
+  funding_news:
+    - name: "TechCrunch Startups"
+      url: "https://techcrunch.com/category/startups/feed/"
+      priority: high
+      enabled: true
+
+    - name: "Crunchbase News"
+      url: "https://news.crunchbase.com/feed/"
+      priority: high
+      enabled: true
+
+    - name: "SiliconAngle AI"
+      url: "https://siliconangle.com/feed/"
+      priority: medium
+      enabled: true
+
+  # ── YouTube Channels (use RSS for channel updates) ──────
+  # YouTube video releases from key AI channels
+  youtube_channels:
+    - name: "Google DeepMind YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
+      priority: medium
+      enabled: true
+
+    - name: "OpenAI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A"
+      priority: medium
+      enabled: true
+
+    - name: "Anthropic YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+      priority: medium
+      enabled: true
+
+    - name: "Two Minute Papers"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: low
+      enabled: true
+
+# ── Optional API Sources ───────────────────────────────────
+# These require API keys set in your .env file.
+optional_apis:
+
+  newsapi:
+    # Get a free key at https://newsapi.org/
+    enabled: false   # Set to true after adding NEWSAPI_KEY to .env
+    queries:
+      - query: "artificial intelligence OR ChatGPT OR Claude AI OR Gemini"
+        sort_by: "publishedAt"
+        language: "en"
+      - query: "AI startup funding raise investment"
+        sort_by: "publishedAt"
+        language: "en"
+      - query: "generative AI marketing brand"
+        sort_by: "publishedAt"
+        language: "en"
+    max_results_per_query: 20

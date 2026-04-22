@@ -1,0 +1,15 @@
+# Core
+anthropic>=0.49.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+
+# CLI & terminal output
+click>=8.1.0
+rich>=13.7.0
+
+# News fetching
+feedparser>=6.0.10
+requests>=2.31.0
+
+# Google Trends
+pytrends>=4.9.2
