@@ -8,12 +8,16 @@ Usage:
   python main.py run --max-posts 5
   python main.py list-posts       # List all saved draft posts
   python main.py show 1           # Show post #1 from the list
-  python main.py show --file posts/2024-01-15_10-00-00_openai-launches.md
+  python main.py export 1         # Print clean post text ready to copy to LinkedIn
+  python main.py publish 1        # Mark a draft as published
+  python main.py config           # Show paths to all editable config files
 """
 
+import io
 import os
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import click
@@ -28,8 +32,6 @@ try:
     load_dotenv()
 except ImportError:
     pass  # python-dotenv optional; set env vars manually if not installed
-
-load_dotenv()
 
 console = Console()
 
@@ -195,6 +197,80 @@ def show(number: int, filename: str):
     )
 
 
+# ── export ────────────────────────────────────────────────────────────────────
+
+@cli.command()
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to export.")
+def export(number: int, filename: str):
+    """Print clean post text — no frontmatter — ready to copy to LinkedIn."""
+    post_file = _resolve_post_file(number, filename)
+    if post_file is None:
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    body = _extract_body(raw)
+
+    console.print()
+    console.print(
+        Panel(
+            body,
+            title=f"[bold]{post_file.name}[/]",
+            subtitle="[dim]Copy the text above to LinkedIn[/]",
+            border_style="cyan",
+            padding=(1, 2),
+        )
+    )
+    console.print(
+        f"\n[dim]File: {post_file}[/]\n"
+        "Edit the file directly to make changes, then run [bold]python main.py publish <number>[/bold] when done."
+    )
+
+
+# ── publish ───────────────────────────────────────────────────────────────────
+
+@cli.command()
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to publish.")
+def publish(number: int, filename: str):
+    """Mark a draft post as published (updates status in frontmatter)."""
+    post_file = _resolve_post_file(number, filename)
+    if post_file is None:
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    if not raw.startswith("---"):
+        console.print("[red]No frontmatter found in this file.[/]")
+        sys.exit(1)
+
+    parts = raw.split("---", 2)
+    if len(parts) < 3:
+        console.print("[red]Could not parse frontmatter.[/]")
+        sys.exit(1)
+
+    try:
+        meta = yaml.safe_load(parts[1]) or {}
+    except Exception as exc:
+        console.print(f"[red]YAML parse error:[/] {exc}")
+        sys.exit(1)
+
+    old_status = meta.get("status", "draft")
+    if old_status == "published":
+        console.print(f"[yellow]Already marked as published:[/] {post_file.name}")
+        return
+
+    meta["status"] = "published"
+    meta["published_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    buf = io.StringIO()
+    yaml.dump(meta, buf, default_flow_style=False, allow_unicode=True)
+    updated = "---\n" + buf.getvalue() + "---\n" + parts[2]
+    post_file.write_text(updated, encoding="utf-8")
+
+    console.print(f"[green]✓[/] Marked as published: [bold]{post_file.name}[/]")
+    console.print(f"[dim]published_at: {meta['published_at']}[/]")
+
+
 # ── config ────────────────────────────────────────────────────────────────────
 
 @cli.command()
@@ -214,6 +290,39 @@ def config():
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
+
+def _resolve_post_file(number: int | None, filename: str | None) -> Path | None:
+    """Return the Path for a post identified by number or filename, or None on error."""
+    if filename:
+        p = POSTS_DIR / filename
+        if not p.exists():
+            console.print(f"[red]File not found:[/] {filename}")
+            return None
+        return p
+    if number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            return None
+        return posts[number - 1]
+    console.print(
+        "[yellow]Provide a post number or --file <filename>.[/]\n"
+        "Example: [bold]python main.py export 1[/]"
+    )
+    return None
+
+
+def _extract_body(raw: str) -> str:
+    """Strip YAML frontmatter and return the post body."""
+    if raw.startswith("---"):
+        parts = raw.split("---", 2)
+        if len(parts) >= 3:
+            return parts[2].strip()
+    return raw.strip()
+
 
 def _read_frontmatter(post_file: Path) -> tuple[str, str, str]:
     """Return (date, status, companies) from a post's YAML frontmatter."""
