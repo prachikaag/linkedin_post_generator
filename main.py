@@ -12,23 +12,29 @@ Usage:
 """
 
 import os
+import shutil
 import sys
 from pathlib import Path
 
 import click
 import yaml
-from dotenv import load_dotenv
 from rich.console import Console
-from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.table import Table
 from rich import box
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv optional; set env vars manually if not installed
 
 load_dotenv()
 
 console = Console()
 
 BASE_DIR = Path(__file__).parent
+
 CONFIG_DIR = BASE_DIR / "config"
 POSTS_DIR = BASE_DIR / "posts"
 
@@ -58,12 +64,22 @@ def cli():
 )
 def run(max_posts: int, dry_run: bool):
     """Run the full pipeline: fetch news → track trends → generate posts."""
-    if not dry_run and not os.getenv("ANTHROPIC_API_KEY"):
-        console.print(
-            "[bold red]Error:[/] ANTHROPIC_API_KEY is not set.\n"
-            "Copy [bold].env.example[/] to [bold].env[/] and add your key."
-        )
-        sys.exit(1)
+    if not dry_run:
+        has_claude_cli = shutil.which("claude") is not None
+        has_api_key = bool(os.getenv("ANTHROPIC_API_KEY"))
+        if not has_claude_cli and not has_api_key:
+            console.print(
+                "[bold red]Error:[/] No Claude access found.\n\n"
+                "Either:\n"
+                "  [bold]A)[/] Run inside Claude Code — the [bold]claude[/] CLI is detected automatically.\n"
+                "  [bold]B)[/] Set [bold]ANTHROPIC_API_KEY[/] in your [bold].env[/] file "
+                "(copy from [bold].env.example[/])."
+            )
+            sys.exit(1)
+        if has_claude_cli:
+            console.print("[dim]Using Claude Code CLI connection (no API key needed).[/]")
+        else:
+            console.print("[dim]Using Anthropic API key from .env[/]")
 
     from src.pipeline import Pipeline
 

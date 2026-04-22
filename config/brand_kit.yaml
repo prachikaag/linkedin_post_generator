@@ -44,12 +44,13 @@ tone_of_voice:
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): What happened. The news, the development, the thing you're reacting to. Be concise."
-    - "YOUR TAKE (3-5 lines): Your personal opinion, experiment result, or unique insight. Be specific. Say something people won't find in the article itself."
-    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. Give them something actionable."
-    - "CTA (1 line): A question that invites comments, or a clear direction for the reader."
-    - "SOURCE: The original article URL, clearly labelled."
-    - "HASHTAGS: 4-5 relevant hashtags on the final line."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
+    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
+    - "CTA (1 line): A question that invites genuine discussion in the comments."
+    - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
+    - "HASHTAGS: 4-5 relevant hashtags on the very last line."
 
   # What makes a great post from you
   dos:
@@ -129,3 +130,18 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+
+# ── Research & Citation Standards ─────────────────────────
+# These rules are injected directly into the AI prompt as hard requirements.
+research_standards:
+  # Minimum number of distinct sources that must be cited in every post
+  min_sources: 4
+
+  # Format for direct verbatim quotes — must include name, title, and company
+  quote_format: '"[exact quote]" — Full Name, Job Title, Company/Publication'
+
+  # Format for source list at the bottom of each post
+  source_list_format: "[N]. [Short descriptive title] → [full URL]"
+
+  # If a quote cannot be verified as exact, paraphrase instead (no quote marks)
+  require_verified_quotes: true
