@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# Generated posts (tracked individually when ready)
+# posts/*.md   ← uncomment this line to stop tracking generated posts
+
+# OS
+.DS_Store
