@@ -1,0 +1,286 @@
+# ============================================================
+# TOPICS OF INTEREST
+# Edit this file to control what news gets tracked.
+# Add/remove companies, keywords, and topic categories.
+# ============================================================
+
+# ── AI Companies & Products to Track ──────────────────────
+companies_to_track:
+
+  ai_labs:
+    - name: "OpenAI"
+      keywords:
+        - "OpenAI"
+        - "ChatGPT"
+        - "GPT-4"
+        - "GPT-5"
+        - "o1"
+        - "o3"
+        - "o4"
+        - "Sora"
+        - "Operator"
+        - "Deep Research"
+
+    - name: "Anthropic"
+      keywords:
+        - "Anthropic"
+        - "Claude"
+        - "claude-3"
+        - "claude-4"
+        - "claude sonnet"
+        - "claude opus"
+        - "claude haiku"
+        - "Model Context Protocol"
+        - "MCP"
+
+    - name: "Google DeepMind"
+      keywords:
+        - "Gemini"
+        - "Google AI"
+        - "DeepMind"
+        - "NotebookLM"
+        - "Gemini Ultra"
+        - "Gemini Flash"
+        - "Project Astra"
+        - "Veo"
+        - "Imagen"
+        - "Google Search AI"
+
+    - name: "Perplexity"
+      keywords:
+        - "Perplexity"
+        - "Perplexity AI"
+        - "Perplexity Pro"
+
+    - name: "ElevenLabs"
+      keywords:
+        - "ElevenLabs"
+        - "Eleven Labs"
+        - "voice AI"
+        - "AI voice cloning"
+        - "text to speech AI"
+
+    - name: "Midjourney"
+      keywords:
+        - "Midjourney"
+        - "Mid-journey"
+        - "AI image generation"
+        - "Midjourney v7"
+
+    - name: "Stability AI"
+      keywords:
+        - "Stability AI"
+        - "Stable Diffusion"
+        - "SDXL"
+        - "Stable Video"
+
+    - name: "xAI"
+      keywords:
+        - "Grok"
+        - "xAI"
+        - "Grok-3"
+
+    - name: "Meta AI"
+      keywords:
+        - "Meta AI"
+        - "LLaMA"
+        - "Llama 3"
+        - "Llama 4"
+        - "Meta Orion"
+
+    - name: "Mistral"
+      keywords:
+        - "Mistral"
+        - "Mixtral"
+        - "Le Chat"
+
+    - name: "Runway"
+      keywords:
+        - "Runway"
+        - "RunwayML"
+        - "Gen-2"
+        - "Gen-3"
+        - "AI video generation"
+
+    - name: "Pika Labs"
+      keywords:
+        - "Pika"
+        - "Pika Labs"
+        - "Pika AI"
+
+    - name: "Cohere"
+      keywords:
+        - "Cohere"
+        - "Command R"
+
+    - name: "Inflection AI"
+      keywords:
+        - "Inflection AI"
+        - "Pi AI"
+
+    - name: "Character AI"
+      keywords:
+        - "Character.AI"
+        - "Character AI"
+
+    - name: "HuggingFace"
+      keywords:
+        - "Hugging Face"
+        - "HuggingFace"
+        - "open source AI model"
+
+  big_tech:
+    - name: "Microsoft"
+      keywords:
+        - "Microsoft Copilot"
+        - "Azure AI"
+        - "Microsoft AI"
+        - "Bing AI"
+        - "Microsoft 365 Copilot"
+
+    - name: "Apple"
+      keywords:
+        - "Apple Intelligence"
+        - "Apple AI"
+        - "Siri AI"
+        - "Apple Vision Pro AI"
+
+    - name: "Amazon"
+      keywords:
+        - "Amazon AI"
+        - "AWS AI"
+        - "Amazon Bedrock"
+        - "Amazon Q"
+        - "Alexa AI"
+        - "Alexa+"
+
+    - name: "Nvidia"
+      keywords:
+        - "Nvidia AI"
+        - "Jensen Huang"
+        - "Nvidia Blackwell"
+        - "CUDA AI"
+        - "Nvidia NIM"
+
+    - name: "Salesforce"
+      keywords:
+        - "Salesforce AI"
+        - "Einstein AI"
+        - "Agentforce"
+
+    - name: "Adobe"
+      keywords:
+        - "Adobe Firefly"
+        - "Adobe AI"
+        - "Adobe Sensei"
+        - "Generative Fill"
+
+# ── Topic Categories ───────────────────────────────────────
+# These categories help score and label articles.
+topic_categories:
+
+  - name: "New AI Feature or Product Launch"
+    description: "New product launches, model releases, feature updates"
+    keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "announced"
+      - "ships"
+      - "available now"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+
+  - name: "AI Startup Funding"
+    description: "Investment rounds, acquisitions, and valuations"
+    keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture capital"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+
+  - name: "AI for Marketing and Brands"
+    description: "How brands use AI in marketing, creative, and strategy"
+    keywords:
+      - "brand"
+      - "marketing"
+      - "campaign"
+      - "creative AI"
+      - "AI marketing"
+      - "CMO"
+      - "advertising"
+      - "content creation"
+      - "social media AI"
+
+  - name: "AI Research and Breakthroughs"
+    description: "Research papers, benchmarks, and capability milestones"
+    keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+
+  - name: "AI Regulation and Policy"
+    description: "Government regulation, AI safety, and ethics"
+    keywords:
+      - "regulation"
+      - "policy"
+      - "safety"
+      - "ethics"
+      - "EU AI Act"
+      - "ban"
+      - "law"
+      - "copyright"
+      - "bias"
+
+  - name: "AI Tools and Productivity"
+    description: "AI tools for workflows, coding, and productivity"
+    keywords:
+      - "AI agent"
+      - "agentic"
+      - "automation"
+      - "workflow"
+      - "productivity"
+      - "coding AI"
+      - "AI assistant"
+      - "copilot"
+
+# ── Trending Keywords Configuration ───────────────────────
+trending_keywords:
+  # Seed terms used to find related trending queries on Google Trends
+  seed_terms:
+    - "artificial intelligence"
+    - "ChatGPT"
+    - "AI tools"
+    - "generative AI"
+    - "large language model"
+    - "AI agent"
+    - "Claude AI"
+    - "Gemini AI"
+  geo: "US"           # Google Trends geography code (US, GB, AU, etc.)
+  timeframe: "now 7-d" # last 7 days (options: now 1-d, now 7-d, now 1-m)
+
+# ── Freshness Settings ─────────────────────────────────────
+freshness:
+  max_article_age_hours: 48   # Only articles published in the last N hours
+  min_relevance_score: 2      # Minimum relevance score to include an article
+  max_articles_per_run: 25    # Cap how many articles are scored per run
