@@ -1,0 +1,183 @@
+# ============================================================
+# TOPICS OF INTEREST
+# Edit this file to control what news gets tracked.
+# ============================================================
+
+# --- AI Companies to follow closely ---
+ai_companies:
+  - name: OpenAI
+    keywords: [openai, chatgpt, gpt-5, gpt-4o, sora, dall-e]
+    aliases: [ChatGPT, GPT]
+
+  - name: Anthropic
+    keywords: [anthropic, claude, claude-4, claude-3]
+    aliases: [Claude AI]
+
+  - name: Google DeepMind
+    keywords: [google deepmind, gemini, gemini ultra, google ai, notebooklm, project astra]
+    aliases: [Gemini, DeepMind]
+
+  - name: Perplexity AI
+    keywords: [perplexity, perplexity ai]
+    aliases: [Perplexity]
+
+  - name: Eleven Labs
+    keywords: [elevenlabs, eleven labs, voice ai, voice cloning]
+    aliases: [ElevenLabs]
+
+  - name: Midjourney
+    keywords: [midjourney, mid journey, image generation]
+    aliases: [MJ]
+
+  - name: Meta AI
+    keywords: [meta ai, llama, llama 4, meta llama]
+    aliases: [Llama]
+
+  - name: xAI
+    keywords: [xai, grok, grok 3]
+    aliases: [Grok, x.ai]
+
+  - name: Mistral
+    keywords: [mistral, mistral ai, le chat]
+    aliases: [Mistral AI]
+
+  - name: Hugging Face
+    keywords: [hugging face, huggingface, open source ai]
+    aliases: [HuggingFace]
+
+  - name: Stability AI
+    keywords: [stability ai, stable diffusion, stable video]
+    aliases: [StabilityAI]
+
+  - name: Runway
+    keywords: [runway, runway ml, gen-3, video generation]
+    aliases: [RunwayML]
+
+  - name: Cohere
+    keywords: [cohere, command r]
+    aliases: []
+
+  - name: Scale AI
+    keywords: [scale ai, alexandr wang]
+    aliases: []
+
+# --- Big Tech AI News ---
+big_tech:
+  - company: Microsoft
+    keywords: [microsoft ai, copilot, azure openai, bing ai, microsoft copilot]
+
+  - company: Apple
+    keywords: [apple intelligence, apple ai, siri ai, on-device ai]
+
+  - company: Amazon
+    keywords: [amazon ai, aws ai, alexa ai, amazon bedrock, amazon q]
+
+  - company: Nvidia
+    keywords: [nvidia, jensen huang, blackwell, cuda ai, nvidia ai]
+
+  - company: Samsung
+    keywords: [samsung ai, samsung galaxy ai]
+
+  - company: Adobe
+    keywords: [adobe firefly, adobe ai, adobe express ai]
+
+# --- News Categories ---
+categories:
+  - id: product_launch
+    name: "AI Product Launches & Features"
+    keywords:
+      - new feature
+      - product launch
+      - launches
+      - announces
+      - release
+      - ships
+      - unveils
+      - introduces
+      - update
+      - new model
+
+  - id: startup_funding
+    name: "AI Startup Funding & Deals"
+    keywords:
+      - funding
+      - series a
+      - series b
+      - series c
+      - raised
+      - investment
+      - valuation
+      - unicorn
+      - ipo
+      - acquisition
+      - acquires
+      - merger
+
+  - id: research_breakthroughs
+    name: "AI Research & Breakthroughs"
+    keywords:
+      - research
+      - paper
+      - benchmark
+      - state-of-the-art
+      - breakthrough
+      - outperforms
+      - arxiv
+
+  - id: ai_in_business
+    name: "AI in Business & Brands"
+    keywords:
+      - enterprise ai
+      - ai strategy
+      - ai adoption
+      - brands using ai
+      - marketing ai
+      - ai roi
+      - generative ai business
+      - ai transformation
+
+  - id: regulation_safety
+    name: "AI Regulation & Safety"
+    keywords:
+      - ai regulation
+      - ai safety
+      - ai act
+      - eu ai
+      - ai policy
+      - responsible ai
+      - ai ethics
+
+  - id: human_ai_experiments
+    name: "Human-in-the-Loop & AI Experiments"
+    keywords:
+      - ai workflow
+      - ai productivity
+      - using ai
+      - ai experiment
+      - ai tools
+      - working with ai
+      - ai agent
+      - agentic
+
+# --- Priority Keywords (always surface articles containing these) ---
+priority_keywords:
+  - AGI
+  - artificial general intelligence
+  - foundation model
+  - multimodal
+  - reasoning model
+  - AI agent
+  - agentic AI
+  - voice AI
+  - real-time AI
+  - on-device AI
+
+# --- Excluded topics (to reduce noise) ---
+exclude_keywords:
+  - crypto
+  - blockchain
+  - NFT
+  - metaverse
+  - web3
+  - gaming
+  - sports

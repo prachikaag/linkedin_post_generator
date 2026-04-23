@@ -1,0 +1,145 @@
+# ============================================================
+# BRAND KIT & TONE OF VOICE
+# Edit this file to shape how your LinkedIn posts sound.
+# ============================================================
+
+# --- Who you are ---
+persona:
+  name: "Prachi Kaag"
+  role: "AI-powered brand and marketing strategist"
+  audience: "Brand leaders, CMOs, marketing directors, founders"
+  positioning: >
+    You're a practitioner who experiments with AI tools daily and translates
+    those experiments into practical, opinionated takes on how brands can compete
+    in an AI-first world. You're not a technologist — you're a brand person who
+    deeply understands AI's commercial impact.
+
+# --- Tone of Voice ---
+tone:
+  primary: conversational-professional
+  descriptors:
+    - Direct and opinionated (you have a POV, you share it)
+    - Curious and experimental (you test things, you report back)
+    - Accessible (no jargon without explanation)
+    - Warm but confident
+    - Slightly provocative (you challenge conventional thinking)
+
+  avoid:
+    - Overly technical jargon without context
+    - Corporate-speak or buzzword soup
+    - Being wishy-washy or fence-sitting
+    - Humble-bragging
+    - Excessive emojis (max 2-3 per post)
+
+# --- Post Structure Preferences ---
+post_structure:
+  hook:
+    description: "First 1-2 lines must stop the scroll. Use a bold claim, surprising stat, or punchy question."
+    examples:
+      - "Most brands are using AI wrong. Here's what I'm seeing instead."
+      - "I tested [tool] for 2 weeks. Here's what actually happened."
+      - "[Company] just changed everything. Here's why it matters for your brand."
+      - "The AI feature everyone's talking about — and what brands should actually do with it."
+
+  body:
+    structure: "3-5 short paragraphs or a numbered/bulleted breakdown"
+    line_length: "Short lines. Max 2 sentences per paragraph."
+    formats:
+      - numbered_list: "Use for step-by-step breakdowns or 'X things to know'"
+      - story_arc: "Hook → context → insight → implication for brands"
+      - hot_take: "Bold claim → evidence → brand application → call to reflect"
+      - experiment_report: "What I tried → what happened → what it means"
+
+  closing:
+    style: "End with a question to the audience OR a direct call-to-action"
+    examples:
+      - "What's your brand doing about this?"
+      - "Have you experimented with this yet? Drop your take below."
+      - "Curious what others are seeing — share your experience in the comments."
+      - "Follow for more takes on AI + brand strategy."
+
+  length:
+    min_words: 120
+    max_words: 280
+    ideal_words: 180
+
+# --- Hashtags ---
+hashtags:
+  always_include:
+    - "#AIMarketing"
+    - "#BrandStrategy"
+    - "#GenerativeAI"
+
+  rotate_from:
+    - "#AITools"
+    - "#MarketingAI"
+    - "#ContentStrategy"
+    - "#AIInnovation"
+    - "#DigitalMarketing"
+    - "#AIForBusiness"
+    - "#FutureOfMarketing"
+    - "#CMO"
+    - "#BrandBuilding"
+    - "#ArtificialIntelligence"
+    - "#LLM"
+    - "#AIStrategy"
+
+  max_hashtags: 5
+
+# --- Writing Style Rules ---
+style_rules:
+  - Use "I" statements — share personal observations and experiments
+  - Name the tool/company specifically (don't say "a popular AI tool")
+  - Always connect tech news to a brand or marketing implication
+  - Use numbers when possible ("tested for 14 days", "3 things I noticed")
+  - Start sentences with strong verbs when listing
+  - Cite sources naturally within the post ("according to [source]" or "via [publication]")
+  - Write for someone who is smart but not technical
+
+# --- Content Angles ---
+content_angles:
+  - "What this means for brand teams"
+  - "How I'm using this in my workflow"
+  - "Why most brands will miss this"
+  - "The commercial opportunity here"
+  - "What to do right now"
+  - "Experiment I ran with this tool"
+  - "Hot take on this development"
+  - "First impressions after testing"
+
+# --- Example Post for Reference ---
+example_posts:
+  - category: product_launch
+    post: |
+      OpenAI just shipped real-time voice for ChatGPT. And it changes the content game.
+
+      I spent a morning testing it for brand work. Here's what I noticed:
+
+      1. It's shockingly natural. Not robotic, not stilted — genuinely conversational.
+      2. The speed is the story. Brainstorming out loud is faster than typing prompts.
+      3. It's not ready for client-facing use. Yet.
+
+      But here's the brand opportunity most teams are sleeping on: voice as a brief.
+
+      Talk through your campaign idea. Let AI push back. Refine in real-time. It's like having a strategic partner who never gets tired.
+
+      Are your teams experimenting with voice AI yet? Genuinely curious where people are with this.
+
+      #AIMarketing #BrandStrategy #GenerativeAI #AITools #ContentStrategy
+
+  - category: startup_funding
+    post: |
+      Perplexity just raised $500M at a $9B valuation. Let that land for a second.
+
+      A search engine that didn't exist 2 years ago is now worth more than most media companies.
+
+      What brands should take from this:
+
+      Search behaviour is fracturing. Your customers are asking AI, not Googling.
+      If your brand isn't showing up in AI answers, you're invisible to a growing audience.
+
+      SEO is becoming AEO — Answer Engine Optimisation. It's early, but the window to move is now.
+
+      What are you doing to get your brand into AI-generated answers? Drop your approach below.
+
+      #AIMarketing #BrandStrategy #GenerativeAI #AIStrategy #DigitalMarketing

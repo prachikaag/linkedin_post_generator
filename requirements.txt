@@ -1,0 +1,18 @@
+# Core AI / API
+anthropic>=0.40.0
+
+# News fetching
+feedparser>=6.0.11
+requests>=2.32.0
+
+# Trending keywords
+pytrends>=4.9.2
+
+# Config
+pyyaml>=6.0.2
+
+# Environment variables
+python-dotenv>=1.0.1
+
+# Optional: nicer CLI output
+rich>=13.9.0

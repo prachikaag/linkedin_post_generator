@@ -1,0 +1,153 @@
+# ============================================================
+# NEWS SOURCES
+# Edit this file to add/remove RSS feeds and news sources.
+# ============================================================
+
+# --- RSS Feeds ---
+rss_feeds:
+  # AI-specific publications
+  - name: "TechCrunch AI"
+    url: "https://techcrunch.com/category/artificial-intelligence/feed/"
+    category: ai_news
+    priority: high
+
+  - name: "VentureBeat AI"
+    url: "https://venturebeat.com/category/ai/feed/"
+    category: ai_news
+    priority: high
+
+  - name: "The Verge AI"
+    url: "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml"
+    category: ai_news
+    priority: high
+
+  - name: "Wired AI"
+    url: "https://www.wired.com/feed/tag/artificial-intelligence/latest/rss"
+    category: ai_news
+    priority: medium
+
+  - name: "MIT Technology Review AI"
+    url: "https://www.technologyreview.com/feed/"
+    category: ai_research
+    priority: medium
+
+  - name: "Ars Technica AI"
+    url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+    category: tech_news
+    priority: medium
+
+  - name: "The Information (AI)"
+    url: "https://www.theinformation.com/feed"
+    category: ai_business
+    priority: medium
+
+  - name: "404 Media"
+    url: "https://www.404media.co/rss/"
+    category: tech_news
+    priority: low
+
+  # Business & Marketing perspective on AI
+  - name: "Harvard Business Review - AI"
+    url: "https://hbr.org/topic/subject/ai-and-machine-learning/rss"
+    category: ai_business
+    priority: medium
+
+  - name: "Marketing Week"
+    url: "https://www.marketingweek.com/feed/"
+    category: marketing
+    priority: low
+
+  - name: "Adweek"
+    url: "https://www.adweek.com/feed/"
+    category: marketing
+    priority: low
+
+  # Startup/VC funding news
+  - name: "TechCrunch Startups"
+    url: "https://techcrunch.com/category/startups/feed/"
+    category: startup_funding
+    priority: medium
+
+  - name: "Crunchbase News"
+    url: "https://news.crunchbase.com/feed/"
+    category: startup_funding
+    priority: medium
+
+  # Company blogs (direct from the source)
+  - name: "OpenAI Blog"
+    url: "https://openai.com/blog/rss/"
+    category: ai_company
+    priority: high
+
+  - name: "Anthropic Blog"
+    url: "https://www.anthropic.com/rss.xml"
+    category: ai_company
+    priority: high
+
+  - name: "Google DeepMind Blog"
+    url: "https://deepmind.google/blog/rss.xml"
+    category: ai_company
+    priority: high
+
+  - name: "Hugging Face Blog"
+    url: "https://huggingface.co/blog/feed.xml"
+    category: ai_company
+    priority: medium
+
+  - name: "Meta AI Blog"
+    url: "https://ai.meta.com/blog/rss/"
+    category: ai_company
+    priority: medium
+
+  - name: "Microsoft AI Blog"
+    url: "https://blogs.microsoft.com/ai/feed/"
+    category: ai_company
+    priority: medium
+
+# --- NewsAPI Configuration (requires NEWSAPI_KEY in .env) ---
+newsapi:
+  enabled: true
+  queries:
+    - "artificial intelligence"
+    - "AI startup funding"
+    - "generative AI"
+    - "large language model"
+    - "AI tools"
+  sources:
+    - techcrunch
+    - the-verge
+    - wired
+    - ars-technica
+    - engadget
+  language: en
+  sort_by: publishedAt  # relevancy, popularity, publishedAt
+  page_size: 20
+
+# --- Google News RSS Queries ---
+# These are Google News RSS URLs for specific search queries
+google_news_queries:
+  - query: "AI product launch"
+    url: "https://news.google.com/rss/search?q=AI+product+launch&hl=en-US&gl=US&ceid=US:en"
+
+  - query: "AI startup funding 2024"
+    url: "https://news.google.com/rss/search?q=AI+startup+funding&hl=en-US&gl=US&ceid=US:en"
+
+  - query: "ChatGPT new feature"
+    url: "https://news.google.com/rss/search?q=ChatGPT+new+feature&hl=en-US&gl=US&ceid=US:en"
+
+  - query: "Claude Anthropic update"
+    url: "https://news.google.com/rss/search?q=Anthropic+Claude+update&hl=en-US&gl=US&ceid=US:en"
+
+  - query: "Gemini Google AI"
+    url: "https://news.google.com/rss/search?q=Gemini+Google+AI+launch&hl=en-US&gl=US&ceid=US:en"
+
+  - query: "AI brand marketing"
+    url: "https://news.google.com/rss/search?q=AI+brand+marketing&hl=en-US&gl=US&ceid=US:en"
+
+# --- Fetch Settings ---
+fetch_settings:
+  max_articles_per_source: 10
+  max_article_age_days: 7        # Only fetch articles published in the last N days
+  request_timeout_seconds: 10
+  retry_attempts: 2
+  deduplicate: true              # Skip articles already in data/seen_articles.json

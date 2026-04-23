@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.DS_Store
+data/seen_articles.json
+outputs/*.json
+outputs/*.md
