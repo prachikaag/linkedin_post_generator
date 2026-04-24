@@ -9,6 +9,7 @@ from rich.table import Table
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
+from .seen_tracker import SeenTracker
 from .trending_tracker import TrendingTracker
 
 console = Console()
@@ -40,6 +41,9 @@ class Pipeline:
         """
         console.rule("[bold blue]LinkedIn Post Generator[/]")
 
+        seen = SeenTracker()
+        seen.cleanup_old(days=30)
+
         # ── Step 1: News ────────────────────────────────────────────────────
         console.print("\n[bold cyan]Step 1 / 3 — Fetching news[/]")
         gatherer = NewsGatherer(self.sources, self.topics)
@@ -53,7 +57,22 @@ class Pipeline:
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        new_articles = seen.filter_unseen(articles)
+        skipped = len(articles) - len(new_articles)
+        if skipped:
+            console.print(
+                f"[dim]Skipped {skipped} article(s) already processed in a previous run.[/]"
+            )
+        articles = new_articles
+
+        if not articles:
+            console.print(
+                "[yellow]All fetched articles have already been processed.\n"
+                "Wait for newer articles or increase [bold]max_article_age_hours[/].[/]"
+            )
+            return []
+
+        console.print(f"[green]✓[/] {len(articles)} new relevant articles fetched and scored.")
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
@@ -99,6 +118,7 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                seen.mark_seen(anchor.url)
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
                     f"[dim]({result['source_count']} sources cited)[/]"

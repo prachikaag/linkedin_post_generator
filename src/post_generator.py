@@ -89,7 +89,7 @@ class PostGenerator:
 
         provided_urls = [a.url for a in articles if a.url]
         user_prompt = self._build_user_prompt(articles, trending_keywords)
-        raw = self._call_claude(user_prompt)
+        raw, generation_method = self._call_claude(user_prompt)
         if not raw:
             return None
 
@@ -103,7 +103,7 @@ class PostGenerator:
         if unverified:
             print(f"  [ℹ️  {len(unverified)} URL(s) could not be verified (no network?) — check before publishing]")
 
-        return self._save_post(articles, content, trending_keywords, url_report)
+        return self._save_post(articles, content, trending_keywords, url_report, generation_method)
 
     # ── Prompt construction ────────────────────────────────────────────────────
 
@@ -198,10 +198,11 @@ Currently trending (weave in naturally): {trending_str}
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 
-    def _call_claude(self, user_prompt: str) -> Optional[str]:
+    def _call_claude(self, user_prompt: str) -> tuple[Optional[str], str]:
         """
         Attempt generation via Claude CLI first (works in Claude Code environments
         without an API key), then fall back to the Anthropic Python SDK.
+        Returns (content, method_label).
         """
         # ── 1. Claude CLI (Claude Code MCP connection) ─────────────────────────
         if shutil.which("claude"):
@@ -221,7 +222,7 @@ Currently trending (weave in naturally): {trending_str}
                     cwd="/tmp",   # avoids triggering repo git hooks
                 )
                 if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip()
+                    return result.stdout.strip(), f"{self.model} (claude-cli)"
                 if result.stderr:
                     print(f"  [warn] Claude CLI: {result.stderr[:300]}")
             except subprocess.TimeoutExpired:
@@ -248,7 +249,7 @@ Currently trending (weave in naturally): {trending_str}
                     ],
                     messages=[{"role": "user", "content": user_prompt}],
                 )
-                return response.content[0].text.strip()
+                return response.content[0].text.strip(), f"{sdk_model} (sdk)"
             except Exception as exc:
                 print(f"  [error] Anthropic SDK: {exc}")
 
@@ -257,7 +258,7 @@ Currently trending (weave in naturally): {trending_str}
             "  → In a Claude Code environment this works automatically.\n"
             "  → Otherwise add ANTHROPIC_API_KEY to your .env file."
         )
-        return None
+        return None, "unknown"
 
     # ── URL validation ─────────────────────────────────────────────────────────
 
@@ -318,6 +319,7 @@ Currently trending (weave in naturally): {trending_str}
         content: str,
         trending_keywords: list[str],
         url_report: dict | None = None,
+        generation_method: str = "",
     ) -> dict:
         primary = articles[0]
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -351,7 +353,7 @@ Currently trending (weave in naturally): {trending_str}
             "matched_categories": all_categories,
             "relevance_score": primary.relevance_score,
             "status": "draft",
-            "model": self.model,
+            "model": generation_method or self.model,
         }
 
         file_content = (

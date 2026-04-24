@@ -26,14 +26,26 @@ def main():
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
     from src.news_gatherer import NewsGatherer
+    from src.seen_tracker import SeenTracker
     gatherer = NewsGatherer(sources, topics)
-    articles = gatherer.fetch_all()
+    all_articles = gatherer.fetch_all()
 
-    if not articles:
+    if not all_articles:
         print("No articles found. Try lowering min_relevance_score in config/topics.yaml")
         return
 
-    print(f"  → {len(articles)} relevant articles found")
+    seen = SeenTracker()
+    seen.cleanup_old(days=30)
+    articles = seen.filter_unseen(all_articles)
+    skipped = len(all_articles) - len(articles)
+    if skipped:
+        print(f"  → {skipped} article(s) skipped (already processed in a previous run)")
+
+    if not articles:
+        print("All fetched articles have already been processed. Wait for newer articles.")
+        return
+
+    print(f"  → {len(articles)} new relevant articles found")
     for a in articles[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
 
@@ -75,6 +87,7 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
+            seen.mark_seen(anchor.url)
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")
