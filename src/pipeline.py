@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+from .article_cache import ArticleCache
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
@@ -23,22 +24,28 @@ class Pipeline:
     def __init__(self, config_dir: Path, posts_dir: Path):
         self.config_dir = config_dir
         self.posts_dir = posts_dir
+        self.data_dir = config_dir.parent / "data"
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
-    def run(self, max_posts: int = 3, dry_run: bool = False) -> list[dict]:
+    def run(self, max_posts: int = 3, dry_run: bool = False, skip_cache: bool = False) -> list[dict]:
         """
         Full pipeline:
           1. Fetch and score news articles from RSS feeds
-          2. Fetch trending keywords from Google Trends
-          3. Build article clusters (SOURCE_POOL_SIZE articles each)
-          4. Generate one research-style post per cluster (min 4 sources each)
-          5. Save all posts as markdown drafts for human review
+          2. Filter already-seen articles via persistent cache
+          3. Fetch trending keywords
+          4. Build article clusters (SOURCE_POOL_SIZE articles each)
+          5. Generate one research-style post per cluster (min 4 sources each)
+          6. Save posts as markdown drafts and update the seen-articles cache
         """
         console.rule("[bold blue]LinkedIn Post Generator[/]")
+
+        cache = ArticleCache(self.data_dir / "seen_articles.json")
+        if cache.size:
+            console.print(f"[dim]Article cache: {cache.size} seen URLs loaded.[/]")
 
         # ── Step 1: News ────────────────────────────────────────────────────
         console.print("\n[bold cyan]Step 1 / 3 — Fetching news[/]")
@@ -53,7 +60,23 @@ class Pipeline:
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        if not skip_cache:
+            new_articles = cache.filter_new(articles)
+            cached_count = len(articles) - len(new_articles)
+            if cached_count:
+                console.print(
+                    f"[dim]  {cached_count} already-processed article(s) filtered out by cache.[/]"
+                )
+            articles = new_articles
+
+        if not articles:
+            console.print(
+                "[yellow]All fetched articles have already been processed.\n"
+                "Run with [bold]--skip-cache[/] to reprocess them, or wait for new articles.[/]"
+            )
+            return []
+
+        console.print(f"[green]✓[/] {len(articles)} new relevant articles fetched and scored.")
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
@@ -107,6 +130,14 @@ class Pipeline:
                 console.print("  [red]✗[/] Generation failed — skipping.")
 
         self._display_posts(generated)
+
+        # ── Cache: mark all processed articles as seen ──────────────────────
+        if not skip_cache and generated:
+            cache.mark_seen([a.url for a in articles])
+            cache.save()
+            console.print(
+                f"[dim]Cache updated — {cache.size} total seen URLs.[/]"
+            )
 
         # ── Step 4: Push to Notion (if configured) ──────────────────────────
         notion = NotionPublisher()

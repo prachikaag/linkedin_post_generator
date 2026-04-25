@@ -40,11 +40,21 @@ python main.py run --max-posts 5
 # See what news would be picked without generating posts
 python main.py run --dry-run
 
+# Force reprocess already-seen articles (bypass the daily cache)
+python main.py run --skip-cache
+
 # List all saved draft posts
 python main.py list-posts
 
 # Read a specific draft
 python main.py show 1
+
+# Mark a post as published (updates frontmatter status + adds published_date)
+python main.py mark-published 1
+python main.py mark-published --file posts/2026-04-22_post.md
+
+# Clear the seen-articles cache (next run reprocesses all articles)
+python main.py clear-cache
 
 # Show paths to all config files
 python main.py config
@@ -69,7 +79,7 @@ posts/
   2024-01-15_10-30-05_elevenlabs-raises-series-b.md
 ```
 
-Each file contains the draft post plus metadata (source URL, matched companies, trending keywords, relevance score). Edit the file directly, then copy the post to LinkedIn when ready. Change `status: draft` to `status: published` to keep track.
+Each file contains the draft post plus metadata (source URL, matched companies, trending keywords, relevance score). Edit the file directly, then copy the post to LinkedIn when ready. Run `python main.py mark-published <number>` to update the status — or edit the frontmatter directly and change `status: draft` to `status: published`.
 
 ## Adding News Sources
 

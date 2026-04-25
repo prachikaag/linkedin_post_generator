@@ -212,13 +212,12 @@ Currently trending (weave in naturally): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
                     ],
-                    input=user_prompt,   # pass via stdin, not positional arg
+                    input=user_prompt,
                     capture_output=True,
                     text=True,
                     timeout=180,
-                    cwd="/tmp",   # avoids triggering repo git hooks
+                    cwd="/tmp",
                 )
                 if result.returncode == 0 and result.stdout.strip():
                     return result.stdout.strip()

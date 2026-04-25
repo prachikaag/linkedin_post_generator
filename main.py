@@ -14,6 +14,7 @@ Usage:
 import os
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import click
@@ -62,7 +63,13 @@ def cli():
     default=False,
     help="Fetch and rank news without generating any posts.",
 )
-def run(max_posts: int, dry_run: bool):
+@click.option(
+    "--skip-cache",
+    is_flag=True,
+    default=False,
+    help="Ignore the seen-articles cache and reprocess all fetched articles.",
+)
+def run(max_posts: int, dry_run: bool, skip_cache: bool):
     """Run the full pipeline: fetch news → track trends → generate posts."""
     if not dry_run:
         has_claude_cli = shutil.which("claude") is not None
@@ -84,7 +91,7 @@ def run(max_posts: int, dry_run: bool):
     from src.pipeline import Pipeline
 
     pipeline = Pipeline(CONFIG_DIR, POSTS_DIR)
-    pipeline.run(max_posts=max_posts, dry_run=dry_run)
+    pipeline.run(max_posts=max_posts, dry_run=dry_run, skip_cache=skip_cache)
 
 
 # ── list-posts ────────────────────────────────────────────────────────────────
@@ -193,6 +200,77 @@ def show(number: int, filename: str):
             padding=(1, 2),
         )
     )
+
+
+# ── mark-published ────────────────────────────────────────────────────────────
+
+@cli.command("mark-published")
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to mark.")
+def mark_published(number: int, filename: str):
+    """Mark a draft post as published on LinkedIn."""
+    if filename:
+        post_file = POSTS_DIR / filename
+        if not post_file.exists():
+            console.print(f"[red]File not found:[/] {filename}")
+            sys.exit(1)
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print(
+            "[yellow]Provide a post number or --file <filename>.[/]\n"
+            "Example: [bold]python main.py mark-published 1[/]"
+        )
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    if not raw.startswith("---"):
+        console.print("[red]Post has no YAML frontmatter — cannot update status.[/]")
+        sys.exit(1)
+
+    parts = raw.split("---", 2)
+    if len(parts) < 3:
+        console.print("[red]Could not parse frontmatter.[/]")
+        sys.exit(1)
+
+    try:
+        meta = yaml.safe_load(parts[1]) or {}
+    except Exception as exc:
+        console.print(f"[red]YAML parse error:[/] {exc}")
+        sys.exit(1)
+
+    if meta.get("status") == "published":
+        console.print(
+            f"[yellow]Already marked as published:[/] {post_file.name}"
+        )
+        return
+
+    meta["status"] = "published"
+    meta["published_date"] = datetime.now().strftime("%Y-%m-%d")
+
+    updated = "---\n" + yaml.dump(meta, default_flow_style=False, allow_unicode=True) + "---" + parts[2]
+    post_file.write_text(updated, encoding="utf-8")
+    console.print(f"[green]✓[/] Marked as published: [bold]{post_file.name}[/]")
+
+
+# ── clear-cache ───────────────────────────────────────────────────────────────
+
+@cli.command("clear-cache")
+@click.confirmation_option(prompt="Clear the seen-articles cache? This will reprocess all articles on next run.")
+def clear_cache():
+    """Clear the seen-articles cache so all articles are reprocessed on the next run."""
+    from src.article_cache import ArticleCache
+    cache = ArticleCache(BASE_DIR / "data" / "seen_articles.json")
+    size = cache.size
+    cache.clear()
+    console.print(f"[green]✓[/] Cache cleared ({size} URLs removed).")
 
 
 # ── config ────────────────────────────────────────────────────────────────────

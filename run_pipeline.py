@@ -26,6 +26,7 @@ def main():
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
     from src.news_gatherer import NewsGatherer
+    from src.article_cache import ArticleCache
     gatherer = NewsGatherer(sources, topics)
     articles = gatherer.fetch_all()
 
@@ -33,7 +34,22 @@ def main():
         print("No articles found. Try lowering min_relevance_score in config/topics.yaml")
         return
 
-    print(f"  → {len(articles)} relevant articles found")
+    cache = ArticleCache(BASE / "data" / "seen_articles.json")
+    if cache.size:
+        print(f"  → Cache: {cache.size} seen URLs loaded")
+    skip_cache = "--skip-cache" in sys.argv
+    if not skip_cache:
+        new_articles = cache.filter_new(articles)
+        cached_count = len(articles) - len(new_articles)
+        if cached_count:
+            print(f"  → {cached_count} already-processed article(s) filtered out by cache")
+        articles = new_articles
+
+    if not articles:
+        print("All articles already processed. Run with --skip-cache to reprocess.")
+        return
+
+    print(f"  → {len(articles)} new relevant articles found")
     for a in articles[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
 
@@ -78,6 +94,12 @@ def main():
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")
+
+    # ── Cache: mark all processed articles as seen ──────────────────────────
+    if not skip_cache and generated:
+        cache.mark_seen([a.url for a in articles])
+        cache.save()
+        print(f"  → Cache updated: {cache.size} total seen URLs")
 
     # ── Step 4: push to Notion ──────────────────────────────────────────────
     from src.notion_publisher import NotionPublisher
