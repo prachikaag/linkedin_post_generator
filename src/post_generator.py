@@ -12,6 +12,8 @@ import yaml
 from .news_gatherer import Article
 
 # ── System prompt template ─────────────────────────────────────────────────────
+# The template is loaded from config/post_template.txt if present.
+# This fallback is used when that file is missing.
 
 _SYSTEM_TEMPLATE = """\
 You are a LinkedIn ghostwriter for {author_name}, {author_title}.
@@ -67,6 +69,22 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 - Make it sound like a real person who has done their homework, not a press release
 """
 
+_TEMPLATE_FILE = Path(__file__).parent.parent / "config" / "post_template.txt"
+
+
+def _load_template_file() -> str:
+    """Load template from config/post_template.txt, stripping the comment header."""
+    if not _TEMPLATE_FILE.exists():
+        return _SYSTEM_TEMPLATE
+    raw = _TEMPLATE_FILE.read_text(encoding="utf-8")
+    # Strip the comment block at the top (lines starting with #) to get the prompt
+    lines = raw.splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#"):
+            return "".join(lines[i:])
+    return _SYSTEM_TEMPLATE
+
 
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
@@ -78,6 +96,7 @@ class PostGenerator:
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
         self.model = os.getenv("ANTHROPIC_MODEL", "sonnet")
+        self._template = _load_template_file()
         self._system_prompt = self._build_system_prompt()
 
     def generate_post(
@@ -126,7 +145,7 @@ class PostGenerator:
         def nl(items: list) -> str:
             return "\n".join(f"{n}. {i}" for n, i in enumerate(items, 1))
 
-        return _SYSTEM_TEMPLATE.format(
+        return self._template.format(
             author_name=author.get("name", "the author"),
             author_title=author.get("title", ""),
             author_tagline=author.get("tagline", ""),
@@ -212,7 +231,9 @@ Currently trending (weave in naturally): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
+                        # No --tools flag: post generation is text-only.
+                        # The prompt explicitly asks for plain post text so
+                        # the model won't initiate tool calls unprompted.
                     ],
                     input=user_prompt,   # pass via stdin, not positional arg
                     capture_output=True,

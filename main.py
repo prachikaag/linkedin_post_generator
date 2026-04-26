@@ -113,7 +113,8 @@ def list_posts():
 
     console.print(table)
     console.print(
-        f"\n[dim]Use [bold]python main.py show <number>[/bold] to read a post.[/]"
+        f"\n[dim]Use [bold]python main.py show <number>[/bold] to read a post, "
+        f"[bold]mark-published <number>[/bold] when it goes live.[/]"
     )
 
 
@@ -193,6 +194,48 @@ def show(number: int, filename: str):
             padding=(1, 2),
         )
     )
+
+
+# ── mark-published ────────────────────────────────────────────────────────────
+
+@cli.command("mark-published")
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to mark.")
+def mark_published(number: int, filename: str):
+    """Mark a draft post as published. Pass the post number from list-posts."""
+    if filename:
+        post_file = POSTS_DIR / filename
+        if not post_file.exists():
+            console.print(f"[red]File not found:[/] {filename}")
+            sys.exit(1)
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print(
+            "[yellow]Provide a post number or --file <filename>.[/]\n"
+            "Example: [bold]python main.py mark-published 1[/]"
+        )
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    if "status: published" in raw:
+        console.print(f"[yellow]Already published:[/] {post_file.name}")
+        return
+
+    updated = raw.replace("status: draft", "status: published", 1)
+    if updated == raw:
+        console.print(f"[yellow]No 'status: draft' field found in:[/] {post_file.name}")
+        return
+
+    post_file.write_text(updated, encoding="utf-8")
+    console.print(f"[green]✓[/] {post_file.name} marked as [bold]published[/].")
 
 
 # ── config ────────────────────────────────────────────────────────────────────

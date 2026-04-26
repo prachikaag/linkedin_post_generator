@@ -25,15 +25,29 @@ def main():
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
+    from src.article_history import ArticleHistory
     from src.news_gatherer import NewsGatherer
+
+    history = ArticleHistory()
+    expired = history.purge_expired()
+    if expired:
+        print(f"  → Purged {expired} expired history entries")
+
     gatherer = NewsGatherer(sources, topics)
     articles = gatherer.fetch_all()
 
+    # Filter articles already used in previous runs
+    fresh = [a for a in articles if not history.is_used(a.url)]
+    skipped = len(articles) - len(fresh)
+    if skipped:
+        print(f"  → Skipped {skipped} article(s) already used in prior runs")
+    articles = fresh
+
     if not articles:
-        print("No articles found. Try lowering min_relevance_score in config/topics.yaml")
+        print("No new articles found. Try lowering min_relevance_score in config/topics.yaml")
         return
 
-    print(f"  → {len(articles)} relevant articles found")
+    print(f"  → {len(articles)} fresh articles found")
     for a in articles[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
 
@@ -75,6 +89,7 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
+            history.mark_used([a.url for a in cluster])
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")

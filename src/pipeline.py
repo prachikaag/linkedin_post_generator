@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+from .article_history import ArticleHistory
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
@@ -42,8 +43,21 @@ class Pipeline:
 
         # ── Step 1: News ────────────────────────────────────────────────────
         console.print("\n[bold cyan]Step 1 / 3 — Fetching news[/]")
+
+        history = ArticleHistory()
+        expired = history.purge_expired()
+        if expired:
+            console.print(f"[dim]Purged {expired} expired history entries.[/]")
+
         gatherer = NewsGatherer(self.sources, self.topics)
         articles = gatherer.fetch_all()
+
+        # Filter out articles already used in previous runs
+        fresh = [a for a in articles if not history.is_used(a.url)]
+        skipped = len(articles) - len(fresh)
+        if skipped:
+            console.print(f"[dim]Skipped {skipped} article(s) already used in prior runs.[/]")
+        articles = fresh
 
         if not articles:
             console.print(
@@ -99,6 +113,7 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                history.mark_used([a.url for a in cluster])
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
                     f"[dim]({result['source_count']} sources cited)[/]"
