@@ -129,6 +129,73 @@ companies_to_track:
         - "HuggingFace"
         - "open source AI model"
 
+    - name: "Suno"
+      keywords:
+        - "Suno"
+        - "Suno AI"
+        - "AI music generation"
+
+    - name: "Kling AI"
+      keywords:
+        - "Kling"
+        - "Kling AI"
+        - "AI video"
+
+    - name: "Luma AI"
+      keywords:
+        - "Luma"
+        - "Luma AI"
+        - "Dream Machine"
+
+    - name: "Ideogram"
+      keywords:
+        - "Ideogram"
+        - "Ideogram AI"
+
+    - name: "Jasper"
+      keywords:
+        - "Jasper"
+        - "Jasper AI"
+        - "Jasper marketing"
+
+    - name: "Copy.ai"
+      keywords:
+        - "Copy.ai"
+        - "CopyAI"
+
+    - name: "Notion AI"
+      keywords:
+        - "Notion AI"
+        - "Notion intelligence"
+
+    - name: "Canva AI"
+      keywords:
+        - "Canva AI"
+        - "Canva Magic"
+        - "Magic Write"
+        - "Magic Studio"
+
+    - name: "Cursor"
+      keywords:
+        - "Cursor AI"
+        - "Cursor editor"
+
+    - name: "Synthesia"
+      keywords:
+        - "Synthesia"
+        - "AI avatar"
+        - "AI video presenter"
+
+    - name: "Harvey AI"
+      keywords:
+        - "Harvey AI"
+        - "Harvey legal AI"
+
+    - name: "Glean"
+      keywords:
+        - "Glean AI"
+        - "enterprise AI search"
+
   big_tech:
     - name: "Microsoft"
       keywords:
@@ -264,9 +331,40 @@ topic_categories:
       - "AI assistant"
       - "copilot"
 
+  - name: "Human-in-the-Loop AI Experiments"
+    description: "First-person accounts of using AI in real workflows — testing, experimenting, learning"
+    keywords:
+      - "I tried"
+      - "I tested"
+      - "experiment"
+      - "human in the loop"
+      - "human-in-the-loop"
+      - "AI workflow"
+      - "prompt engineering"
+      - "using AI for"
+      - "AI for marketers"
+      - "AI for brands"
+      - "AI for creatives"
+      - "real world AI"
+      - "hands on"
+      - "in practice"
+
+  - name: "YouTube Video or Demo Launch"
+    description: "AI companies and creators releasing YouTube videos, demos, or tutorials"
+    keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "watch"
+      - "tutorial"
+      - "footage"
+      - "clip"
+      - "live demo"
+      - "showcase"
+
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
-  # Seed terms used to find related trending queries on Google Trends
+  # Seed terms used to find related trending queries across platforms
   seed_terms:
     - "artificial intelligence"
     - "ChatGPT"
@@ -276,6 +374,13 @@ trending_keywords:
     - "AI agent"
     - "Claude AI"
     - "Gemini AI"
+    - "AI marketing"
+    - "AI for brands"
+    - "Perplexity AI"
+    - "ElevenLabs"
+    - "Midjourney"
+    - "AI startup"
+    - "AI funding"
   geo: "US"           # Google Trends geography code (US, GB, AU, etc.)
   timeframe: "now 7-d" # last 7 days (options: now 1-d, now 7-d, now 1-m)
 

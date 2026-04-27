@@ -71,9 +71,10 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    def __init__(self, brand_kit: dict, posts_dir: Path, content_angles: dict | None = None):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
+        self.content_angles = content_angles or {}
         self.posts_dir.mkdir(exist_ok=True)
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
@@ -167,6 +168,17 @@ class PostGenerator:
             else "AI, artificial intelligence"
         )
 
+        angle = self._find_best_angle(categories)
+        angle_block = ""
+        if angle:
+            angle_block = f"\n## Post Angle: {angle['name']}\n"
+            angle_block += f"Perspective: {angle['perspective'].strip()}\n"
+            hooks = angle.get("example_hooks", [])
+            if hooks:
+                angle_block += "Example hooks to inspire (do NOT copy directly — adapt to the actual story):\n"
+                for hook in hooks[:3]:
+                    angle_block += f"  - {hook}\n"
+
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
 
@@ -179,7 +191,7 @@ HARD REQUIREMENT: Cite all {len(articles)} sources. Minimum {self.min_sources} �
 Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing, write [URL not provided].
 
 For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
-
+{angle_block}
 ## Source Material
 {sources_block}
 ## Context
@@ -190,11 +202,25 @@ Currently trending (weave in naturally): {trending_str}
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
 - Add your genuine perspective on what this means for brands and marketers specifically
-- For launches/features: explain the practical implication for a marketing team
-- For funding: explain what the investment signals about the AI landscape
 - End with an engaging question that invites comments
 - List all sources at the bottom under "Sources:" with full URLs copied from above
 """
+
+    def _find_best_angle(self, categories: list[str]) -> dict | None:
+        """Return the best matching content angle for the given article categories."""
+        angles = self.content_angles.get("angles", [])
+        for angle in angles:
+            trigger_cats = angle.get("trigger_categories", [])
+            if any(cat in categories for cat in trigger_cats):
+                return angle
+        default = self.content_angles.get("default_angle")
+        if default:
+            return {
+                "name": "General AI News",
+                "perspective": default.get("perspective", ""),
+                "example_hooks": [],
+            }
+        return None
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 

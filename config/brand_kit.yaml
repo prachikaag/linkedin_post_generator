@@ -5,12 +5,12 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION FIRST — everything else references your name and title.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                          # e.g. "Prachi Kaag"
+  title: "Your Professional Title"           # e.g. "Brand Strategist & AI Enthusiast"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

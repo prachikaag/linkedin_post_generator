@@ -204,6 +204,7 @@ def config():
     files = {
         "Topics of Interest": CONFIG_DIR / "topics.yaml",
         "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
+        "Content Angles (Post Types)": CONFIG_DIR / "content_angles.yaml",
         "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
         "Environment Variables": BASE_DIR / ".env",
     }

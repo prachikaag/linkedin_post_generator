@@ -26,6 +26,8 @@ class Pipeline:
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        angles_path = config_dir / "content_angles.yaml"
+        self.content_angles = self._load_yaml("content_angles.yaml") if angles_path.exists() else {}
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -80,7 +82,7 @@ class Pipeline:
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(self.brand_kit, self.posts_dir, content_angles=self.content_angles)
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):

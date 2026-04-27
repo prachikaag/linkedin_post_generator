@@ -22,6 +22,8 @@ def main():
     sources  = load("sources.yaml")
     topics   = load("topics.yaml")
     brand    = load("brand_kit.yaml")
+    angles_path = CONFIG / "content_angles.yaml"
+    angles   = load("content_angles.yaml") if angles_path.exists() else {}
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
@@ -60,7 +62,7 @@ def main():
         return cluster
 
     POSTS.mkdir(exist_ok=True)
-    generator = PostGenerator(brand, POSTS)
+    generator = PostGenerator(brand, POSTS, content_angles=angles)
     generated = []
 
     n_posts = min(MAX_POSTS, len(articles))

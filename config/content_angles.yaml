@@ -1,0 +1,275 @@
+# ============================================================
+# CONTENT ANGLES
+# ============================================================
+# This file defines the specific types of LinkedIn posts you write.
+# Each angle has a trigger (what kind of story activates it),
+# a perspective (how you frame the post), and example hooks.
+#
+# The generator picks the best-matching angle for each story cluster
+# and feeds it to Claude as the creative brief.
+#
+# Edit freely — add angles, change perspectives, swap example hooks.
+# ============================================================
+
+# ── Fallback angle when no specific match is found ────────
+default_angle:
+  perspective: >
+    React to this story as a brand strategist who actively experiments with AI tools.
+    Connect the news to a concrete implication for brand leaders, marketing teams,
+    or agencies. Add your genuine opinion — not a neutral summary.
+  hook_guidance: >
+    Start with a bold observation, a surprising stat, or an angle the mainstream
+    coverage is missing. Never start with 'I' or 'I am excited to share'.
+
+# ── Post Angles ────────────────────────────────────────────
+angles:
+
+  # ----------------------------------------------------------
+  - id: "feature_launch"
+    name: "New AI Feature or Product Launch"
+    description: >
+      An AI company ships a new model, product, or significant feature.
+      Examples: GPT-5 release, Claude 4 launch, Gemini 2.0 Flash, Sora going public,
+      Perplexity Pro update, ElevenLabs new voice model, Midjourney v7.
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "ships"
+      - "debuts"
+      - "announces"
+      - "rolls out"
+      - "introduces"
+      - "available now"
+      - "unveils"
+      - "new model"
+      - "new feature"
+    perspective: >
+      React to the launch from a brand and marketing leader's point of view.
+      What does this feature actually enable for marketers, creatives, and brand teams?
+      Have you tested it? Share what surprised you — good or bad.
+      Connect the capability to a concrete workflow or use case brands can adopt today.
+      Avoid hype — give a real take grounded in practical application.
+    example_hooks:
+      - "[Company] just shipped [feature] — and I've been testing it all week."
+      - "The new [product] from [company] is not what most people think it is."
+      - "[Company] launched [feature]. Here's what brand teams should actually pay attention to."
+      - "Most people are missing the real implication of [company]'s latest release."
+      - "[Feature] is live. Here's how brands can use it today — and where it still falls short."
+
+  # ----------------------------------------------------------
+  - id: "youtube_video"
+    name: "YouTube Video or Demo Release"
+    description: >
+      An AI company, researcher, or AI creator publishes a notable YouTube video,
+      product demo, or tutorial. Examples: OpenAI dropping a Sora demo, Google showing
+      Gemini's new capabilities, Anthropic walking through Claude Computer Use,
+      ElevenLabs demoing voice-to-voice.
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "watch"
+      - "tutorial"
+      - "shows"
+      - "footage"
+      - "clip"
+    perspective: >
+      Break down what the video reveals and what it means in practice for brands.
+      Reference specific moments or capabilities shown if mentioned in the source.
+      Share your genuine reaction — excitement, skepticism, or a mix.
+      Help your audience understand why this video matters beyond the hype cycle.
+    example_hooks:
+      - "[Company] just dropped a YouTube video and it's worth 5 minutes of your time."
+      - "This demo changes how I think about [use case] for brands."
+      - "Watched [company]'s latest video three times. Here's what stood out."
+      - "The [company] demo everyone is sharing — and the part people are glossing over."
+
+  # ----------------------------------------------------------
+  - id: "ai_startup_funding"
+    name: "AI Startup Funding Round"
+    description: >
+      An AI startup raises venture capital — seed, Series A, B, C — or gets acquired.
+      Examples: an AI marketing tool raising $50M Series B, a voice AI startup landing
+      a $200M round, an AI video company being acquired by a major platform.
+    trigger_categories:
+      - "AI Startup Funding"
+    trigger_keywords:
+      - "raises"
+      - "raised"
+      - "funding"
+      - "series A"
+      - "series B"
+      - "series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "billion"
+      - "million"
+      - "unicorn"
+      - "IPO"
+    perspective: >
+      Decode what the investment signals about where AI is heading — not just the dollar amount.
+      What does this company do, and why are investors betting on it right now?
+      What category does this validate? What does it mean for brands and marketing teams?
+      Be direct about whether you think this is the future or just a hot market moment.
+    example_hooks:
+      - "[Company] just raised $[X]. Here's why it matters more than the headline suggests."
+      - "Another AI funding round — but this one is actually worth paying attention to."
+      - "Investors just put $[X] into [category]. Here's what they're betting on."
+      - "What [company]'s $[X] raise tells us about where AI is really going."
+      - "$[X] into [company]. The money is interesting — the category it validates is more interesting."
+
+  # ----------------------------------------------------------
+  - id: "bigtech_ai_news"
+    name: "Big Tech AI News"
+    description: >
+      Microsoft, Google, Apple, Amazon, Meta, or Nvidia makes a significant AI move.
+      Examples: Microsoft embedding Copilot across Office 365, Apple launching Apple Intelligence
+      features, Google adding AI to Search, Amazon Bedrock updates, Meta releasing Llama 4.
+    trigger_keywords:
+      - "Microsoft"
+      - "Apple"
+      - "Amazon"
+      - "Nvidia"
+      - "Copilot"
+      - "Azure AI"
+      - "Apple Intelligence"
+      - "Amazon Bedrock"
+      - "Agentforce"
+    perspective: >
+      Big tech AI moves affect the tools brands already use every day.
+      Connect this to the software your audience lives in — Office, Google Workspace,
+      Creative Cloud, Salesforce, etc.
+      What does this mean for marketing teams who are already in these ecosystems?
+      Be concrete: what can they do differently next week because of this?
+    example_hooks:
+      - "[Company] just made AI a default part of [tool] — whether you asked for it or not."
+      - "The [company] AI news everyone missed this week."
+      - "What [company]'s latest AI move means for every brand team using [product]."
+      - "[Company] just changed [product] and most marketers haven't noticed yet."
+
+  # ----------------------------------------------------------
+  - id: "human_in_the_loop"
+    name: "Human-in-the-Loop AI Experiment"
+    description: >
+      Your personal account of using an AI tool in a real workflow — honest, specific,
+      and first-hand. The format: you tried something, here's exactly what happened,
+      here's what it means. Examples: testing Claude for brand strategy briefs,
+      using Midjourney for campaign concepts, running ChatGPT through a media plan.
+    trigger_keywords:
+      - "workflow"
+      - "experiment"
+      - "test"
+      - "tried"
+      - "using AI"
+      - "AI for"
+      - "productivity"
+      - "agentic"
+      - "automation"
+      - "prompt"
+    perspective: >
+      Share exactly what you did — the tool, the use case, the prompt approach, the output quality.
+      Be honest about what worked and what didn't. Avoid overclaiming.
+      The reader should feel like they just got a real tip from a friend who already did the testing.
+      End with one specific thing they can go try themselves.
+    example_hooks:
+      - "I spent [X] hours using [tool] for [use case]. Here's what actually happened."
+      - "Ran an experiment with [tool] this week. The results were not what I expected."
+      - "Stop using [tool] the wrong way. Here's the workflow that actually works."
+      - "[X] things I learned using AI for [use case] that no one tells you."
+      - "Honest take: I tried [tool] for [use case] so you don't have to start from scratch."
+
+  # ----------------------------------------------------------
+  - id: "ai_for_brands"
+    name: "AI Strategy for Brands and Marketers"
+    description: >
+      A broader strategic take on what AI means for brand building, marketing,
+      creative work, or agency models — not tied to one specific news story.
+    trigger_categories:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+    trigger_keywords:
+      - "brand"
+      - "marketing"
+      - "CMO"
+      - "creative"
+      - "agency"
+      - "advertising"
+      - "content creation"
+      - "social media AI"
+      - "AI marketing"
+    perspective: >
+      Write as a brand strategist who has been in the trenches testing these tools.
+      Synthesise the news into a broader trend or strategic implication for brand leaders.
+      Give a concrete take: what should brands do today, in 3 months, in 12 months?
+      Be opinionated. Vague takes get ignored. Specific takes get shared.
+    example_hooks:
+      - "The way brands are thinking about AI is still wrong."
+      - "[Trend] is about to reshape how brand teams work — here's what to do about it."
+      - "Most brands are using AI for the wrong things. Here's where the real leverage is."
+      - "The AI skill gap in marketing is wider than anyone is admitting."
+
+  # ----------------------------------------------------------
+  - id: "ai_regulation_policy"
+    name: "AI Regulation, Policy, or Ethics"
+    description: >
+      Government regulation, AI safety policy, copyright rulings, or ethics developments
+      that affect how brands can and should use AI.
+    trigger_categories:
+      - "AI Regulation and Policy"
+    trigger_keywords:
+      - "regulation"
+      - "policy"
+      - "EU AI Act"
+      - "copyright"
+      - "safety"
+      - "ethics"
+      - "ban"
+      - "law"
+      - "ruling"
+      - "compliance"
+    perspective: >
+      Translate the regulatory or policy development into plain language for brand leaders.
+      What do they actually need to know and do — not what lawyers need to know?
+      Add your opinion on whether this is a good or bad development for brands.
+      Be the translator between the policy world and the marketing world.
+    example_hooks:
+      - "New AI regulation just dropped. Here's the plain-English version for brand teams."
+      - "The AI policy news this week that will affect how your brand uses AI."
+      - "What [regulatory development] actually means for marketing teams — without the legal jargon."
+      - "Brands need to read this before their next AI campaign."
+
+  # ----------------------------------------------------------
+  - id: "ai_research_breakthrough"
+    name: "AI Research or Capability Breakthrough"
+    description: >
+      A new research paper, benchmark result, or technical capability milestone that
+      signals what AI will be able to do next — or sooner than expected.
+    trigger_categories:
+      - "AI Research and Breakthroughs"
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "capability"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+      - "study"
+    perspective: >
+      Translate the technical breakthrough into practical implications for brands and marketers.
+      What capability does this unlock? When will brands actually feel this?
+      Connect the research to tools brands already use or will use within 12–18 months.
+      Be honest about the gap between research and real-world deployment.
+    example_hooks:
+      - "A new AI research result dropped this week — and it changes what I thought was possible."
+      - "The benchmark result no one is talking about — and why it matters for brands."
+      - "[Research finding] just made [use case] significantly better. Here's what that means."
+      - "Researchers just showed AI can [new capability]. Brands should start thinking about this now."
