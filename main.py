@@ -3,12 +3,17 @@
 LinkedIn Post Generator
 -----------------------
 Usage:
-  python main.py run              # Full pipeline: fetch news, trends, generate posts
-  python main.py run --dry-run    # Fetch and score news only, no generation
+  python main.py run                        # Full pipeline: fetch news, trends, generate posts
+  python main.py run --dry-run              # Fetch and score news only, no generation
   python main.py run --max-posts 5
-  python main.py list-posts       # List all saved draft posts
-  python main.py show 1           # Show post #1 from the list
-  python main.py show --file posts/2024-01-15_10-00-00_openai-launches.md
+
+  python main.py write-post --topic "Claude 4 launch"
+  python main.py write-post --url "https://techcrunch.com/..."
+
+  python main.py list-posts                 # List all saved draft posts
+  python main.py show 1                     # Show post #1 from the list
+  python main.py mark-published 1           # Mark post #1 as published
+  python main.py config                     # Show paths to all config files
 """
 
 import os
@@ -193,6 +198,127 @@ def show(number: int, filename: str):
             padding=(1, 2),
         )
     )
+
+
+# ── write-post ───────────────────────────────────────────────────────────────
+
+@cli.command("write-post")
+@click.option("--topic", "-t", default=None, help="Topic or keyword phrase to write about.")
+@click.option("--url", "-u", default=None, help="Specific article URL to anchor the post on.")
+def write_post(topic: str, url: str):
+    """Generate a post on a specific topic or from a specific news URL.
+
+    Examples:
+
+      python main.py write-post --topic "Claude 4 launch"
+
+      python main.py write-post --url "https://techcrunch.com/2025/..."
+    """
+    if not topic and not url:
+        console.print(
+            "[yellow]Provide either --topic or --url.[/]\n\n"
+            "  [bold]python main.py write-post --topic \"Claude 4 launch\"[/]\n"
+            "  [bold]python main.py write-post --url \"https://techcrunch.com/...\"[/]"
+        )
+        sys.exit(1)
+
+    if not shutil.which("claude") and not os.getenv("ANTHROPIC_API_KEY"):
+        console.print(
+            "[bold red]Error:[/] No Claude access.\n"
+            "Run inside Claude Code or add ANTHROPIC_API_KEY to .env"
+        )
+        sys.exit(1)
+
+    from src.topic_searcher import TopicSearcher
+    from src.post_generator import PostGenerator
+    import yaml
+
+    brand_kit = yaml.safe_load((CONFIG_DIR / "brand_kit.yaml").read_text())
+    topics_cfg = yaml.safe_load((CONFIG_DIR / "topics.yaml").read_text())
+
+    searcher = TopicSearcher(topics_cfg)
+
+    if url:
+        console.print(f"\n[bold cyan]Fetching article and finding related sources...[/]")
+        console.print(f"[dim]URL: {url}[/]")
+        articles = searcher.search_from_url(url)
+    else:
+        console.print(f"\n[bold cyan]Searching for recent articles on:[/] [bold]{topic}[/]")
+        articles = searcher.search(topic)
+
+    if not articles:
+        console.print(
+            "[red]No articles found.[/] Try a broader topic phrase or check your internet connection."
+        )
+        sys.exit(1)
+
+    console.print(f"[green]✓[/] {len(articles)} source(s) found:")
+    for i, a in enumerate(articles, 1):
+        console.print(f"  [dim]{i}.[/] {a.title[:70]} [dim]({a.source_name})[/]")
+
+    from src.trending_tracker import TrendingTracker
+    tracker = TrendingTracker(topics_cfg)
+    trending = tracker.get_trending_keywords()
+
+    console.print(f"\n[bold cyan]Generating post...[/]")
+    POSTS_DIR.mkdir(exist_ok=True)
+    generator = PostGenerator(brand_kit, POSTS_DIR)
+    result = generator.generate_post(articles, trending)
+
+    if not result:
+        console.print("[red]Post generation failed.[/]")
+        sys.exit(1)
+
+    console.print(
+        f"\n[green]✓[/] Saved → [bold]{result['filename']}[/] "
+        f"[dim]({result['source_count']} sources cited)[/]"
+    )
+    console.print(
+        Panel(
+            result["content"],
+            title=f"[bold]{result['article_title'][:55]}[/]",
+            subtitle=f"[dim]{result['filename']}[/]",
+            border_style="green",
+            padding=(1, 2),
+        )
+    )
+
+
+# ── mark-published ────────────────────────────────────────────────────────────
+
+@cli.command("mark-published")
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to mark.")
+def mark_published(number: int, filename: str):
+    """Mark a draft post as published.
+
+    Example: python main.py mark-published 1
+    """
+    if filename:
+        post_file = POSTS_DIR / filename
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(f"[red]Invalid post number {number}.[/]")
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print("[yellow]Provide a post number or --file <filename>.[/]")
+        sys.exit(1)
+
+    if not post_file.exists():
+        console.print(f"[red]File not found:[/] {post_file.name}")
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    updated = raw.replace("status: draft", "status: published", 1)
+
+    if updated == raw:
+        console.print(f"[yellow]Post is already marked as published or has no status field.[/]")
+        return
+
+    post_file.write_text(updated, encoding="utf-8")
+    console.print(f"[green]✓[/] [bold]{post_file.name}[/] marked as [bold green]published[/].")
 
 
 # ── config ────────────────────────────────────────────────────────────────────

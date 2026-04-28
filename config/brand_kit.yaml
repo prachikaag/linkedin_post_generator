@@ -86,6 +86,51 @@ brand:
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
 
+  # Post types — these shape the angle and tone of each generated post
+  post_types:
+    - id: "personal_experiment"
+      label: "Personal Experiment"
+      description: "You tested an AI tool or workflow yourself and are sharing honest results. First-person, specific, and real."
+      trigger_phrases:
+        - "I tried"
+        - "I tested"
+        - "I built"
+        - "I spent [X] using"
+        - "Here's what happened when I"
+
+    - id: "news_reaction"
+      label: "News Reaction with Opinion"
+      description: "A new feature, model, or product just launched. You're reacting with your own take on what it means for brands."
+      trigger_phrases:
+        - "[Company] just shipped"
+        - "[Product] launched"
+        - "Big news from [Company]"
+        - "What [launch] means for marketers"
+
+    - id: "funding_signal"
+      label: "Funding Signal"
+      description: "An AI startup just raised money. You explain what the investment signals about where the industry is heading."
+      trigger_phrases:
+        - "[Startup] raised [$X]"
+        - "Why this funding round matters"
+        - "What [valuation] tells us about AI"
+
+    - id: "trend_analysis"
+      label: "Trend Analysis"
+      description: "A pattern is emerging across multiple AI developments. You're connecting the dots and sharing the bigger picture."
+      trigger_phrases:
+        - "Something is shifting in AI"
+        - "Three things happening in AI right now"
+        - "The pattern I'm noticing"
+
+    - id: "how_brands_use_it"
+      label: "How Brands Can Use This"
+      description: "Practical, actionable breakdown of how a brand or marketing team can use a new AI capability today."
+      trigger_phrases:
+        - "How to use [tool] for your brand"
+        - "Practical AI for marketers"
+        - "What marketing teams should do with [feature]"
+
   # Example angles you love to write about
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
@@ -93,6 +138,7 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I've been experimenting with [tool] for [X weeks] — honest take inside"
 
   # Hashtag strategy
   hashtags:
