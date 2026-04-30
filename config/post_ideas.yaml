@@ -1,0 +1,196 @@
+# ============================================================
+# POST IDEAS & ANGLES
+# ============================================================
+# Manually add post ideas here. The pipeline checks this file
+# each run and blends your ideas into the generated drafts
+# when the topic matches the day's news.
+#
+# IDEAS WITH status: "queued" are actively used in generation.
+# Change to "done" once you've published the post.
+# Change to "skip" to park an idea without deleting it.
+#
+# HOW IT WORKS:
+# Each idea has a set of trigger_keywords. When the news
+# pipeline finds articles matching those keywords, your idea's
+# angle and talking_points are injected into the Claude prompt —
+# so the generated post reflects your pre-existing thinking,
+# not just what the article says.
+# ============================================================
+
+ideas:
+
+  # ── Template ──────────────────────────────────────────────────────────────
+  # - id: idea000
+  #   title: "Short title for your reference"
+  #   status: "queued"              # queued | done | skip
+  #   trigger_keywords:             # post is enriched when news matches these
+  #     - "keyword"
+  #   angle: |
+  #     The specific take or argument you want to make in this post.
+  #   talking_points:
+  #     - "Specific point to make"
+  #     - "Another specific point"
+  #   added: "2024-01-01"
+
+  # ── AI Tools for Marketers ────────────────────────────────────────────────
+
+  - id: idea001
+    title: "The AI tool adoption gap between big brands and SMBs"
+    status: "queued"
+    trigger_keywords:
+      - "AI marketing"
+      - "brand"
+      - "CMO"
+      - "advertising"
+      - "marketing"
+    angle: |
+      Most AI marketing coverage focuses on what big brands with big budgets are doing.
+      But the real story is how small and mid-size brands are navigating this — without
+      a dedicated AI team, without a prompt engineer, without a six-figure SaaS stack.
+      That's where the most interesting experimentation is happening, and it's where
+      the practical lessons for most marketers actually live.
+    talking_points:
+      - "SMBs are often more agile with AI adoption than enterprise brands — fewer approval layers"
+      - "The tools that matter most to 90% of marketers are the free/low-cost tier of ChatGPT, Claude, Canva AI"
+      - "The gap isn't access to tools — it's knowing what questions to ask"
+      - "A brand strategist with good AI prompting skills now outcompetes a junior copywriter with bad prompts"
+    added: "2025-01-15"
+
+  - id: idea002
+    title: "AI doesn't replace the brief — it makes a bad brief painfully obvious"
+    status: "queued"
+    trigger_keywords:
+      - "content creation"
+      - "copywriting"
+      - "AI writing"
+      - "generative AI"
+      - "ChatGPT"
+      - "Claude"
+    angle: |
+      Every time someone says AI-generated content is generic, I ask them what brief
+      they gave it. Garbage in, garbage out has never been more literally true.
+      The brands getting the best AI content are the ones with the clearest brand voice,
+      the most specific audience insight, and the tightest creative briefs — not the
+      most expensive AI tools.
+    talking_points:
+      - "AI output quality is directly proportional to brief quality"
+      - "The brands winning with AI content already had strong brand guidelines"
+      - "Prompting is the new briefing — and most people haven't learned to brief well yet"
+      - "AI has exposed a widespread problem: brands don't actually know what they sound like"
+    added: "2025-01-20"
+
+  - id: idea003
+    title: "Why I stopped worrying about AI replacing creative jobs"
+    status: "queued"
+    trigger_keywords:
+      - "AI jobs"
+      - "creative AI"
+      - "AI replace"
+      - "future of work"
+      - "automation"
+    angle: |
+      The "AI will replace creatives" narrative is tired and lazy. What's actually
+      happening is more nuanced and more interesting: AI is replacing the most
+      commodity parts of creative work (first drafts, image sourcing, basic editing)
+      and raising the floor — which means the ceiling is getting higher too.
+      The creatives who lean in are getting more interesting briefs, not fewer.
+    talking_points:
+      - "AI has raised the quality floor, which means the market for mediocre work is disappearing"
+      - "The demand for strategic creative thinking — the stuff AI can't do — is actually increasing"
+      - "Creatives who adopt AI are doing more interesting work, not less creative work"
+      - "The real risk isn't AI replacing you — it's someone who uses AI replacing you"
+    added: "2025-02-01"
+
+  # ── AI Company Launches ────────────────────────────────────────────────────
+
+  - id: idea004
+    title: "Most AI feature launches don't matter — here's how to tell which ones do"
+    status: "queued"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "announces"
+      - "ships"
+    angle: |
+      Every week brings another AI product launch. Most of them don't change anything
+      for practitioners. The signal I look for: does this change the cost, the speed,
+      or the capability ceiling of something marketers already do? If yes — pay attention.
+      If it's a new benchmark score or a research paper, probably not.
+    talking_points:
+      - "The launches that matter to marketers are the ones that change cost-per-output or time-per-output"
+      - "Most 'game-changing' announcements are incremental improvements dressed as revolutions"
+      - "The test: can a non-technical marketer use this to do something useful within 30 minutes?"
+      - "Watch what the prosumers (power users who aren't engineers) actually adopt — not what goes viral on Twitter"
+    added: "2025-02-10"
+
+  - id: idea005
+    title: "Funding rounds as a signal of where AI is actually heading"
+    status: "queued"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series"
+      - "valuation"
+      - "investment"
+      - "venture capital"
+    angle: |
+      When I see a large AI funding round, I don't just see a number — I see a
+      hypothesis about which AI capabilities are about to become commoditised.
+      If investors are pouring money into voice AI, expect voice to become table
+      stakes within 18 months. If they're betting on AI agents, expect agentic
+      workflows to be the next "must-have" for marketing stacks.
+    talking_points:
+      - "VC funding is a lagging signal of product-market fit and a leading signal of commoditisation"
+      - "The companies getting funded today are building the infrastructure that everyone will use in 3 years"
+      - "For marketers: follow the money to know where to upskill now, before it becomes mandatory"
+      - "The AI infrastructure layer is consolidating faster than most brands realise"
+    added: "2025-02-15"
+
+  # ── Human in the Loop ─────────────────────────────────────────────────────
+
+  - id: idea006
+    title: "The human-in-the-loop workflow that's actually saving me time"
+    status: "queued"
+    trigger_keywords:
+      - "AI agent"
+      - "agentic"
+      - "automation"
+      - "workflow"
+      - "productivity"
+      - "AI assistant"
+    angle: |
+      Everyone's talking about fully autonomous AI agents. I'm more interested in
+      what I call "human in the loop" workflows — where AI drafts, structures, or
+      researches, and I make the final calls. That's where the real productivity
+      gains are happening right now, without the hallucination risk of fully
+      handing over the wheel.
+    talking_points:
+      - "Full automation is a long-term destination; human-in-the-loop is the practical present"
+      - "The best AI workflows I've built all have a human review/edit step built in by design"
+      - "Trust in AI output increases when you know exactly where a human checked it"
+      - "For client work especially: AI does the grunt work, human does the judgment calls"
+    added: "2025-03-01"
+
+  - id: idea007
+    title: "What brands should actually be doing with AI right now (not in 5 years)"
+    status: "queued"
+    trigger_keywords:
+      - "AI strategy"
+      - "brand"
+      - "enterprise AI"
+      - "AI adoption"
+      - "AI for business"
+    angle: |
+      The "AI strategy" conversation in most boardrooms is happening at the wrong
+      altitude. They're debating five-year transformation roadmaps while their teams
+      are quietly using AI tools every day with zero guidance. The practical opportunity
+      is right now, in small things: faster research, better briefs, more content
+      variants, quicker turnarounds. Start there.
+    talking_points:
+      - "Most brands don't need an AI strategy — they need AI-literate people on their marketing team today"
+      - "The immediate ROI is in time savings on repeatable tasks: research, first drafts, image sourcing"
+      - "The brands that will win long-term are building AI fluency now, not waiting for a perfect strategy"
+      - "Don't let perfect be the enemy of started — running one real AI experiment beats a 30-page AI strategy deck"
+    added: "2025-03-10"

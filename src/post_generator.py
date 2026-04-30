@@ -11,6 +11,18 @@ import yaml
 
 from .news_gatherer import Article
 
+# Maps CLI model aliases to full Anthropic SDK model IDs
+_SDK_MODEL_IDS = {
+    "sonnet": "claude-sonnet-4-6",
+    "opus": "claude-opus-4-7",
+    "haiku": "claude-haiku-4-5-20251001",
+}
+
+
+def _resolve_sdk_model(alias: str) -> str:
+    """Resolve a short alias (sonnet/opus/haiku) to a full SDK model ID."""
+    return _SDK_MODEL_IDS.get(alias.lower(), alias)
+
 # ── System prompt template ─────────────────────────────────────────────────────
 
 _SYSTEM_TEMPLATE = """\
@@ -71,10 +83,18 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    def __init__(
+        self,
+        brand_kit: dict,
+        posts_dir: Path,
+        experiments: list[dict] | None = None,
+        post_ideas: list[dict] | None = None,
+    ):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
         self.posts_dir.mkdir(exist_ok=True)
+        self.experiments: list[dict] = experiments or []
+        self.post_ideas: list[dict] = post_ideas or []
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
         self.model = os.getenv("ANTHROPIC_MODEL", "sonnet")
@@ -167,6 +187,16 @@ class PostGenerator:
             else "AI, artificial intelligence"
         )
 
+        # Match personal experiments to this cluster's companies/topics
+        experiments_block = self._match_experiments(companies, categories)
+        ideas_block = self._match_post_ideas(companies, categories)
+
+        extra_sections = ""
+        if experiments_block:
+            extra_sections += f"\n## My Personal Experiments (weave into the post naturally)\n{experiments_block}"
+        if ideas_block:
+            extra_sections += f"\n## My Pre-existing Angles (use if they fit the story)\n{ideas_block}"
+
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
 
@@ -186,15 +216,90 @@ For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
 Currently trending (weave in naturally): {trending_str}
-
+{extra_sections}
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
 - Add your genuine perspective on what this means for brands and marketers specifically
 - For launches/features: explain the practical implication for a marketing team
 - For funding: explain what the investment signals about the AI landscape
+- If personal experiments are provided above, weave them into the "YOUR TAKE" section as first-person experience — keep them specific and honest
+- If post ideas/angles are provided above, use them to sharpen the take if they fit naturally — don't force them
 - End with an engaging question that invites comments
 - List all sources at the bottom under "Sources:" with full URLs copied from above
 """
+
+    def _match_experiments(self, companies: list[str], categories: list[str]) -> str:
+        """Return a formatted block of relevant personal experiments for the prompt."""
+        if not self.experiments:
+            return ""
+
+        text_to_match = " ".join(companies + categories).lower()
+        matched: list[dict] = []
+
+        for exp in self.experiments:
+            if not exp.get("include_in_posts", True):
+                continue
+            company = exp.get("company", "").lower()
+            tool = exp.get("tool", "").lower()
+            tags = [t.lower() for t in exp.get("tags", [])]
+            # Match on company name, tool name, or any tag appearing in article context
+            if (
+                company in text_to_match
+                or tool in text_to_match
+                or any(tag in text_to_match for tag in tags)
+            ):
+                matched.append(exp)
+
+        if not matched:
+            return ""
+
+        lines = []
+        for exp in matched[:2]:  # cap at 2 to keep prompt concise
+            lines.append(f"### Experiment: {exp.get('tool', '')} — {exp.get('use_case', '')}")
+            lines.append(f"Date: {exp.get('date', 'recent')}")
+            if exp.get("what_i_tried"):
+                lines.append(f"What I tried: {exp['what_i_tried'].strip()}")
+            if exp.get("what_happened"):
+                lines.append(f"What happened: {exp['what_happened'].strip()}")
+            if exp.get("key_takeaway"):
+                lines.append(f"Key takeaway: {exp['key_takeaway'].strip()}")
+            if exp.get("time_saved_hours"):
+                lines.append(f"Time saved: ~{exp['time_saved_hours']} hours")
+            lines.append("")
+
+        return "\n".join(lines)
+
+    def _match_post_ideas(self, companies: list[str], categories: list[str]) -> str:
+        """Return a formatted block of relevant queued post ideas for the prompt."""
+        if not self.post_ideas:
+            return ""
+
+        text_to_match = " ".join(companies + categories).lower()
+        matched: list[dict] = []
+
+        for idea in self.post_ideas:
+            if idea.get("status", "queued") != "queued":
+                continue
+            keywords = [k.lower() for k in idea.get("trigger_keywords", [])]
+            if any(kw in text_to_match for kw in keywords):
+                matched.append(idea)
+
+        if not matched:
+            return ""
+
+        lines = []
+        for idea in matched[:2]:  # cap at 2
+            lines.append(f"### Angle: {idea.get('title', '')}")
+            if idea.get("angle"):
+                lines.append(f"My take: {idea['angle'].strip()}")
+            points = idea.get("talking_points", [])
+            if points:
+                lines.append("Key points to make:")
+                for pt in points[:3]:
+                    lines.append(f"  - {pt}")
+            lines.append("")
+
+        return "\n".join(lines)
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 
@@ -235,7 +340,7 @@ Currently trending (weave in naturally): {trending_str}
             try:
                 import anthropic
                 client = anthropic.Anthropic(api_key=api_key)
-                sdk_model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
+                sdk_model = _resolve_sdk_model(os.getenv("ANTHROPIC_MODEL", "sonnet"))
                 response = client.messages.create(
                     model=sdk_model,
                     max_tokens=1500,

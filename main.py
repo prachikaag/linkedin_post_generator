@@ -14,6 +14,7 @@ Usage:
 import os
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import click
@@ -205,12 +206,103 @@ def config():
         "Topics of Interest": CONFIG_DIR / "topics.yaml",
         "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
         "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
+        "My AI Experiments": CONFIG_DIR / "my_experiments.yaml",
+        "Post Ideas & Angles": CONFIG_DIR / "post_ideas.yaml",
         "Environment Variables": BASE_DIR / ".env",
     }
     for label, path in files.items():
         exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
         console.print(f"  {exists}  [bold]{label}[/]")
         console.print(f"     [dim]{path}[/]\n")
+
+
+# ── add-experiment ─────────────────────────────────────────────────────────────
+
+@cli.command("add-experiment")
+@click.option("--tool", prompt="Tool / product name", help="e.g. Claude, ChatGPT, Midjourney")
+@click.option("--company", prompt="Company name", help="e.g. Anthropic, OpenAI, Midjourney")
+@click.option("--use-case", prompt="Use case (one line)", help="What were you trying to do?")
+@click.option("--tried", prompt="What you tried", help="Describe what you actually did.")
+@click.option("--happened", prompt="What happened", help="Honest results — what worked, what didn't.")
+@click.option("--takeaway", prompt="Key takeaway", help="The one thing brands should know.")
+@click.option("--tags", default="", help="Comma-separated tags, e.g. copywriting,brand strategy")
+@click.option("--hours-saved", default=0.0, type=float, help="Estimated hours saved (optional).")
+def add_experiment(
+    tool: str,
+    company: str,
+    use_case: str,
+    tried: str,
+    happened: str,
+    takeaway: str,
+    tags: str,
+    hours_saved: float,
+):
+    """Log a personal AI experiment to config/my_experiments.yaml."""
+    experiments_file = CONFIG_DIR / "my_experiments.yaml"
+
+    existing_data: dict = {}
+    if experiments_file.exists():
+        try:
+            existing_data = yaml.safe_load(experiments_file.read_text(encoding="utf-8")) or {}
+        except Exception:
+            existing_data = {}
+
+    experiments_list: list = existing_data.get("experiments", [])
+
+    # Generate next ID
+    existing_ids = [
+        int(e.get("id", "exp000").replace("exp", ""))
+        for e in experiments_list
+        if str(e.get("id", "")).startswith("exp")
+    ]
+    next_num = (max(existing_ids) + 1) if existing_ids else 1
+    new_id = f"exp{next_num:03d}"
+
+    tag_list = [t.strip() for t in tags.split(",") if t.strip()]
+
+    new_exp: dict = {
+        "id": new_id,
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "tool": tool.strip(),
+        "company": company.strip(),
+        "use_case": use_case.strip(),
+        "what_i_tried": tried.strip(),
+        "what_happened": happened.strip(),
+        "key_takeaway": takeaway.strip(),
+        "include_in_posts": True,
+        "tags": tag_list,
+    }
+    if hours_saved:
+        new_exp["time_saved_hours"] = hours_saved
+
+    experiments_list.append(new_exp)
+    existing_data["experiments"] = experiments_list
+
+    # Preserve the header comment when file already exists, otherwise write fresh
+    if experiments_file.exists():
+        raw = experiments_file.read_text(encoding="utf-8")
+        header_end = raw.find("\nexperiments:")
+        header = raw[:header_end] if header_end != -1 else ""
+        body = yaml.dump(
+            {"experiments": experiments_list},
+            default_flow_style=False,
+            allow_unicode=True,
+            sort_keys=False,
+        )
+        experiments_file.write_text(header + "\n" + body, encoding="utf-8")
+    else:
+        experiments_file.write_text(
+            yaml.dump(existing_data, default_flow_style=False, allow_unicode=True, sort_keys=False),
+            encoding="utf-8",
+        )
+
+    console.print(
+        f"\n[green]✓[/] Experiment [bold]{new_id}[/] added to "
+        f"[bold]config/my_experiments.yaml[/]\n"
+        f"  Tool: {tool} ({company})\n"
+        f"  Use case: {use_case}\n"
+        f"\nNext run will weave this into relevant LinkedIn post drafts."
+    )
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────

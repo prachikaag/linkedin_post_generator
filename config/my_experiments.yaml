@@ -1,0 +1,195 @@
+# ============================================================
+# MY AI EXPERIMENTS
+# ============================================================
+# Log your personal AI experiments here.
+# When generating posts about a tool or company, the pipeline
+# checks this file and weaves your real experience into the post —
+# making it genuinely first-person and human-in-the-loop.
+#
+# HOW TO ADD AN EXPERIMENT:
+# Copy one of the examples below, fill it in, and save.
+# Then run: python main.py run
+#
+# The pipeline matches experiments to news by company name and tags.
+# Set "include_in_posts: false" to stop an experiment being used.
+# ============================================================
+
+experiments:
+
+  # ── Template (copy this to add a new experiment) ────────────────────────
+  # - id: exp000
+  #   date: "2024-01-01"
+  #   tool: "Tool Name"
+  #   company: "Company Name"          # must match a name in config/topics.yaml
+  #   use_case: "One-line description of what you were trying to do"
+  #   what_i_tried: |
+  #     What you actually did, step by step. Be specific.
+  #   what_happened: |
+  #     Honest results. What worked, what surprised you, what didn't.
+  #   key_takeaway: |
+  #     The one thing brands/marketers should know from this experiment.
+  #   time_saved_hours: 0             # Optional: hours saved vs doing manually
+  #   would_recommend: true
+  #   include_in_posts: true
+  #   tags:
+  #     - copywriting                  # topic tags for matching
+
+  # ── Example Experiments ─────────────────────────────────────────────────
+
+  - id: exp001
+    date: "2024-12-10"
+    tool: "Claude"
+    company: "Anthropic"
+    use_case: "Rewriting a brand positioning statement in 5 different tones"
+    what_i_tried: |
+      Asked Claude to rewrite our brand positioning statement in 5 tones:
+      approachable expert, bold challenger, empathetic advisor, data-driven strategist,
+      and conversational peer. I gave it the audience brief and core message upfront.
+    what_happened: |
+      The "approachable expert" version was nearly publication-ready — I spent
+      20 minutes editing instead of 2 hours writing from scratch. The bold
+      challenger version went too far and needed a full rewrite. The biggest lesson:
+      context upfront is everything. Without it, the outputs were generic.
+    key_takeaway: |
+      Claude works best for brand copy when you front-load context: who the audience
+      is, what they need to feel, and what you're not willing to say. Treat it like
+      briefing a good copywriter, not a search engine.
+    time_saved_hours: 1.5
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - copywriting
+      - brand strategy
+      - content creation
+
+  - id: exp002
+    date: "2025-01-08"
+    tool: "ChatGPT"
+    company: "OpenAI"
+    use_case: "Building a competitor research brief using Deep Research mode"
+    what_i_tried: |
+      Used ChatGPT's Deep Research feature to analyse three competitor brands —
+      their messaging, content cadence, and audience positioning. Asked it to
+      identify gaps our brand could own.
+    what_happened: |
+      The research output was thorough and well-structured — about 80% of what
+      a junior strategist would produce in half a day. It hallucinated one company
+      claim that I had to verify and remove. The gap analysis was surprisingly sharp
+      and flagged an angle we hadn't considered: positioning around "AI transparency."
+    key_takeaway: |
+      Deep Research is genuinely useful for competitive intelligence, but you must
+      fact-check every claim before it goes into a client document. Use it as a
+      first draft, not a final report.
+    time_saved_hours: 3
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - research
+      - brand strategy
+      - competitive intelligence
+
+  - id: exp003
+    date: "2025-01-22"
+    tool: "ElevenLabs"
+    company: "ElevenLabs"
+    use_case: "Creating a voice-over for a social media video ad"
+    what_i_tried: |
+      Used ElevenLabs to clone a voice from a 2-minute sample, then generated
+      a 45-second voice-over for a product demo video. Tested 4 different voices
+      before settling on one.
+    what_happened: |
+      The cloned voice was indistinguishable from the original in the final video.
+      The whole process took 25 minutes including iteration. The main friction was
+      getting the pacing right — the AI voice spoke too evenly, without natural
+      emphasis. I had to add pauses manually using SSML tags.
+    key_takeaway: |
+      AI voice is production-ready for brand work, but the "human touch" still
+      lives in the script and pacing choices — not the voice itself. Don't skip
+      the script editing stage just because the voice sounds real.
+    time_saved_hours: 4
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - voice AI
+      - content creation
+      - video production
+
+  - id: exp004
+    date: "2025-02-05"
+    tool: "Midjourney"
+    company: "Midjourney"
+    use_case: "Generating hero images for a campaign brief deck"
+    what_i_tried: |
+      Generated 40+ images across 6 concepts for a campaign pitch deck. Used
+      --style and --ar flags to match the brand's visual language. Tested both
+      v6 and Niji for different sections.
+    what_happened: |
+      Midjourney v6 produced presentation-ready images for 4 of the 6 concepts
+      on the first pass. The other 2 needed significant prompt refinement. Total
+      time: 90 minutes for what would have been a 2-day stock photo search and
+      art direction brief. The client approved the visuals faster than any deck
+      I've presented in recent memory.
+    key_takeaway: |
+      The biggest shift isn't the quality — it's the speed of concept iteration.
+      You can test a visual hypothesis in 2 minutes that used to take 2 days.
+      That changes how early in a project you can show visual direction.
+    time_saved_hours: 12
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - image generation
+      - creative AI
+      - brand campaigns
+
+  - id: exp005
+    date: "2025-02-18"
+    tool: "Perplexity"
+    company: "Perplexity"
+    use_case: "Real-time research for a client industry report"
+    what_i_tried: |
+      Used Perplexity Pro to research the state of AI adoption in the retail sector
+      for a client report. Asked 12 specific questions, then used the cited sources
+      to verify and expand key claims.
+    what_happened: |
+      Perplexity consistently surfaced sources I wouldn't have found in a standard
+      Google search — including niche trade publications and recent academic papers.
+      The citations were reliable (I spot-checked 15 of them). One major limitation:
+      it couldn't access paywalled content, so The Economist and WSJ articles were
+      cited but not summarised accurately.
+    key_takeaway: |
+      Perplexity is my default starting point for any industry research now.
+      It's faster than Google for "give me the landscape" questions and the source
+      quality is higher. But always verify paywalled sources independently.
+    time_saved_hours: 2.5
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - research
+      - productivity
+      - AI tools
+
+  - id: exp006
+    date: "2025-03-12"
+    tool: "Gemini"
+    company: "Google DeepMind"
+    use_case: "Analysing a 90-page brand audit document using long-context input"
+    what_i_tried: |
+      Uploaded a 90-page brand audit PDF to Gemini 1.5 Pro and asked it to:
+      1) summarise the top 5 brand perception gaps, 2) identify the three strongest
+      equity assets, and 3) suggest 3 strategic angles we were missing.
+    what_happened: |
+      It handled the full document without truncation — impressive. The summary
+      was accurate and pulled the right insights. The strategic angles it suggested
+      were generic ("invest in community"), which is where human strategy still wins.
+      Best use: synthesis and pattern recognition, not original strategic thinking.
+    key_takeaway: |
+      Gemini's long-context capability is a genuine superpower for document-heavy
+      strategy work. I now use it to "interview" long reports before I read them in
+      full — it tells me where to focus my reading time.
+    time_saved_hours: 3
+    would_recommend: true
+    include_in_posts: true
+    tags:
+      - document analysis
+      - brand strategy
+      - long context

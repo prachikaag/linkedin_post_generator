@@ -26,6 +26,8 @@ class Pipeline:
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        self.experiments = self._load_experiments()
+        self.post_ideas = self._load_post_ideas()
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -80,7 +82,12 @@ class Pipeline:
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(
+            self.brand_kit,
+            self.posts_dir,
+            experiments=self.experiments,
+            post_ideas=self.post_ideas,
+        )
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):
@@ -176,6 +183,38 @@ class Pipeline:
         path = self.config_dir / filename
         with open(path, "r", encoding="utf-8") as fh:
             return yaml.safe_load(fh)
+
+    def _load_experiments(self) -> list[dict]:
+        path = self.config_dir / "my_experiments.yaml"
+        if not path.exists():
+            return []
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            exps = data.get("experiments", [])
+            active = [e for e in exps if e.get("include_in_posts", True)]
+            console.print(
+                f"[dim]Loaded {len(active)} personal experiment(s) from my_experiments.yaml[/]"
+            )
+            return active
+        except Exception as exc:
+            console.print(f"[yellow]Could not load my_experiments.yaml: {exc}[/]")
+            return []
+
+    def _load_post_ideas(self) -> list[dict]:
+        path = self.config_dir / "post_ideas.yaml"
+        if not path.exists():
+            return []
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            ideas = data.get("ideas", [])
+            queued = [i for i in ideas if i.get("status", "queued") == "queued"]
+            console.print(
+                f"[dim]Loaded {len(queued)} queued post idea(s) from post_ideas.yaml[/]"
+            )
+            return queued
+        except Exception as exc:
+            console.print(f"[yellow]Could not load post_ideas.yaml: {exc}[/]")
+            return []
 
 
 def _build_clusters(
