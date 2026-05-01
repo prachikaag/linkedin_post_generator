@@ -3,40 +3,57 @@
 LinkedIn Post Generator
 -----------------------
 Usage:
-  python main.py run              # Full pipeline: fetch news, trends, generate posts
-  python main.py run --dry-run    # Fetch and score news only, no generation
-  python main.py run --max-posts 5
-  python main.py list-posts       # List all saved draft posts
-  python main.py show 1           # Show post #1 from the list
-  python main.py show --file posts/2024-01-15_10-00-00_openai-launches.md
+  python main.py run                        # Full pipeline: fetch news → trends → generate posts
+  python main.py run --dry-run              # Fetch and score news only (no generation)
+  python main.py run --max-posts 5          # Generate up to 5 posts per run
+
+  python main.py list-posts                 # List all draft posts
+  python main.py list-posts --status approved  # Filter by status (draft/approved/published/rejected)
+  python main.py show 1                     # Show post #1 from the list
+  python main.py show --file posts/2024-01-15_openai-launches.md
+
+  python main.py review                     # Human-in-the-loop: approve or reject each draft
+  python main.py mark-published 1           # Mark post #1 as published after posting to LinkedIn
+
+  python main.py config                     # Show all editable config file paths
 """
 
 import os
+import re
 import shutil
 import sys
 from pathlib import Path
 
 import click
 import yaml
+from rich import box
 from rich.console import Console
 from rich.panel import Panel
+from rich.prompt import Prompt
 from rich.table import Table
-from rich import box
 
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
-    pass  # python-dotenv optional; set env vars manually if not installed
-
-load_dotenv()
+    pass
 
 console = Console()
 
 BASE_DIR = Path(__file__).parent
-
 CONFIG_DIR = BASE_DIR / "config"
 POSTS_DIR = BASE_DIR / "posts"
+
+# Status values used in YAML frontmatter
+_STATUSES = ("draft", "approved", "rejected", "published")
+
+# Status → rich style for list display
+_STATUS_STYLE = {
+    "draft": "yellow",
+    "approved": "bold green",
+    "rejected": "dim red",
+    "published": "bold blue",
+}
 
 
 # ── CLI Entry Point ────────────────────────────────────────────────────────────
@@ -90,30 +107,60 @@ def run(max_posts: int, dry_run: bool):
 # ── list-posts ────────────────────────────────────────────────────────────────
 
 @cli.command("list-posts")
-def list_posts():
-    """List all generated draft posts in the /posts directory."""
-    posts = sorted(POSTS_DIR.glob("*.md"))
+@click.option(
+    "--status",
+    default=None,
+    type=click.Choice(_STATUSES, case_sensitive=False),
+    help="Filter by status: draft, approved, rejected, or published.",
+)
+def list_posts(status: str | None):
+    """List all generated post drafts in the /posts directory."""
+    all_posts = sorted(POSTS_DIR.glob("*.md"))
+
+    if status:
+        posts = [p for p in all_posts if _get_post_status(p) == status]
+    else:
+        posts = all_posts
+
     if not posts:
-        console.print(
-            "[yellow]No posts found.[/] "
-            "Run [bold]python main.py run[/] to generate some."
-        )
+        if status:
+            console.print(
+                f"[yellow]No posts with status '{status}'.[/] "
+                f"Run [bold]list-posts[/] (no filter) to see all posts."
+            )
+        else:
+            console.print(
+                "[yellow]No posts found.[/] "
+                "Run [bold]python main.py run[/] to generate some."
+            )
         return
 
-    table = Table(title="Saved Draft Posts", box=box.ROUNDED, show_lines=True)
+    title = f"Saved Posts ({status})" if status else "Saved Posts"
+    table = Table(title=title, box=box.ROUNDED, show_lines=True)
     table.add_column("#", style="cyan", width=4, justify="right")
     table.add_column("Date", style="yellow", width=12)
-    table.add_column("Status", style="bold green", width=10)
-    table.add_column("Companies", style="magenta", width=28)
+    table.add_column("Status", width=11)
+    table.add_column("Companies", style="magenta", width=30)
     table.add_column("Filename", style="white")
 
-    for i, post_file in enumerate(posts, 1):
-        date, status, companies = _read_frontmatter(post_file)
-        table.add_row(str(i), date, status, companies, post_file.name)
+    for i, post_file in enumerate(all_posts, 1):
+        post_status, date, companies = _read_post_meta(post_file)
+        if status and post_status != status:
+            continue
+        style = _STATUS_STYLE.get(post_status, "white")
+        table.add_row(
+            str(i),
+            date,
+            f"[{style}]{post_status}[/]",
+            companies,
+            post_file.name,
+        )
 
     console.print(table)
     console.print(
-        f"\n[dim]Use [bold]python main.py show <number>[/bold] to read a post.[/]"
+        f"\n[dim]Use [bold]python main.py show <number>[/bold] to read a post · "
+        f"[bold]review[/bold] to approve/reject drafts · "
+        f"[bold]mark-published <number>[/bold] after posting.[/]"
     )
 
 
@@ -145,34 +192,141 @@ def show(number: int, filename: str):
         )
         sys.exit(1)
 
+    _display_post_file(post_file)
+
+
+# ── review ────────────────────────────────────────────────────────────────────
+
+@cli.command()
+def review():
+    """Human-in-the-loop review: approve, reject, or skip each draft post."""
+    all_posts = sorted(POSTS_DIR.glob("*.md"))
+    drafts = [p for p in all_posts if _get_post_status(p) == "draft"]
+
+    if not drafts:
+        console.print(
+            "[yellow]No draft posts to review.[/]\n"
+            "Run [bold]python main.py run[/] to generate new posts."
+        )
+        return
+
+    console.print(f"\n[bold]{len(drafts)} draft post(s) queued for review.[/]\n")
+
+    for i, post_file in enumerate(drafts, 1):
+        console.rule(f"[bold]Post {i} of {len(drafts)}[/]")
+        _display_post_file(post_file)
+
+        console.print(
+            "\n[dim]  a[/] [green]approve[/]   "
+            "[dim]r[/] [red]reject[/]   "
+            "[dim]s[/] skip   "
+            "[dim]q[/] quit\n"
+        )
+
+        action = Prompt.ask(
+            "Your choice",
+            choices=["a", "r", "s", "q"],
+            default="s",
+        )
+
+        if action == "a":
+            _set_post_status(post_file, "approved")
+            console.print(
+                "[bold green]✓ Approved.[/] [dim]Ready to copy to LinkedIn.[/]\n"
+            )
+        elif action == "r":
+            _set_post_status(post_file, "rejected")
+            console.print("[red]✗ Rejected.[/]\n")
+        elif action == "q":
+            console.print("[dim]Review session ended.[/]")
+            return
+        # "s" → skip, no status change
+
+    console.print("\n[bold green]Review session complete.[/]")
+    approved = sum(1 for p in drafts if _get_post_status(p) == "approved")
+    console.print(
+        f"[dim]{approved}/{len(drafts)} post(s) approved. "
+        f"Run [bold]list-posts --status approved[/bold] to see them.[/]"
+    )
+
+
+# ── mark-published ────────────────────────────────────────────────────────────
+
+@cli.command("mark-published")
+@click.argument("number", type=int)
+def mark_published(number: int):
+    """Mark a post as published after you have posted it to LinkedIn."""
+    posts = sorted(POSTS_DIR.glob("*.md"))
+    if number < 1 or number > len(posts):
+        console.print(
+            f"[red]Post #{number} not found.[/] "
+            f"Run [bold]list-posts[/] to see all {len(posts)} post(s)."
+        )
+        sys.exit(1)
+
+    post_file = posts[number - 1]
+    current = _get_post_status(post_file)
+
+    if current == "published":
+        console.print(f"[dim]Post #{number} is already marked as published.[/]")
+        return
+
+    _set_post_status(post_file, "published")
+    console.print(f"[bold blue]✓ Post #{number} marked as published.[/]")
+    console.print(f"[dim]{post_file.name}[/]")
+
+
+# ── config ────────────────────────────────────────────────────────────────────
+
+@cli.command()
+def config():
+    """Show the paths to all editable config files."""
+    console.print("\n[bold]Editable Configuration Files[/]\n")
+    files = {
+        "Topics of Interest": CONFIG_DIR / "topics.yaml",
+        "Brand Kit (who you are)": CONFIG_DIR / "brand_kit.yaml",
+        "Tone of Voice (how you write)": CONFIG_DIR / "tone_of_voice.yaml",
+        "News Sources (RSS feeds + APIs)": CONFIG_DIR / "sources.yaml",
+        "Environment Variables": BASE_DIR / ".env",
+    }
+    for label, path in files.items():
+        exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
+        console.print(f"  {exists}  [bold]{label}[/]")
+        console.print(f"     [dim]{path}[/]\n")
+
+
+# ── Shared display helpers ─────────────────────────────────────────────────────
+
+def _display_post_file(post_file: Path) -> None:
+    """Render a post file to the terminal with metadata panel + content panel."""
     raw = post_file.read_text(encoding="utf-8")
 
-    # Separate frontmatter from body
     if raw.startswith("---"):
         parts = raw.split("---", 2)
-        if len(parts) >= 3:
-            meta_str, body = parts[1], parts[2].strip()
-            try:
-                meta = yaml.safe_load(meta_str)
-            except Exception:
-                meta = {}
-        else:
-            meta, body = {}, raw
+        meta_str = parts[1] if len(parts) >= 2 else ""
+        body = parts[2].strip() if len(parts) >= 3 else raw
+        try:
+            meta = yaml.safe_load(meta_str) or {}
+        except Exception:
+            meta = {}
     else:
         meta, body = {}, raw
 
-    # Build metadata summary
     meta_lines = []
-    if meta.get("source_name"):
-        meta_lines.append(f"Source: {meta['source_name']}")
-    if meta.get("source_published"):
-        meta_lines.append(f"Published: {meta['source_published']}")
+    if meta.get("primary_source_name"):
+        meta_lines.append(f"Primary source: {meta['primary_source_name']}")
+    if meta.get("date"):
+        meta_lines.append(f"Generated: {meta['date']}")
     if meta.get("matched_companies"):
         meta_lines.append(f"Companies: {', '.join(meta['matched_companies'])}")
+    if meta.get("matched_categories"):
+        meta_lines.append(f"Categories: {', '.join(meta['matched_categories'])}")
     if meta.get("trending_keywords"):
         meta_lines.append(f"Trending: {', '.join(meta['trending_keywords'])}")
-    if meta.get("source_url"):
-        meta_lines.append(f"URL: {meta['source_url']}")
+    if meta.get("source_count"):
+        meta_lines.append(f"Sources cited: {meta['source_count']}")
+    if meta.get("primary_source_url"):
+        meta_lines.append(f"URL: {meta['primary_source_url']}")
 
     if meta_lines:
         console.print(
@@ -184,52 +338,58 @@ def show(number: int, filename: str):
             )
         )
 
+    post_status = str(meta.get("status", "draft"))
+    style = _STATUS_STYLE.get(post_status, "white")
     console.print(
         Panel(
             body,
             title=f"[bold]{post_file.name}[/]",
-            subtitle=f"[dim]Status: {meta.get('status', 'draft')}[/]",
+            subtitle=f"[{style}]status: {post_status}[/]",
             border_style="green",
             padding=(1, 2),
         )
     )
 
 
-# ── config ────────────────────────────────────────────────────────────────────
+# ── Frontmatter helpers ────────────────────────────────────────────────────────
 
-@cli.command()
-def config():
-    """Show the paths to all editable config files."""
-    console.print("\n[bold]Editable Configuration Files[/]\n")
-    files = {
-        "Topics of Interest": CONFIG_DIR / "topics.yaml",
-        "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
-        "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
-        "Environment Variables": BASE_DIR / ".env",
-    }
-    for label, path in files.items():
-        exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
-        console.print(f"  {exists}  [bold]{label}[/]")
-        console.print(f"     [dim]{path}[/]\n")
-
-
-# ── Helpers ────────────────────────────────────────────────────────────────────
-
-def _read_frontmatter(post_file: Path) -> tuple[str, str, str]:
-    """Return (date, status, companies) from a post's YAML frontmatter."""
+def _read_post_meta(post_file: Path) -> tuple[str, str, str]:
+    """Return (status, date, companies) from a post's YAML frontmatter."""
     try:
         raw = post_file.read_text(encoding="utf-8")
         if raw.startswith("---"):
             parts = raw.split("---", 2)
             if len(parts) >= 2:
                 meta = yaml.safe_load(parts[1]) or {}
-                date = str(meta.get("date", "—"))
                 status = str(meta.get("status", "draft"))
+                date = str(meta.get("date", "—"))
                 companies = ", ".join(meta.get("matched_companies", [])[:3]) or "—"
-                return date, status, companies
+                return status, date, companies
     except Exception:
         pass
-    return "—", "unknown", "—"
+    return "draft", "—", "—"
+
+
+def _get_post_status(post_file: Path) -> str:
+    status, _, _ = _read_post_meta(post_file)
+    return status
+
+
+def _set_post_status(post_file: Path, new_status: str) -> None:
+    """Rewrite the status field in a post's YAML frontmatter."""
+    raw = post_file.read_text(encoding="utf-8")
+    updated = re.sub(
+        r"^(status:\s*).*$",
+        f"\\g<1>{new_status}",
+        raw,
+        flags=re.MULTILINE,
+    )
+    if updated == raw:
+        # No status field found — insert one after the opening ---
+        parts = raw.split("---", 2)
+        if len(parts) >= 3:
+            updated = f"---{parts[1].rstrip()}\nstatus: {new_status}\n---{parts[2]}"
+    post_file.write_text(updated, encoding="utf-8")
 
 
 if __name__ == "__main__":

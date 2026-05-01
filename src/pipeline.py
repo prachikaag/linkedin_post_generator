@@ -24,8 +24,16 @@ class Pipeline:
         self.config_dir = config_dir
         self.posts_dir = posts_dir
         self.topics = self._load_yaml("topics.yaml")
-        self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+
+        # Merge brand_kit.yaml + tone_of_voice.yaml into one config dict.
+        # Keeping them as separate files lets you edit identity vs. writing style
+        # independently without touching the other. PostGenerator only sees the
+        # merged dict so nothing downstream changes.
+        self.brand_kit = self._load_yaml("brand_kit.yaml")
+        tone = self._load_yaml("tone_of_voice.yaml", required=False)
+        if tone:
+            self.brand_kit.update(tone)
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -172,10 +180,17 @@ class Pipeline:
 
     # ── Internal ───────────────────────────────────────────────────────────────
 
-    def _load_yaml(self, filename: str) -> dict:
+    def _load_yaml(self, filename: str, required: bool = True) -> dict:
         path = self.config_dir / filename
+        if not path.exists():
+            if required:
+                raise FileNotFoundError(
+                    f"Required config file not found: {path}\n"
+                    f"Expected it at: {path.resolve()}"
+                )
+            return {}
         with open(path, "r", encoding="utf-8") as fh:
-            return yaml.safe_load(fh)
+            return yaml.safe_load(fh) or {}
 
 
 def _build_clusters(

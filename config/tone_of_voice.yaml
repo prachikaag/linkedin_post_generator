@@ -1,0 +1,84 @@
+# ============================================================
+# TONE OF VOICE & WRITING STYLE
+# Edit this file to change how every LinkedIn post is written.
+#
+# This is separate from brand_kit.yaml by design:
+#   brand_kit.yaml  → WHO you are (identity, focus, hashtags)
+#   tone_of_voice.yaml → HOW you write (style rules, structure, citations)
+#
+# Changes here take effect on the next run — no code edits needed.
+# ============================================================
+
+# ── How You Come Across ────────────────────────────────────
+tone_of_voice:
+
+  # The personality traits that come through in every post
+  primary_traits:
+    - "Curious and experimental — you try AI tools and share honest results"
+    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
+    - "Accessible, not overly technical — you translate complexity into plain language"
+    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
+    - "Opinionated — you have a clear point of view, not just a neutral summary"
+    - "Human — you write like a person, not a press release"
+
+  # Hard rules for every post — the AI follows these strictly
+  writing_style:
+    - "Write in first person. Share personal experiments and real observations."
+    - "Short paragraphs only — 1 to 3 sentences max per paragraph."
+    - "Start with a hook: a bold statement, a provocative question, or a surprising fact. Never start with 'I'."
+    - "Use generous line breaks — LinkedIn rewards whitespace."
+    - "End with a clear opinion, key takeaway, or specific call to action."
+    - "Avoid corporate jargon, buzzwords, and 'thought leadership' clichés."
+    - "Be direct. Be opinionated. Be real."
+    - "Use simple language — aim for a 9th grade reading level."
+    - "Use em-dashes (—) and ellipses (...) for natural rhythm."
+    - "Numbers and specifics beat vague claims. Use them."
+
+  # The blueprint for every post — followed in order
+  post_structure:
+    - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
+    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
+    - "CTA (1 line): A question that invites genuine discussion in the comments."
+    - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
+    - "HASHTAGS: 4-5 relevant hashtags on the very last line."
+
+  # Behaviours that make your posts stand out
+  dos:
+    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
+    - "Give actionable insights brands can use today, not just future speculation"
+    - "Cite sources with full URLs so readers can dig deeper"
+    - "Ask engaging questions that invite genuine discussion in the comments"
+    - "Use specific numbers, quotes, or data points when available"
+    - "Acknowledge uncertainty when you genuinely don't know something"
+    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "Share your contrarian take when you disagree with the mainstream narrative"
+
+  # Behaviours that undermine your credibility
+  donts:
+    - "Don't write vague, wishy-washy takes — have a clear opinion"
+    - "Don't use more than 2-3 emojis per post"
+    - "Don't make unsupported or exaggerated claims about AI capabilities"
+    - "Don't write walls of text — break everything up"
+    - "Don't start with 'I am excited to share' or 'Thrilled to announce'"
+    - "Don't summarise without adding your own perspective"
+    - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
+    - "Don't write hype — write insight"
+
+# ── Research & Citation Standards ─────────────────────────
+# These rules are injected into the AI prompt as non-negotiable requirements.
+research_standards:
+
+  # Minimum distinct sources that must be cited in every post — never fewer
+  min_sources: 4
+
+  # Format for direct verbatim quotes — must include name, title, and company
+  quote_format: '"[exact quote]" — Full Name, Job Title, Company/Publication'
+
+  # Format for the source list at the bottom of each post
+  source_list_format: "[N]. [Short descriptive title] → [full URL]"
+
+  # If a quote cannot be verified as exact, paraphrase instead (no quote marks)
+  require_verified_quotes: true

@@ -21,7 +21,14 @@ def main():
 
     sources  = load("sources.yaml")
     topics   = load("topics.yaml")
+    # Merge brand_kit.yaml + tone_of_voice.yaml (same logic as Pipeline class)
     brand    = load("brand_kit.yaml")
+    tov_path = CONFIG / "tone_of_voice.yaml"
+    if tov_path.exists():
+        import yaml as _yaml
+        with open(tov_path) as f:
+            tov = _yaml.safe_load(f) or {}
+        brand.update(tov)
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
