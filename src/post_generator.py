@@ -71,10 +71,11 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    def __init__(self, brand_kit: dict, posts_dir: Path, personal_context: dict | None = None):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
         self.posts_dir.mkdir(exist_ok=True)
+        self.personal_context = personal_context or {}
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
         self.model = os.getenv("ANTHROPIC_MODEL", "sonnet")
@@ -166,6 +167,7 @@ class PostGenerator:
             if trending_keywords
             else "AI, artificial intelligence"
         )
+        personal_block = self._build_personal_context_block(companies, categories)
 
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
@@ -186,7 +188,13 @@ For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
 Currently trending (weave in naturally): {trending_str}
+{f'''
+## Author's Personal Context (use this to ground the post in first-person experience)
+Weave these naturally into the post — as the author's own voice, not as a list.
+Do NOT just copy these verbatim. Use them to make the post feel lived-in and personal.
 
+{personal_block}
+''' if personal_block else ''}
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
 - Add your genuine perspective on what this means for brands and marketers specifically
@@ -195,6 +203,59 @@ Currently trending (weave in naturally): {trending_str}
 - End with an engaging question that invites comments
 - List all sources at the bottom under "Sources:" with full URLs copied from above
 """
+
+    def _build_personal_context_block(self, companies: list[str], categories: list[str]) -> str:
+        """Build a personal context block from the user's personal_context config."""
+        if not self.personal_context:
+            return ""
+
+        ctx = self.personal_context
+        lines: list[str] = []
+        company_set = {c.lower() for c in companies}
+        category_set = {c.lower() for c in categories}
+
+        # ── Relevant experiments ─────────────────────────────────────────────
+        from datetime import datetime, timezone
+        three_months_ago = datetime.now(tz=timezone.utc).replace(month=max(1, datetime.now().month - 3))
+        added = 0
+        for exp in ctx.get("recent_experiments", []):
+            if added >= 2:
+                break
+            # Parse date: "YYYY-MM" format
+            raw_date = exp.get("date", "")
+            try:
+                exp_date = datetime.strptime(raw_date, "%Y-%m").replace(tzinfo=timezone.utc)
+                if exp_date < three_months_ago:
+                    continue
+            except ValueError:
+                pass  # no date → always include
+
+            tool = exp.get("tool", "")
+            use_case = exp.get("use_case", "")
+            what_happened = exp.get("what_happened", "").strip().replace("\n", " ")
+            honest_take = exp.get("honest_take", "").strip().replace("\n", " ")
+            lines.append(f"EXPERIMENT — {tool} for {use_case}: {what_happened} Honest take: {honest_take}")
+            added += 1
+
+        # ── Relevant opinions ────────────────────────────────────────────────
+        for opinion in ctx.get("opinions", []):
+            about = opinion.get("about", "")
+            about_lower = about.lower()
+            stance = opinion.get("stance", "").strip().replace("\n", " ")
+            # Include if opinion topic overlaps with companies or categories in the post
+            if any(about_lower in c or c in about_lower for c in company_set | category_set):
+                lines.append(f"OPINION on {about}: {stance}")
+
+        # ── Recurring themes (always include, up to 2) ───────────────────────
+        for theme in ctx.get("recurring_themes", [])[:2]:
+            lines.append(f"THEME: {theme.strip().replace(chr(10), ' ')}")
+
+        # ── Work context (always include the first one) ──────────────────────
+        work = ctx.get("work_context", [])
+        if work:
+            lines.append(f"BACKGROUND: {work[0].strip().replace(chr(10), ' ')}")
+
+        return "\n".join(lines)
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 

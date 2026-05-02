@@ -1,0 +1,131 @@
+# ============================================================
+# PERSONAL CONTEXT & EXPERIMENTS
+#
+# This is YOUR voice layer — the things no RSS feed can know.
+# The post generator weaves this into every draft so posts
+# read like YOUR observations, not a summarised news feed.
+#
+# How to maintain this file:
+#   1. After trying an AI tool → add it to recent_experiments
+#   2. Formed a new opinion? → add it to opinions
+#   3. A theme you want in every post → add to recurring_themes
+#   4. Update regularly — stale context is ignored if date > 90 days
+# ============================================================
+
+# ── AI Tools You've Recently Experimented With ────────────
+# These become first-person "I tried X" moments in your posts.
+# Be specific — the more honest and concrete, the better the draft.
+recent_experiments:
+
+  - tool: "Claude Code"
+    use_case: "Building an automated LinkedIn content pipeline"
+    what_happened: >
+      Built an agent that fetches news from 25+ RSS feeds, scores articles
+      by relevance, checks what's trending, and drafts LinkedIn posts in my
+      voice — all before I open my laptop. My job is now to edit and
+      decide what ships, not to hunt for content or stare at a blank page.
+    honest_take: >
+      80% there on the first draft. You still need to add the real opinion
+      layer — AI can summarise, but the POV has to be yours.
+    date: "2026-04"
+
+  - tool: "Perplexity Pro"
+    use_case: "Research and source-finding before writing"
+    what_happened: >
+      Used it to find cited statistics and trace claims back to primary
+      sources in under 2 minutes instead of 20.
+    honest_take: >
+      Still hallucinates citations occasionally. Always verify before
+      publishing — the confidence it has when it's wrong is the real danger.
+    date: "2026-03"
+
+  - tool: "Midjourney v7"
+    use_case: "Creating branded social media visuals for client campaigns"
+    what_happened: >
+      Generated concept moodboards in 10 minutes that would have taken a
+      designer 2–3 hours. Client used 3 of the 12 outputs with minimal edits.
+    honest_take: >
+      The quality jump from v6 is real. The control is still limited for
+      precise brand work — it's a starting point, not a finisher.
+    date: "2026-02"
+
+# ── Your Opinions on Key Companies and Topics ─────────────
+# These get pulled in when a post touches on the relevant company or theme.
+# Be opinionated — vague takes get ignored by the generator.
+opinions:
+
+  - about: "AI agents"
+    stance: >
+      The real story isn't AI writing copy — it's AI running workflows in
+      the background. Most brands are still thinking tool-level, not
+      system-level. That gap is where the opportunity is.
+
+  - about: "OpenAI"
+    stance: >
+      Still the default consumer brand for AI, but enterprise pricing shuts
+      out SMBs. That's a real opening for Anthropic and open-source models.
+      ChatGPT's brand recognition is both their biggest asset and their
+      biggest liability — everyone assumes they know what it does.
+
+  - about: "Anthropic"
+    stance: >
+      Best model for nuanced writing and long-context reasoning in my
+      experience. Claude gets brand voice and tone better than any other
+      model I've tested. The safety-focused positioning is smart — it
+      differentiates them in enterprise sales conversations.
+
+  - about: "Gemini / Google AI"
+    stance: >
+      Underrated for multimodal work. The integration with Google Workspace
+      is the angle brands should watch — AI inside the tools people already
+      use is a different adoption curve than a new standalone app.
+
+  - about: "ElevenLabs"
+    stance: >
+      Voice AI is the most underused channel in marketing right now.
+      ElevenLabs makes podcast ads, brand voice cloning, and multilingual
+      content genuinely accessible. Most brands haven't touched it yet.
+
+  - about: "AI in marketing"
+    stance: >
+      Most marketing teams are using AI like a fancy search engine. The
+      teams winning are the ones who've rebuilt workflows, not just added
+      a ChatGPT tab. One person with the right agentic setup is doing what
+      used to take a team of four.
+
+  - about: "AI startup funding"
+    stance: >
+      The funding rounds are a signal, not just news. When $50M goes into
+      an AI infrastructure play, it tells you where enterprise budgets are
+      heading in 18 months. Follow the money to forecast the roadmap.
+
+# ── Recurring Themes in Your Content ──────────────────────
+# These get woven into every post to keep your content recognisable.
+# 3–5 themes is ideal — too many and posts lose focus.
+recurring_themes:
+  - >
+    Human in the loop is the operating model — AI drafts, you decide what
+    ships. The editor role is the new creative skill.
+  - >
+    The brands winning with AI have rebuilt their workflows, not just added
+    tools on top of old processes.
+  - >
+    AI literacy is the new marketing skill. You don't need to code —
+    you need to know how to prompt, verify, and ship.
+  - >
+    Follow the funding to see where the market is going. What gets funded
+    today becomes the standard stack in 2 years.
+
+# ── About Your Work ────────────────────────────────────────
+# Used to anchor posts in your real professional experience.
+# Keep to 2–3 lines — long bios are not useful in post context.
+work_context:
+  - >
+    I experiment with new AI tools weekly and share honest, unsponsored
+    results — what worked, what failed, and what surprised me.
+  - >
+    I work with brand and marketing teams to build AI-native content
+    workflows that reduce production time without sacrificing quality.
+  - >
+    I've been testing AI writing and creative tools since GPT-3.
+    I've seen enough hype cycles to know what actually sticks.

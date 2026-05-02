@@ -3,12 +3,15 @@
 LinkedIn Post Generator
 -----------------------
 Usage:
-  python main.py run              # Full pipeline: fetch news, trends, generate posts
-  python main.py run --dry-run    # Fetch and score news only, no generation
-  python main.py run --max-posts 5
-  python main.py list-posts       # List all saved draft posts
-  python main.py show 1           # Show post #1 from the list
-  python main.py show --file posts/2024-01-15_10-00-00_openai-launches.md
+  python main.py run                          # Full pipeline: fetch news, trends, generate posts
+  python main.py run --dry-run                # Fetch and score news only, no generation
+  python main.py run --max-posts 5            # Generate up to 5 posts
+  python main.py run --category "AI Startup Funding"   # Only posts about funding news
+  python main.py run --force                  # Re-run even if articles were already processed
+  python main.py list-posts                   # List all saved draft posts
+  python main.py show 1                       # Show post #1 from the list
+  python main.py publish 1                    # Mark post #1 as published
+  python main.py config                       # Show paths to all editable config files
 """
 
 import os
@@ -62,7 +65,22 @@ def cli():
     default=False,
     help="Fetch and rank news without generating any posts.",
 )
-def run(max_posts: int, dry_run: bool):
+@click.option(
+    "--category",
+    default=None,
+    help=(
+        "Only generate posts about a specific topic category. "
+        "Must match a name in config/topics.yaml → topic_categories. "
+        "Examples: 'AI Startup Funding', 'New AI Feature or Product Launch'"
+    ),
+)
+@click.option(
+    "--force",
+    is_flag=True,
+    default=False,
+    help="Re-run even if the top articles were already used in a previous run.",
+)
+def run(max_posts: int, dry_run: bool, category: str, force: bool):
     """Run the full pipeline: fetch news → track trends → generate posts."""
     if not dry_run:
         has_claude_cli = shutil.which("claude") is not None
@@ -84,7 +102,7 @@ def run(max_posts: int, dry_run: bool):
     from src.pipeline import Pipeline
 
     pipeline = Pipeline(CONFIG_DIR, POSTS_DIR)
-    pipeline.run(max_posts=max_posts, dry_run=dry_run)
+    pipeline.run(max_posts=max_posts, dry_run=dry_run, category=category, force=force)
 
 
 # ── list-posts ────────────────────────────────────────────────────────────────
@@ -195,6 +213,48 @@ def show(number: int, filename: str):
     )
 
 
+# ── publish ───────────────────────────────────────────────────────────────────
+
+@cli.command()
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to mark.")
+def publish(number: int, filename: str):
+    """Mark a draft post as published. Updates status in the post's frontmatter."""
+    if filename:
+        post_file = POSTS_DIR / filename
+        if not post_file.exists():
+            console.print(f"[red]File not found:[/] {filename}")
+            sys.exit(1)
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print(
+            "[yellow]Provide a post number or --file <filename>.[/]\n"
+            "Example: [bold]python main.py publish 1[/]"
+        )
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    if "status: published" in raw:
+        console.print(f"[yellow]Already marked as published:[/] {post_file.name}")
+        return
+
+    updated = raw.replace("status: draft", "status: published", 1)
+    if updated == raw:
+        console.print(f"[yellow]Could not find 'status: draft' in:[/] {post_file.name}")
+        return
+
+    post_file.write_text(updated, encoding="utf-8")
+    console.print(f"[green]✓[/] Marked as published: [bold]{post_file.name}[/]")
+
+
 # ── config ────────────────────────────────────────────────────────────────────
 
 @cli.command()
@@ -204,6 +264,7 @@ def config():
     files = {
         "Topics of Interest": CONFIG_DIR / "topics.yaml",
         "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
+        "Personal Context & Experiments": CONFIG_DIR / "personal_context.yaml",
         "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
         "Environment Variables": BASE_DIR / ".env",
     }

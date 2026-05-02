@@ -1,4 +1,6 @@
+import json
 from pathlib import Path
+from typing import Optional
 
 import yaml
 from rich import box
@@ -16,6 +18,9 @@ console = Console()
 # Each post is generated from this many articles (ensures 4+ citable sources)
 SOURCE_POOL_SIZE = 6
 
+_HISTORY_FILE = ".article_history.json"
+_MAX_HISTORY = 500
+
 
 class Pipeline:
     """Orchestrates the full news → trends → post generation workflow."""
@@ -26,10 +31,17 @@ class Pipeline:
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        self.personal_context = self._load_yaml_optional("personal_context.yaml")
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
-    def run(self, max_posts: int = 3, dry_run: bool = False) -> list[dict]:
+    def run(
+        self,
+        max_posts: int = 3,
+        dry_run: bool = False,
+        category: Optional[str] = None,
+        force: bool = False,
+    ) -> list[dict]:
         """
         Full pipeline:
           1. Fetch and score news articles from RSS feeds
@@ -54,6 +66,41 @@ class Pipeline:
             return []
 
         console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+
+        # ── Category filter ─────────────────────────────────────────────────
+        if category:
+            cat_lower = category.lower()
+            articles = [
+                a for a in articles
+                if any(cat_lower in c.lower() for c in a.matched_categories)
+            ]
+            if not articles:
+                console.print(
+                    f"[yellow]No articles matched category '[bold]{category}[/bold]'.\n"
+                    "Available categories are defined in config/topics.yaml → topic_categories.[/]"
+                )
+                return []
+            console.print(f"[dim]Category filter '{category}': {len(articles)} article(s) matched.[/]")
+
+        # ── Article history deduplication ───────────────────────────────────
+        history = self._load_article_history()
+        if not force:
+            fresh = [a for a in articles if a.url not in history]
+            if len(fresh) < len(articles):
+                skipped = len(articles) - len(fresh)
+                console.print(
+                    f"[dim]Skipping {skipped} article(s) already used in previous runs "
+                    f"(use --force to override).[/]"
+                )
+            if not fresh:
+                console.print(
+                    "[yellow]All top articles were already used in a previous run.\n"
+                    "Run with [bold]--force[/bold] to regenerate from the same pool, "
+                    "or wait for new articles to appear.[/]"
+                )
+                return []
+            articles = fresh
+
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
@@ -80,7 +127,7 @@ class Pipeline:
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(self.brand_kit, self.posts_dir, self.personal_context)
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):
@@ -105,6 +152,11 @@ class Pipeline:
                 )
             else:
                 console.print("  [red]✗[/] Generation failed — skipping.")
+
+        # ── Record used anchor URLs in history ──────────────────────────────
+        if generated and not force:
+            used_urls = [c[0].url for c in clusters if c and c[0].url]
+            self._save_article_history(history, used_urls)
 
         self._display_posts(generated)
 
@@ -170,12 +222,42 @@ class Pipeline:
             )
             console.print()
 
+    # ── Article history ────────────────────────────────────────────────────────
+
+    def _load_article_history(self) -> set[str]:
+        history_file = self.posts_dir / _HISTORY_FILE
+        if history_file.exists():
+            try:
+                data = json.loads(history_file.read_text(encoding="utf-8"))
+                return set(data.get("processed_urls", []))
+            except Exception:
+                return set()
+        return set()
+
+    def _save_article_history(self, existing: set[str], new_urls: list[str]) -> None:
+        existing.update(new_urls)
+        trimmed = list(existing)[-_MAX_HISTORY:]
+        history_file = self.posts_dir / _HISTORY_FILE
+        history_file.write_text(
+            json.dumps({"processed_urls": trimmed}, indent=2), encoding="utf-8"
+        )
+
     # ── Internal ───────────────────────────────────────────────────────────────
 
     def _load_yaml(self, filename: str) -> dict:
         path = self.config_dir / filename
         with open(path, "r", encoding="utf-8") as fh:
             return yaml.safe_load(fh)
+
+    def _load_yaml_optional(self, filename: str) -> dict:
+        path = self.config_dir / filename
+        if not path.exists():
+            return {}
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                return yaml.safe_load(fh) or {}
+        except Exception:
+            return {}
 
 
 def _build_clusters(
