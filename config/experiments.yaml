@@ -1,0 +1,226 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# Add your own hands-on AI experiments here.
+# When generating posts, the pipeline will match relevant
+# experiments to the news topic and weave ONE firsthand
+# observation into the post — in your voice, not as a list.
+#
+# Tips:
+#   - Be specific: tool name, exact use case, what you actually did
+#   - key_finding should be your honest take, not marketing copy
+#   - surprise is the most shareable part — what you didn't expect
+#   - brand_relevance connects your experience to the broader theme
+#   - Set published: true once you've used it in a post
+#   - keywords controls which news stories it gets matched to
+# ============================================================
+
+experiments:
+
+  # ── Template — copy/paste and fill in for each experiment ──
+  # - id: "unique-slug"
+  #   date: "YYYY-MM"          # month you ran the experiment
+  #   tool: "Tool Name (Company)"
+  #   use_case: "What you were trying to do"
+  #   what_I_did: "Describe the actual steps you took"
+  #   key_finding: "Your honest conclusion"
+  #   surprise: "The thing you didn't expect — most shareable"
+  #   brand_relevance: "Why this matters for brands/marketers"
+  #   keywords:                # Used to match this to relevant news
+  #     - "keyword1"
+  #     - "keyword2"
+  #   published: false
+
+  # ── Example experiments — replace with your own ───────────
+
+  - id: "claude-code-pipeline"
+    date: "2026-04"
+    tool: "Claude Code (Anthropic)"
+    use_case: "Building a full Python automation pipeline without writing code manually"
+    what_I_did: >
+      Described what I wanted — a LinkedIn post generator that fetches AI news,
+      tracks trends, and writes drafts in my voice — and let Claude Code build the
+      entire thing. Reviewed each component, redirected when needed, but wrote zero
+      code myself.
+    key_finding: >
+      It shipped production-quality code on the first pass. Proper abstractions,
+      clean separation of concerns, a working CLI. The architecture decisions were
+      sound without me specifying them.
+    surprise: >
+      The hardest part wasn't the code — it was writing a clear enough brief.
+      Claude Code exposed how vague my thinking was at the start.
+    brand_relevance: >
+      This is what AI-as-collaborator actually looks like, not AI-as-autocomplete.
+      The value isn't typing speed — it's thinking speed. And for brands, that
+      reframes where human effort should go: upstream, into clarity and judgment,
+      not downstream into execution.
+    keywords:
+      - "Claude"
+      - "Claude Code"
+      - "Anthropic"
+      - "coding AI"
+      - "AI agent"
+      - "agentic"
+      - "AI workflow"
+    published: false
+
+  - id: "perplexity-deep-research"
+    date: "2026-03"
+    tool: "Perplexity Pro (Deep Research mode)"
+    use_case: "Competitive landscape research for a brand strategy pitch"
+    what_I_did: >
+      Used Perplexity Deep Research to map out a competitor's positioning —
+      messaging, content themes, pricing signals — ahead of a client pitch.
+      What I'd normally delegate to a junior analyst for half a day.
+    key_finding: >
+      Took 45 minutes including my review time. The sources were cited and
+      verifiable. The output quality matched a solid junior analyst, not a
+      great one — but it was the starting point, not the final answer.
+    surprise: >
+      Perplexity surfaced a recent pricing page change from a competitor that
+      wasn't in any published article — it just scraped it live. That's a
+      competitive intelligence edge most brands haven't thought about yet.
+    brand_relevance: >
+      Research that used to require headcount now requires a $20/month
+      subscription and a good question. The scarcest resource has shifted
+      from finding information to asking the right question and knowing what
+      to do with the answer.
+    keywords:
+      - "Perplexity"
+      - "Perplexity AI"
+      - "Perplexity Pro"
+      - "AI research"
+      - "AI tools"
+      - "Deep Research"
+    published: false
+
+  - id: "elevenlabs-brand-voice"
+    date: "2026-02"
+    tool: "ElevenLabs (Voice Cloning)"
+    use_case: "Testing AI voice cloning for a brand podcast intro"
+    what_I_did: >
+      Uploaded 5 minutes of a client's CEO speaking at a conference, cloned
+      the voice, then generated a 30-second podcast intro from a script.
+      Ran it by three people without telling them it was AI-generated.
+    key_finding: >
+      Two out of three couldn't tell. The third flagged a slight flatness in
+      the pacing on longer sentences. The voice itself was convincing — the
+      tell was the writing, not the audio.
+    surprise: >
+      The quality bar for AI voice has passed the "good enough for most use
+      cases" threshold. The bottleneck is now the script, not the technology.
+    brand_relevance: >
+      Brand voice is going to mean something much more literal very soon.
+      The brands that have invested in defining their tone, cadence, and
+      linguistic fingerprint will be able to scale it across audio touchpoints.
+      The ones who haven't will sound generic — in every sense.
+    keywords:
+      - "ElevenLabs"
+      - "Eleven Labs"
+      - "voice AI"
+      - "AI voice cloning"
+      - "text to speech AI"
+      - "AI audio"
+    published: false
+
+  - id: "midjourney-brand-assets"
+    date: "2026-01"
+    tool: "Midjourney v6"
+    use_case: "Generating on-brand social media visuals for a product launch"
+    what_I_did: >
+      Spent a week developing a consistent Midjourney prompt system for a
+      client's brand — style references, colour palettes as descriptors,
+      composition rules — then generated 40 images for a campaign.
+      Used about 12 in the final deliverable.
+    key_finding: >
+      Consistency is a prompt engineering problem, not a tool limitation.
+      Once we had a working prompt template, variation within the brand
+      guidelines was fast. But getting to that template took more iterations
+      than expected.
+    surprise: >
+      The client's brand guidelines, as written, were too vague to translate
+      into Midjourney prompts. "Warm and approachable" means nothing to a
+      diffusion model. This forced us to make brand decisions we'd been
+      avoiding.
+    brand_relevance: >
+      AI image generation is a stress test for brand specificity. If you can't
+      describe your brand in concrete visual terms — lighting, composition,
+      texture, colour temperature — you can't prompt for it consistently. The
+      brands investing in precise visual identity documentation now will move
+      faster with generative tools later.
+    keywords:
+      - "Midjourney"
+      - "AI image generation"
+      - "generative AI"
+      - "AI design"
+      - "brand"
+      - "marketing"
+      - "creative AI"
+    published: false
+
+  - id: "chatgpt-content-strategy"
+    date: "2025-12"
+    tool: "ChatGPT (o1 reasoning model)"
+    use_case: "Content strategy and pillar planning for a B2B brand"
+    what_I_did: >
+      Fed ChatGPT o1 a 3,000-word brand brief and asked it to build a 6-month
+      content strategy: themes, content pillars, format recommendations, and a
+      distribution plan. Took about 20 minutes of prompting and review.
+    key_finding: >
+      The strategy was structurally sound but lacked genuine market insight.
+      It organised what I gave it brilliantly — but it couldn't tell me what
+      the audience actually cared about right now. That part still needed me.
+    surprise: >
+      o1's reasoning traces showed me the decision framework it was using. That
+      was more useful than the output itself — it surfaced assumptions I was
+      making about the audience that I hadn't interrogated.
+    brand_relevance: >
+      The value of AI in strategy isn't replacing the strategist. It's making
+      the strategist's thinking visible and testable faster than any workshop
+      or slide deck ever could. The best use is as a sounding board, not an
+      oracle.
+    keywords:
+      - "ChatGPT"
+      - "OpenAI"
+      - "o1"
+      - "o3"
+      - "AI strategy"
+      - "content strategy"
+      - "AI marketing"
+      - "brand"
+      - "marketing"
+    published: false
+
+  - id: "gemini-multimodal-audit"
+    date: "2025-11"
+    tool: "Gemini 1.5 Pro (Google)"
+    use_case: "Auditing a brand's existing content library for consistency"
+    what_I_did: >
+      Uploaded 50 pieces of existing brand content — blog posts, social copy,
+      email headers — into Gemini's long context window and asked it to identify
+      tone inconsistencies, recurring language patterns, and gaps versus the
+      brand guidelines I also uploaded.
+    key_finding: >
+      It found three recurring phrases that contradicted the brand's stated
+      positioning. No human had caught them across 18 months of content.
+      The audit took 10 minutes.
+    surprise: >
+      Gemini was better at spotting *what was missing* than what was wrong.
+      It identified topic categories the brand never addressed, which turned
+      into six new content angles.
+    brand_relevance: >
+      A 1-million-token context window is a content audit tool. Brands sitting
+      on years of content have an untapped asset — not for repurposing, but for
+      pattern analysis. Understanding what you've been saying is the first step
+      to being intentional about what you say next.
+    keywords:
+      - "Gemini"
+      - "Google AI"
+      - "multimodal"
+      - "Gemini Ultra"
+      - "Gemini Flash"
+      - "AI tools"
+      - "brand"
+      - "marketing"
+      - "content"
+    published: false

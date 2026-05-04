@@ -14,6 +14,8 @@ def load(name):
     with open(CONFIG / name) as f:
         return yaml.safe_load(f)
 
+
+
 def main():
     print("=" * 60)
     print("LinkedIn Post Generator — MCP Edition")
@@ -46,6 +48,7 @@ def main():
 
     # ── Step 3: generate posts ──────────────────────────────────────────────
     from src.post_generator import PostGenerator
+    from src.experiment_loader import ExperimentLoader
 
     SOURCE_POOL = 6
     MAX_POSTS   = 2
@@ -61,6 +64,7 @@ def main():
 
     POSTS.mkdir(exist_ok=True)
     generator = PostGenerator(brand, POSTS)
+    experiments = ExperimentLoader(CONFIG)
     generated = []
 
     n_posts = min(MAX_POSTS, len(articles))
@@ -72,7 +76,14 @@ def main():
         print(f"\n  Post {i+1} — anchor: {anchor.title[:65]}")
         print(f"  Sources: {', '.join(a.source_name for a in cluster[:4])}")
 
-        result = generator.generate_post(cluster, trending)
+        all_keywords = [kw for a in cluster for kw in a.matched_keywords]
+        all_companies = [c for a in cluster for c in a.matched_companies]
+        relevant_experiments = experiments.find_relevant(all_keywords, all_companies)
+        experiment_context = experiments.format_for_prompt(relevant_experiments)
+        if relevant_experiments:
+            print(f"  Experiments matched: {', '.join(e.get('id', '?') for e in relevant_experiments)}")
+
+        result = generator.generate_post(cluster, trending, experiment_context)
         if result:
             generated.append(result)
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")

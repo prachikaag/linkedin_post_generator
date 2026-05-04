@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+from .experiment_loader import ExperimentLoader
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
@@ -26,6 +27,7 @@ class Pipeline:
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        self.experiments = ExperimentLoader(config_dir)
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -96,7 +98,20 @@ class Pipeline:
                 + ("…" if len(cluster) > 4 else "")
                 + "[/]"
             )
-            result = generator.generate_post(cluster, trending)
+
+            # Match personal experiments to this cluster's topics
+            all_keywords = [kw for a in cluster for kw in a.matched_keywords]
+            all_companies = [c for a in cluster for c in a.matched_companies]
+            relevant_experiments = self.experiments.find_relevant(all_keywords, all_companies)
+            experiment_context = self.experiments.format_for_prompt(relevant_experiments)
+            if relevant_experiments:
+                console.print(
+                    f"  [dim]Personal experiments matched: "
+                    + ", ".join(e.get("id", "?") for e in relevant_experiments)
+                    + "[/]"
+                )
+
+            result = generator.generate_post(cluster, trending, experiment_context)
             if result:
                 generated.append(result)
                 console.print(

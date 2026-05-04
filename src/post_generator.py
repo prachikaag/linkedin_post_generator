@@ -48,6 +48,14 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 - Every claim that came from a source must be traceable to one of the cited URLs
 - The post must read like a researched commentary piece, not a reaction to a single article
 
+## Personal Experiment Integration
+When "Personal Experiments & Observations" are provided in the user message:
+- Weave ONE relevant firsthand observation naturally into the post — in the author's voice
+- Use it as a brief "I tried this" moment that adds human credibility to the news commentary
+- Paraphrase the experiment in your own words — do NOT copy it verbatim
+- Only include it where there is a genuine thematic connection to the news story
+- If no experiment is relevant, skip this step entirely — do not force it
+
 ## ⚠️ CRITICAL URL RULE (zero exceptions)
 - You may ONLY use the exact URLs that appear in the "URL:" fields of the Source Material
 - NEVER construct, guess, infer, complete, or recall any URL from your training data
@@ -81,14 +89,17 @@ class PostGenerator:
         self._system_prompt = self._build_system_prompt()
 
     def generate_post(
-        self, articles: list[Article], trending_keywords: list[str]
+        self,
+        articles: list[Article],
+        trending_keywords: list[str],
+        experiment_context: str = "",
     ) -> Optional[dict]:
         """Generate one research-style LinkedIn post from a cluster of articles."""
         if not articles:
             return None
 
         provided_urls = [a.url for a in articles if a.url]
-        user_prompt = self._build_user_prompt(articles, trending_keywords)
+        user_prompt = self._build_user_prompt(articles, trending_keywords, experiment_context)
         raw = self._call_claude(user_prompt)
         if not raw:
             return None
@@ -146,7 +157,10 @@ class PostGenerator:
         )
 
     def _build_user_prompt(
-        self, articles: list[Article], trending_keywords: list[str]
+        self,
+        articles: list[Article],
+        trending_keywords: list[str],
+        experiment_context: str = "",
     ) -> str:
         sources_block = ""
         for i, a in enumerate(articles, 1):
@@ -167,6 +181,8 @@ class PostGenerator:
             else "AI, artificial intelligence"
         )
 
+        experiment_block = f"\n{experiment_context}\n" if experiment_context.strip() else ""
+
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
 
@@ -181,7 +197,7 @@ Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing,
 For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
 
 ## Source Material
-{sources_block}
+{sources_block}{experiment_block}
 ## Context
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
