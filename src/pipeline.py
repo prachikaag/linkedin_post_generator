@@ -9,6 +9,7 @@ from rich.table import Table
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
+from .post_history import PostHistory
 from .trending_tracker import TrendingTracker
 
 console = Console()
@@ -53,7 +54,27 @@ class Pipeline:
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        # Filter out articles that have already been turned into posts
+        history = PostHistory(self.posts_dir)
+        total_fetched = len(articles)
+        articles = history.filter_new(articles)
+        skipped = total_fetched - len(articles)
+        if skipped:
+            console.print(
+                f"[green]✓[/] {total_fetched} articles fetched — "
+                f"[dim]{skipped} already used, {len(articles)} new[/]"
+            )
+        else:
+            console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+
+        if not articles:
+            console.print(
+                "[yellow]All fetched articles have already been used.\n"
+                "Try increasing [bold]max_article_age_hours[/] in config/topics.yaml "
+                "or wait for new news.[/]"
+            )
+            return []
+
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
@@ -99,6 +120,7 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                history.mark_done(cluster, result["filename"])
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
                     f"[dim]({result['source_count']} sources cited)[/]"

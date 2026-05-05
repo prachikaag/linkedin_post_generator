@@ -3,6 +3,12 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(__file__))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from pathlib import Path
 import yaml
 
@@ -36,6 +42,17 @@ def main():
     print(f"  → {len(articles)} relevant articles found")
     for a in articles[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
+
+    # Filter articles already used in previous runs
+    from src.post_history import PostHistory
+    history = PostHistory(POSTS)
+    total = len(articles)
+    articles = history.filter_new(articles)
+    if total != len(articles):
+        print(f"  → {total - len(articles)} already processed — {len(articles)} new articles remaining")
+    if not articles:
+        print("All fetched articles already used. Try increasing max_article_age_hours in config/topics.yaml")
+        return
 
     # ── Step 2: trending keywords via Claude WebSearch ──────────────────────
     print("\n[Step 2] Fetching trending keywords via Claude WebSearch MCP...")
@@ -75,6 +92,7 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
+            history.mark_done(cluster, result["filename"])
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")

@@ -28,10 +28,7 @@ _NOTION_VERSION = "2022-06-28"
 class NotionPublisher:
     def __init__(self):
         self.api_key: Optional[str] = os.getenv("NOTION_API_KEY")
-        self.page_id: Optional[str] = os.getenv(
-            "NOTION_PAGE_ID",
-            "34a50188f130816280e1f9ec2ef84a0c",
-        )
+        self.page_id: Optional[str] = os.getenv("NOTION_PAGE_ID", "")
 
     def is_configured(self) -> bool:
         """True if we have any viable path to publish (MCP or direct API)."""

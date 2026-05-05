@@ -29,8 +29,6 @@ try:
 except ImportError:
     pass  # python-dotenv optional; set env vars manually if not installed
 
-load_dotenv()
-
 console = Console()
 
 BASE_DIR = Path(__file__).parent
