@@ -6,7 +6,20 @@ import subprocess
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Optional
+
+_PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+
+
+def _load_prompt(filename: str) -> str:
+    """Load a prompt template from prompts/, stripping comment lines."""
+    path = _PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt file not found: {path}")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    content_lines = [l for l in lines if not l.strip().startswith("#")]
+    return "\n".join(content_lines).strip()
 
 
 @dataclass
@@ -94,29 +107,7 @@ class NewsGatherer:
             f"{j + 1}. {f['name']}: {f['url']}" for j, f in enumerate(feeds)
         )
 
-        prompt = f"""Fetch each of these RSS/Atom feed URLs using WebFetch and extract the 8 most recent articles from each.
-
-Feeds to fetch:
-{feed_list}
-
-For each feed:
-1. Use WebFetch to retrieve the feed URL
-2. Parse the XML to find article entries (look for <item> or <entry> tags)
-3. Extract title, article link, description/summary, and publication date
-
-Return ONLY a JSON array. Each object must have exactly these fields:
-- "title": article headline (string)
-- "url": the article permalink (string — the link inside <link> or <guid>, NOT the feed URL itself)
-- "summary": first 500 chars of <description> or <content> (string)
-- "published": ISO 8601 date if available, else "" (string)
-- "source_name": the exact feed name from the numbered list above (string)
-
-Rules:
-- "url" must be an article permalink, not the RSS feed URL
-- Include articles from ALL feeds you successfully fetch
-- If a feed returns an error, skip it silently
-- Return ONLY the raw JSON array starting with [ — no markdown code fences, no explanation text
-"""
+        prompt = _load_prompt("news_fetch.txt").replace("{{feed_list}}", feed_list)
 
         result = subprocess.run(
             [

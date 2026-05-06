@@ -12,5 +12,8 @@ env/
 # Generated posts (tracked individually when ready)
 # posts/*.md   ← uncomment this line to stop tracking generated posts
 
+# Runtime state — don't commit the tracker (personal to each machine/run)
+data/processed_articles.json
+
 # OS
 .DS_Store

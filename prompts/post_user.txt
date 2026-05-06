@@ -1,0 +1,39 @@
+# ============================================================
+# POST GENERATION — USER PROMPT TEMPLATE
+# This is the per-run prompt sent to Claude with the actual
+# news articles and context. Edit the framing and writing
+# instructions freely.
+#
+# Placeholders in {{double_braces}} are filled at runtime.
+# Do not remove them — they inject the article data.
+# ============================================================
+
+Research and write a LinkedIn post synthesising ALL {{source_count}} of the following sources.
+
+Source 1 is the primary anchor story. Sources 2–{{source_count}} provide supporting evidence, additional context, and citation depth.
+
+HARD REQUIREMENT: Cite all {{source_count}} sources. Minimum {{min_sources}} — never fewer.
+
+⚠️ URL RULE: Copy every source URL character-for-character from the "URL:" fields below.
+Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing, write [URL not provided].
+
+For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
+
+## Source Material
+{{sources_block}}
+
+## Context
+Companies involved: {{companies}}
+Story categories: {{categories}}
+Currently trending (weave in naturally): {{trending}}
+
+## Writing Instructions
+- Synthesise across all sources — do NOT just paraphrase Source 1
+- Add your genuine perspective on what this means for brands and marketers specifically
+- For launches/features: explain the practical implication for a marketing team or creative director
+- For funding rounds: explain what the investment signals about where the AI landscape is heading
+- For YouTube video releases: treat them like a product announcement — what did they demo, why does it matter
+- For research papers: translate the finding into plain-English brand implications
+- Human-in-the-loop angle: where relevant, share how YOU would experiment with this tool or workflow
+- End with an engaging question that invites comments from marketers, CMOs, or brand strategists
+- List all sources at the bottom under "Sources:" with full URLs copied from above

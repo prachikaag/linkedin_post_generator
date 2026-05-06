@@ -106,6 +106,21 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Runway Blog"
+      url: "https://runwayml.com/blog/feed"
+      priority: medium
+      enabled: true
+
+    - name: "xAI Blog"
+      url: "https://x.ai/blog/rss.xml"
+      priority: medium
+      enabled: true
+
+    - name: "Cohere Blog"
+      url: "https://cohere.com/blog/rss"
+      priority: low
+      enabled: true
+
   # ── Startup & Funding News ──────────────────────────────
   funding_news:
     - name: "TechCrunch Startups"
@@ -124,7 +139,8 @@ rss_feeds:
       enabled: true
 
   # ── YouTube Channels (use RSS for channel updates) ──────
-  # YouTube video releases from key AI channels
+  # YouTube video releases from key AI channels.
+  # To find a channel ID: go to the channel page → view source → search "channel_id".
   youtube_channels:
     - name: "Google DeepMind YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
@@ -141,8 +157,33 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCtKeVP0JGxiEXY7CRJM0rUw"
+      priority: medium
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCeaUECFWEVijZTfH5hJVZhA"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCZf5IX90oe5gdPppMXGImqg"
+      priority: medium
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVkjBBWNhXVsxn-MKRy9pQw"
+      priority: medium
+      enabled: true
+
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: low
+      enabled: true
+
+    - name: "AI Explained YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw"
       priority: low
       enabled: true
 

@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+from .article_tracker import ArticleTracker
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
@@ -53,11 +54,30 @@ class Pipeline:
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        # Filter out articles already used in previous runs
+        tracker = ArticleTracker()
+        fresh_articles = tracker.filter_new(articles)
+        skipped = len(articles) - len(fresh_articles)
+        console.print(
+            f"[green]✓[/] {len(articles)} relevant articles fetched and scored. "
+            + (f"[dim]{skipped} already used — {len(fresh_articles)} fresh.[/]" if skipped else "")
+        )
+
+        if not fresh_articles:
+            console.print(
+                "[yellow]All articles have already been used in previous runs.[/]\n"
+                "[dim]Delete data/processed_articles.json to reset, or wait for new articles.[/]"
+            )
+            return []
+
+        articles = fresh_articles
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
-            console.print("\n[yellow]Dry-run mode — skipping post generation.[/]")
+            console.print(
+                f"\n[yellow]Dry-run mode — skipping post generation.[/] "
+                f"[dim]({len(articles)} fresh articles ready)[/]"
+            )
             return []
 
         # ── Step 2: Trending keywords ───────────────────────────────────────
@@ -99,6 +119,7 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                tracker.mark_used(cluster)
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
                     f"[dim]({result['source_count']} sources cited)[/]"

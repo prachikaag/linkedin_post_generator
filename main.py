@@ -199,18 +199,56 @@ def show(number: int, filename: str):
 
 @cli.command()
 def config():
-    """Show the paths to all editable config files."""
+    """Show the paths to all editable config and prompt files."""
     console.print("\n[bold]Editable Configuration Files[/]\n")
-    files = {
-        "Topics of Interest": CONFIG_DIR / "topics.yaml",
-        "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
-        "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
-        "Environment Variables": BASE_DIR / ".env",
+
+    PROMPTS_DIR = BASE_DIR / "prompts"
+    DATA_DIR = BASE_DIR / "data"
+
+    sections = {
+        "Config — edit these to control what the pipeline tracks and how it writes": {
+            "Topics of Interest (companies, keywords, categories)": CONFIG_DIR / "topics.yaml",
+            "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
+            "News Sources (RSS feeds, APIs, YouTube channels)": CONFIG_DIR / "sources.yaml",
+            "Environment Variables (API keys)": BASE_DIR / ".env",
+        },
+        "Prompts — edit these to change how Claude writes and searches": {
+            "Post System Prompt (AI persona, rules, citation standards)": PROMPTS_DIR / "post_system.txt",
+            "Post User Prompt (per-run writing instructions)": PROMPTS_DIR / "post_user.txt",
+            "News Fetch Prompt (RSS parsing instructions for Claude)": PROMPTS_DIR / "news_fetch.txt",
+            "Trending Search Prompt (keyword discovery instructions)": PROMPTS_DIR / "trending_search.txt",
+        },
+        "Data — runtime state files": {
+            "Processed Articles (tracks which articles have been used)": DATA_DIR / "processed_articles.json",
+        },
     }
-    for label, path in files.items():
-        exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
-        console.print(f"  {exists}  [bold]{label}[/]")
-        console.print(f"     [dim]{path}[/]\n")
+
+    for section_title, files in sections.items():
+        console.print(f"[bold yellow]{section_title}[/]\n")
+        for label, path in files.items():
+            exists = "[green]✓[/]" if path.exists() else "[dim]— not yet created[/]"
+            console.print(f"  {exists}  [bold]{label}[/]")
+            console.print(f"     [dim]{path}[/]\n")
+
+    console.print(
+        "[dim]Tip: run [bold]python main.py run --dry-run[/bold] to test "
+        "news fetching without generating posts.[/]"
+    )
+
+
+# ── reset-tracker ─────────────────────────────────────────────────────────────
+
+@cli.command("reset-tracker")
+def reset_tracker():
+    """Clear the processed-articles log so all articles are treated as fresh."""
+    from src.article_tracker import ArticleTracker
+    tracker = ArticleTracker()
+    count = tracker.count()
+    tracker.clear()
+    console.print(
+        f"[green]✓[/] Tracker cleared — {count} article record(s) removed. "
+        "Next run will treat all articles as new."
+    )
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────

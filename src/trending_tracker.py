@@ -2,6 +2,18 @@ import json
 import re
 import shutil
 import subprocess
+from pathlib import Path
+
+_PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+
+
+def _load_prompt(filename: str) -> str:
+    path = _PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt file not found: {path}")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    content_lines = [l for l in lines if not l.strip().startswith("#")]
+    return "\n".join(content_lines).strip()
 
 
 class TrendingTracker:
@@ -34,19 +46,7 @@ class TrendingTracker:
 
     def _fetch_via_claude_websearch(self) -> list[str]:
         seeds_str = ", ".join(self.seed_terms[:8])
-
-        prompt = f"""Search the web for the most recent trending AI news topics from the past 7 days.
-
-Focus on topics related to: {seeds_str}
-
-Use WebSearch to find what's happening in AI right now — new model releases, funding announcements, product launches, research breakthroughs, regulation news.
-
-Return ONLY a JSON array of 15–20 trending keyword phrases (short phrases of 2–5 words each).
-
-Format: ["keyword phrase 1", "keyword phrase 2", ...]
-
-Return ONLY the raw JSON array starting with [ — no markdown code fences, no explanation.
-"""
+        prompt = _load_prompt("trending_search.txt").replace("{{seed_terms}}", seeds_str)
 
         result = subprocess.run(
             [

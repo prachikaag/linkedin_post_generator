@@ -1,0 +1,29 @@
+# ============================================================
+# TRENDING KEYWORDS — CLAUDE PROMPT
+# This prompt is sent to Claude (with WebSearch enabled) to
+# find what's trending in AI right now. Edit to change what
+# topics are prioritised or how many keywords are returned.
+#
+# {{seed_terms}} is filled at runtime from config/topics.yaml.
+# Do not remove it.
+# ============================================================
+
+Search the web for the most recent trending AI news topics from the past 7 days.
+
+Focus on topics related to: {{seed_terms}}
+
+Use WebSearch to find what's actively being discussed in AI right now. Look for:
+- New model releases or major feature launches (ChatGPT, Claude, Gemini, Perplexity, etc.)
+- AI startup funding rounds and acquisitions
+- Big tech announcements involving AI (Microsoft, Google, Apple, Meta, Amazon, Nvidia)
+- YouTube videos from major AI labs that have gone viral or been widely shared
+- AI regulation or policy developments
+- Breakthroughs or benchmark results generating buzz
+- New AI tools for marketing, creative work, or productivity
+
+Return ONLY a JSON array of 15–20 trending keyword phrases (short phrases of 2–5 words each).
+Prioritise specificity — "GPT-5 release date" beats "artificial intelligence news".
+
+Format: ["keyword phrase 1", "keyword phrase 2", ...]
+
+Return ONLY the raw JSON array starting with [ — no markdown code fences, no explanation.

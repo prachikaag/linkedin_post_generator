@@ -11,61 +11,17 @@ import yaml
 
 from .news_gatherer import Article
 
-# ── System prompt template ─────────────────────────────────────────────────────
+_PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 
-_SYSTEM_TEMPLATE = """\
-You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 
-## About {author_name}
-{author_tagline}
-
-## What {author_name} writes about
-{focus_areas}
-
-## Tone of Voice
-{tone_traits}
-
-## Writing Style Rules (follow these strictly)
-{writing_style}
-
-## Post Blueprint (follow this structure in order)
-{post_structure}
-
-## Absolute Do's
-{dos}
-
-## Absolute Don'ts
-{donts}
-
-## RESEARCH & CITATION STANDARDS (non-negotiable — enforced on every post)
-- You MUST cite a minimum of {min_sources} distinct sources in every post, no exceptions
-- Synthesise across all provided sources — do NOT summarise just one article
-- All sources must appear at the end under a "Sources:" heading, one per line:
-    [N]. [Short descriptive title] → [full URL]
-- For any direct, verbatim quotes from a named person, you MUST attribute them as:
-    "[exact quote]" — Full Name, Job Title, Company/Publication
-  If you cannot confirm the quote is exact, paraphrase instead and do NOT use quote marks
-- Every claim that came from a source must be traceable to one of the cited URLs
-- The post must read like a researched commentary piece, not a reaction to a single article
-
-## ⚠️ CRITICAL URL RULE (zero exceptions)
-- You may ONLY use the exact URLs that appear in the "URL:" fields of the Source Material
-- NEVER construct, guess, infer, complete, or recall any URL from your training data
-- NEVER modify or shorten a provided URL
-- If a source does not have a "URL:" field or it is blank, write "[URL not provided]" in the sources list — do not invent a URL
-- Every URL in your Sources section must be copied character-for-character from the Source Material
-
-## Hashtag Rules
-- Always include: {always_hashtags}
-- Choose from this rotation list to reach exactly {max_hashtags} total: {rotate_hashtags}
-- Place all hashtags on the very last line of the post
-
-## Output Rules
-- Output ONLY the LinkedIn post text — no preamble, no "Here's the post:" label, no commentary
-- Target length: {post_length}
-- Write as {author_name} in first person
-- Make it sound like a real person who has done their homework, not a press release
-"""
+def _load_prompt(filename: str) -> str:
+    """Load a prompt template from prompts/, stripping comment lines."""
+    path = _PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt file not found: {path}")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    content_lines = [l for l in lines if not l.strip().startswith("#")]
+    return "\n".join(content_lines).strip()
 
 
 class PostGenerator:
@@ -126,24 +82,28 @@ class PostGenerator:
         def nl(items: list) -> str:
             return "\n".join(f"{n}. {i}" for n, i in enumerate(items, 1))
 
-        return _SYSTEM_TEMPLATE.format(
-            author_name=author.get("name", "the author"),
-            author_title=author.get("title", ""),
-            author_tagline=author.get("tagline", ""),
-            focus_areas=bl(brand.get("focus_areas", [])),
-            tone_traits=bl(tone.get("primary_traits", [])),
-            writing_style=bl(tone.get("writing_style", [])),
-            post_structure=nl(tone.get("post_structure", [])),
-            dos=bl(tone.get("dos", [])),
-            donts=bl(tone.get("donts", [])),
-            min_sources=research.get("min_sources", 4),
-            always_hashtags=" ".join(hashtags.get("always_include", [])),
-            max_hashtags=brand.get("max_hashtags", 5),
-            rotate_hashtags=" ".join(hashtags.get("rotate_from", [])),
-            post_length=length_guide.get(
+        template = _load_prompt("post_system.txt")
+        replacements = {
+            "{{author_name}}": author.get("name", "the author"),
+            "{{author_title}}": author.get("title", ""),
+            "{{author_tagline}}": author.get("tagline", ""),
+            "{{focus_areas}}": bl(brand.get("focus_areas", [])),
+            "{{tone_traits}}": bl(tone.get("primary_traits", [])),
+            "{{writing_style}}": bl(tone.get("writing_style", [])),
+            "{{post_structure}}": nl(tone.get("post_structure", [])),
+            "{{dos}}": bl(tone.get("dos", [])),
+            "{{donts}}": bl(tone.get("donts", [])),
+            "{{min_sources}}": str(research.get("min_sources", 4)),
+            "{{always_hashtags}}": " ".join(hashtags.get("always_include", [])),
+            "{{max_hashtags}}": str(brand.get("max_hashtags", 5)),
+            "{{rotate_hashtags}}": " ".join(hashtags.get("rotate_from", [])),
+            "{{post_length}}": length_guide.get(
                 brand.get("post_length", "medium"), length_guide["medium"]
             ),
-        )
+        }
+        for placeholder, value in replacements.items():
+            template = template.replace(placeholder, value)
+        return template
 
     def _build_user_prompt(
         self, articles: list[Article], trending_keywords: list[str]
@@ -155,7 +115,7 @@ class PostGenerator:
             sources_block += f"\n### Source {i}{label}\n"
             sources_block += f"Publication: {a.source_name}\n"
             sources_block += f"Title: {a.title}\n"
-            sources_block += f"URL: {a.url}\n"       # ← exact URL Claude must copy verbatim
+            sources_block += f"URL: {a.url}\n"
             sources_block += f"Date: {pub}\n"
             sources_block += f"Summary: {a.summary[:600] if a.summary else 'N/A'}\n"
 
@@ -167,34 +127,18 @@ class PostGenerator:
             else "AI, artificial intelligence"
         )
 
-        return f"""\
-Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
-
-Source 1 is the primary anchor story. Sources 2–{len(articles)} provide supporting evidence, \
-additional context, and citation depth.
-
-HARD REQUIREMENT: Cite all {len(articles)} sources. Minimum {self.min_sources} — never fewer.
-
-⚠️ URL RULE: Copy every source URL character-for-character from the "URL:" fields below.
-Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing, write [URL not provided].
-
-For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
-
-## Source Material
-{sources_block}
-## Context
-Companies involved: {', '.join(companies) or 'General AI news'}
-Story categories: {', '.join(categories) or 'AI news'}
-Currently trending (weave in naturally): {trending_str}
-
-## Writing Instructions
-- Synthesise across all sources — do NOT just paraphrase Source 1
-- Add your genuine perspective on what this means for brands and marketers specifically
-- For launches/features: explain the practical implication for a marketing team
-- For funding: explain what the investment signals about the AI landscape
-- End with an engaging question that invites comments
-- List all sources at the bottom under "Sources:" with full URLs copied from above
-"""
+        template = _load_prompt("post_user.txt")
+        replacements = {
+            "{{source_count}}": str(len(articles)),
+            "{{min_sources}}": str(self.min_sources),
+            "{{sources_block}}": sources_block,
+            "{{companies}}": ", ".join(companies) or "General AI news",
+            "{{categories}}": ", ".join(categories) or "AI news",
+            "{{trending}}": trending_str,
+        }
+        for placeholder, value in replacements.items():
+            template = template.replace(placeholder, value)
+        return template
 
     # ── Claude invocation ──────────────────────────────────────────────────────
 

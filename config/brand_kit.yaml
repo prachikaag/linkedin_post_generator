@@ -2,13 +2,16 @@
 # BRAND KIT & TONE OF VOICE
 # Edit this file to match your personal brand and voice.
 # This drives how every LinkedIn post is written.
+# All changes here take effect on the next pipeline run —
+# no code changes needed.
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
 author:
   name: "Your Name"
+  # Example: "Brand Strategist | AI & Marketing"
   title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  # The one-liner that appears under your name — what you help people with
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:
@@ -21,70 +24,76 @@ tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
+    - "Curious and experimental — you actively test AI tools and share honest, unfiltered results"
+    - "Pragmatic and business-focused — you connect AI news to real brand and marketing outcomes"
+    - "Accessible, not technical — you translate complex AI developments into plain language a CMO can act on"
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Opinionated — you have a clear point of view, not just a neutral summary of what happened"
+    - "Human-in-the-loop advocate — you believe AI works best when a skilled human is in the driver's seat"
+    - "Human — you write like a person who has been experimenting, not a press release"
 
   # Rules for how you write every post
   writing_style:
-    - "Write in first person. Share personal experiments and real observations."
+    - "Write in first person. Share personal experiments and real observations from your own workflows."
     - "Short paragraphs only — 1 to 3 sentences max per paragraph."
     - "Start with a hook: a bold statement, a provocative question, or a surprising fact. Never start with 'I'."
     - "Use generous line breaks — LinkedIn rewards whitespace."
-    - "End with a clear opinion, key takeaway, or specific call to action."
+    - "End with a clear opinion, key takeaway, or specific call to action for brands/marketers."
     - "Avoid corporate jargon, buzzwords, and 'thought leadership' clichés."
     - "Be direct. Be opinionated. Be real."
     - "Use simple language — aim for a 9th grade reading level."
     - "Use em-dashes (—) and ellipses (...) for natural rhythm."
-    - "Numbers and specifics beat vague claims. Use them."
+    - "Numbers and specifics beat vague claims every time. Use them."
 
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the AI space right now, not just one article. Reference multiple developments."
     - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
-    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
-    - "CTA (1 line): A question that invites genuine discussion in the comments."
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion. What is the pattern? What does it mean for brands specifically? Be opinionated. Reference your own experiments where relevant."
+    - "SO WHAT (2-3 lines): What this means for brands, marketers, or creative directors today. One or two concrete, actionable things they should do or watch."
+    - "CTA (1 line): A question that invites genuine discussion in the comments — ideally from fellow marketers or brand strategists."
     - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
     - "HASHTAGS: 4-5 relevant hashtags on the very last line."
 
   # What makes a great post from you
   dos:
-    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
-    - "Give actionable insights brands can use today, not just future speculation"
+    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you, what failed"
+    - "Give actionable insights brands and marketing teams can use today, not just future speculation"
     - "Cite sources with full URLs so readers can dig deeper"
-    - "Ask engaging questions that invite genuine discussion in the comments"
+    - "Ask engaging questions that invite genuine discussion from marketers, CMOs, and brand leaders"
     - "Use specific numbers, quotes, or data points when available"
-    - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "Acknowledge uncertainty — if you genuinely don't know something, say so"
+    - "React to news through your professional lens: branding, marketing, creativity, AI strategy"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Connect AI developments to real brand workflows — not just 'AI is changing everything'"
+    - "Write about the human-in-the-loop angle: where does human judgment still win?"
 
   # What undermines your credibility
   donts:
     - "Don't write vague, wishy-washy takes — have a clear opinion"
     - "Don't use more than 2-3 emojis per post"
     - "Don't make unsupported or exaggerated claims about AI capabilities"
-    - "Don't write walls of text — break everything up"
+    - "Don't write walls of text — break everything up with line breaks"
     - "Don't start with 'I am excited to share' or 'Thrilled to announce'"
     - "Don't summarise without adding your own perspective"
-    - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
+    - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specific evidence"
     - "Don't write hype — write insight"
+    - "Don't ignore the brand/marketing angle — every post should connect back to how brands can use this"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
-  # The lenses you write through
+  # The lenses you write through — every post should touch at least one of these
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Practical AI tools for marketing and brand building — what actually works in the real world"
+    - "Human-in-the-loop AI workflows — you as the strategist and editor, AI as the drafter and researcher"
+    - "Future of creative work with generative AI — image, video, voice, copy"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "The AI startup ecosystem — funding rounds, acquisitions, and what they signal about where the market is going"
+    - "Big tech AI moves and what they mean for brands (Microsoft, Google, Meta, Apple, Amazon)"
+    - "Experimenting with AI in your own work and sharing honest, unfiltered results"
+    - "The ethics and limitations of AI — where human judgment still wins"
 
   # Example angles you love to write about
   content_angles:
@@ -93,6 +102,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I built a workflow using [AI tool] — here's what a human still needs to do"
+    - "Why [AI company] just made [move] — and what it means for your brand team"
+    - "[AI Lab] just dropped a YouTube video showing [capability] — what it means in practice"
 
   # Hashtag strategy
   hashtags:
@@ -117,6 +129,8 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#AIExperiment"
 
   max_hashtags: 5
 
@@ -124,12 +138,14 @@ brand:
   # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
   post_length: "medium"
 
-  # Optional: words or phrases that are distinctly yours
+  # Words and phrases that are distinctly yours — use them sparingly but consistently
   signature_phrases:
     - "Here's what I think brands are missing..."
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I tested this myself..."
+    - "The human still needs to..."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.

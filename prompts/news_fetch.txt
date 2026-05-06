@@ -1,0 +1,32 @@
+# ============================================================
+# NEWS FETCH — CLAUDE PROMPT
+# This prompt is sent to Claude (with WebFetch enabled) to
+# retrieve and parse RSS/Atom feeds. Edit the instructions
+# to change how articles are extracted or filtered.
+#
+# {{feed_list}} is filled at runtime with the numbered list
+# of feed URLs from config/sources.yaml. Do not remove it.
+# ============================================================
+
+Fetch each of these RSS/Atom feed URLs using WebFetch and extract the 8 most recent articles from each.
+
+Feeds to fetch:
+{{feed_list}}
+
+For each feed:
+1. Use WebFetch to retrieve the feed URL
+2. Parse the XML to find article entries (look for <item> or <entry> tags)
+3. Extract title, article link, description/summary, and publication date
+
+Return ONLY a JSON array. Each object must have exactly these fields:
+- "title": article headline (string)
+- "url": the article permalink (string — the link inside <link> or <guid>, NOT the feed URL itself)
+- "summary": first 500 chars of <description> or <content> (string)
+- "published": ISO 8601 date if available, else "" (string)
+- "source_name": the exact feed name from the numbered list above (string)
+
+Rules:
+- "url" must be an article permalink, not the RSS feed URL
+- Include articles from ALL feeds you successfully fetch
+- If a feed returns an error, skip it silently
+- Return ONLY the raw JSON array starting with [ — no markdown code fences, no explanation text

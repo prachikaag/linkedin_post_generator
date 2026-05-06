@@ -33,7 +33,16 @@ def main():
         print("No articles found. Try lowering min_relevance_score in config/topics.yaml")
         return
 
-    print(f"  → {len(articles)} relevant articles found")
+    from src.article_tracker import ArticleTracker
+    tracker = ArticleTracker()
+    articles = tracker.filter_new(articles)
+
+    if not articles:
+        print("All articles already used in previous runs.")
+        print("Delete data/processed_articles.json to reset, or wait for new articles.")
+        return
+
+    print(f"  → {len(articles)} fresh relevant articles found")
     for a in articles[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
 
@@ -75,6 +84,7 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
+            tracker.mark_used(cluster)
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")
