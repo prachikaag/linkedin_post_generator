@@ -9,6 +9,9 @@ env/
 # Environment
 .env
 
+# Pipeline state (article deduplication log — machine-generated, not for git)
+data/processed_articles.json
+
 # Generated posts (tracked individually when ready)
 # posts/*.md   ← uncomment this line to stop tracking generated posts
 

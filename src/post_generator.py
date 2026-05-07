@@ -115,9 +115,9 @@ class PostGenerator:
         research = self.brand_kit.get("research_standards", {})
 
         length_guide = {
-            "short": "300–500 characters (tight and punchy)",
-            "medium": "500–900 characters (hook + context + take + sources)",
-            "long": "900–1300 characters (deep-dive with a full argument)",
+            "short": "800–1,500 characters total including sources (tight hook, clear take, min 4 sources)",
+            "medium": "1,500–2,300 characters total including sources (follow the full post blueprint above)",
+            "long": "2,300–3,000 characters total including sources (maximum LinkedIn length, deep-dive argument)",
         }
 
         def bl(items: list) -> str:

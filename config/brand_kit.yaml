@@ -120,8 +120,8 @@ brand:
 
   max_hashtags: 5
 
-  # Target post length
-  # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
+  # Target post length (LinkedIn max is 3,000 characters)
+  # Options: "short" (800-1,500 chars) | "medium" (1,500-2,300 chars) | "long" (2,300-3,000 chars)
   post_length: "medium"
 
   # Optional: words or phrases that are distinctly yours

@@ -9,6 +9,7 @@ from rich.table import Table
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
+from .state_manager import StateManager
 from .trending_tracker import TrendingTracker
 
 console = Console()
@@ -33,12 +34,18 @@ class Pipeline:
         """
         Full pipeline:
           1. Fetch and score news articles from RSS feeds
-          2. Fetch trending keywords from Google Trends
-          3. Build article clusters (SOURCE_POOL_SIZE articles each)
-          4. Generate one research-style post per cluster (min 4 sources each)
-          5. Save all posts as markdown drafts for human review
+          2. Filter out already-processed articles (state manager)
+          3. Fetch trending keywords from Google Trends / Claude WebSearch
+          4. Build article clusters (SOURCE_POOL_SIZE articles each)
+          5. Generate one research-style post per cluster (min 4 sources each)
+          6. Save all posts as markdown drafts for human review
         """
         console.rule("[bold blue]LinkedIn Post Generator[/]")
+
+        state = StateManager()
+        purged = state.purge_expired()
+        if purged:
+            console.print(f"[dim]State: purged {purged} expired article(s) (>{30}d old).[/]")
 
         # ── Step 1: News ────────────────────────────────────────────────────
         console.print("\n[bold cyan]Step 1 / 3 — Fetching news[/]")
@@ -53,11 +60,30 @@ class Pipeline:
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        new_articles = state.filter_new(articles)
+        skipped = len(articles) - len(new_articles)
+        if skipped:
+            console.print(
+                f"[dim]Skipped {skipped} already-processed article(s) from previous runs.[/]"
+            )
+
+        if not new_articles:
+            console.print(
+                "[yellow]All fetched articles were already processed in a previous run.\n"
+                "Wait for new articles to be published, or increase "
+                "[bold]max_article_age_hours[/] to widen the window.[/]"
+            )
+            return []
+
+        console.print(f"[green]✓[/] {len(new_articles)} new relevant articles fetched and scored.")
+        articles = new_articles
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
-            console.print("\n[yellow]Dry-run mode — skipping post generation.[/]")
+            console.print(
+                f"\n[yellow]Dry-run mode — skipping post generation.[/] "
+                f"[dim]({state.stats()['total_processed']} URLs in state)[/]"
+            )
             return []
 
         # ── Step 2: Trending keywords ───────────────────────────────────────
@@ -99,6 +125,7 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                state.mark_batch(cluster)
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
                     f"[dim]({result['source_count']} sources cited)[/]"

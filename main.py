@@ -195,6 +195,72 @@ def show(number: int, filename: str):
     )
 
 
+# ── mark-published ────────────────────────────────────────────────────────────
+
+@cli.command("mark-published")
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to mark.")
+def mark_published(number: int, filename: str):
+    """Mark a draft post as published (updates its status in frontmatter)."""
+    if filename:
+        post_file = POSTS_DIR / filename
+        if not post_file.exists():
+            console.print(f"[red]File not found:[/] {filename}")
+            sys.exit(1)
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print(
+            "[yellow]Provide a post number or --file <filename>.[/]\n"
+            "Example: [bold]python main.py mark-published 1[/]"
+        )
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+    if "status: draft" in raw:
+        updated = raw.replace("status: draft", "status: published", 1)
+        post_file.write_text(updated, encoding="utf-8")
+        console.print(f"[green]✓[/] Marked as published: [bold]{post_file.name}[/]")
+    elif "status: published" in raw:
+        console.print(f"[yellow]Already published:[/] {post_file.name}")
+    else:
+        console.print(f"[yellow]No status field found in:[/] {post_file.name}")
+
+
+# ── stats ─────────────────────────────────────────────────────────────────────
+
+@cli.command()
+def stats():
+    """Show pipeline statistics: processed articles and draft posts."""
+    from pathlib import Path as _Path
+    state_file = BASE_DIR / "data" / "processed_articles.json"
+
+    posts = sorted(POSTS_DIR.glob("*.md"))
+    drafts = sum(1 for p in posts if "status: draft" in p.read_text(encoding="utf-8"))
+    published = len(posts) - drafts
+
+    console.print("\n[bold]Pipeline Statistics[/]\n")
+    console.print(f"  Posts saved:      [cyan]{len(posts)}[/]")
+    console.print(f"  Drafts:           [yellow]{drafts}[/]")
+    console.print(f"  Published:        [green]{published}[/]")
+
+    if state_file.exists():
+        import json
+        try:
+            state = json.loads(state_file.read_text(encoding="utf-8"))
+            console.print(f"  Articles tracked: [dim]{len(state)}[/] (in data/processed_articles.json)")
+        except Exception:
+            pass
+    console.print()
+
+
 # ── config ────────────────────────────────────────────────────────────────────
 
 @cli.command()
