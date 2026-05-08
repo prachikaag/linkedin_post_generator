@@ -11,6 +11,26 @@ import yaml
 
 from .news_gatherer import Article
 
+# ── Personal context helpers ───────────────────────────────────────────────────
+
+def _load_personal_context(config_dir: Optional[Path]) -> dict:
+    if not config_dir:
+        return {}
+    path = config_dir / "personal_context.yaml"
+    if not path.exists():
+        return {}
+    with open(path, "r", encoding="utf-8") as fh:
+        return yaml.safe_load(fh) or {}
+
+
+def _load_tone_of_voice_doc(config_dir: Optional[Path]) -> str:
+    if not config_dir:
+        return ""
+    path = config_dir / "tone_of_voice.md"
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8")
+
 # ── System prompt template ─────────────────────────────────────────────────────
 
 _SYSTEM_TEMPLATE = """\
@@ -18,10 +38,17 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 
 ## About {author_name}
 {author_tagline}
+{personal_background}
 
 ## What {author_name} writes about
 {focus_areas}
+{priority_themes}
 
+## Target Audience
+{target_audience}
+{audience_pain_points}
+
+{tone_doc_section}
 ## Tone of Voice
 {tone_traits}
 
@@ -37,6 +64,9 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 ## Absolute Don'ts
 {donts}
 
+{personal_experiments_section}
+{key_opinions_section}
+{currently_watching_section}
 ## RESEARCH & CITATION STANDARDS (non-negotiable — enforced on every post)
 - You MUST cite a minimum of {min_sources} distinct sources in every post, no exceptions
 - Synthesise across all provided sources — do NOT summarise just one article
@@ -71,13 +101,16 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    def __init__(self, brand_kit: dict, posts_dir: Path, config_dir: Optional[Path] = None):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
+        self.config_dir = config_dir
         self.posts_dir.mkdir(exist_ok=True)
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
         self.model = os.getenv("ANTHROPIC_MODEL", "sonnet")
+        self._personal_context = _load_personal_context(config_dir)
+        self._tone_doc = _load_tone_of_voice_doc(config_dir)
         self._system_prompt = self._build_system_prompt()
 
     def generate_post(
@@ -113,6 +146,7 @@ class PostGenerator:
         brand = self.brand_kit.get("brand", {})
         hashtags = brand.get("hashtags", {})
         research = self.brand_kit.get("research_standards", {})
+        ctx = self._personal_context
 
         length_guide = {
             "short": "300–500 characters (tight and punchy)",
@@ -126,16 +160,88 @@ class PostGenerator:
         def nl(items: list) -> str:
             return "\n".join(f"{n}. {i}" for n, i in enumerate(items, 1))
 
+        # ── Personal context sections (empty string if personal_context.yaml absent) ──
+        ctx_author = ctx.get("author", {})
+        personal_background = ""
+        if ctx_author.get("background"):
+            personal_background = f"\nBackground:\n{ctx_author['background'].strip()}\n"
+
+        priority_themes = ""
+        if ctx.get("priority_themes"):
+            priority_themes = "\nPriority themes to weave in:\n" + bl(ctx["priority_themes"])
+
+        audience = ctx.get("target_audience", {})
+        target_audience = ""
+        if audience.get("primary"):
+            target_audience = "Primary readers:\n" + bl(audience["primary"])
+        audience_pain_points = ""
+        if audience.get("pain_points"):
+            audience_pain_points = "\nWhat keeps them up at night:\n" + bl(audience["pain_points"])
+
+        # ── Tone of voice doc (replaces/supplements YAML traits if present) ──
+        tone_doc_section = ""
+        if self._tone_doc:
+            tone_doc_section = (
+                "## Detailed Tone of Voice Guide\n"
+                "The following guide overrides any conflicting style instructions below. "
+                "Follow it precisely.\n\n"
+                + self._tone_doc.strip()
+                + "\n\n"
+            )
+
+        # ── Personal experiments section ──
+        personal_experiments_section = ""
+        experiments = ctx.get("experiments", [])
+        if experiments:
+            lines = ["## Personal AI Experiments (weave into posts naturally when relevant)"]
+            for exp in experiments[:6]:
+                lines.append(f"\n**Tool: {exp.get('tool', '')}**")
+                if exp.get("what_i_tried"):
+                    lines.append(f"- Tried: {exp['what_i_tried']}")
+                if exp.get("what_worked"):
+                    lines.append(f"- Worked: {exp['what_worked']}")
+                if exp.get("what_surprised_me"):
+                    lines.append(f"- Surprise: {exp['what_surprised_me']}")
+            personal_experiments_section = "\n".join(lines) + "\n"
+
+        # ── Key opinions section ──
+        key_opinions_section = ""
+        opinions = ctx.get("key_opinions", [])
+        if opinions:
+            lines = ["## Key Opinions (reflect these when they're relevant — they define the POV)"]
+            for op in opinions:
+                lines.append(f"- {op.get('opinion', '')}")
+                if op.get("context"):
+                    lines.append(f"  ({op['context']})")
+            key_opinions_section = "\n".join(lines) + "\n"
+
+        # ── Currently watching section ──
+        currently_watching_section = ""
+        watching = ctx.get("currently_watching", [])
+        if watching:
+            currently_watching_section = (
+                "## Currently Watching (use to add forward-looking context)\n"
+                + bl(watching) + "\n"
+            )
+
         return _SYSTEM_TEMPLATE.format(
-            author_name=author.get("name", "the author"),
-            author_title=author.get("title", ""),
-            author_tagline=author.get("tagline", ""),
+            author_name=ctx_author.get("name") or author.get("name", "the author"),
+            author_title=ctx_author.get("title") or author.get("title", ""),
+            author_tagline=ctx_author.get("tagline") or author.get("tagline", ""),
+            personal_background=personal_background,
             focus_areas=bl(brand.get("focus_areas", [])),
+            priority_themes=priority_themes,
+            target_audience=target_audience,
+            audience_pain_points=audience_pain_points,
+            tone_doc_section=tone_doc_section,
             tone_traits=bl(tone.get("primary_traits", [])),
             writing_style=bl(tone.get("writing_style", [])),
             post_structure=nl(tone.get("post_structure", [])),
             dos=bl(tone.get("dos", [])),
             donts=bl(tone.get("donts", [])),
+            personal_experiments_section=personal_experiments_section,
+            key_opinions_section=key_opinions_section,
+            currently_watching_section=currently_watching_section,
             min_sources=research.get("min_sources", 4),
             always_hashtags=" ".join(hashtags.get("always_include", [])),
             max_hashtags=brand.get("max_hashtags", 5),
@@ -212,7 +318,6 @@ Currently trending (weave in naturally): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
                     ],
                     input=user_prompt,   # pass via stdin, not positional arg
                     capture_output=True,

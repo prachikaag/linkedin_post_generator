@@ -80,7 +80,7 @@ class Pipeline:
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(self.brand_kit, self.posts_dir, self.config_dir)
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):

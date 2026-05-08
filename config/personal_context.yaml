@@ -1,0 +1,145 @@
+# ============================================================
+# PERSONAL CONTEXT
+# This file gives the AI the raw material to write posts that
+# sound like YOU — your experiments, your opinions, your lens.
+#
+# Edit this regularly. The more specific and honest you are,
+# the better the posts will be.
+# ============================================================
+
+
+# ── Who You Are ───────────────────────────────────────────
+# Fill in your real details. Specifics beat vague titles.
+author:
+  name: "Prachi Kaag"
+  title: "Brand Strategist & Creative Director"
+  tagline: "Helping brands understand and leverage AI in the real world"
+  location: "Amsterdam, Netherlands"
+  linkedin_url: ""  # Optional — used if you want posts to reference your profile
+
+  background: |
+    I'm a brand strategist and creative director who has spent over a decade helping
+    brands build identities that actually mean something. I now spend a significant
+    part of my time experimenting with AI tools — not as a techie, but as someone
+    who needs to know what these tools can do for the brands and marketing teams I work with.
+    I write about what I actually try, not what sounds impressive.
+
+  professional_focus:
+    - "Brand strategy and positioning"
+    - "Creative direction for digital and social"
+    - "AI-assisted content and creative workflows"
+    - "Helping marketing teams build AI-literate cultures"
+
+
+# ── Your Audience ──────────────────────────────────────────
+# Who reads your posts? What do they care about?
+# The AI uses this to ensure the "so what" section lands for them.
+target_audience:
+  primary:
+    - "CMOs and brand leads at mid-to-large companies"
+    - "Creative and marketing agency founders"
+    - "Head of Content / Content Strategy roles"
+  secondary:
+    - "Freelance brand strategists and consultants"
+    - "Curious marketers trying to upskill in AI"
+  pain_points:
+    - "Don't know where to start with AI without losing brand voice"
+    - "Overwhelmed by the pace of AI news and tool launches"
+    - "Worried their team will fall behind or use AI badly"
+    - "Not sure how to brief AI tools properly"
+    - "Want practical answers, not theoretical frameworks"
+
+
+# ── Your Key Opinions ─────────────────────────────────────
+# What do you actually believe about AI and brands?
+# The AI will weave these perspectives into posts naturally.
+# Be opinionated — wishy-washy opinions make forgettable posts.
+key_opinions:
+  - opinion: "Most brands are using AI as a cost-cutting shortcut, not as a creative partner. That's backwards."
+    context: "The brands winning with AI are using it to be more distinctive, not more generic."
+
+  - opinion: "AI won't kill brand strategists. It will kill brand strategists who don't know how to direct it."
+    context: "The craft is shifting from execution to direction. You need to know what good looks like to prompt for it."
+
+  - opinion: "Prompt engineering is just briefing. Marketers are actually well-positioned for this — they've been briefing creatives for decades."
+    context: "The skill transfer is real but underappreciated."
+
+  - opinion: "Brand voice is the moat. The brands with a genuinely distinct voice will thrive in an AI world. Generic brands will drown in AI-generated noise."
+    context: "The flood of AI content raises the value of actual distinctiveness."
+
+  - opinion: "The 'human in the loop' model is the right one for most marketing teams right now — AI drafts, human edits, human approves."
+    context: "Full automation too early is how you erode trust and brand quality."
+
+  - opinion: "The best AI use case for most brands isn't content generation — it's research, briefing, and ideation. The content output is often the least impressive part."
+
+
+# ── Your AI Experiments ───────────────────────────────────
+# Keep a log of AI tools you've actually used and what you found.
+# These become first-person anecdotes in your posts.
+# Add new experiments as you run them.
+experiments:
+  - tool: "Claude (Anthropic)"
+    what_i_tried: "Using Claude as a brand voice consultant — feeding it brand guidelines and asking it to critique copy drafts"
+    what_worked: "Surprisingly good at catching when copy drifted from the brand's stated personality. Better at critique than generation."
+    what_surprised_me: "It pushed back on my briefs constructively rather than just executing them. Felt more like a collaborator than a tool."
+    date: "2025"
+
+  - tool: "Midjourney v6/v7"
+    what_i_tried: "Art directing a full campaign concept for a client pitch — mood boards, hero images, lifestyle shots"
+    what_worked: "Speed of ideation is unmatched. Could explore 20 directions in an afternoon that would have taken a photographer weeks."
+    what_surprised_me: "Clients responded more emotionally to MJ-generated concepts than stock photo mockups. The aesthetics feel more intentional."
+    date: "2025"
+
+  - tool: "ElevenLabs"
+    what_i_tried: "Creating a voice persona for a brand's podcast intro and IVR system"
+    what_worked: "The voice cloning from a small reference sample was better than expected. Consistent tone across long scripts."
+    what_surprised_me: "The 'naturalness' of pauses and inflection is now at the point where most listeners wouldn't notice."
+    date: "2025"
+
+  - tool: "Perplexity"
+    what_i_tried: "Using Perplexity instead of Google for competitive research and trend analysis"
+    what_worked: "Much faster for synthesising multiple sources. The citations mean I can verify claims quickly."
+    what_surprised_me: "Changed how I do early-stage brand audits — what used to take half a day now takes an hour."
+    date: "2025"
+
+  - tool: "ChatGPT (GPT-4o)"
+    what_i_tried: "Full brand naming session — generating names, checking availability vibes, creating brand narratives for shortlisted names"
+    what_worked: "Good for volume and divergent thinking in early rounds. Not great at the final editorial judgment."
+    what_surprised_me: "It's better at generating reasons WHY a name might work than at picking the right name — useful when you need to sell a recommendation."
+    date: "2025"
+
+
+# ── Your Recurring Content Angles ─────────────────────────
+# These are the post formats you return to most often.
+# The AI will lean into these when matching a news story to your style.
+content_angles:
+  - "I tried [tool] for [use case] — here's what actually happened"
+  - "[Company] just shipped [feature] — what brands should actually know"
+  - "The AI story everyone is covering misses the real point, which is..."
+  - "What [funding round / acquisition / launch] tells us about where the market is heading"
+  - "My honest take after [N] months of using AI in my actual work"
+  - "The question I get asked most by brand teams about AI is X. Here's my answer."
+  - "[Trending claim about AI] — true, false, or more complicated than that?"
+
+
+# ── Topics You Care Most About ────────────────────────────
+# These are the lenses you apply to every AI story.
+# Posts that touch on these will feel most authentically yours.
+priority_themes:
+  - "What AI means for creative work and brand-building specifically"
+  - "The human skills that become more valuable as AI handles executional work"
+  - "How to maintain brand voice and quality control in AI-assisted workflows"
+  - "AI tools that are genuinely useful for marketing and brand teams right now"
+  - "The business model shifts happening in creative industries because of AI"
+  - "Practical literacy — understanding enough to use tools well without being a developer"
+
+
+# ── Things You're Currently Watching ──────────────────────
+# Update this section regularly with what you're tracking right now.
+# The AI will use these to add fresh personal context to posts.
+currently_watching:
+  - "How brands are navigating the 'AI authenticity' question in their content"
+  - "Whether multi-modal AI (text + image + voice in one workflow) becomes the norm for creative teams"
+  - "The emerging role of 'AI Creative Director' in agencies"
+  - "How the new wave of AI agents changes how marketing operations teams work"
+  - "Whether any brand voice tools emerge that can maintain consistency across AI outputs"
