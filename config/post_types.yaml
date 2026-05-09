@@ -1,0 +1,210 @@
+# ============================================================
+# POST TYPE TEMPLATES
+# ============================================================
+# Each post type has its own structural emphasis and angle.
+# The pipeline auto-detects which type fits the news cluster,
+# then applies the matching template guidance to Claude.
+#
+# You can edit the "angle", "hook_guidance", "structure_notes",
+# and "example_hooks" per type without touching any code.
+# ============================================================
+
+
+post_types:
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 1: New AI Feature or Product Launch
+  # Triggered when matched_categories includes "New AI Feature or Product Launch"
+  # ─────────────────────────────────────────────────────────
+  product_launch:
+    label: "New AI Feature or Product Launch"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    angle: >
+      What does this feature actually mean for a brand or marketing team?
+      Cut through the announcement language to the practical implication.
+      Share your honest take on whether the hype matches the reality.
+    hook_guidance: >
+      Open with the most surprising or counter-intuitive thing about this launch.
+      Avoid "X just launched Y" — that's the press release, not your post.
+    structure_notes: >
+      1. Hook: the most surprising or overlooked aspect of the launch
+      2. What it actually does (plain language, no jargon)
+      3. What brands/marketers should do with it right now
+      4. What's overhyped — honest assessment
+      5. Your personal experiment or next test you're planning
+      6. CTA: ask readers what use case they'd try first
+    example_hooks:
+      - "Nobody is talking about the part of [feature] that actually changes workflows."
+      - "The [feature] announcement buried the most interesting bit."
+      - "Every AI company just shipped [X]. Here's why that matters less than you think."
+      - "I tested [product] for [use case] before writing this. Here's what the press release missed."
+
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 2: AI Startup Funding
+  # Triggered when matched_categories includes "AI Startup Funding"
+  # ─────────────────────────────────────────────────────────
+  funding_news:
+    label: "AI Startup Funding Round"
+    trigger_categories:
+      - "AI Startup Funding"
+    angle: >
+      What does this funding signal about where the AI market is heading?
+      Connect the investment thesis to what brands should be watching —
+      not just the startup itself, but the problem space it's solving.
+    hook_guidance: >
+      Open with what the funding amount signals, not just the fact of it.
+      "$X million" is not a hook — why that number matters is.
+    structure_notes: >
+      1. Hook: what the funding size or investor list signals about the space
+      2. What the startup actually does (one sentence, plain language)
+      3. Why VCs are betting on this problem right now
+      4. What it tells us about the broader AI landscape
+      5. What brands / marketing teams should watch or do
+      6. CTA: ask readers if they've seen/used the product
+    example_hooks:
+      - "When [investors] back [startup], it's worth asking what they see that others don't."
+      - "[Amount] is a signal — here's what it tells us about where AI is heading."
+      - "The [startup] raise isn't about [startup]. It's about [problem space]."
+      - "VCs just made a very large bet that [thesis]. Here's why I think they're right/wrong."
+
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 3: Personal AI Experiment (Human in the Loop)
+  # Triggered when content_queue items are present or the
+  # cluster relates to tools the author uses daily
+  # ─────────────────────────────────────────────────────────
+  personal_experiment:
+    label: "Personal AI Experiment"
+    trigger_categories:
+      - "AI Tools and Productivity"
+    angle: >
+      First-person account of actually using an AI tool for a real task.
+      Honest about what worked, what didn't, and what surprised you.
+      This is the "human in the loop" format — you did the experiment,
+      AI helped, you're sharing the unfiltered result.
+    hook_guidance: >
+      Open with the result, not the method.
+      Don't start with "I decided to test..." — start with what you found.
+    structure_notes: >
+      1. Hook: the result or surprising finding (not "I tested X")
+      2. What you were actually trying to do (the real use case)
+      3. The honest process: what you tried, where it broke, what you iterated
+      4. The outcome: time saved, quality delta, unexpected benefits/costs
+      5. What you'd do differently (or recommend)
+      6. CTA: ask readers about their own experience with the same tool/task
+    example_hooks:
+      - "I spent [X hours] testing [tool] for [use case]. Here's the honest result."
+      - "The part of [AI tool] that surprised me most wasn't the output — it was [X]."
+      - "[AI tool] didn't save me time on [task]. It saved me from [different problem]."
+      - "I was skeptical about [claim]. So I tested it myself. Here's what actually happened."
+
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 4: Big Tech AI News
+  # Triggered when matched_companies includes big tech firms
+  # ─────────────────────────────────────────────────────────
+  bigtech_news:
+    label: "Big Tech AI News"
+    trigger_companies:
+      - "Microsoft"
+      - "Apple"
+      - "Amazon"
+      - "Nvidia"
+      - "Google DeepMind"
+      - "Meta AI"
+      - "Salesforce"
+      - "Adobe"
+    angle: >
+      Big tech AI moves affect brands whether they opt in or not — your job
+      is to translate the strategic move into a concrete implication for
+      marketing teams, brand leaders, and agencies that use these platforms.
+    hook_guidance: >
+      Open with the competitive tension or strategic implication, not just the news.
+      "Microsoft just added X to Copilot" is not a hook.
+      "Microsoft just made X free for every Office user. That changes [Y]." is.
+    structure_notes: >
+      1. Hook: the strategic implication or power shift
+      2. What actually happened (factual, one paragraph)
+      3. Why this particular move matters (competitive dynamics, platform power)
+      4. What changes for brands and marketers using these platforms
+      5. What you're watching next
+      6. CTA: ask readers if they're already using it / planning to
+    example_hooks:
+      - "This week [Big Tech] quietly changed something that affects every brand on [platform]."
+      - "The [product] update isn't about [feature]. It's about [strategic territory]."
+      - "[Company]'s AI play isn't competing with [rival] — it's competing with [unexpected player]."
+
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 5: AI Research Breakthrough
+  # Triggered when matched_categories includes "AI Research and Breakthroughs"
+  # ─────────────────────────────────────────────────────────
+  research_breakthrough:
+    label: "AI Research or Capability Breakthrough"
+    trigger_categories:
+      - "AI Research and Breakthroughs"
+    angle: >
+      Translate a technical research finding into a practical signal for
+      brand and marketing leaders. Avoid jargon. The question to answer:
+      "What does this capability actually enable in the next 12 months?"
+    hook_guidance: >
+      Open with the capability or implication, not the paper title.
+      Make the non-technical reader care within the first two lines.
+    structure_notes: >
+      1. Hook: the capability in plain language and why it matters
+      2. What the research actually showed (no jargon)
+      3. The gap between "research paper" and "shipping product"
+      4. What this will realistically enable for marketers / brands in 6-18 months
+      5. Your honest take on the timeline and the hype
+      6. CTA: ask what capability readers most want to see applied to their work
+    example_hooks:
+      - "Researchers just showed AI can [do X]. Here's what that actually means for brands."
+      - "The new [model/paper] benchmark number everyone is excited about hides a more important story."
+      - "This research paper will affect your marketing team — just not in the way the coverage suggests."
+
+
+  # ─────────────────────────────────────────────────────────
+  # TYPE 6: YouTube Video from AI Company
+  # Triggered when source is a YouTube channel feed
+  # ─────────────────────────────────────────────────────────
+  youtube_video:
+    label: "AI Company YouTube Release"
+    trigger_sources:
+      - "Google DeepMind YouTube"
+      - "OpenAI YouTube"
+      - "Anthropic YouTube"
+      - "Two Minute Papers"
+    angle: >
+      AI companies use YouTube to demo capabilities they can't fully convey
+      in a blog post. Your job is to watch it (or read the summary carefully)
+      and pull out the one thing that should matter to a brand leader.
+    hook_guidance: >
+      Open with what the video actually showed that you hadn't seen before.
+    structure_notes: >
+      1. Hook: the specific moment or capability from the video worth watching
+      2. What the video demonstrates (plain language)
+      3. The gap between the polished demo and everyday reality
+      4. What a brand or marketing team should take from it
+      5. Your reaction: excited, skeptical, both?
+      6. CTA: ask readers if they've watched it and what they noticed
+
+
+# ── Fallback Type ──────────────────────────────────────────
+# Used when no specific type matches the cluster.
+default:
+  label: "AI News Commentary"
+  angle: >
+    Synthesise multiple AI developments into a coherent narrative.
+    What is the pattern across these stories? What does it signal?
+    Connect the dots that individual news articles don't connect.
+  hook_guidance: >
+    Open with the pattern or theme that unifies the stories — not any single article.
+  structure_notes: >
+    1. Hook: the unifying theme or pattern across the week's news
+    2. The individual stories that make up the pattern
+    3. What this pattern signals about AI's direction
+    4. What brands and marketers should do with this information
+    5. Your personal take — agreement, skepticism, nuance
+    6. CTA: ask readers what they're seeing in their own work

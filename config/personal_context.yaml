@@ -1,0 +1,130 @@
+# ============================================================
+# YOUR PERSONAL CONTEXT & EXPERIMENTS
+# ============================================================
+# This is the most important config file — it's what makes
+# your posts genuinely yours rather than AI-written summaries.
+#
+# Update this regularly. Even a few honest observations turn
+# a generic AI commentary into a credible first-person post.
+#
+# Everything here gets injected into Claude's system prompt
+# so your real experience and opinions shape every post.
+# ============================================================
+
+
+# ── Recent AI Experiments ─────────────────────────────────
+# Tools you've tested recently. Be specific and honest.
+# If a post touches one of these tools, your experience gets
+# woven in automatically.
+recent_experiments:
+  - tool: "Claude"
+    use_case: "Built a full content research workflow using Projects and extended context"
+    honest_result: "Dramatically faster research — but it needs a strong system prompt to match my voice"
+    surprising_finding: "The best use wasn't writing the post — it was outlining my thinking before I wrote"
+    date: "2025-05"
+    worth_recommending: true
+
+  - tool: "Perplexity"
+    use_case: "Replaced Google for daily AI industry news discovery"
+    honest_result: "Much faster for finding current announcements with citations already attached"
+    surprising_finding: "Better than I expected for funding news — surfaces Crunchbase and SEC filings"
+    date: "2025-05"
+    worth_recommending: true
+
+  - tool: "ChatGPT"
+    use_case: "Tested GPT-4o for brand voice analysis against a competitor set"
+    honest_result: "Good at pattern recognition across large text sets — weaker at tone nuance"
+    surprising_finding: "Works well for structured analysis; needs heavy editing for anything creative"
+    date: "2025-04"
+    worth_recommending: true
+
+  - tool: "Midjourney"
+    use_case: "Generated concept visuals for a brand moodboard pitch"
+    honest_result: "Faster than a stock library for mood work — still needs a skilled prompter"
+    surprising_finding: "Clients respond more to AI concepts than traditional stock — something to unpack"
+    date: "2025-04"
+    worth_recommending: true
+
+  - tool: "ElevenLabs"
+    use_case: "Cloned a brand voice for an internal explainer video prototype"
+    honest_result: "The voice quality is remarkable — legal and ethics review added 3x the time saved"
+    surprising_finding: "The real friction isn't the technology — it's the approval workflow"
+    date: "2025-03"
+    worth_recommending: true
+
+
+# ── Your Current Opinions ────────────────────────────────
+# Strong POVs you hold right now on AI topics.
+# These get woven into posts as your genuine perspective.
+# Update as your views evolve — that's the point.
+current_opinions:
+  - topic: "AI adoption in marketing"
+    opinion: >
+      Most brands are using AI to do the same things faster — not to do new things.
+      That's the wrong bet. The real opportunity is in the work nobody had time to do before.
+
+  - topic: "Generative AI and creative work"
+    opinion: >
+      The risk isn't AI replacing creatives. It's creatives using AI as a shortcut to mediocrity.
+      The brands that win will use AI to raise the quality ceiling, not lower the cost floor.
+
+  - topic: "AI agents and automation"
+    opinion: >
+      Autonomous AI agents are overhyped for most marketing teams right now.
+      The highest-value use of AI is still human-in-the-loop: AI drafts, human edits, human decides.
+
+  - topic: "AI tools landscape"
+    opinion: >
+      The AI tool space is moving so fast that tool selection is almost the wrong conversation.
+      What matters is building a workflow that lets you stay in the loop without slowing you down.
+
+  - topic: "Big tech AI races"
+    opinion: >
+      Every model release announcement is PR as much as it is a product update.
+      The interesting question isn't which model is best — it's which one fits your actual workflow.
+
+
+# ── Your Professional Context ─────────────────────────────
+# Who you are and what you care about.
+# This gives Claude the lens to filter "what does this mean for brands?"
+professional_context:
+  what_you_do: >
+    You help brands and marketing teams understand and apply AI in practical ways
+    that actually move business metrics — not hype, not demos, real workflow integration.
+  who_you_work_with:
+    - "brand strategists"
+    - "CMOs and marketing leaders"
+    - "creative directors"
+    - "marketing agencies"
+    - "founders building brand-forward companies"
+  current_focus: >
+    Building human-in-the-loop AI workflows: AI does the research and first drafts,
+    you apply judgment, brand knowledge, and creative direction.
+  ai_tools_you_use_daily:
+    - "Claude (research, drafting, analysis)"
+    - "Perplexity (news discovery, citations)"
+    - "ChatGPT (structured analysis, brainstorming)"
+    - "Midjourney (visual ideation)"
+
+
+# ── Upcoming Post Ideas ───────────────────────────────────
+# Topics or angles you want to cover. These are prioritised
+# when the pipeline selects which cluster to write about.
+# Clear items once they're published.
+content_queue:
+  - "How I built my AI-powered content research workflow step by step"
+  - "What brands keep getting wrong about AI prompts (it's not about the model)"
+  - "The AI tools I actually pay for — and what I stopped paying for"
+  - "Testing AI for brand voice: what works, what embarrassingly doesn't"
+  - "Why AI agents aren't ready to run your marketing (yet)"
+
+
+# ── Priority Topics for Next Run ─────────────────────────
+# Add specific topics here to make the next pipeline run
+# focus on those stories. Clear after each run.
+# Example:
+# prioritise_topics:
+#   - "GPT-5 launch"
+#   - "Claude 4 Opus release"
+#   - "AI startup raises Series B"
+prioritise_topics: []

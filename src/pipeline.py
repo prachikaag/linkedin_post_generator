@@ -26,6 +26,8 @@ class Pipeline:
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        self.personal_context = self._load_yaml_optional("personal_context.yaml")
+        self.post_types = self._load_yaml_optional("post_types.yaml")
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -80,7 +82,12 @@ class Pipeline:
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(
+            self.brand_kit,
+            self.posts_dir,
+            personal_context=self.personal_context,
+            post_types=self.post_types,
+        )
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):
@@ -101,7 +108,7 @@ class Pipeline:
                 generated.append(result)
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
-                    f"[dim]({result['source_count']} sources cited)[/]"
+                    f"[dim]({result['source_count']} sources · {result.get('post_type', 'AI News')})[/]"
                 )
             else:
                 console.print("  [red]✗[/] Generation failed — skipping.")
@@ -176,6 +183,18 @@ class Pipeline:
         path = self.config_dir / filename
         with open(path, "r", encoding="utf-8") as fh:
             return yaml.safe_load(fh)
+
+    def _load_yaml_optional(self, filename: str) -> dict:
+        """Load a YAML config file, returning {} if it doesn't exist."""
+        path = self.config_dir / filename
+        if not path.exists():
+            return {}
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                return yaml.safe_load(fh) or {}
+        except Exception as exc:
+            console.print(f"[yellow]Warning: could not load {filename}: {exc}[/]")
+            return {}
 
 
 def _build_clusters(

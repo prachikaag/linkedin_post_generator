@@ -37,6 +37,7 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 ## Absolute Don'ts
 {donts}
 
+{personal_context_block}\
 ## RESEARCH & CITATION STANDARDS (non-negotiable — enforced on every post)
 - You MUST cite a minimum of {min_sources} distinct sources in every post, no exceptions
 - Synthesise across all provided sources — do NOT summarise just one article
@@ -71,9 +72,17 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 class PostGenerator:
     """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    def __init__(
+        self,
+        brand_kit: dict,
+        posts_dir: Path,
+        personal_context: dict | None = None,
+        post_types: dict | None = None,
+    ):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
+        self.personal_context = personal_context or {}
+        self.post_types = post_types or {}
         self.posts_dir.mkdir(exist_ok=True)
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
@@ -88,6 +97,7 @@ class PostGenerator:
             return None
 
         provided_urls = [a.url for a in articles if a.url]
+        post_type = self._detect_post_type(articles)
         user_prompt = self._build_user_prompt(articles, trending_keywords)
         raw = self._call_claude(user_prompt)
         if not raw:
@@ -103,7 +113,7 @@ class PostGenerator:
         if unverified:
             print(f"  [ℹ️  {len(unverified)} URL(s) could not be verified (no network?) — check before publishing]")
 
-        return self._save_post(articles, content, trending_keywords, url_report)
+        return self._save_post(articles, content, trending_keywords, url_report, post_type)
 
     # ── Prompt construction ────────────────────────────────────────────────────
 
@@ -129,13 +139,14 @@ class PostGenerator:
         return _SYSTEM_TEMPLATE.format(
             author_name=author.get("name", "the author"),
             author_title=author.get("title", ""),
-            author_tagline=author.get("tagline", ""),
+            author_tagline=str(author.get("tagline", "")).replace("\n", " ").strip(),
             focus_areas=bl(brand.get("focus_areas", [])),
             tone_traits=bl(tone.get("primary_traits", [])),
             writing_style=bl(tone.get("writing_style", [])),
             post_structure=nl(tone.get("post_structure", [])),
             dos=bl(tone.get("dos", [])),
             donts=bl(tone.get("donts", [])),
+            personal_context_block=self._build_personal_context_block(),
             min_sources=research.get("min_sources", 4),
             always_hashtags=" ".join(hashtags.get("always_include", [])),
             max_hashtags=brand.get("max_hashtags", 5),
@@ -145,7 +156,82 @@ class PostGenerator:
             ),
         )
 
+    def _build_personal_context_block(self) -> str:
+        """Format personal_context.yaml into a system-prompt section."""
+        if not self.personal_context:
+            return ""
+
+        lines = ["## Your Personal Context (draw on this authentically)\n"]
+
+        # Professional context
+        prof = self.personal_context.get("professional_context", {})
+        if prof.get("what_you_do"):
+            lines.append(f"**What you do:** {str(prof['what_you_do']).strip()}")
+        if prof.get("current_focus"):
+            lines.append(f"**Current focus:** {str(prof['current_focus']).strip()}")
+        if prof.get("ai_tools_you_use_daily"):
+            tools = ", ".join(prof["ai_tools_you_use_daily"])
+            lines.append(f"**AI tools you use daily:** {tools}")
+
+        # Recent experiments
+        experiments = self.personal_context.get("recent_experiments", [])
+        if experiments:
+            lines.append("\n**Recent AI experiments (reference these when the post topic overlaps):**")
+            for exp in experiments[:5]:
+                tool = exp.get("tool", "")
+                use_case = exp.get("use_case", "")
+                result = exp.get("honest_result", "")
+                finding = exp.get("surprising_finding", "")
+                if tool and result:
+                    lines.append(f"- {tool}: {use_case}. Result: {result}")
+                    if finding:
+                        lines.append(f"  Surprising: {finding}")
+
+        # Current opinions
+        opinions = self.personal_context.get("current_opinions", [])
+        if opinions:
+            lines.append("\n**Your current opinions (weave in as YOUR perspective, not generic commentary):**")
+            for op in opinions[:5]:
+                topic = op.get("topic", "")
+                opinion = str(op.get("opinion", "")).strip().replace("\n", " ")
+                if topic and opinion:
+                    lines.append(f"- On {topic}: {opinion}")
+
+        lines.append("")  # blank line before next section
+        return "\n".join(lines) + "\n"
+
+    def _detect_post_type(self, articles: list) -> dict:
+        """Pick the best matching post type from post_types.yaml for this cluster."""
+        if not self.post_types:
+            return {}
+
+        all_categories = {c for a in articles for c in a.matched_categories}
+        all_companies = {c for a in articles for c in a.matched_companies}
+        all_sources = {a.source_name for a in articles}
+
+        types = self.post_types.get("post_types", {})
+        for type_key, type_def in types.items():
+            # Check trigger categories
+            for cat in type_def.get("trigger_categories", []):
+                if cat in all_categories:
+                    return type_def
+            # Check trigger companies
+            for company in type_def.get("trigger_companies", []):
+                if company in all_companies:
+                    return type_def
+            # Check trigger sources
+            for source in type_def.get("trigger_sources", []):
+                if source in all_sources:
+                    return type_def
+
+        return self.post_types.get("default", {})
+
     def _build_user_prompt(
+        self, articles: list[Article], trending_keywords: list[str]
+    ) -> str:
+        return self._build_user_prompt_with_type(articles, trending_keywords)
+
+    def _build_user_prompt_with_type(
         self, articles: list[Article], trending_keywords: list[str]
     ) -> str:
         sources_block = ""
@@ -167,6 +253,22 @@ class PostGenerator:
             else "AI, artificial intelligence"
         )
 
+        # Detect which post type template applies to this cluster
+        post_type = self._detect_post_type(articles)
+        post_type_block = ""
+        if post_type:
+            label = post_type.get("label", "")
+            angle = str(post_type.get("angle", "")).strip().replace("\n", " ")
+            hook_guidance = str(post_type.get("hook_guidance", "")).strip().replace("\n", " ")
+            structure_notes = str(post_type.get("structure_notes", "")).strip()
+            post_type_block = f"""
+## Post Type: {label}
+**Angle for this post:** {angle}
+**Hook guidance:** {hook_guidance}
+**Structure to follow:**
+{structure_notes}
+"""
+
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
 
@@ -186,12 +288,13 @@ For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
 Currently trending (weave in naturally): {trending_str}
-
+{post_type_block}
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
 - Add your genuine perspective on what this means for brands and marketers specifically
 - For launches/features: explain the practical implication for a marketing team
 - For funding: explain what the investment signals about the AI landscape
+- Reference your own AI experiments from your personal context if they are directly relevant to this topic
 - End with an engaging question that invites comments
 - List all sources at the bottom under "Sources:" with full URLs copied from above
 """
@@ -318,6 +421,7 @@ Currently trending (weave in naturally): {trending_str}
         content: str,
         trending_keywords: list[str],
         url_report: dict | None = None,
+        post_type: dict | None = None,
     ) -> dict:
         primary = articles[0]
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -351,6 +455,7 @@ Currently trending (weave in naturally): {trending_str}
             "matched_categories": all_categories,
             "relevance_score": primary.relevance_score,
             "status": "draft",
+            "post_type": (post_type or {}).get("label", "AI News Commentary"),
             "model": self.model,
         }
 

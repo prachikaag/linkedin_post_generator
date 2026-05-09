@@ -14,14 +14,29 @@ def load(name):
     with open(CONFIG / name) as f:
         return yaml.safe_load(f)
 
+def load_optional(name):
+    path = CONFIG / name
+    if not path.exists():
+        return {}
+    with open(path) as f:
+        return yaml.safe_load(f) or {}
+
 def main():
     print("=" * 60)
     print("LinkedIn Post Generator — MCP Edition")
     print("=" * 60)
 
-    sources  = load("sources.yaml")
-    topics   = load("topics.yaml")
-    brand    = load("brand_kit.yaml")
+    sources          = load("sources.yaml")
+    topics           = load("topics.yaml")
+    brand            = load("brand_kit.yaml")
+    personal_context = load_optional("personal_context.yaml")
+    post_types       = load_optional("post_types.yaml")
+
+    if personal_context:
+        print(f"  → Personal context loaded ({len(personal_context.get('recent_experiments', []))} experiments, "
+              f"{len(personal_context.get('current_opinions', []))} opinions)")
+    if post_types:
+        print(f"  → Post types loaded ({len(post_types.get('post_types', {}))} types)")
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
@@ -60,7 +75,7 @@ def main():
         return cluster
 
     POSTS.mkdir(exist_ok=True)
-    generator = PostGenerator(brand, POSTS)
+    generator = PostGenerator(brand, POSTS, personal_context=personal_context, post_types=post_types)
     generated = []
 
     n_posts = min(MAX_POSTS, len(articles))

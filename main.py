@@ -104,12 +104,13 @@ def list_posts():
     table.add_column("#", style="cyan", width=4, justify="right")
     table.add_column("Date", style="yellow", width=12)
     table.add_column("Status", style="bold green", width=10)
-    table.add_column("Companies", style="magenta", width=28)
+    table.add_column("Post Type", style="blue", width=26)
+    table.add_column("Companies", style="magenta", width=24)
     table.add_column("Filename", style="white")
 
     for i, post_file in enumerate(posts, 1):
-        date, status, companies = _read_frontmatter(post_file)
-        table.add_row(str(i), date, status, companies, post_file.name)
+        date, status, post_type, companies = _read_frontmatter(post_file)
+        table.add_row(str(i), date, status, post_type, companies, post_file.name)
 
     console.print(table)
     console.print(
@@ -202,21 +203,42 @@ def config():
     """Show the paths to all editable config files."""
     console.print("\n[bold]Editable Configuration Files[/]\n")
     files = {
-        "Topics of Interest": CONFIG_DIR / "topics.yaml",
-        "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
-        "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
-        "Environment Variables": BASE_DIR / ".env",
+        "Topics of Interest": (
+            CONFIG_DIR / "topics.yaml",
+            "AI companies, keywords, and categories to track",
+        ),
+        "Brand Kit & Tone of Voice": (
+            CONFIG_DIR / "brand_kit.yaml",
+            "Your name, title, writing style, hashtags, and post structure",
+        ),
+        "Personal Context & Experiments": (
+            CONFIG_DIR / "personal_context.yaml",
+            "Your AI experiments, opinions, and content queue — update regularly",
+        ),
+        "Post Type Templates": (
+            CONFIG_DIR / "post_types.yaml",
+            "Angles and structures per news type (funding, launch, experiment, etc.)",
+        ),
+        "News Sources (RSS Feeds)": (
+            CONFIG_DIR / "sources.yaml",
+            "RSS feeds and optional NewsAPI queries",
+        ),
+        "Environment Variables": (
+            BASE_DIR / ".env",
+            "API keys for Anthropic, Notion, and NewsAPI",
+        ),
     }
-    for label, path in files.items():
+    for label, (path, description) in files.items():
         exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
         console.print(f"  {exists}  [bold]{label}[/]")
+        console.print(f"     [dim]{description}[/]")
         console.print(f"     [dim]{path}[/]\n")
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
-def _read_frontmatter(post_file: Path) -> tuple[str, str, str]:
-    """Return (date, status, companies) from a post's YAML frontmatter."""
+def _read_frontmatter(post_file: Path) -> tuple[str, str, str, str]:
+    """Return (date, status, post_type, companies) from a post's YAML frontmatter."""
     try:
         raw = post_file.read_text(encoding="utf-8")
         if raw.startswith("---"):
@@ -225,11 +247,12 @@ def _read_frontmatter(post_file: Path) -> tuple[str, str, str]:
                 meta = yaml.safe_load(parts[1]) or {}
                 date = str(meta.get("date", "—"))
                 status = str(meta.get("status", "draft"))
+                post_type = str(meta.get("post_type", "—"))
                 companies = ", ".join(meta.get("matched_companies", [])[:3]) or "—"
-                return date, status, companies
+                return date, status, post_type, companies
     except Exception:
         pass
-    return "—", "unknown", "—"
+    return "—", "unknown", "—", "—"
 
 
 if __name__ == "__main__":

@@ -5,16 +5,22 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Fill in your real name and title — these appear in the
+# Claude system prompt and shape how every post is written.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Your Name"                     # ← Replace with your name
+  title: "Brand Strategist & AI Practitioner"  # ← Replace with your title
+  # This tagline is injected into every post prompt.
+  # Make it one sentence that captures your professional POV.
+  tagline: >
+    Helping brands understand and leverage AI in the real world —
+    with honest takes from someone who experiments with these tools every day.
+  location: "Your City, Country"        # ← Replace with your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -88,11 +94,14 @@ brand:
 
   # Example angles you love to write about
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "I tried [AI tool] for [use case] — here's the honest result (human in the loop)"
+    - "[Company] just launched [feature] — here's what brands should actually do with it"
+    - "The real reason [AI development] matters for marketers (it's not what the press release says)"
+    - "[Trending topic] explained without the hype — what it really means for your workflow"
+    - "What [funding/acquisition] tells us about where the AI market is heading"
+    - "I was wrong about [AI tool/claim] — here's what changed my mind"
+    - "The AI experiment nobody is running (but every brand should try)"
+    - "Stop using AI to do [X] — use it for [Y] instead"
 
   # Hashtag strategy
   hashtags:
@@ -130,6 +139,10 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I tested this myself. Here's what actually happened."
+    - "Human in the loop."
+    - "The demo is not the product."
+    - "Less automation, more augmentation."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.
