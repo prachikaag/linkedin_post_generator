@@ -1,27 +1,32 @@
 """Minimal runner — no click/rich required. Uses Claude MCP connectors."""
-import sys
 import os
+import sys
 sys.path.insert(0, os.path.dirname(__file__))
 
 from pathlib import Path
 import yaml
 
-BASE = Path(__file__).parent
+BASE   = Path(__file__).parent
 CONFIG = BASE / "config"
 POSTS  = BASE / "posts"
+
+FORCE     = "--force" in sys.argv
+MAX_POSTS = 2
+
 
 def load(name):
     with open(CONFIG / name) as f:
         return yaml.safe_load(f)
+
 
 def main():
     print("=" * 60)
     print("LinkedIn Post Generator — MCP Edition")
     print("=" * 60)
 
-    sources  = load("sources.yaml")
-    topics   = load("topics.yaml")
-    brand    = load("brand_kit.yaml")
+    sources = load("sources.yaml")
+    topics  = load("topics.yaml")
+    brand   = load("brand_kit.yaml")
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
@@ -34,24 +39,42 @@ def main():
         return
 
     print(f"  → {len(articles)} relevant articles found")
-    for a in articles[:6]:
+
+    # ── Step 1b: filter already-seen articles ───────────────────────────────
+    from src.post_tracker import PostTracker
+    POSTS.mkdir(exist_ok=True)
+    tracker = PostTracker(POSTS)
+
+    if FORCE:
+        print("  → --force: skipping seen-articles cache")
+        fresh = articles
+    else:
+        fresh   = tracker.filter_unseen(articles)
+        skipped = len(articles) - len(fresh)
+        if skipped:
+            print(f"  → {skipped} already-seen article(s) skipped (run with --force to override)")
+        if not fresh:
+            print("  → All articles already seen. Run with --force to regenerate.")
+            return
+
+    print(f"  → {len(fresh)} new article(s) ready")
+    for a in fresh[:6]:
         print(f"     [{a.relevance_score}] {a.title[:70]} ({a.source_name})")
 
     # ── Step 2: trending keywords via Claude WebSearch ──────────────────────
     print("\n[Step 2] Fetching trending keywords via Claude WebSearch MCP...")
     from src.trending_tracker import TrendingTracker
-    tracker = TrendingTracker(topics)
-    trending = tracker.get_trending_keywords()
+    trend_tracker = TrendingTracker(topics)
+    trending = trend_tracker.get_trending_keywords()
     print(f"  → Trending: {', '.join(trending[:8])}")
 
     # ── Step 3: generate posts ──────────────────────────────────────────────
     from src.post_generator import PostGenerator
 
     SOURCE_POOL = 6
-    MAX_POSTS   = 2
 
     def make_cluster(articles, anchor_idx, pool):
-        start = min(anchor_idx, max(0, len(articles) - pool))
+        start   = min(anchor_idx, max(0, len(articles) - pool))
         cluster = articles[start : start + pool]
         anchor  = articles[anchor_idx]
         if anchor in cluster and cluster[0] != anchor:
@@ -59,15 +82,14 @@ def main():
             cluster.insert(0, anchor)
         return cluster
 
-    POSTS.mkdir(exist_ok=True)
     generator = PostGenerator(brand, POSTS)
     generated = []
 
-    n_posts = min(MAX_POSTS, len(articles))
+    n_posts = min(MAX_POSTS, len(fresh))
     print(f"\n[Step 3] Generating {n_posts} research post(s) ({SOURCE_POOL} sources each)...")
 
     for i in range(n_posts):
-        cluster = make_cluster(articles, i, SOURCE_POOL)
+        cluster = make_cluster(fresh, i, SOURCE_POOL)
         anchor  = cluster[0]
         print(f"\n  Post {i+1} — anchor: {anchor.title[:65]}")
         print(f"  Sources: {', '.join(a.source_name for a in cluster[:4])}")
@@ -75,6 +97,7 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
+            tracker.mark_seen([a.url for a in cluster])
             print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
         else:
             print("  ✗ Generation failed")
@@ -98,6 +121,7 @@ def main():
         if len(r["content"]) > 800:
             print("  [... truncated — open the file for the full post]")
     print("=" * 60)
+
 
 if __name__ == "__main__":
     main()

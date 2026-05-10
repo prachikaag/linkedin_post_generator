@@ -10,6 +10,8 @@ rich>=13.7.0
 # HTTP (used for NewsAPI and direct Notion API fallback)
 requests>=2.31.0
 
-# Optional fallbacks (not required when running inside Claude Code)
-# feedparser>=6.0.10   — RSS fetching fallback if Claude CLI unavailable
-# pytrends>=4.9.2      — Google Trends fallback if Claude CLI unavailable
+# RSS fallback (used when Claude CLI is unavailable)
+feedparser>=6.0.10
+
+# Google Trends fallback (used when Claude CLI WebSearch is unavailable)
+pytrends>=4.9.2
