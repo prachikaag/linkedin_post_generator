@@ -212,7 +212,7 @@ Currently trending (weave in naturally): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
+                        # No --tools flag = text-only generation (no tool calls)
                     ],
                     input=user_prompt,   # pass via stdin, not positional arg
                     capture_output=True,

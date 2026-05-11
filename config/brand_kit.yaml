@@ -1,14 +1,17 @@
 # ============================================================
 # BRAND KIT & TONE OF VOICE
-# Edit this file to match your personal brand and voice.
-# This drives how every LinkedIn post is written.
+# ============================================================
+# This file controls HOW every post is written.
+# Fill in the "author" section with your real details.
+# Everything else is pre-configured — tweak as you see fit.
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN YOUR DETAILS HERE before first run.
 author:
   name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  title: "Your Job Title"
+  # What shows under your name on LinkedIn — one punchy line
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:
@@ -44,15 +47,15 @@ tone_of_voice:
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the AI space, not just one article. Reference multiple developments."
     - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean for brands specifically? Be specific and opinionated."
     - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
     - "CTA (1 line): A question that invites genuine discussion in the comments."
     - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
     - "HASHTAGS: 4-5 relevant hashtags on the very last line."
 
-  # What makes a great post from you
+  # What makes a great post
   dos:
     - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
     - "Give actionable insights brands can use today, not just future speculation"
@@ -60,7 +63,7 @@ tone_of_voice:
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
 
   # What undermines your credibility
@@ -77,7 +80,7 @@ tone_of_voice:
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
-  # The lenses you write through
+  # The lenses you write through — every post should connect to at least one of these
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
@@ -86,13 +89,15 @@ brand:
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
 
-  # Example angles you love to write about
+  # Angles you love to write — use these as inspiration for the YOUR TAKE section
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "Everyone's talking about [X] — here's the thing they're missing"
+    - "I've been running this AI workflow for [N] weeks — here's what changed"
 
   # Hashtag strategy
   hashtags:
@@ -100,7 +105,7 @@ brand:
     always_include:
       - "#AI"
       - "#ArtificialIntelligence"
-    # Pick from this list to complement the post topic
+    # Pick from this list to complement the post topic (system picks 2-3)
     rotate_from:
       - "#GenerativeAI"
       - "#AITools"
@@ -124,12 +129,14 @@ brand:
   # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
   post_length: "medium"
 
-  # Optional: words or phrases that are distinctly yours
+  # Optional: signature phrases distinctly yours — Claude will use these sparingly
   signature_phrases:
     - "Here's what I think brands are missing..."
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "Most [teams/brands/marketers] are still..."
+    - "The gap isn't technology — it's..."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.

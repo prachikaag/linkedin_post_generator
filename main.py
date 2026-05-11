@@ -3,16 +3,21 @@
 LinkedIn Post Generator
 -----------------------
 Usage:
-  python main.py run              # Full pipeline: fetch news, trends, generate posts
-  python main.py run --dry-run    # Fetch and score news only, no generation
+  python main.py run                  # Full pipeline: fetch news, trends, generate posts
+  python main.py run --dry-run        # Fetch and score news only, no generation
   python main.py run --max-posts 5
-  python main.py list-posts       # List all saved draft posts
-  python main.py show 1           # Show post #1 from the list
-  python main.py show --file posts/2024-01-15_10-00-00_openai-launches.md
+  python main.py list-posts           # List all saved draft posts
+  python main.py show 1               # Show post #1 from the list
+  python main.py publish 1            # Mark post #1 as published
+  python main.py edit-config brand    # Open brand_kit.yaml in your editor
+  python main.py edit-config topics   # Open topics.yaml in your editor
+  python main.py edit-config sources  # Open sources.yaml in your editor
+  python main.py config               # Show paths to all config files
 """
 
 import os
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -193,6 +198,114 @@ def show(number: int, filename: str):
             padding=(1, 2),
         )
     )
+
+
+# ── publish ───────────────────────────────────────────────────────────────────
+
+@cli.command()
+@click.argument("number", type=int, required=False)
+@click.option("--file", "-f", "filename", default=None, help="Exact filename to publish.")
+def publish(number: int, filename: str):
+    """Mark a draft post as published. Pass the post number from list-posts."""
+    if filename:
+        post_file = POSTS_DIR / filename
+    elif number:
+        posts = sorted(POSTS_DIR.glob("*.md"))
+        if number < 1 or number > len(posts):
+            console.print(
+                f"[red]Invalid post number {number}.[/] "
+                f"There are {len(posts)} post(s). Run [bold]list-posts[/] to see them."
+            )
+            sys.exit(1)
+        post_file = posts[number - 1]
+    else:
+        console.print(
+            "[yellow]Provide a post number or --file <filename>.[/]\n"
+            "Example: [bold]python main.py publish 1[/]"
+        )
+        sys.exit(1)
+
+    if not post_file.exists():
+        console.print(f"[red]File not found:[/] {post_file.name}")
+        sys.exit(1)
+
+    raw = post_file.read_text(encoding="utf-8")
+
+    # Parse and update frontmatter status
+    if raw.startswith("---"):
+        parts = raw.split("---", 2)
+        if len(parts) >= 3:
+            try:
+                meta = yaml.safe_load(parts[1]) or {}
+                meta["status"] = "published"
+                new_raw = (
+                    "---\n"
+                    + yaml.dump(meta, default_flow_style=False, allow_unicode=True)
+                    + "---"
+                    + parts[2]
+                )
+                post_file.write_text(new_raw, encoding="utf-8")
+                console.print(f"[green]✓[/] Marked as [bold]published[/]: {post_file.name}")
+            except Exception as exc:
+                console.print(f"[red]Could not update status:[/] {exc}")
+                sys.exit(1)
+        else:
+            console.print("[red]Could not parse frontmatter.[/]")
+            sys.exit(1)
+    else:
+        console.print("[yellow]No frontmatter found — nothing to update.[/]")
+
+    # Print the post content for copy-paste
+    body = raw.split("---", 2)[2].strip() if raw.startswith("---") else raw
+    console.print()
+    console.print(
+        Panel(
+            body,
+            title=f"[bold]{post_file.name}[/]",
+            subtitle="[dim]Copy this to LinkedIn[/]",
+            border_style="green",
+            padding=(1, 2),
+        )
+    )
+
+
+# ── edit-config ───────────────────────────────────────────────────────────────
+
+_CONFIG_MAP = {
+    "brand": CONFIG_DIR / "brand_kit.yaml",
+    "topics": CONFIG_DIR / "topics.yaml",
+    "sources": CONFIG_DIR / "sources.yaml",
+    "env": BASE_DIR / ".env",
+}
+
+@cli.command("edit-config")
+@click.argument("name", type=click.Choice(["brand", "topics", "sources", "env"]))
+def edit_config(name: str):
+    """Open a config file in your default editor.
+
+    \b
+    brand    → config/brand_kit.yaml  (your name, voice, writing style)
+    topics   → config/topics.yaml     (companies + topics to track)
+    sources  → config/sources.yaml    (RSS feeds + API sources)
+    env      → .env                   (API keys)
+    """
+    path = _CONFIG_MAP[name]
+    if not path.exists() and name == "env":
+        console.print(
+            "[yellow].env not found.[/] "
+            "Create it first: [bold]cp .env.example .env[/]"
+        )
+        sys.exit(1)
+
+    editor = os.environ.get("VISUAL") or os.environ.get("EDITOR") or "nano"
+    console.print(f"[dim]Opening {path} with {editor}…[/]")
+    try:
+        subprocess.run([editor, str(path)], check=True)
+    except FileNotFoundError:
+        console.print(
+            f"[red]Editor '{editor}' not found.[/] "
+            f"Open the file manually:\n  {path}"
+        )
 
 
 # ── config ────────────────────────────────────────────────────────────────────

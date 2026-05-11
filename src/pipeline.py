@@ -182,24 +182,52 @@ def _build_clusters(
     articles: list[Article], max_posts: int, pool_size: int
 ) -> list[list[Article]]:
     """
-    Build article clusters for post generation.
+    Build article clusters for post generation, prioritising topic diversity.
 
-    Each cluster anchors on a different article (giving each post a distinct focus)
-    while drawing from the surrounding pool to guarantee SOURCE_POOL_SIZE sources.
-
-    Example with 10 articles, max_posts=3, pool_size=6:
-      Cluster 1: articles[0:6]  → anchor=articles[0]
-      Cluster 2: articles[1:7]  → anchor=articles[1]
-      Cluster 3: articles[2:8]  → anchor=articles[2]
+    Each cluster anchors on a different article and targets a different primary
+    company/category so consecutive posts don't cover the same story.
+    Each cluster always has pool_size articles so the post can cite 4+ sources.
     """
+    if not articles:
+        return []
+
     clusters: list[list[Article]] = []
-    for i in range(min(max_posts, len(articles))):
-        # Slide the window; if near the end, anchor at end - pool_size
-        start = min(i, max(0, len(articles) - pool_size))
-        cluster = articles[start : start + pool_size]
-        # Ensure the anchor (articles[i]) is at position 0
-        if articles[i] in cluster and cluster[0] != articles[i]:
-            cluster.remove(articles[i])
-            cluster.insert(0, articles[i])
-        clusters.append(cluster)
+    used_anchors: set[int] = set()
+    used_anchor_companies: list[set] = []
+
+    # Pick diverse anchors first
+    anchors: list[Article] = []
+    for article in articles:
+        if len(anchors) >= max_posts:
+            break
+        company_set = set(article.matched_companies)
+        # Prefer an anchor whose primary companies haven't appeared in earlier anchors
+        already_covered = any(
+            company_set & prev for prev in used_anchor_companies
+        )
+        if not already_covered or len(anchors) == 0:
+            anchors.append(article)
+            used_anchors.add(id(article))
+            used_anchor_companies.append(company_set)
+
+    # If we don't have enough diverse anchors, fill from remaining articles
+    for article in articles:
+        if len(anchors) >= max_posts:
+            break
+        if id(article) not in used_anchors:
+            anchors.append(article)
+            used_anchors.add(id(article))
+
+    # Build each cluster around its anchor
+    for anchor in anchors[:max_posts]:
+        # Start with the anchor, then fill with the next highest-scored articles
+        # that aren't already in this cluster
+        pool = [anchor]
+        for a in articles:
+            if len(pool) >= pool_size:
+                break
+            if a is not anchor:
+                pool.append(a)
+        clusters.append(pool)
+
     return clusters
