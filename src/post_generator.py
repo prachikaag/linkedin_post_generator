@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import subprocess
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -206,20 +207,35 @@ Currently trending (weave in naturally): {trending_str}
         # ── 1. Claude CLI (Claude Code MCP connection) ─────────────────────────
         if shutil.which("claude"):
             try:
-                result = subprocess.run(
-                    [
-                        "claude", "-p",
-                        "--system-prompt", self._system_prompt,
-                        "--model", self.model,
-                        "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
-                    ],
-                    input=user_prompt,   # pass via stdin, not positional arg
-                    capture_output=True,
-                    text=True,
-                    timeout=180,
-                    cwd="/tmp",   # avoids triggering repo git hooks
-                )
+                # Write system prompt to a temp file — avoids arg-length limits
+                # and shell quoting issues with the long multi-line prompt.
+                with tempfile.NamedTemporaryFile(
+                    mode="w", suffix=".txt", delete=False, encoding="utf-8"
+                ) as tf:
+                    tf.write(self._system_prompt)
+                    system_prompt_file = tf.name
+
+                try:
+                    result = subprocess.run(
+                        [
+                            "claude", "-p",
+                            "--system-prompt-file", system_prompt_file,
+                            "--model", self.model,
+                            "--no-session-persistence",
+                            "--tools", "",   # text-only — no tool calls
+                        ],
+                        input=user_prompt,
+                        capture_output=True,
+                        text=True,
+                        timeout=180,
+                        cwd="/tmp",
+                    )
+                finally:
+                    try:
+                        os.unlink(system_prompt_file)
+                    except OSError:
+                        pass
+
                 if result.returncode == 0 and result.stdout.strip():
                     return result.stdout.strip()
                 if result.stderr:

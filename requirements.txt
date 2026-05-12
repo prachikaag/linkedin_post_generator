@@ -1,15 +1,19 @@
-# Core
-anthropic>=0.40.0
-python-dotenv>=1.0.0
-pyyaml>=6.0.0
+# ── Required ──────────────────────────────────────────────────────────────────
+pyyaml>=6.0.0          # Config file parsing
+requests>=2.31.0       # URL validation + NewsAPI + direct Notion API fallback
+python-dotenv>=1.0.0   # .env file loading (optional but recommended)
 
-# CLI & terminal output
-click>=8.1.0
-rich>=13.7.0
+# ── Optional: wider CLI / pretty output ───────────────────────────────────────
+# Install these for a nicer terminal experience.
+# The app works without them — it falls back to plain print output.
+# click>=8.1.0
+# rich>=13.7.0
 
-# HTTP (used for NewsAPI and direct Notion API fallback)
-requests>=2.31.0
+# ── Optional: standalone API use (outside Claude Code) ────────────────────────
+# Only needed if you are NOT running inside a Claude Code session.
+# Get a key at https://console.anthropic.com/
+# anthropic>=0.40.0
 
-# Optional fallbacks (not required when running inside Claude Code)
-# feedparser>=6.0.10   — RSS fetching fallback if Claude CLI unavailable
-# pytrends>=4.9.2      — Google Trends fallback if Claude CLI unavailable
+# ── Optional fallbacks (not required when running inside Claude Code) ─────────
+# feedparser>=6.0.10   — RSS fetching if Claude CLI unavailable
+# pytrends>=4.9.2      — Google Trends if Claude CLI unavailable

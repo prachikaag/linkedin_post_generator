@@ -1,20 +1,22 @@
 from pathlib import Path
 
 import yaml
-from rich import box
-from rich.console import Console
-from rich.panel import Panel
-from rich.table import Table
 
 from .news_gatherer import Article, NewsGatherer
 from .notion_publisher import NotionPublisher
 from .post_generator import PostGenerator
 from .trending_tracker import TrendingTracker
 
-console = Console()
-
 # Each post is generated from this many articles (ensures 4+ citable sources)
 SOURCE_POOL_SIZE = 6
+
+
+def _rule(label="", width=60):
+    if label:
+        pad = max(0, width - len(label) - 2)
+        print(f"{'─' * (pad // 2)} {label} {'─' * (pad - pad // 2)}")
+    else:
+        print("─" * width)
 
 
 class Pipeline:
@@ -29,146 +31,117 @@ class Pipeline:
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
-    def run(self, max_posts: int = 3, dry_run: bool = False) -> list[dict]:
+    def run(self, max_posts: int = 3, dry_run: bool = False) -> list:
         """
         Full pipeline:
           1. Fetch and score news articles from RSS feeds
-          2. Fetch trending keywords from Google Trends
+          2. Fetch trending keywords from Google Trends / WebSearch
           3. Build article clusters (SOURCE_POOL_SIZE articles each)
           4. Generate one research-style post per cluster (min 4 sources each)
           5. Save all posts as markdown drafts for human review
         """
-        console.rule("[bold blue]LinkedIn Post Generator[/]")
+        _rule("LinkedIn Post Generator")
 
         # ── Step 1: News ────────────────────────────────────────────────────
-        console.print("\n[bold cyan]Step 1 / 3 — Fetching news[/]")
+        print("\n[Step 1 / 3] Fetching news...")
         gatherer = NewsGatherer(self.sources, self.topics)
         articles = gatherer.fetch_all()
 
         if not articles:
-            console.print(
-                "[yellow]No relevant articles found.\n"
-                "Try increasing [bold]max_article_age_hours[/] in config/topics.yaml "
-                "or lowering [bold]min_relevance_score[/].[/]"
+            print(
+                "No relevant articles found.\n"
+                "Try increasing max_article_age_hours in config/topics.yaml "
+                "or lowering min_relevance_score."
             )
             return []
 
-        console.print(f"[green]✓[/] {len(articles)} relevant articles fetched and scored.")
+        print(f"  ✓ {len(articles)} relevant articles fetched and scored.")
         self._display_articles(articles[: SOURCE_POOL_SIZE * 2])
 
         if dry_run:
-            console.print("\n[yellow]Dry-run mode — skipping post generation.[/]")
+            print("\nDry-run mode — skipping post generation.")
             return []
 
         # ── Step 2: Trending keywords ───────────────────────────────────────
-        console.print("\n[bold cyan]Step 2 / 3 — Fetching trending keywords[/]")
+        print("\n[Step 2 / 3] Fetching trending keywords...")
         tracker = TrendingTracker(self.topics)
         trending = tracker.get_trending_keywords()
-        console.print(
-            f"[green]✓[/] Trending: {', '.join(trending[:8])}"
-            if trending
-            else "[yellow]No trending data — using seed terms.[/]"
-        )
+        if trending:
+            print(f"  ✓ Trending: {', '.join(trending[:8])}")
+        else:
+            print("  No trending data — using seed terms.")
 
         # ── Step 3: Generate posts ──────────────────────────────────────────
-        # Build clusters: post i anchors on articles[i], draws the next
-        # SOURCE_POOL_SIZE-1 articles as supporting sources.
-        # This ensures each post has a distinct focus while always having 4+ sources.
         clusters = _build_clusters(articles, max_posts, SOURCE_POOL_SIZE)
-        console.print(
-            f"\n[bold cyan]Step 3 / 3 — Generating {len(clusters)} research post(s) "
-            f"({SOURCE_POOL_SIZE} sources each)[/]"
+        print(
+            f"\n[Step 3 / 3] Generating {len(clusters)} research post(s) "
+            f"({SOURCE_POOL_SIZE} sources each)..."
         )
 
         generator = PostGenerator(self.brand_kit, self.posts_dir)
-        generated: list[dict] = []
+        generated = []
 
         for i, cluster in enumerate(clusters, 1):
             anchor = cluster[0]
-            console.print(
-                f"\n  [bold]Post {i}[/] — anchor: {anchor.title[:65]}…"
-                if len(anchor.title) > 65
-                else f"\n  [bold]Post {i}[/] — anchor: {anchor.title}"
-            )
-            console.print(
-                f"  [dim]Drawing on {len(cluster)} sources: "
+            title_preview = anchor.title[:65] + ("…" if len(anchor.title) > 65 else "")
+            print(f"\n  Post {i} — anchor: {title_preview}")
+            print(
+                f"  Sources: "
                 + ", ".join(a.source_name for a in cluster[:4])
                 + ("…" if len(cluster) > 4 else "")
-                + "[/]"
             )
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
-                console.print(
-                    f"  [green]✓[/] Saved → {result['filename']} "
-                    f"[dim]({result['source_count']} sources cited)[/]"
-                )
+                print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources cited)")
             else:
-                console.print("  [red]✗[/] Generation failed — skipping.")
+                print("  ✗ Generation failed — skipping.")
 
         self._display_posts(generated)
 
         # ── Step 4: Push to Notion (if configured) ──────────────────────────
         notion = NotionPublisher()
         if notion.is_configured():
-            console.print("\n[bold cyan]Step 4 / 4 — Publishing to Notion[/]")
+            print("\n[Step 4 / 4] Publishing to Notion...")
             pushed = notion.publish_batch(generated)
-            console.print(
-                f"[green]✓[/] {pushed}/{len(generated)} post(s) added to Notion."
-            )
+            print(f"  ✓ {pushed}/{len(generated)} post(s) added to Notion.")
         else:
-            console.print(
-                "\n[dim]Notion not configured — set NOTION_API_KEY + NOTION_PAGE_ID in .env to enable.[/]"
+            print(
+                "\nNotion not configured — set NOTION_API_KEY + NOTION_PAGE_ID in .env to enable."
             )
 
         return generated
 
     # ── Display helpers ────────────────────────────────────────────────────────
 
-    def _display_articles(self, articles: list[Article]) -> None:
-        table = Table(
-            title="Top Relevant Articles (source pool)",
-            box=box.ROUNDED,
-            show_lines=True,
-        )
-        table.add_column("Score", style="cyan", width=6, justify="right")
-        table.add_column("Title", style="white", max_width=52)
-        table.add_column("Source", style="yellow", max_width=22)
-        table.add_column("Companies", style="green", max_width=28)
-        table.add_column("Categories", style="magenta", max_width=28)
+    def _display_articles(self, articles: list) -> None:
+        _rule()
+        print(f"  {'Score':>5}  {'Source':<22}  {'Companies':<22}  Title")
+        _rule()
+        for a in articles:
+            companies = ", ".join(a.matched_companies[:2])[:22]
+            title = a.title[:50] + ("…" if len(a.title) > 50 else "")
+            print(f"  {a.relevance_score:>5}  {a.source_name[:22]:<22}  {companies:<22}  {title}")
+        _rule()
 
-        for article in articles:
-            table.add_row(
-                str(article.relevance_score),
-                article.title[:52] + ("…" if len(article.title) > 52 else ""),
-                article.source_name[:22],
-                ", ".join(article.matched_companies[:3]),
-                ", ".join(article.matched_categories[:2]),
-            )
-
-        console.print()
-        console.print(table)
-
-    def _display_posts(self, generated: list[dict]) -> None:
+    def _display_posts(self, generated: list) -> None:
         if not generated:
-            console.print("\n[red]No posts were generated.[/]")
+            print("\nNo posts were generated.")
             return
-
-        console.print(
-            f"\n[bold green]✓ {len(generated)} research post(s) saved to /posts/[/]\n"
-        )
+        print(f"\n✓ {len(generated)} research post(s) saved to /posts/\n")
         for post in generated:
-            sources_note = f"{post['source_count']} sources cited"
-            console.print(
-                Panel(
-                    post["content"],
-                    title=f"[bold]{post['article_title'][:55]}[/]",
-                    subtitle=f"[dim]{post['filename']} · {sources_note}[/]",
-                    border_style="green",
-                    padding=(1, 2),
-                )
-            )
-            console.print()
+            _rule("─", 60)
+            print(f"File   : {post['filename']}")
+            print(f"Sources: {post['source_count']} cited")
+            if post.get("broken_urls"):
+                print(f"⚠️  WARNING: {post['broken_urls']} broken link(s) — fix before publishing")
+            print()
+            # Print a trimmed preview
+            preview = post["content"][:600]
+            print(preview)
+            if len(post["content"]) > 600:
+                print("\n  [...truncated — open the file for the full post]")
+        _rule("═")
 
     # ── Internal ───────────────────────────────────────────────────────────────
 
@@ -179,8 +152,8 @@ class Pipeline:
 
 
 def _build_clusters(
-    articles: list[Article], max_posts: int, pool_size: int
-) -> list[list[Article]]:
+    articles: list, max_posts: int, pool_size: int
+) -> list:
     """
     Build article clusters for post generation.
 
@@ -192,12 +165,10 @@ def _build_clusters(
       Cluster 2: articles[1:7]  → anchor=articles[1]
       Cluster 3: articles[2:8]  → anchor=articles[2]
     """
-    clusters: list[list[Article]] = []
+    clusters = []
     for i in range(min(max_posts, len(articles))):
-        # Slide the window; if near the end, anchor at end - pool_size
         start = min(i, max(0, len(articles) - pool_size))
         cluster = articles[start : start + pool_size]
-        # Ensure the anchor (articles[i]) is at position 0
         if articles[i] in cluster and cluster[0] != articles[i]:
             cluster.remove(articles[i])
             cluster.insert(0, articles[i])
