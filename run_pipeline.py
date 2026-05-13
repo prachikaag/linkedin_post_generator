@@ -6,22 +6,47 @@ sys.path.insert(0, os.path.dirname(__file__))
 from pathlib import Path
 import yaml
 
-BASE = Path(__file__).parent
+BASE   = Path(__file__).parent
 CONFIG = BASE / "config"
 POSTS  = BASE / "posts"
 
-def load(name):
-    with open(CONFIG / name) as f:
+
+def load(name: str) -> dict:
+    with open(CONFIG / name, encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def load_optional(name: str) -> dict:
+    path = CONFIG / name
+    if not path.exists():
+        return {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    except Exception as exc:
+        print(f"  [warn] Could not load {name}: {exc}")
+        return {}
+
 
 def main():
     print("=" * 60)
     print("LinkedIn Post Generator — MCP Edition")
     print("=" * 60)
 
-    sources  = load("sources.yaml")
-    topics   = load("topics.yaml")
-    brand    = load("brand_kit.yaml")
+    # ── Load configs ────────────────────────────────────────────────────────
+    sources          = load("sources.yaml")
+    topics           = load("topics.yaml")
+    brand            = load("brand_kit.yaml")
+    tone             = load_optional("tone_of_voice.yaml")
+    templates        = load_optional("post_templates.yaml")
+    experiments      = load_optional("my_experiments.yaml")
+
+    loaded = [name for name, cfg in [
+        ("tone_of_voice", tone), ("post_templates", templates),
+        ("my_experiments", experiments),
+    ] if cfg]
+    if loaded:
+        print(f"  Loaded optional configs: {', '.join(loaded)}")
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")
@@ -51,7 +76,7 @@ def main():
     MAX_POSTS   = 2
 
     def make_cluster(articles, anchor_idx, pool):
-        start = min(anchor_idx, max(0, len(articles) - pool))
+        start   = min(anchor_idx, max(0, len(articles) - pool))
         cluster = articles[start : start + pool]
         anchor  = articles[anchor_idx]
         if anchor in cluster and cluster[0] != anchor:
@@ -60,11 +85,17 @@ def main():
         return cluster
 
     POSTS.mkdir(exist_ok=True)
-    generator = PostGenerator(brand, POSTS)
+    generator = PostGenerator(
+        brand_kit=brand,
+        posts_dir=POSTS,
+        tone_config=tone,
+        templates_config=templates,
+        experiments_config=experiments,
+    )
     generated = []
 
     n_posts = min(MAX_POSTS, len(articles))
-    print(f"\n[Step 3] Generating {n_posts} research post(s) ({SOURCE_POOL} sources each)...")
+    print(f"\n[Step 3] Generating {n_posts} post(s) ({SOURCE_POOL} sources each)...")
 
     for i in range(n_posts):
         cluster = make_cluster(articles, i, SOURCE_POOL)
@@ -75,7 +106,8 @@ def main():
         result = generator.generate_post(cluster, trending)
         if result:
             generated.append(result)
-            print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources)")
+            angle = result.get("post_angle", "General")
+            print(f"  ✓ Saved → {result['filename']} ({result['source_count']} sources · {angle})")
         else:
             print("  ✗ Generation failed")
 
@@ -98,6 +130,7 @@ def main():
         if len(r["content"]) > 800:
             print("  [... truncated — open the file for the full post]")
     print("=" * 60)
+
 
 if __name__ == "__main__":
     main()

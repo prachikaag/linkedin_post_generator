@@ -1,0 +1,153 @@
+# ============================================================
+# MY AI EXPERIMENTS LOG
+# ============================================================
+# Add your own AI experiments here.
+#
+# This is what makes your posts genuinely different from
+# everyone else's — you have actually tried these tools and
+# have real, first-hand findings to share.
+#
+# When a generated post is about a tool you've experimented
+# with, the post generator will weave in your finding as
+# authentic first-person evidence. This makes posts more
+# credible and distinctly yours.
+#
+# HOW TO ADD AN EXPERIMENT:
+#   1. Copy the template below
+#   2. Fill in your real details — the more specific, the better
+#   3. Set usable_in_posts: true when ready to reference
+#   4. Set usable_in_posts: false to keep private
+#
+# WHAT MAKES A GOOD ENTRY:
+#   - Specific task (not "I used Claude", but "I used Claude to
+#     rewrite client briefs from raw intake questionnaires")
+#   - Specific outcome (not "it was good", but "80% complete
+#     first draft in 5 minutes vs 2 hours of blank-page drafting")
+#   - Honest verdict — mixed and negative findings are
+#     equally valuable and build more trust
+# ============================================================
+
+experiments:
+
+  # ── Example entries (replace with your own) ───────────
+
+  - date: "2025-05-01"
+    tool: "Claude"
+    use_case: "Writing brand strategy briefs from a one-page client questionnaire"
+    what_happened: >
+      Fed a raw client intake form into Claude with a custom brief template.
+      Got an 80% complete brief in under 5 minutes. Spent 15 minutes editing
+      vs the usual 2 hours drafting from scratch.
+    verdict: "positive"
+    time_saved: "~1.5–2 hours per brief"
+    usable_in_posts: true
+    tags:
+      - "brand strategy"
+      - "content creation"
+      - "workflow"
+
+  - date: "2025-04-20"
+    tool: "Midjourney"
+    use_case: "Logo concept exploration for a new brand identity project"
+    what_happened: >
+      Generated 40+ concept directions in an afternoon. Client chose one as
+      the creative direction — a direction that would have taken 2 weeks to
+      reach through traditional concepting. Final logo still needed a designer,
+      but the brief got sharper faster.
+    verdict: "positive"
+    time_saved: "~2 weeks of traditional concepting compressed to 1 afternoon"
+    usable_in_posts: true
+    tags:
+      - "brand identity"
+      - "creative AI"
+      - "design"
+
+  - date: "2025-04-10"
+    tool: "ChatGPT"
+    use_case: "Writing social media captions for a product launch campaign"
+    what_happened: >
+      The first pass was generic and on-brand for no one. After 3 rounds of
+      detailed prompting with full brand guidelines pasted in, it reached about
+      70% of where we needed to be. Still required significant editing per
+      caption. Faster than starting from blank, but not a write-and-ship solution.
+    verdict: "mixed"
+    time_saved: "Moderate — good for first drafts, not final copy"
+    usable_in_posts: true
+    tags:
+      - "social media"
+      - "content creation"
+      - "copywriting"
+
+  - date: "2025-03-28"
+    tool: "Perplexity"
+    use_case: "Competitive landscape research for a new business pitch"
+    what_happened: >
+      Used Perplexity Pro for a rapid competitor audit the morning of a pitch.
+      Covered 12 competitors in 45 minutes with cited sources. Some information
+      was slightly outdated — always verify key claims — but the structure and
+      speed were genuinely impressive.
+    verdict: "positive"
+    time_saved: "~3 hours vs manual desk research"
+    usable_in_posts: true
+    tags:
+      - "research"
+      - "strategy"
+      - "productivity"
+
+  - date: "2025-03-15"
+    tool: "ElevenLabs"
+    use_case: "Producing voiceover demos for a client's branded podcast concept"
+    what_happened: >
+      Cloned a client's voice from a 5-minute clean audio sample. The output
+      was ~90% convincing but had subtle rhythm issues on longer sentences.
+      Client loved the speed — we produced 6 demo scripts in a day vs a week
+      of recording sessions and studio time.
+    verdict: "positive"
+    time_saved: "~4 days of production time"
+    usable_in_posts: true
+    tags:
+      - "audio AI"
+      - "voice cloning"
+      - "content production"
+      - "ElevenLabs"
+
+  - date: "2025-02-20"
+    tool: "Runway"
+    use_case: "Generating short video clips for a social media mood board"
+    what_happened: >
+      Used Gen-3 Alpha to create 5-second atmospheric clips for a brand mood
+      board presentation. The motion quality was impressive for abstract scenes.
+      For anything requiring people or faces, the results were still uncanny valley.
+      Best for abstract / product / landscape content right now.
+    verdict: "mixed"
+    time_saved: "Saved a stock footage licensing budget (~$200)"
+    usable_in_posts: true
+    tags:
+      - "video AI"
+      - "social media"
+      - "creative AI"
+      - "Runway"
+
+  # ── Add your own experiments below this line ──────────
+  # - date: "YYYY-MM-DD"
+  #   tool: "Tool Name"
+  #   use_case: "What specific task you were trying to do"
+  #   what_happened: "What the result actually was — be specific"
+  #   verdict: "positive | mixed | negative"
+  #   time_saved: "Optional — e.g. '2 hours per week'"
+  #   usable_in_posts: true
+  #   tags:
+  #     - "tag matching your topics"
+
+# ── Settings ───────────────────────────────────────────────
+settings:
+  # Maximum number of experiments to reference in a single post
+  max_experiments_per_post: 1
+
+  # Only inject experiments that share a tag with the post's matched categories
+  # Set to false to allow any experiment to be referenced (ranked by relevance score)
+  require_tag_match: false
+
+  # Minimum relevance score (0–10) for an experiment to be injected
+  # Higher = only inject when there's a strong topic match
+  min_relevance_score: 2

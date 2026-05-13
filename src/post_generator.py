@@ -69,12 +69,33 @@ You are a LinkedIn ghostwriter for {author_name}, {author_title}.
 
 
 class PostGenerator:
-    """Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK."""
+    """
+    Generates LinkedIn posts from article clusters using Claude CLI or Anthropic SDK.
 
-    def __init__(self, brand_kit: dict, posts_dir: Path):
+    Accepts three optional config dicts beyond the core brand_kit:
+      tone_config       — from config/tone_of_voice.yaml  (voice, style, structure)
+      templates_config  — from config/post_templates.yaml (per-angle framing)
+      experiments_config — from config/my_experiments.yaml (personal HitL evidence)
+    """
+
+    def __init__(
+        self,
+        brand_kit: dict,
+        posts_dir: Path,
+        tone_config: Optional[dict] = None,
+        templates_config: Optional[dict] = None,
+        experiments_config: Optional[dict] = None,
+    ):
         self.brand_kit = brand_kit
         self.posts_dir = posts_dir
         self.posts_dir.mkdir(exist_ok=True)
+
+        # Tone: prefer separate tone_of_voice.yaml; fall back to inline brand_kit section
+        self.tone = tone_config or brand_kit.get("tone_of_voice", {})
+
+        self.templates_config = templates_config or {}
+        self.experiments_config = experiments_config or {}
+
         research = brand_kit.get("research_standards", {})
         self.min_sources = research.get("min_sources", 4)
         self.model = os.getenv("ANTHROPIC_MODEL", "sonnet")
@@ -87,8 +108,13 @@ class PostGenerator:
         if not articles:
             return None
 
+        template = self._detect_template(articles)
+        experiments = self._pick_relevant_experiments(articles)
+
         provided_urls = [a.url for a in articles if a.url]
-        user_prompt = self._build_user_prompt(articles, trending_keywords)
+        user_prompt = self._build_user_prompt(
+            articles, trending_keywords, template, experiments
+        )
         raw = self._call_claude(user_prompt)
         if not raw:
             return None
@@ -103,13 +129,102 @@ class PostGenerator:
         if unverified:
             print(f"  [ℹ️  {len(unverified)} URL(s) could not be verified (no network?) — check before publishing]")
 
-        return self._save_post(articles, content, trending_keywords, url_report)
+        template_name = template["name"] if template else "General"
+        return self._save_post(articles, content, trending_keywords, url_report, template_name)
+
+    # ── Template detection ─────────────────────────────────────────────────────
+
+    def _detect_template(self, articles: list[Article]) -> Optional[dict]:
+        """
+        Match the article cluster against post_templates.yaml to find the best-fit angle.
+        YouTube sources are detected by source name, not keywords.
+        Returns the matched template dict, or None when no template scores high enough.
+        """
+        templates = self.templates_config.get("templates", [])
+        if not templates:
+            return None
+
+        all_text = " ".join(
+            f"{a.title} {a.summary}" for a in articles
+        ).lower()
+        source_names = " ".join(a.source_name.lower() for a in articles)
+        is_youtube = "youtube" in source_names
+
+        best_template: Optional[dict] = None
+        best_score = 0
+
+        for tmpl in templates:
+            # YouTube sources get matched immediately to the YouTube template
+            if tmpl.get("name") == "YouTube Video Release" and is_youtube:
+                return tmpl
+
+            trigger_keywords = tmpl.get("trigger_keywords", [])
+            if not trigger_keywords:
+                continue
+
+            score = sum(1 for kw in trigger_keywords if kw.lower() in all_text)
+            if score > best_score:
+                best_score = score
+                best_template = tmpl
+
+        # Require at least 2 keyword matches to activate a template
+        return best_template if best_score >= 2 else None
+
+    # ── Experiment injection ───────────────────────────────────────────────────
+
+    def _pick_relevant_experiments(self, articles: list[Article]) -> list[dict]:
+        """
+        Rank experiments from my_experiments.yaml by relevance to the article cluster.
+        Returns the top N experiments (usually 1) to weave into the post prompt.
+        """
+        all_experiments = self.experiments_config.get("experiments", [])
+        if not all_experiments:
+            return []
+
+        settings = self.experiments_config.get("settings", {})
+        max_per_post = settings.get("max_experiments_per_post", 1)
+        require_tag_match = settings.get("require_tag_match", False)
+        min_score = settings.get("min_relevance_score", 2)
+
+        all_text = " ".join(
+            f"{a.title} {a.summary}" for a in articles
+        ).lower()
+        company_names = {c.lower() for a in articles for c in a.matched_companies}
+        category_names = {c.lower() for a in articles for c in a.matched_categories}
+
+        scored: list[tuple[int, dict]] = []
+        for exp in all_experiments:
+            if not exp.get("usable_in_posts", True):
+                continue
+
+            score = 0
+            tool = exp.get("tool", "").lower()
+            tags = [t.lower() for t in exp.get("tags", [])]
+
+            # Strong match: tool name appears in tracked company names
+            if any(tool in company for company in company_names):
+                score += 5
+            # Moderate match: tool name appears anywhere in article text
+            if tool in all_text:
+                score += 3
+            # Tag overlap with article categories
+            for tag in tags:
+                if any(tag in cat for cat in category_names):
+                    score += 2
+                if tag in all_text:
+                    score += 1
+
+            if score >= min_score or (not require_tag_match and score > 0):
+                scored.append((score, exp))
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [exp for _, exp in scored[:max_per_post]]
 
     # ── Prompt construction ────────────────────────────────────────────────────
 
     def _build_system_prompt(self) -> str:
         author = self.brand_kit.get("author", {})
-        tone = self.brand_kit.get("tone_of_voice", {})
+        tone = self.tone
         brand = self.brand_kit.get("brand", {})
         hashtags = brand.get("hashtags", {})
         research = self.brand_kit.get("research_standards", {})
@@ -146,8 +261,13 @@ class PostGenerator:
         )
 
     def _build_user_prompt(
-        self, articles: list[Article], trending_keywords: list[str]
+        self,
+        articles: list[Article],
+        trending_keywords: list[str],
+        template: Optional[dict],
+        experiments: list[dict],
     ) -> str:
+        # ── Source material block ──────────────────────────────────────────────
         sources_block = ""
         for i, a in enumerate(articles, 1):
             pub = a.published.strftime("%B %d, %Y") if a.published else "recent"
@@ -155,7 +275,7 @@ class PostGenerator:
             sources_block += f"\n### Source {i}{label}\n"
             sources_block += f"Publication: {a.source_name}\n"
             sources_block += f"Title: {a.title}\n"
-            sources_block += f"URL: {a.url}\n"       # ← exact URL Claude must copy verbatim
+            sources_block += f"URL: {a.url}\n"
             sources_block += f"Date: {pub}\n"
             sources_block += f"Summary: {a.summary[:600] if a.summary else 'N/A'}\n"
 
@@ -166,6 +286,40 @@ class PostGenerator:
             if trending_keywords
             else "AI, artificial intelligence"
         )
+
+        # ── Template / angle block ─────────────────────────────────────────────
+        template_block = ""
+        if template:
+            template_block = f"""
+## Post Angle: {template['name']}
+{template.get('framing', '').strip()}
+
+Hook guidance: {template.get('hook_style', '')}
+"""
+
+        # ── Personal experiments block ─────────────────────────────────────────
+        experiment_block = ""
+        if experiments:
+            exp = experiments[0]
+            verdict_label = {
+                "positive": "Worked well",
+                "mixed": "Mixed results",
+                "negative": "Didn't work as hoped",
+            }.get(exp.get("verdict", ""), exp.get("verdict", ""))
+
+            time_note = (
+                f"\n- Time impact: {exp['time_saved']}" if exp.get("time_saved") else ""
+            )
+            experiment_block = f"""
+## Your Personal Experience (use if it strengthens the post)
+You have personally experimented with {exp.get('tool', 'this tool')}:
+- Task: {exp.get('use_case', '')}
+- What happened: {exp.get('what_happened', '').strip()}
+- Verdict: {verdict_label}{time_note}
+
+Weave this in naturally as first-person evidence — only if it genuinely adds to the post.
+Do NOT force it if it doesn't fit. Attribute it to yourself ("In my own work, I found..." or similar).
+"""
 
         return f"""\
 Research and write a LinkedIn post synthesising ALL {len(articles)} of the following sources.
@@ -179,19 +333,20 @@ HARD REQUIREMENT: Cite all {len(articles)} sources. Minimum {self.min_sources} �
 Do NOT construct, modify, shorten, or recall any URL. If a URL field is missing, write [URL not provided].
 
 For direct verbatim quotes: "[exact quote]" — Full Name, Title, Company
-
+{template_block}
 ## Source Material
 {sources_block}
 ## Context
 Companies involved: {', '.join(companies) or 'General AI news'}
 Story categories: {', '.join(categories) or 'AI news'}
 Currently trending (weave in naturally): {trending_str}
-
+{experiment_block}
 ## Writing Instructions
 - Synthesise across all sources — do NOT just paraphrase Source 1
-- Add your genuine perspective on what this means for brands and marketers specifically
+- Add genuine perspective on what this means for brands and marketers specifically
 - For launches/features: explain the practical implication for a marketing team
 - For funding: explain what the investment signals about the AI landscape
+- For YouTube videos: write as someone who watched it and has a reaction
 - End with an engaging question that invites comments
 - List all sources at the bottom under "Sources:" with full URLs copied from above
 """
@@ -212,13 +367,13 @@ Currently trending (weave in naturally): {trending_str}
                         "--system-prompt", self._system_prompt,
                         "--model", self.model,
                         "--no-session-persistence",
-                        "--tools", "",   # text-only — no tool calls, no WebFetch preamble
+                        "--tools", "",
                     ],
-                    input=user_prompt,   # pass via stdin, not positional arg
+                    input=user_prompt,
                     capture_output=True,
                     text=True,
                     timeout=180,
-                    cwd="/tmp",   # avoids triggering repo git hooks
+                    cwd="/tmp",
                 )
                 if result.returncode == 0 and result.stdout.strip():
                     return result.stdout.strip()
@@ -266,7 +421,7 @@ Currently trending (weave in naturally): {trending_str}
     ) -> tuple[str, dict]:
         """
         Scan the Sources section of the post.
-        - URLs matching the provided article list → 'source-verified' (came from RSS, real at fetch time)
+        - URLs matching the provided article list → 'source-verified'
         - Any extra URL Claude added → HEAD-checked live
         - Broken URLs → annotated with ⚠️ warning in the post text
         - Unverifiable URLs (no network) → annotated with [unverified]
@@ -282,7 +437,6 @@ Currently trending (weave in naturally): {trending_str}
 
         for line in lines:
             stripped_upper = line.strip().upper()
-            # Detect start of the Sources section
             if stripped_upper.startswith("SOURCES") or re.match(r"^\[1\][\.\)]", line.strip()):
                 in_sources = True
 
@@ -291,7 +445,6 @@ Currently trending (weave in naturally): {trending_str}
                     clean = url.rstrip("/.,")
                     if clean in provided_set or url.rstrip("/.,") in provided_set:
                         url_statuses[url] = "source-verified"
-                        # No annotation needed — came from RSS
                     elif url not in url_statuses:
                         status = _check_url(url)
                         url_statuses[url] = status
@@ -318,6 +471,7 @@ Currently trending (weave in naturally): {trending_str}
         content: str,
         trending_keywords: list[str],
         url_report: dict | None = None,
+        template_name: str = "General",
     ) -> dict:
         primary = articles[0]
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -334,6 +488,7 @@ Currently trending (weave in naturally): {trending_str}
         frontmatter = {
             "title": primary.title,
             "date": datetime.now().strftime("%Y-%m-%d"),
+            "post_angle": template_name,
             "primary_source_url": primary.url,
             "primary_source_name": primary.source_name,
             "all_sources": [
@@ -374,6 +529,7 @@ Currently trending (weave in naturally): {trending_str}
             "source_name": primary.source_name,
             "source_count": len(articles),
             "broken_urls": broken_count,
+            "post_angle": template_name,
         }
 
 
@@ -388,7 +544,7 @@ def _strip_preamble(content: str) -> str:
     if "\n---\n" in content:
         parts = content.split("\n---\n", 1)
         candidate = parts[1].strip()
-        if len(candidate) > 100:   # real post, not just an empty section
+        if len(candidate) > 100:
             return candidate
     return content
 

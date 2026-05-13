@@ -202,13 +202,16 @@ def config():
     """Show the paths to all editable config files."""
     console.print("\n[bold]Editable Configuration Files[/]\n")
     files = {
-        "Topics of Interest": CONFIG_DIR / "topics.yaml",
-        "Brand Kit & Tone of Voice": CONFIG_DIR / "brand_kit.yaml",
-        "News Sources (RSS Feeds)": CONFIG_DIR / "sources.yaml",
-        "Environment Variables": BASE_DIR / ".env",
+        "Brand Kit (who you are, hashtags, post length)": CONFIG_DIR / "brand_kit.yaml",
+        "Tone of Voice (style, structure, dos/don'ts)": CONFIG_DIR / "tone_of_voice.yaml",
+        "Post Templates (per-angle framing)": CONFIG_DIR / "post_templates.yaml",
+        "My AI Experiments (personal HitL evidence)": CONFIG_DIR / "my_experiments.yaml",
+        "Topics of Interest (companies & keywords)": CONFIG_DIR / "topics.yaml",
+        "News Sources (RSS feeds & APIs)": CONFIG_DIR / "sources.yaml",
+        "Environment Variables (API keys)": BASE_DIR / ".env",
     }
     for label, path in files.items():
-        exists = "[green]✓[/]" if path.exists() else "[red]✗ missing[/]"
+        exists = "[green]✓[/]" if path.exists() else "[yellow]○ optional — not created yet[/]"
         console.print(f"  {exists}  [bold]{label}[/]")
         console.print(f"     [dim]{path}[/]\n")
 

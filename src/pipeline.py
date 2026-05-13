@@ -23,9 +23,16 @@ class Pipeline:
     def __init__(self, config_dir: Path, posts_dir: Path):
         self.config_dir = config_dir
         self.posts_dir = posts_dir
+
+        # Core configs (required)
         self.topics = self._load_yaml("topics.yaml")
         self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+
+        # Modular configs (optional — loaded with graceful fallback)
+        self.tone_config = self._load_yaml_optional("tone_of_voice.yaml")
+        self.templates_config = self._load_yaml_optional("post_templates.yaml")
+        self.experiments_config = self._load_yaml_optional("my_experiments.yaml")
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
@@ -33,10 +40,12 @@ class Pipeline:
         """
         Full pipeline:
           1. Fetch and score news articles from RSS feeds
-          2. Fetch trending keywords from Google Trends
+          2. Fetch trending keywords
           3. Build article clusters (SOURCE_POOL_SIZE articles each)
-          4. Generate one research-style post per cluster (min 4 sources each)
+          4. Generate one post per cluster, applying the best-match post template
+             and injecting relevant personal experiments as first-person evidence
           5. Save all posts as markdown drafts for human review
+          6. Optionally push to Notion
         """
         console.rule("[bold blue]LinkedIn Post Generator[/]")
 
@@ -71,25 +80,27 @@ class Pipeline:
         )
 
         # ── Step 3: Generate posts ──────────────────────────────────────────
-        # Build clusters: post i anchors on articles[i], draws the next
-        # SOURCE_POOL_SIZE-1 articles as supporting sources.
-        # This ensures each post has a distinct focus while always having 4+ sources.
         clusters = _build_clusters(articles, max_posts, SOURCE_POOL_SIZE)
         console.print(
-            f"\n[bold cyan]Step 3 / 3 — Generating {len(clusters)} research post(s) "
+            f"\n[bold cyan]Step 3 / 3 — Generating {len(clusters)} post(s) "
             f"({SOURCE_POOL_SIZE} sources each)[/]"
         )
 
-        generator = PostGenerator(self.brand_kit, self.posts_dir)
+        generator = PostGenerator(
+            brand_kit=self.brand_kit,
+            posts_dir=self.posts_dir,
+            tone_config=self.tone_config,
+            templates_config=self.templates_config,
+            experiments_config=self.experiments_config,
+        )
         generated: list[dict] = []
 
         for i, cluster in enumerate(clusters, 1):
             anchor = cluster[0]
-            console.print(
-                f"\n  [bold]Post {i}[/] — anchor: {anchor.title[:65]}…"
-                if len(anchor.title) > 65
-                else f"\n  [bold]Post {i}[/] — anchor: {anchor.title}"
+            title_display = (
+                anchor.title[:65] + "…" if len(anchor.title) > 65 else anchor.title
             )
+            console.print(f"\n  [bold]Post {i}[/] — anchor: {title_display}")
             console.print(
                 f"  [dim]Drawing on {len(cluster)} sources: "
                 + ", ".join(a.source_name for a in cluster[:4])
@@ -99,9 +110,10 @@ class Pipeline:
             result = generator.generate_post(cluster, trending)
             if result:
                 generated.append(result)
+                angle_note = f" · angle: {result['post_angle']}" if result.get("post_angle") != "General" else ""
                 console.print(
                     f"  [green]✓[/] Saved → {result['filename']} "
-                    f"[dim]({result['source_count']} sources cited)[/]"
+                    f"[dim]({result['source_count']} sources cited{angle_note})[/]"
                 )
             else:
                 console.print("  [red]✗[/] Generation failed — skipping.")
@@ -155,10 +167,11 @@ class Pipeline:
             return
 
         console.print(
-            f"\n[bold green]✓ {len(generated)} research post(s) saved to /posts/[/]\n"
+            f"\n[bold green]✓ {len(generated)} post(s) saved to /posts/[/]\n"
         )
         for post in generated:
-            sources_note = f"{post['source_count']} sources cited"
+            angle = post.get("post_angle", "General")
+            sources_note = f"{post['source_count']} sources cited · angle: {angle}"
             console.print(
                 Panel(
                     post["content"],
@@ -177,6 +190,18 @@ class Pipeline:
         with open(path, "r", encoding="utf-8") as fh:
             return yaml.safe_load(fh)
 
+    def _load_yaml_optional(self, filename: str) -> dict:
+        """Load a YAML config file, returning an empty dict if the file doesn't exist."""
+        path = self.config_dir / filename
+        if not path.exists():
+            return {}
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                return yaml.safe_load(fh) or {}
+        except Exception as exc:
+            console.print(f"[yellow]Warning: could not load {filename}: {exc}[/]")
+            return {}
+
 
 def _build_clusters(
     articles: list[Article], max_posts: int, pool_size: int
@@ -194,10 +219,8 @@ def _build_clusters(
     """
     clusters: list[list[Article]] = []
     for i in range(min(max_posts, len(articles))):
-        # Slide the window; if near the end, anchor at end - pool_size
         start = min(i, max(0, len(articles) - pool_size))
         cluster = articles[start : start + pool_size]
-        # Ensure the anchor (articles[i]) is at position 0
         if articles[i] in cluster and cluster[0] != articles[i]:
             cluster.remove(articles[i])
             cluster.insert(0, articles[i])

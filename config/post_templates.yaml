@@ -1,0 +1,214 @@
+# ============================================================
+# POST TEMPLATES & ANGLES
+# ============================================================
+# Different types of AI news warrant different post angles.
+#
+# Each template has:
+#   trigger_keywords  — words in article titles/summaries that
+#                       activate this template
+#   hook_style        — guidance for how to open the post
+#   framing           — injected into the generation prompt to
+#                       steer the post angle and perspective
+#
+# The post generator automatically selects the best-matching
+# template per article cluster. Add your own or edit freely.
+# ============================================================
+
+templates:
+
+  # ── Feature or Product Launch ──────────────────────────
+  - name: "Feature or Product Launch"
+    description: "A company has launched, announced, or shipped a new feature, model, or product"
+    trigger_keywords:
+      - "launch"
+      - "launches"
+      - "launched"
+      - "release"
+      - "released"
+      - "announces"
+      - "announced"
+      - "ships"
+      - "shipped"
+      - "new feature"
+      - "available now"
+      - "introduces"
+      - "unveils"
+      - "debuts"
+      - "rolls out"
+      - "general availability"
+    hook_style: "Lead with what changed and why it matters to brands right now — not the press release version"
+    framing: |
+      This is a feature or product launch post. Write from the angle of a brand strategist
+      who has been watching this space closely and has a strong opinion. Don't just describe
+      the feature — explain what it actually unlocks for marketing teams, brand managers, or
+      agencies. If the launch connects to a personal experiment you've run, reference it.
+      The goal: readers should feel like they got genuine insight, not a repackaged press release.
+
+  # ── YouTube Video Release ──────────────────────────────
+  - name: "YouTube Video Release"
+    description: "A key AI company or creator has released a new YouTube video — demo, keynote, or tutorial"
+    trigger_keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "demonstration"
+      - "watch"
+      - "showcases"
+      - "demonstrates"
+      - "keynote"
+      - "tutorial"
+    hook_style: "Lead with 'Just watched...' or 'Watch this carefully...' — make the reader feel like they're in the room with you"
+    framing: |
+      This post is anchored on a YouTube video release — a demo, keynote, or capability
+      showcase. Write as someone who actually watched the video and has a genuine reaction.
+      Reference specific things shown or claimed in the video if mentioned in the summary.
+      The post should feel like a real-time reaction from someone who stays on top of AI demos
+      and understands what the demos signal beyond the obvious. What capability does this unlock?
+      What should brand teams be paying attention to that most people will scroll past?
+
+  # ── AI Startup Funding ─────────────────────────────────
+  - name: "AI Startup Funding"
+    description: "An AI startup has raised a funding round, been acquired, or achieved a major valuation milestone"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "raised"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "billion"
+      - "million"
+      - "IPO"
+      - "unicorn"
+      - "venture capital"
+      - "backed"
+    hook_style: "Lead with what the money signals about where the market is moving — not just the dollar amount"
+    framing: |
+      This is a funding or investment story. Don't just report the number — interpret it.
+      What does this capital flowing into this specific company or category tell us about where
+      brands and agencies will be investing their attention (and budget) in 12–18 months?
+      Which AI capabilities are investors clearly betting on? What does the aggregate funding
+      pattern across recent rounds tell us about which problems are considered solved vs. still
+      wide open? Give brand leaders the strategic read — they're seeing the headline; you're
+      giving them the implication.
+
+  # ── Big Tech AI Move ───────────────────────────────────
+  - name: "Big Tech AI Move"
+    description: "Google, Microsoft, Apple, Amazon, Meta, or Nvidia makes a significant AI-related move"
+    trigger_keywords:
+      - "Microsoft Copilot"
+      - "Google Gemini"
+      - "Apple Intelligence"
+      - "Amazon Bedrock"
+      - "Meta AI"
+      - "Nvidia"
+      - "partnership"
+      - "integrates"
+      - "expands"
+      - "Azure"
+      - "AWS"
+    hook_style: "Lead with the strategic shift — big tech moves change the baseline for every brand team using these platforms"
+    framing: |
+      This involves a big tech company making a significant AI move. Zoom out: when Microsoft,
+      Google, or Apple embed AI deeper into their ecosystems, it changes the baseline for what
+      brands and agencies can expect from the tools they already use every day. Your job is to
+      explain the second-order effects — what does this mean for a marketing team running on
+      Microsoft 365? For an agency that lives in Google Workspace? For a brand manager using
+      Adobe Creative Cloud? Make the abstract concrete and actionable.
+
+  # ── AI Research Breakthrough ───────────────────────────
+  - name: "AI Research Breakthrough"
+    description: "A new research paper, capability benchmark, or technical milestone has been published"
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "reasoning"
+      - "multimodal"
+      - "AGI"
+      - "outperforms"
+      - "state of the art"
+      - "published"
+    hook_style: "Lead with the real-world implication of the research — skip the technical jargon, get to what it unlocks"
+    framing: |
+      This is a research or capability story. Your readers are brand leaders and marketers,
+      not ML engineers. Translate the research finding into plain language and explain what
+      the new capability actually unlocks in a practical brand or marketing context. Be honest
+      about the timeline to commercial application — don't hype timelines that are still years
+      away. Your credibility comes from accurate calibration, not false urgency.
+
+  # ── Personal AI Experiment ─────────────────────────────
+  - name: "Personal AI Experiment"
+    description: "You personally tried an AI tool or workflow and want to share the honest results"
+    trigger_keywords: []
+    hook_style: "Lead with 'I tried...' or 'We tested...' — make it specific and personal, not generic"
+    framing: |
+      This is a personal experiment post — the most valuable type for building credibility.
+      Write in first person about what you actually did, what you were trying to achieve,
+      what worked, and importantly what surprised you or didn't work. Include specific results
+      where possible: time saved, quality comparison, unexpected failure modes, what you'd do
+      differently. This type of post performs well when it's honest and granular — not a
+      generic "AI is amazing" take, but a real account of a real experiment with real findings.
+      Encourage readers to share their own experiences in the comments.
+
+  # ── AI Industry Trend ──────────────────────────────────
+  - name: "AI Industry Trend"
+    description: "A broader pattern is emerging across multiple companies, products, or news items"
+    trigger_keywords:
+      - "trend"
+      - "shift"
+      - "pattern"
+      - "wave"
+      - "across the industry"
+      - "multiple companies"
+      - "race"
+      - "competition"
+    hook_style: "Lead with the pattern you're seeing across multiple signals — not a single data point"
+    framing: |
+      This is a trend synthesis post. Your job is to connect the dots across multiple stories
+      and articulate the bigger pattern that casual readers are missing. What are several
+      companies doing that points in the same direction? What does the aggregate signal tell
+      brands about where AI investment and attention is heading? Be the analyst, not the
+      journalist — the journalist reports events, the analyst explains what they mean together.
+
+  # ── AI Regulation and Ethics ───────────────────────────
+  - name: "AI Regulation and Ethics"
+    description: "Government regulation, AI safety legislation, copyright issues, or ethics news"
+    trigger_keywords:
+      - "regulation"
+      - "policy"
+      - "safety"
+      - "ethics"
+      - "EU AI Act"
+      - "ban"
+      - "law"
+      - "copyright"
+      - "lawsuit"
+      - "bias"
+      - "legislation"
+      - "senate"
+      - "congress"
+    hook_style: "Lead with the practical implication for brands — regulation isn't abstract, it will change what they can and can't do"
+    framing: |
+      This is a regulation or ethics story. Don't just explain the policy — explain what it
+      means for brands actively using or planning to use AI in their marketing and creative
+      workflows. Which use cases are now legally or reputationally risky? What should brand
+      legal and marketing teams be talking about right now? Where is the risk real vs. where
+      is the concern overblown? Help your audience navigate the complexity without either
+      panicking or dismissing it.
+
+# ── Fallback ───────────────────────────────────────────────
+# Used when no specific template matches strongly enough.
+default_framing: |
+  Write a balanced, insightful LinkedIn post that synthesises the provided sources
+  and delivers a clear, opinionated take on what this development means for brands
+  and marketing leaders. Be specific, cite your sources, and end with a genuine
+  question that invites engagement. Don't summarise — synthesise and add your take.
