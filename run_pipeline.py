@@ -21,7 +21,10 @@ def main():
 
     sources  = load("sources.yaml")
     topics   = load("topics.yaml")
-    brand    = load("brand_kit.yaml")
+    # Merge brand_kit + tone_of_voice into a single config dict
+    _brand_kit = load("brand_kit.yaml")
+    _tone      = load("tone_of_voice.yaml")
+    brand      = {**_brand_kit, "tone_of_voice": _tone}
 
     # ── Step 1: fetch news via Claude WebFetch ──────────────────────────────
     print("\n[Step 1] Fetching news via Claude WebFetch MCP...")

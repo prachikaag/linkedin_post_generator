@@ -24,8 +24,12 @@ class Pipeline:
         self.config_dir = config_dir
         self.posts_dir = posts_dir
         self.topics = self._load_yaml("topics.yaml")
-        self.brand_kit = self._load_yaml("brand_kit.yaml")
         self.sources = self._load_yaml("sources.yaml")
+        # Merge brand_kit + tone_of_voice so PostGenerator gets the full config
+        # in one dict (tone_of_voice key expected at brand_kit["tone_of_voice"])
+        brand_kit = self._load_yaml("brand_kit.yaml")
+        tone = self._load_yaml("tone_of_voice.yaml")
+        self.brand_kit = {**brand_kit, "tone_of_voice": tone}
 
     # ── Public API ─────────────────────────────────────────────────────────────
 
