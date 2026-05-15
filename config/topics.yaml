@@ -129,6 +129,77 @@ companies_to_track:
         - "HuggingFace"
         - "open source AI model"
 
+  ai_builders:
+    - name: "Cerebras"
+      keywords:
+        - "Cerebras"
+        - "Cerebras Systems"
+        - "Cerebras IPO"
+
+    - name: "Groq"
+      keywords:
+        - "Groq"
+        - "GroqCloud"
+        - "LPU inference"
+
+    - name: "Harvey AI"
+      keywords:
+        - "Harvey AI"
+        - "Harvey legal AI"
+
+    - name: "Cognition AI"
+      keywords:
+        - "Cognition AI"
+        - "Devin AI"
+        - "Devin agent"
+
+    - name: "Together AI"
+      keywords:
+        - "Together AI"
+        - "TogetherAI"
+
+    - name: "Scale AI"
+      keywords:
+        - "Scale AI"
+        - "Scale Data Engine"
+        - "Alexandr Wang"
+
+    - name: "Writer"
+      keywords:
+        - "Writer AI"
+        - "Writer platform"
+        - "Palmyra"
+
+    - name: "Glean"
+      keywords:
+        - "Glean"
+        - "Glean AI"
+        - "workplace search AI"
+
+    - name: "Cursor"
+      keywords:
+        - "Cursor"
+        - "Cursor AI"
+        - "Cursor editor"
+
+    - name: "Perplexity"
+      keywords:
+        - "Perplexity"
+        - "Perplexity AI"
+        - "Perplexity Pro"
+        - "Perplexity Deep Research"
+
+    - name: "Suno"
+      keywords:
+        - "Suno"
+        - "Suno AI"
+        - "AI music generation"
+
+    - name: "Synthesia"
+      keywords:
+        - "Synthesia"
+        - "AI video avatar"
+
   big_tech:
     - name: "Microsoft"
       keywords:

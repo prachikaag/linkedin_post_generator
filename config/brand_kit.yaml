@@ -40,6 +40,13 @@ tone_of_voice:
     - "Use simple language — aim for a 9th grade reading level."
     - "Use em-dashes (—) and ellipses (...) for natural rhythm."
     - "Numbers and specifics beat vague claims. Use them."
+    - "Maximum sentence length: 15 words. Split anything longer into two sentences."
+    - "Tone is engaging and upbeat — curious, alive, not dry. Write like someone excited by what they're seeing."
+    - "One emoji per paragraph maximum. Place it where it adds energy, never as decoration. Never two in the same paragraph."
+    - "Write as a third-party observer. Present the full picture across companies — never frame the story as one company winning."
+    - "Lead with impact and meaning. What does this change for real people and teams? Numbers are a last resort, not a first instinct."
+    - "Only use numbers when they are the single most powerful way to make the point. Otherwise describe the impact in human terms."
+    - "Never reference past news as current. Before writing 'this week', 'today', or 'yesterday', verify the event date against today's actual date. If it happened more than 7 days ago, say 'recently' or give the context without a time reference."
 
   # The blueprint for every post
   post_structure:
@@ -123,6 +130,8 @@ brand:
   # Target post length
   # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
   post_length: "medium"
+  max_characters: 1457
+  max_words: 251
 
   # Optional: words or phrases that are distinctly yours
   signature_phrases:
