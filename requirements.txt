@@ -1,0 +1,6 @@
+anthropic>=0.49.0
+feedparser>=6.0.0
+pytrends>=4.9.0
+notion-client>=2.2.1
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
