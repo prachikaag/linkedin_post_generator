@@ -1,150 +1,244 @@
 # LinkedIn Post Generator
 
-An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and writes research-backed LinkedIn draft posts — entirely through Claude agents and subagents. No traditional code steps.
+An AI-powered pipeline that reads your topics of interest, fetches trending AI news, tracks what's buzzing, and writes research-backed LinkedIn draft posts in your exact brand voice — with cited sources, saved to `posts/` as markdown files.
 
 ---
 
-## Architecture
-
-The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
+## How it works
 
 ```
-orchestrator.md
-├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
-├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+config/topics.yaml      ──→  what news to look for
+config/sources.yaml     ──→  which RSS feeds to fetch
+         ↓
+[news_gatherer]         ──→  fetches + scores articles by relevance
+[trending_tracker]      ──→  finds trending AI keywords this week
+         ↓
+[post_generator]        ──→  Claude writes branded LinkedIn drafts
+         ↓
+[notion_publisher]      ──→  saves drafts to Notion (optional)
+config/brand_kit.yaml   ──→  your voice, tone, structure, hashtags
 ```
 
-Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
+Every component is a separate, editable file. Change a config → the next run uses it.
 
 ---
 
-## How to Run
+## Quick start
 
-### Inside Claude Code (the only way to run this)
+```bash
+# 1. Clone and enter the repo
+git clone https://github.com/prachikaag/linkedin_post_generator
+cd linkedin_post_generator
 
-Open this project in Claude Code and say:
+# 2. Install dependencies
+pip install -r requirements.txt
 
+# 3. Set up your environment
+cp .env.example .env
+# Edit .env — add your ANTHROPIC_API_KEY (required)
+
+# 4. Fill in your details in config/brand_kit.yaml
+#    Set: author.name, author.title, author.tagline
+
+# 5. Run
+python main.py
 ```
-Run the LinkedIn Post Generator pipeline.
-```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
+---
 
-### Custom parameters
+## Running options
 
-```
-Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per cluster.
-```
-
-```
-Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
+```bash
+python main.py                    # generate 2 posts (default)
+python main.py --posts 3          # generate 3 posts
+python main.py --posts 1          # quick single post
+python main.py --dry-run          # fetch + rank news only, no generation
+python main.py --pool-size 8      # use 8 articles per post (default: 6)
+python main.py --no-notion        # skip Notion even if configured
 ```
 
 ---
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/`. Edit any file — changes take effect on the next run.
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | What it controls |
+|------|-----------------|
+| `config/topics.yaml` | Companies to track, keywords, freshness window |
+| `config/sources.yaml` | RSS feeds (enabled/disabled, priority) |
+| `config/brand_kit.yaml` | Your name, tone, writing style, post structure, hashtags |
 
-Edit these files directly — changes take effect on the next run.
+### `config/topics.yaml` — what news to track
 
-### Environment Variables
+Add or remove companies, keywords, and topic categories:
+
+```yaml
+companies_to_track:
+  ai_labs:
+    - name: "OpenAI"
+      keywords:
+        - "OpenAI"
+        - "ChatGPT"
+        - "GPT-5"
+```
+
+Adjust freshness and volume:
+
+```yaml
+freshness:
+  max_article_age_hours: 48   # only articles this recent
+  min_relevance_score: 2      # minimum score to include
+  max_articles_per_run: 25    # cap articles fetched per run
+```
+
+### `config/sources.yaml` — where to get news
+
+Includes:
+- Direct RSS feeds from TechCrunch, The Verge, VentureBeat, company blogs, etc.
+- Google News RSS (topic-specific queries, no API key needed)
+- YouTube channel feeds for OpenAI, Anthropic, DeepMind
+
+Enable or disable any feed:
+
+```yaml
+- name: "TechCrunch AI"
+  url: "https://techcrunch.com/category/artificial-intelligence/feed/"
+  priority: high
+  enabled: true   # ← set to false to skip
+```
+
+Add your own feeds:
+
+```yaml
+- name: "My Custom Source"
+  url: "https://example.com/feed.xml"
+  priority: medium
+  enabled: true
+```
+
+### `config/brand_kit.yaml` — your voice
+
+Set your identity:
+
+```yaml
+author:
+  name: "Your Name"
+  title: "Brand Strategist & AI Enthusiast"
+  tagline: "Helping brands understand and leverage AI in the real world"
+```
+
+The brand kit controls every aspect of post writing:
+- `tone_of_voice.primary_traits` — how you come across
+- `tone_of_voice.writing_style` — sentence length, hooks, emoji rules
+- `tone_of_voice.post_structure` — HOOK → CONTEXT → EVIDENCE → YOUR TAKE → SO WHAT → CTA
+- `brand.hashtags` — always-included + rotation pool
+- `brand.max_characters` / `brand.max_words` — post length limits
+- `research_standards.min_sources` — minimum sources cited per post
+
+---
+
+## Environment variables
 
 Copy `.env.example` to `.env` and fill in:
 
 ```bash
-# Required for Notion publishing (optional feature)
-NOTION_PAGE_ID=your_32char_page_id_here
+# Required — your Anthropic API key
+# Get one at https://console.anthropic.com/
+ANTHROPIC_API_KEY=sk-ant-...
 
-# Optional: direct Notion REST API fallback
-NOTION_API_KEY=secret_xxx
+# Optional — override the default model
+ANTHROPIC_MODEL=claude-sonnet-4-6
 
-# Optional: NewsAPI for additional sources
-NEWSAPI_KEY=your_key_here
+# Optional — publish drafts to Notion
+# Setup: notion.so/my-integrations → New integration → copy token
+NOTION_API_KEY=secret_...
+# Open your Notion page → "..." → Connections → add your integration
+# Copy the 32-char ID from the page URL
+NOTION_PAGE_ID=your_page_id_here
 ```
 
 ---
 
 ## Output
 
-Generated posts are saved to `posts/` as markdown files with YAML frontmatter:
+Generated posts are saved to `posts/` as markdown files:
 
 ```
 posts/
-  2024-01-15_10-30-00_openai-launches-gpt5.md
-  2024-01-15_10-30-00_anthropic-funding-round.md
+  2026-05-18_14-30-00_openai-launches-gpt5-model.md
+  2026-05-18_14-31-15_anthropic-funding-round.md
 ```
 
-Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
-- **Post body**: the full LinkedIn draft, ready to review and publish
-
-Change `status: draft` to `status: published` to track what's gone live.
-
----
-
-## Agents Reference
-
-### `news-gatherer`
-- **Tools**: Read, WebFetch
-- **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
-- **Output**: JSON array of scored article objects
-
-### `trending-tracker`
-- **Tools**: Read, WebSearch
-- **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
-- **Output**: JSON array of 15–20 keyword phrases
-
-### `post-generator`
-- **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
-
-### `notion-publisher`
-- **Tools**: Read, Notion MCP
-- **Does**: Appends the post as a toggle block on a Notion page
-- **Output**: `success` or `failed`
-
----
-
-## Customising Your Brand
-
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
-
-The post-generator agent reads this file on every run — no restarts needed.
-
----
-
-## Adding News Sources
-
-Edit `config/sources.yaml` to add any RSS feed:
+Each file has YAML frontmatter (metadata) followed by the post body:
 
 ```yaml
-rss_feeds:
-  ai_news:
-    - name: "My Custom Source"
-      url: "https://example.com/feed.xml"
-      priority: high
-      enabled: true
+---
+title: "OpenAI launches GPT-5"
+date: "2026-05-18"
+status: "draft"       ← change to "published" to track what's gone live
+primary_source_url: https://...
+source_count: 6
+matched_companies:
+  - OpenAI
+  - Anthropic
+matched_categories:
+  - New AI Feature or Product Launch
+---
+
+Post body here...
 ```
+
+---
+
+## What gets written about
+
+The generator is tuned to cover:
+
+- **New AI product launches and features** — ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney, etc.
+- **AI startup funding rounds** — seed, Series A/B/C, acquisitions, IPOs
+- **Big tech AI moves** — Microsoft, Google, Apple, Amazon, Nvidia, Adobe
+- **AI for marketing and brands** — how brands are using AI in creative, strategy, and content
+- **Human-in-the-loop experiments** — practical AI workflows you're testing
+- **AI research breakthroughs** — models, benchmarks, capability milestones
+
+Topics are configurable in `config/topics.yaml`.
+
+---
+
+## Project structure
+
+```
+linkedin_post_generator/
+├── config/
+│   ├── topics.yaml          ← what news to track (edit freely)
+│   ├── sources.yaml         ← RSS feeds (add/remove/toggle)
+│   └── brand_kit.yaml       ← your voice, tone, post structure
+├── src/
+│   ├── news_gatherer.py     ← fetches + scores RSS articles
+│   ├── trending_tracker.py  ← Google Trends keywords (pytrends)
+│   ├── post_generator.py    ← Claude API post generation
+│   └── notion_publisher.py  ← Notion API publishing
+├── posts/                   ← generated drafts saved here
+├── main.py                  ← CLI runner
+├── requirements.txt
+└── .env.example
+```
+
+---
+
+## Claude Code agent pipeline (alternative)
+
+If you run this project inside Claude Code, you can also use the built-in agent pipeline:
+
+```
+Run the LinkedIn Post Generator pipeline.
+```
+
+Claude Code reads `orchestrator.md` and delegates to subagents in `.claude/agents/`:
+- `news-gatherer` → fetches RSS via WebFetch
+- `trending-tracker` → searches trends via WebSearch
+- `post-generator` → writes and saves drafts
+- `notion-publisher` → pushes to Notion via MCP
+
+Both approaches (Python script and Claude Code agents) read the same config files and save posts to the same `posts/` folder.

@@ -146,6 +146,55 @@ rss_feeds:
       priority: low
       enabled: true
 
+# ── Google News RSS ────────────────────────────────────────
+# No API key needed. Broad coverage, very reliable.
+# These complement the direct publisher feeds above.
+google_news:
+  - name: "Google News: AI"
+    url: "https://news.google.com/rss/search?q=artificial+intelligence&hl=en-US&gl=US&ceid=US:en"
+    priority: high
+    enabled: true
+
+  - name: "Google News: ChatGPT"
+    url: "https://news.google.com/rss/search?q=ChatGPT&hl=en-US&gl=US&ceid=US:en"
+    priority: high
+    enabled: true
+
+  - name: "Google News: Claude AI"
+    url: "https://news.google.com/rss/search?q=Claude+AI+Anthropic&hl=en-US&gl=US&ceid=US:en"
+    priority: high
+    enabled: true
+
+  - name: "Google News: Gemini AI"
+    url: "https://news.google.com/rss/search?q=Gemini+AI+Google&hl=en-US&gl=US&ceid=US:en"
+    priority: high
+    enabled: true
+
+  - name: "Google News: AI startup funding"
+    url: "https://news.google.com/rss/search?q=AI+startup+funding+raises&hl=en-US&gl=US&ceid=US:en"
+    priority: medium
+    enabled: true
+
+  - name: "Google News: Generative AI"
+    url: "https://news.google.com/rss/search?q=generative+AI&hl=en-US&gl=US&ceid=US:en"
+    priority: medium
+    enabled: true
+
+  - name: "Google News: OpenAI"
+    url: "https://news.google.com/rss/search?q=OpenAI&hl=en-US&gl=US&ceid=US:en"
+    priority: medium
+    enabled: true
+
+  - name: "Google News: ElevenLabs Midjourney"
+    url: "https://news.google.com/rss/search?q=ElevenLabs+OR+Midjourney+AI&hl=en-US&gl=US&ceid=US:en"
+    priority: medium
+    enabled: true
+
+  - name: "Google News: AI marketing brands"
+    url: "https://news.google.com/rss/search?q=AI+marketing+brands&hl=en-US&gl=US&ceid=US:en"
+    priority: low
+    enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:
