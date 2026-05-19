@@ -1,0 +1,12 @@
+# Core — these are pre-installed in Claude Code managed environments
+# and installable via `pip install -r requirements.txt` locally.
+pyyaml>=6.0.1
+requests>=2.31.0
+python-dateutil>=2.9.0
+xmltodict>=0.13.0
+
+# Optional — install locally for Google Trends keyword tracking
+# pytrends>=4.9.2
+
+# Optional — install locally if not using Claude Code CLI
+# anthropic>=0.40.0
