@@ -12,12 +12,14 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
+[memory load]    → seen_urls
+[news-gatherer]  → articles JSON (seen URLs filtered out)
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
 [post-generator] → saved .md draft
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
+[memory save]    → seen_urls updated
 ```
 
 ---
@@ -33,12 +35,20 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Seen Articles (Memory)
+
+Read `data/seen_articles.json`. Extract the `seen_urls` list (default to `[]` if the file is missing or malformed).
+
+Print: `✓ Memory: {N} previously seen article URL(s) loaded.`
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
 Task for the subagent:
-> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
+> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array. Skip any article whose URL appears in this list of already-seen URLs: {seen_urls as JSON array}"
 
 Receive the JSON array of articles. If the array is empty, print:
 > "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
@@ -125,6 +135,21 @@ Input:
 Count successes and print: `✓ {success_count}/{total} post(s) added to Notion.`
 
 If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAGE_ID in .env to enable.`
+
+---
+
+## Step 5.5 — Save Seen Articles (Memory Update)
+
+Collect every article URL from every cluster used to generate posts this run.
+
+Read `data/seen_articles.json`. Merge the new URLs into the existing `seen_urls` list (deduplicate). If the list exceeds **1000 entries**, keep only the 1000 most-recently added.
+
+Write the updated object back to `data/seen_articles.json`:
+```json
+{"seen_urls": ["https://...", ...]}
+```
+
+Print: `✓ Memory updated: {total} URL(s) stored.`
 
 ---
 

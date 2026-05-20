@@ -25,6 +25,8 @@ Read `config/topics.yaml`:
   - `min_relevance_score` (default 2) — minimum score to keep
   - `max_articles_per_run` (default 25) — maximum articles to return
 
+**Seen URLs (deduplication memory):** The task may include a JSON array of already-seen article URLs. Extract this list — call it `seen_urls`. If none are provided, `seen_urls = []`.
+
 ---
 
 ## Step 2 — Fetch RSS Feeds
@@ -67,8 +69,9 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 ## Step 5 — Deduplicate
 
 Remove articles that duplicate ones already processed:
-- Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
-- If the URL (exact match) was seen → skip
+- If the URL (exact match) appears in `seen_urls` from the task → skip (already used in a previous run)
+- Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen within this run → skip
+- If the URL (exact match) was seen within this run → skip
 
 ---
 
