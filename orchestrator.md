@@ -12,22 +12,26 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[news-gatherer]     → scored articles JSON
+[trending-tracker]  → trending keyword phrases JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]    → reads brand_kit + post_templates + my_experiments
+                    → saves .md draft to posts/
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]  → published to Notion
 ```
 
 ---
 
 ## Parameters
 
-Before starting, determine:
+Before starting, determine from the user's request:
+
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
-- `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `TEMPLATE` — a specific template id to force (default: **"auto"**)
+  - Valid values: `"auto"`, `"feature_launch"`, `"youtube_reaction"`, `"funding_news"`, `"bigtech_move"`, `"personal_experiment"`, `"weekly_roundup"`
+- `DRY_RUN` — if true, run steps 1–2 only, print article list, and stop (default: **false**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -88,13 +92,19 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "template_id": "<TEMPLATE value — either a specific id or 'auto'>"
 }
 ```
 
+The post-generator will automatically:
+- Read `config/brand_kit.yaml` for voice and style
+- Read `config/post_templates.yaml` to select or use the specified template
+- Read `config/my_experiments.yaml` to weave in personal voice and hot takes
+
 Print progress per post:
 ```
-Post {i+1} — anchor: {cluster[0].title[:65]}
+Post {i+1} — template: {template_used}  |  anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -133,15 +143,15 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 Print a summary table:
 
 ```
-╔══════════════════════════════════════════════════════╗
-║  LinkedIn Post Generator — Run Complete              ║
-╠══════════════════════════════════════════════════════╣
-║  Posts generated : {N}                               ║
-║  Saved to        : posts/                            ║
-╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
-║  ...                                                 ║
-╚══════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════╗
+║  LinkedIn Post Generator — Run Complete                      ║
+╠══════════════════════════════════════════════════════════════╣
+║  Posts generated : {N}                                       ║
+║  Saved to        : posts/                                    ║
+╠══════════════════════════════════════════════════════════════╣
+║  {filename}  ·  template: {template_used}  ·  {N} sources   ║
+║  ...                                                         ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 Then print each post's content in full so the author can review immediately.

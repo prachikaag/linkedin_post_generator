@@ -1,0 +1,228 @@
+# ============================================================
+# MY AI EXPERIMENTS & HOT TAKES
+# ============================================================
+# This is your personal voice file — the "human in the loop" layer.
+#
+# The post-generator reads this on every run and weaves your
+# real experiments, opinions, and observations into posts.
+# The more specific and recent your entries, the more
+# authentically these posts will sound like YOU.
+#
+# Update this regularly. It takes 5 minutes and it's the
+# single biggest thing that separates your posts from
+# AI-generated noise.
+#
+# HOW IT WORKS:
+# - recent_experiments → woven into personal_experiment posts
+#   and as first-person context in other post types
+# - hot_takes → injected into YOUR TAKE sections when relevant
+# - tools_in_my_workflow → provides credibility when writing
+#   about specific tools
+# - company_takes → your honest public opinions on AI players
+# - watching → shapes which angles the post leans into
+# ============================================================
+
+
+# ── Tools I Use in My Daily Work ─────────────────────────
+# These establish your credibility when writing about these tools.
+# Be honest — say what you actually use them for.
+
+tools_in_my_workflow:
+
+  - tool: "Claude"
+    use_case: "Writing briefs, synthesising research, editing copy"
+    honest_observation: >
+      Best at following a detailed brief precisely. When I give it full context
+      upfront, the first draft is 80% there. Rewrites are minimal.
+
+  - tool: "ChatGPT"
+    use_case: "Brainstorming, lateral thinking, image generation"
+    honest_observation: >
+      Still my first stop for generating surprising angles or breaking out of
+      a creative rut. The image generation with DALL-E is fast for rough
+      concepts.
+
+  - tool: "Perplexity"
+    use_case: "Real-time research, fact-checking, source finding"
+    honest_observation: >
+      Replaced about half my Google searches. The cited sources feature is the
+      actual product — I use it to find original sources, not for the summary.
+
+  - tool: "Midjourney"
+    use_case: "Brand visual concepts, mood boards, creative direction"
+    honest_observation: >
+      The gap between what I can brief and what it delivers has meaningfully
+      narrowed. I use it for early-stage concepting, not final assets.
+
+  # ADD YOUR OWN:
+  # - tool: "ElevenLabs"
+  #   use_case: "What you use it for"
+  #   honest_observation: "What you've actually learned from using it"
+
+
+# ── Recent Experiments ────────────────────────────────────
+# Your real AI tests — what you tried, what happened, what you learned.
+# Add entries at the top so they're newest-first.
+# The post-generator uses entries with date_approx within the last 60 days
+# as fresh personal material.
+
+recent_experiments:
+
+  # ── TEMPLATE — copy and fill in ──
+  # - experiment: "What you tried to do with AI"
+  #   tools_used: ["Tool 1", "Tool 2"]
+  #   method: "Briefly: how did you do it?"
+  #   result: "What actually happened — be specific"
+  #   surprise: "What surprised you, good or bad"
+  #   insight: "What this means more broadly for brands or marketers"
+  #   would_recommend: true  # or false
+  #   date_approx: "May 2026"
+  #   relevant_for_templates: ["personal_experiment"]
+
+  - experiment: "ADD YOUR FIRST REAL EXPERIMENT HERE"
+    tools_used: ["Claude"]
+    method: "Describe what you did step by step"
+    result: "What happened — include the messy parts"
+    surprise: "What surprised you"
+    insight: "What this means for anyone else trying it"
+    would_recommend: true
+    date_approx: "May 2026"
+    relevant_for_templates: ["personal_experiment"]
+
+  # ── EXAMPLE (replace with your own): ──
+  # - experiment: "Used AI to rewrite our company's LinkedIn bio in 5 different brand voices"
+  #   tools_used: ["Claude", "ChatGPT"]
+  #   method: "Fed both models the same original bio and the same brief: 5 tones from authoritative to conversational"
+  #   result: "Claude's versions followed the brief more precisely. ChatGPT's were more surprising and divergent."
+  #   surprise: "The 'conversational' versions from both tools were actually the hardest to get right — they kept sliding into casual clichés"
+  #   insight: "AI is better at tone variation than tone consistency. You need a human editor to hold the brand voice steady."
+  #   would_recommend: true
+  #   date_approx: "May 2026"
+  #   relevant_for_templates: ["personal_experiment", "feature_launch"]
+
+
+# ── Hot Takes ─────────────────────────────────────────────
+# Your strong opinions on AI — including contrarian takes.
+# These get woven into YOUR TAKE sections when the topic is relevant.
+# Only add takes you'd genuinely say in public.
+
+hot_takes:
+
+  - take: "Most brands are using AI for cost-cutting first, creativity second — and that's backwards."
+    nuance: >
+      AI removes the cost floor on creative experimentation. The brands that figure
+      this out first will win on distinctiveness, not efficiency. The efficiency
+      gains are real, but they're the floor, not the ceiling.
+    relevant_topics: ["AI for Marketing", "brand strategy", "creative AI"]
+    confidence: "high"
+
+  - take: "The AI tool war is functionally over for most business use cases. The work now is building workflows."
+    nuance: >
+      Stop evaluating which LLM is technically superior. The practical gap between
+      the top 3–4 models for everyday tasks is smaller than the gap between teams
+      who've built good AI workflows and teams who haven't. Workflow is the moat.
+    relevant_topics: ["AI productivity", "AI tools", "workflows", "enterprise AI"]
+    confidence: "high"
+
+  - take: "The 'AI will take your job' narrative misses the more interesting story: AI is creating new jobs we don't have names for yet."
+    nuance: >
+      I'm doing things in my work right now that didn't exist as a job category
+      two years ago. Prompt engineering, AI quality review, human-in-the-loop
+      editing. The new jobs are adjacent to the old ones — but they require
+      different skills.
+    relevant_topics: ["future of work", "AI jobs", "human-in-the-loop"]
+    confidence: "medium"
+
+  - take: "Voice AI is the most underrated opportunity for brand marketers right now."
+    nuance: >
+      ElevenLabs and tools like it let brands own a consistent audio identity at
+      a fraction of the old production cost. Most brand teams aren't even thinking
+      about this yet. The brands that establish a distinctive AI voice now will
+      have a real asset in 18 months.
+    relevant_topics: ["voice AI", "ElevenLabs", "brand identity", "audio branding"]
+    confidence: "high"
+
+  # ADD YOUR OWN:
+  # - take: "Your strong opinion on an AI topic"
+  #   nuance: "The specific reasoning or evidence that makes this take credible"
+  #   relevant_topics: ["topic area 1", "topic area 2"]
+  #   confidence: "high"  # high / medium / speculative
+
+
+# ── What I'm Watching Right Now ───────────────────────────
+# These shape which angles the post-generator leans into.
+# Update monthly with what genuinely has your attention.
+
+watching:
+  - "How AI agents change the briefing process in creative agencies"
+  - "Whether Perplexity can take meaningful search share from Google"
+  - "The agentic AI wave — tools that take action, not just generate content"
+  - "ElevenLabs' push into enterprise voice — the brand voice opportunity for marketing"
+  - "How smaller brands are using AI to close the production gap with big budgets"
+  - "The real adoption curve: where are brands actually 12 months into using AI?"
+  - "AI in the creative brief — not just execution but strategy"
+
+  # ADD YOUR OWN:
+  # - "Something specific you're keeping an eye on"
+
+
+# ── My Honest Takes on the Major AI Players ───────────────
+# Your public opinions on the companies you write about most.
+# These add personality and credibility — readers know where you stand.
+# Only share opinions you'd say on a panel or in a podcast.
+
+company_takes:
+
+  - company: "OpenAI"
+    public_take: >
+      Still the benchmark setter in terms of capability and public attention.
+      But the quality gap with the best competitors has narrowed faster than
+      most people expected. The interesting question isn't whether they're the
+      best — it's whether being the best model is the durable moat they need.
+    tone: "respectful, analytical"
+
+  - company: "Anthropic"
+    public_take: >
+      Underrated for actual business use. Claude's ability to follow a precise
+      brief is genuinely better for structured work than the alternatives.
+      The brand positioning around safety is working — enterprises trust it.
+      The small business launch is the move to watch.
+    tone: "positive, specific"
+
+  - company: "Perplexity"
+    public_take: >
+      The AI product that has most changed my daily habits. The rest of the
+      industry should watch what they're building carefully — the cited sources
+      feature is a real product insight that most AI search hasn't matched.
+      The question is whether they can hold their position as Google and
+      OpenAI close in.
+    tone: "enthusiastic, watchful"
+
+  - company: "ElevenLabs"
+    public_take: >
+      The most interesting company in AI for brand marketers right now, and
+      the one getting the least mainstream marketing press. Voice is an
+      undervalued brand asset and ElevenLabs is building the infrastructure
+      for it. Worth paying attention to.
+    tone: "enthusiastic, specific"
+
+  - company: "Midjourney"
+    public_take: >
+      The quality improvements from v5 to v7 represent the single biggest
+      leap I've seen in any generative AI tool. The gap between brief and
+      output has shrunk enough that it's genuinely useful in early creative
+      direction — not just for making pretty pictures.
+    tone: "positive, practical"
+
+  - company: "Google DeepMind"
+    public_take: >
+      Has the most to lose and the most to gain. The distribution advantage
+      is enormous — when Gemini is embedded in Search, Docs, and Gmail,
+      adoption becomes default. The question is whether the model quality
+      can match the distribution. Getting closer.
+    tone: "analytical, balanced"
+
+  # ADD YOUR OWN:
+  # - company: "Company Name"
+  #   public_take: "Your honest, specific, public take — something you'd say in an interview"
+  #   tone: "how you'd describe the tone of this take"

@@ -1,0 +1,333 @@
+# ============================================================
+# POST TEMPLATES
+# Each template defines a distinct angle and structure for a
+# specific type of AI news story. The post-generator reads
+# this file and picks the best template for each article cluster.
+#
+# Edit freely — add new templates, adjust example openings,
+# tweak structure notes to match how you like to write.
+# ============================================================
+
+templates:
+
+  # ── Template 1: New AI Feature or Model Launch ──────────
+  - id: "feature_launch"
+    name: "New AI Feature or Model Launch"
+    description: >
+      Use when an AI company releases a new model, product, or major feature update.
+      Covers: GPT-5, Claude 4, Gemini updates, Midjourney v7, ElevenLabs new voice
+      features, Perplexity upgrades, Runway new video models, etc.
+
+    triggers:
+      keywords:
+        - "launch"
+        - "release"
+        - "unveils"
+        - "introduces"
+        - "announces"
+        - "debuts"
+        - "rolls out"
+        - "now available"
+        - "new model"
+        - "new feature"
+        - "version"
+        - "update"
+      companies:
+        - "OpenAI"
+        - "Anthropic"
+        - "Google"
+        - "Perplexity"
+        - "ElevenLabs"
+        - "Midjourney"
+        - "Runway"
+        - "Meta"
+        - "Mistral"
+        - "xAI"
+
+    hook_style: >
+      Lead with the capability shift — what can people DO now that they couldn't
+      before? Frame it around the task or job that changes, not the product name.
+      Save the company name for the second sentence.
+
+    angle: >
+      Don't just report the launch. Your take is: what does this new capability
+      unlock for brands, marketers, or creative teams specifically? Compare to
+      what was possible 6–12 months ago — the delta is the story, not the feature.
+      If you've had a chance to test it, lead with your personal observation.
+
+    example_openings:
+      - "Something changed quietly this week in how [task] gets done."
+      - "[Company] just put a new capability in the hands of anyone with a browser."
+      - "The gap between what AI could do and what it can do just narrowed — again."
+      - "I've been testing [tool] since it launched. Here's what actually surprised me."
+      - "A new [model type] dropped. Most coverage missed the part that matters for brands."
+      - "Three months ago this wasn't possible. Now it's a free feature in [tool]."
+
+    structure_notes:
+      - "HOOK: The capability change or your personal test result — not 'X just launched Y'"
+      - "CONTEXT: Why does this capability category matter broadly? What work does it touch?"
+      - "EVIDENCE: Compare before vs. after — the delta is the story. Cite multiple sources."
+      - "YOUR TAKE: What specific workflow or job does this meaningfully change? Be concrete."
+      - "SO WHAT: One immediate thing a brand or marketing team should test this week."
+      - "CTA: Ask what the reader is already using this for, or what they'd try first."
+
+
+  # ── Template 2: YouTube Video or Demo Reaction ──────────
+  - id: "youtube_reaction"
+    name: "AI Company Ships a YouTube Video or Demo"
+    description: >
+      Use when an AI company releases a significant demo video, product announcement
+      video, or documentary on YouTube. Covers: OpenAI demo videos, Anthropic
+      deep-dives, Google DeepMind showcases, Midjourney visual drops, etc.
+
+    triggers:
+      keywords:
+        - "youtube"
+        - "video"
+        - "demo video"
+        - "watch"
+        - "just released a video"
+        - "demo"
+        - "showcase"
+        - "announces via video"
+        - "released footage"
+      companies:
+        - "OpenAI"
+        - "Anthropic"
+        - "Google DeepMind"
+        - "Midjourney"
+        - "ElevenLabs"
+        - "Runway"
+
+    hook_style: >
+      Describe a specific moment in the video — the frame, the demo result, the
+      thing the presenter said — that stopped you. Lead with the moment, not the
+      company. Make the reader feel like they need to watch it.
+
+    angle: >
+      React to the demo through the lens of someone who works in brands and
+      marketing. What does the capability shown mean for creative teams? Be
+      direct about what impressed you and what you're still waiting to see.
+      Your take is more useful than a summary.
+
+    example_openings:
+      - "I watched [company]'s new video twice. Here's the moment that got me."
+      - "That demo video from [company] is worth 3 minutes of your time."
+      - "Not every AI demo video lands. This one does."
+      - "The thing [company] showed this week is genuinely hard to unsee."
+      - "[Company] released a video that quietly raised the bar for what I expect from AI."
+
+    structure_notes:
+      - "HOOK: The specific moment or capability shown — not 'X released a video'"
+      - "CONTEXT: What category of capability is this? Why does it matter right now?"
+      - "EVIDENCE: Describe 2–3 concrete moments from the demo — what exactly was shown?"
+      - "YOUR TAKE: What does this mean for creative or marketing teams specifically?"
+      - "SO WHAT: If a brand could use this capability today, what would change?"
+      - "CTA: Ask if the reader has watched it and what they thought."
+
+
+  # ── Template 3: AI Startup Funding or Acquisition ───────
+  - id: "funding_news"
+    name: "AI Startup Funding or Acquisition"
+    description: >
+      Use for funding rounds, acquisitions, valuations, and IPOs in the AI space.
+      Best when you can cluster 2–4 funding stories together to reveal a pattern.
+
+    triggers:
+      keywords:
+        - "raises"
+        - "funding"
+        - "Series A"
+        - "Series B"
+        - "Series C"
+        - "seed round"
+        - "valuation"
+        - "acquired"
+        - "acquisition"
+        - "investment"
+        - "IPO"
+        - "unicorn"
+        - "billion"
+        - "million"
+        - "venture"
+        - "backed"
+
+    hook_style: >
+      Lead with what the investment signals about where the market is going —
+      not just the dollar amount. Money follows belief: what thesis is
+      being funded? What does this say about the next 12–18 months?
+
+    angle: >
+      Connect the funding to a broader trend. Group multiple deals if you can.
+      The pattern across deals is more interesting than any single round.
+      What category or capability is the smart money betting on?
+
+    example_openings:
+      - "When serious investors write large cheques into one category, they're making a directional bet."
+      - "[Company] just raised [amount]. The number is interesting. The timing is more interesting."
+      - "There's a pattern in who's getting funded right now — and it tells you where AI is actually going."
+      - "A wave of AI companies got funded this week. Here's what the smart money is backing."
+      - "The AI funding news this week points at something the mainstream conversation hasn't caught up to yet."
+
+    structure_notes:
+      - "CONTEXT: Group 2–4 funding stories when possible — the cluster is the real story"
+      - "EVIDENCE: Name the categories being funded — what vertical or capability do they represent?"
+      - "YOUR TAKE: What does the funding pattern tell you about AI direction in 12–18 months?"
+      - "SO WHAT: What should a brand or marketing team do to prepare for these capabilities coming?"
+      - "CTA: Ask what space the reader thinks is most underfunded or overfunded right now."
+
+
+  # ── Template 4: Big Tech AI Move ────────────────────────
+  - id: "bigtech_move"
+    name: "Big Tech AI Announcement"
+    description: >
+      Use for major AI moves from Microsoft, Google, Apple, Amazon, Meta, Adobe,
+      Salesforce, Nvidia. These matter because they affect mainstream adoption —
+      when big tech ships AI, it reaches everyone.
+
+    triggers:
+      keywords:
+        - "Microsoft"
+        - "Google"
+        - "Apple Intelligence"
+        - "Amazon"
+        - "Adobe Firefly"
+        - "Salesforce Agentforce"
+        - "Nvidia"
+        - "Copilot"
+        - "Azure AI"
+        - "AWS Bedrock"
+      categories:
+        - "enterprise AI"
+        - "platform integration"
+        - "AI partnership"
+        - "mainstream adoption"
+
+    hook_style: >
+      Lead with what changes for the average business or person — not the tech
+      specs. Big tech AI moves matter because they reach everyone, not just
+      early adopters. The story is always about access and adoption, not
+      capability.
+
+    angle: >
+      When Microsoft, Google, or Apple embed AI, that's the inflection point
+      where AI becomes the default — not the experiment. Your take is: is
+      this genuine mainstream adoption, or still a feature for power users?
+      Make a call. Back it up.
+
+    example_openings:
+      - "When AI ships inside tools a billion people already use, the adoption question disappears."
+      - "[Company]'s latest AI move isn't about the tech. It's about who gets access."
+      - "Mainstream AI adoption doesn't need a new app. It needs [company] to turn on a feature."
+      - "The conversation about AI adoption changed this week — inside a tool almost everyone uses."
+      - "Most AI coverage focuses on the frontier. This move is about the floor — and the floor just moved."
+
+    structure_notes:
+      - "CONTEXT: What tool or platform is this shipping in? How many people does it reach?"
+      - "EVIDENCE: Compare to the previous state — what was the workflow before this move?"
+      - "YOUR TAKE: Is this genuine mainstream adoption? Make a clear call."
+      - "SO WHAT: For a marketing team or brand leader — one specific thing to do or watch."
+      - "CTA: Ask how the reader is seeing AI show up in the tools they already use."
+
+
+  # ── Template 5: Human-in-the-Loop Personal Experiment ───
+  - id: "personal_experiment"
+    name: "Human-in-the-Loop: I Tested This"
+    description: >
+      Use when you have personal experience testing an AI tool and want to share
+      honest results. These are the 'I tried X' posts that build the most trust.
+      Requires content from config/my_experiments.yaml — this template works best
+      when you've added a real experiment to that file.
+
+    triggers:
+      keywords: []
+      # This template is manually selected or triggered when
+      # my_experiments.yaml contains fresh experiments (< 30 days old)
+
+    hook_style: >
+      Open with a specific observation from your own testing — something that
+      surprised you, confused you, or made you rethink how you were doing something.
+      Be direct about what you actually did, not just what the tool claims.
+      The reader wants your real result, not a review.
+
+    angle: >
+      First-person, honest, specific. You are the test subject. Your credibility
+      comes from sharing the messy middle — what the AI got wrong before it got
+      it right, what prompt finally worked, what surprised you. Then connect
+      your result to what it means for brands or marketing teams broadly.
+
+    example_openings:
+      - "I spent [time] doing [task] with AI instead of [old way]. Here's what I found."
+      - "Something I thought AI was bad at — it's not bad at it anymore."
+      - "I tried [tool] for [specific use case]. This isn't a review. It's a field report."
+      - "Most [AI tool] write-ups show you the best case. Here's what the average case looks like."
+      - "I've changed how I [do specific task]. Here's exactly what changed and why."
+      - "Honest question I asked myself this week: am I using AI, or is AI using me?"
+
+    structure_notes:
+      - "HOOK: Your specific surprise or observation — not 'I tested X and here are my thoughts'"
+      - "CONTEXT: What were you trying to do? What was the old way of doing it?"
+      - "EVIDENCE: What specifically happened? Describe the AI's output or your process concretely."
+      - "YOUR TAKE: What does your result mean more broadly? Is this a signal or a fluke?"
+      - "SO WHAT: One clear recommendation for someone who wants to try this themselves."
+      - "Note: Pull directly from my_experiments.yaml recent_experiments entries for content."
+
+
+  # ── Template 6: Weekly AI Trend Roundup ─────────────────
+  - id: "weekly_roundup"
+    name: "Weekly AI Roundup: The Pattern This Week"
+    description: >
+      Use when you have 4–6 mid-tier stories that together tell a bigger story.
+      Best for weeks without a single dominant news item. The roundup is
+      valuable because you connect dots the reader hasn't connected yet.
+
+    triggers:
+      keywords: []
+      # This template is manually selected when no single story dominates,
+      # or when multiple stories share a common theme
+
+    hook_style: >
+      Lead with the pattern you see across the week's news — not the biggest
+      single story. The roundup earns its place when you show the reader
+      something they wouldn't have noticed by reading the stories individually.
+
+    angle: >
+      Synthesis over summary. Take 4–6 stories and show why they all point in
+      the same direction. You are the editor making the connections visible.
+      Name the thesis in the first two lines. Everything after is evidence.
+
+    example_openings:
+      - "Five things happened in AI this week. They look unrelated. They're not."
+      - "The AI news this week was easy to miss one story at a time. Together, it tells a story."
+      - "I read a lot of AI coverage this week. One pattern kept coming up."
+      - "Catching up on AI this week? Here's what I think actually matters."
+      - "What happened in AI this week wasn't one big move. It was a dozen small ones pointing the same way."
+
+    structure_notes:
+      - "HOOK: State the theme or pattern — what connects all these stories?"
+      - "CONTEXT: What kind of week was it — launches, funding, research, policy, adoption?"
+      - "EVIDENCE: 3–4 specific stories as short bullets — name the company and the move"
+      - "YOUR TAKE: State the thesis clearly — what does this week tell us about AI direction?"
+      - "SO WHAT: One forward-looking takeaway — what to watch in the next 7–14 days."
+      - "CTA: Ask which story the reader found most significant this week."
+
+
+# ── Template Selection Rules ──────────────────────────────
+# Used by the post-generator to automatically select the best template.
+# Can be overridden by passing 'template_id' in the orchestrator task.
+
+selection_rules:
+
+  # If no template is manually specified, auto-select using this priority:
+  priority_order:
+    - "personal_experiment"   # Highest priority when my_experiments.yaml has fresh content
+    - "youtube_reaction"      # Strong signal: video/demo keywords in article content
+    - "funding_news"          # Strong signal: funding keywords in top articles
+    - "bigtech_move"          # Strong signal: big tech company names dominate cluster
+    - "feature_launch"        # Default for most AI news
+    - "weekly_roundup"        # Only when no single story or theme dominates
+
+  default_template: "feature_launch"
+
+  # If articles span multiple templates, pick the one with the most keyword matches
+  # in the top-scoring article (articles[0])
