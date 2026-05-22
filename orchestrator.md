@@ -95,6 +95,7 @@ Input:
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
+  Angle:   {result.post_angle}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -139,7 +140,7 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {source_count} sources  ·  {angle}   ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```

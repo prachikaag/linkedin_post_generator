@@ -1,0 +1,254 @@
+# ============================================================
+# POST ANGLES & CONTENT TYPES
+# Edit this file to add, remove, or rewrite the angles
+# the post-generator uses when framing a LinkedIn post.
+#
+# Each angle has:
+#   - name: short label used in YAML frontmatter
+#   - trigger_keywords: if these appear in the articles, this angle fits
+#   - hook_templates: opening line ideas (pick one, adapt it)
+#   - narrative_frame: the lens to apply when writing
+#   - cta_ideas: closing question prompts
+# ============================================================
+
+post_angles:
+
+  # ── New AI Feature or Product Launch ──────────────────────
+  - name: "Feature Launch"
+    description: >
+      A major AI tool or platform has launched something new —
+      a model update, a new capability, a product release.
+      React with your honest take on what it means for brands.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "announces"
+      - "ships"
+      - "available now"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+    hook_templates:
+      - "{Company} just {launched/released} something worth paying attention to."
+      - "Another week, another AI capability that didn't exist six months ago."
+      - "Something just changed in how {use case} works — and most brands haven't noticed yet."
+      - "The {feature} that {Company} just released isn't the headline. The implication is."
+    narrative_frame: >
+      Don't just describe the feature. Ask: what can a brand DO with this that it
+      couldn't do before? What workflow changes? What creative door opens?
+      Be specific. Name the use case.
+    cta_ideas:
+      - "Have you tried {feature}? What was your first real use case?"
+      - "What's the first thing you'd use this for in your work?"
+      - "What's one thing your team could do with this that you couldn't before?"
+
+  # ── AI Startup Funding Round ───────────────────────────────
+  - name: "Startup Funding"
+    description: >
+      An AI company has raised a significant funding round, been acquired,
+      gone public, or hit a valuation milestone. Explain what the money
+      signals about where the market is heading.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture capital"
+      - "IPO"
+      - "unicorn"
+      - "billion"
+      - "million"
+    hook_templates:
+      - "Investors just put {$X} into {Company}. Here's what that bet actually means."
+      - "Another AI company just raised {$X}. The number is interesting. The category is more interesting."
+      - "When smart money moves this fast, it's worth asking why."
+      - "{Company} just became a unicorn. The problem they're solving tells you where AI is heading."
+    narrative_frame: >
+      The funding amount is a hook, not the story. The story is: what problem is
+      this company solving? Why now? What does investor confidence in this space
+      mean for brands and marketing teams? Connect the dots.
+    cta_ideas:
+      - "Which AI category do you think is most under-invested right now?"
+      - "What would you do with access to tools this company is building?"
+      - "Is this a space you're watching? What's your read on it?"
+
+  # ── Human-in-the-Loop Experiment ──────────────────────────
+  - name: "Experiment"
+    description: >
+      You personally tested an AI tool, workflow, or approach and have
+      real results to share — good, bad, or somewhere in between.
+      These are your most authentic posts. Write from direct experience.
+    trigger_keywords:
+      - "tested"
+      - "tried"
+      - "experiment"
+      - "workflow"
+      - "using AI for"
+      - "AI assistant"
+      - "prompt"
+      - "results"
+      - "output"
+      - "accuracy"
+    hook_templates:
+      - "I spent {X hours/days} testing {tool} for {use case}. Here's what actually happened."
+      - "{Task} used to take me {X time}. I ran it through {tool}. The result surprised me."
+      - "Honest take: I expected {tool} to {expectation}. It didn't. But it did something else."
+      - "I've now run {use case} through three different AI tools. Here's the comparison."
+    narrative_frame: >
+      Be the journalist of your own experiment. What did you test? What were you
+      hoping to achieve? What surprised you? What still needs a human in the loop?
+      Don't just share the win — share the friction. That's what's useful.
+    cta_ideas:
+      - "Have you tried this workflow? What was your experience?"
+      - "What AI tool are you experimenting with this month?"
+      - "Where do you still find AI falls short in your work?"
+
+  # ── Big Tech AI News ───────────────────────────────────────
+  - name: "Big Tech Move"
+    description: >
+      A major technology company (Microsoft, Google, Apple, Amazon, Meta,
+      Nvidia, Salesforce, Adobe) has made a significant AI move.
+      Cut through the noise and explain the brand/marketing angle.
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple Intelligence"
+      - "Amazon"
+      - "Meta AI"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe Firefly"
+      - "Copilot"
+      - "Gemini"
+      - "Siri"
+    hook_templates:
+      - "Big tech just moved — and this one has real implications for brands."
+      - "{Company}'s latest AI move isn't about {obvious thing}. It's about {real implication}."
+      - "When a company with {X million/billion} users changes how their AI works, pay attention."
+      - "The {Company} announcement most people skimmed actually matters."
+    narrative_frame: >
+      Big tech AI news is often framed as competitive horse-racing. Your job is
+      to cut through that and ask: what does this change for a brand team, a
+      marketing department, a creative studio? Be specific about the use case
+      or workflow that shifts.
+    cta_ideas:
+      - "Is your team already using {company}'s AI tools? What's your honest verdict?"
+      - "What's the big tech AI feature you're actually finding useful right now?"
+      - "Which of the big platforms do you think is building the most useful AI for brand work?"
+
+  # ── AI for Brands and Marketing ───────────────────────────
+  - name: "Brands Using AI"
+    description: >
+      A brand, agency, or marketing team is doing something interesting with AI —
+      a campaign, a workflow change, a creative experiment. Show what good
+      looks like and draw the lesson for other teams.
+    trigger_keywords:
+      - "brand"
+      - "marketing"
+      - "campaign"
+      - "creative AI"
+      - "AI marketing"
+      - "CMO"
+      - "advertising"
+      - "content creation"
+      - "agency"
+      - "creative team"
+    hook_templates:
+      - "A brand just did something with AI that's worth dissecting."
+      - "This is what using AI properly in brand work actually looks like."
+      - "Most AI marketing content is noise. This one isn't."
+      - "What {Brand}'s AI campaign gets right — and why most teams won't copy it."
+    narrative_frame: >
+      Don't just describe what the brand did. Extract the principle. What made
+      it work? What was the human-AI collaboration model? What can a smaller
+      team replicate without the budget? Make it actionable.
+    cta_ideas:
+      - "What's the most interesting AI-powered creative work you've seen from a brand lately?"
+      - "What's stopping your team from trying something like this?"
+      - "Is your brand experimenting with generative AI in campaigns yet?"
+
+  # ── AI Research Breakthrough ──────────────────────────────
+  - name: "Research Breakthrough"
+    description: >
+      A research paper, benchmark result, or capability milestone has
+      come out that changes what we know about AI. Translate it into
+      plain language and explain what it means for practitioners.
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+      - "model"
+      - "dataset"
+    hook_templates:
+      - "A new research result came out that's worth understanding — even if you're not technical."
+      - "Researchers just demonstrated something that changes the capability ceiling for AI."
+      - "New benchmark numbers dropped. Here's what they actually mean in plain language."
+      - "The gap between what AI could do six months ago and now just got wider."
+    narrative_frame: >
+      Your job is translation. Take the technical finding and make it land for
+      a marketing or brand professional. What does it mean they can do now?
+      What assumption does it challenge? Be the guide, not the lecturer.
+    cta_ideas:
+      - "What research finding about AI has most surprised you in the last year?"
+      - "Do you follow AI research? What's your go-to source?"
+      - "What capability do you think AI is still missing for brand work?"
+
+  # ── AI Regulation or Policy ────────────────────────────────
+  - name: "Policy and Regulation"
+    description: >
+      A government, regulator, or standards body has done something that
+      affects how AI can be used in marketing, creative work, or business.
+      Explain what it means and what brands should watch.
+    trigger_keywords:
+      - "regulation"
+      - "policy"
+      - "EU AI Act"
+      - "ban"
+      - "law"
+      - "copyright"
+      - "safety"
+      - "ethics"
+      - "governance"
+      - "compliance"
+    hook_templates:
+      - "AI regulation just moved — and most brand teams aren't ready for what it means."
+      - "A new rule just changed how AI-generated content needs to be treated."
+      - "The legal landscape for AI in marketing just shifted. Here's what to watch."
+    narrative_frame: >
+      Don't alarm. Inform. Most regulation creates friction that well-prepared
+      teams can navigate. What specifically does this change? What does a brand
+      team need to know or do differently? Be concrete.
+    cta_ideas:
+      - "Is your team thinking about AI governance and compliance yet?"
+      - "What aspect of AI regulation are you watching most closely?"
+      - "How is your organisation approaching AI ethics and disclosure?"
+
+# ── Angle Selection Logic ──────────────────────────────────
+# When the post-generator sees a cluster of articles, it should:
+# 1. Count how many trigger_keywords appear across articles
+# 2. Pick the angle with the highest keyword match count
+# 3. If two angles tie, prefer: Experiment > Feature Launch > Startup Funding > Big Tech Move
+# 4. Use the chosen angle's hook_templates, narrative_frame, and cta_ideas as guidance
+# Note: the generator can blend two angles if the articles clearly span both (e.g. a launch + funding)
+angle_selection_priority:
+  - "Experiment"
+  - "Feature Launch"
+  - "Startup Funding"
+  - "Big Tech Move"
+  - "Brands Using AI"
+  - "Research Breakthrough"
+  - "Policy and Regulation"
