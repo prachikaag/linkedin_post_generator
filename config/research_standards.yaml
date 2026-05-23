@@ -1,0 +1,36 @@
+# ============================================================
+# RESEARCH & CITATION STANDARDS
+# Edit this file to control how sources are cited in every post.
+# The post-generator enforces these rules on every run.
+# ============================================================
+
+# Minimum number of distinct sources that must be cited in every post
+min_sources: 4
+
+# Format for direct verbatim quotes — must include name, title, and company
+quote_format: '"[exact quote]" — Full Name, Job Title, Company/Publication'
+
+# Format for the numbered source list at the bottom of each post
+source_list_format: "[N]. [Short descriptive title] → [full URL]"
+
+# If a quote cannot be verified as exact, paraphrase instead (no quote marks)
+require_verified_quotes: true
+
+# ── URL Rules (zero exceptions) ────────────────────────────
+url_rules:
+  - "Only use URLs that appear verbatim in the supplied articles"
+  - "Never construct, guess, shorten, or modify a URL — not even for well-known sites"
+  - "If an article has no URL, write '[URL not provided — verify before publishing]'"
+  - "When in doubt, omit. A missing URL is better than a broken one."
+
+# ── Company Name Rules ─────────────────────────────────────
+company_name_rules:
+  - "Always use the actual company name when it appears in the source article"
+  - "Never anonymise as 'a consulting firm', 'a legal tech company', 'a major player', etc."
+  - "If the article names the company, the post names the company"
+
+# ── Freshness Rules ────────────────────────────────────────
+time_reference_rules:
+  - "Before using 'this week', 'today', or 'yesterday', verify the article's publish date against today's actual date"
+  - "If the event is more than 7 days old, say 'recently' or drop the time reference entirely"
+  - "Never present old news as current"

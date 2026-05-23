@@ -4,6 +4,18 @@ An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and
 
 ---
 
+## What It Does
+
+1. Reads your **topics of interest** file to know which companies and keywords matter
+2. Fetches **live AI news** from 20+ RSS feeds (TechCrunch, The Verge, VentureBeat, company blogs, YouTube channels, and more)
+3. Tracks **trending keyword phrases** from the past 7 days using web search
+4. Writes **branded LinkedIn posts** with cited sources, following your tone of voice exactly
+5. Optionally **publishes drafts to Notion** for review before posting
+
+Coverage includes: ChatGPT / OpenAI, Claude / Anthropic, Gemini / Google DeepMind, Perplexity, ElevenLabs, Midjourney, Runway, xAI/Grok, Meta AI, big tech AI (Microsoft, Apple, Amazon, Nvidia), AI startup funding rounds, and more.
+
+---
+
 ## Architecture
 
 The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
@@ -22,73 +34,77 @@ Each agent is a self-contained markdown file with its own role, tools, and input
 
 ## How to Run
 
-### Inside Claude Code (the only way to run this)
-
 Open this project in Claude Code and say:
 
 ```
 Run the LinkedIn Post Generator pipeline.
 ```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
+Claude reads `orchestrator.md` and executes the full pipeline automatically.
 
-### Custom parameters
-
+**Custom options:**
 ```
-Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per cluster.
-```
-
-```
-Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
+Run the LinkedIn Post Generator. Generate 3 posts.
+Run the pipeline in dry-run mode — fetch and score news only, don't generate posts.
+Run the pipeline and use 8 articles per post cluster.
 ```
 
 ---
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — five separate files, each controlling a different aspect:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | What to edit here |
+|------|------------------|
+| `config/topics.yaml` | AI companies and products to track, keyword categories, freshness settings |
+| `config/sources.yaml` | RSS feeds and APIs; enable or disable individual sources |
+| `config/brand_kit.yaml` | Your name, title, brand focus areas, content angles, hashtags, post length |
+| `config/tone_of_voice.yaml` | Writing style rules, post structure blueprint, dos and don'ts, banned words |
+| `config/research_standards.yaml` | Citation rules, minimum sources, URL integrity, quote verification |
 
-Edit these files directly — changes take effect on the next run.
+Edit any file directly — changes take effect on the next pipeline run.
+
+### Quick-start edits
+
+**1. Set your name and title** → `config/brand_kit.yaml` → `author`
+
+**2. Add a company you want to track** → `config/topics.yaml` → `companies_to_track`
+
+**3. Add a news source** → `config/sources.yaml` → `rss_feeds`
+
+**4. Change your writing tone** → `config/tone_of_voice.yaml` → `writing_style`
 
 ### Environment Variables
 
-Copy `.env.example` to `.env` and fill in:
+Copy `.env.example` to `.env`:
 
 ```bash
-# Required for Notion publishing (optional feature)
-NOTION_PAGE_ID=your_32char_page_id_here
+cp .env.example .env
+```
 
-# Optional: direct Notion REST API fallback
-NOTION_API_KEY=secret_xxx
+Fill in optional values:
 
-# Optional: NewsAPI for additional sources
-NEWSAPI_KEY=your_key_here
+```
+NOTION_API_KEY=secret_xxx        # for Notion publishing
+NOTION_PAGE_ID=your32charpageid  # your LinkedIn drafts Notion page
+NEWSAPI_KEY=your_key_here        # optional broader news coverage
 ```
 
 ---
 
 ## Output
 
-Generated posts are saved to `posts/` as markdown files with YAML frontmatter:
+Posts are saved to `posts/` as markdown files with YAML frontmatter:
 
 ```
 posts/
-  2024-01-15_10-30-00_openai-launches-gpt5.md
-  2024-01-15_10-30-00_anthropic-funding-round.md
+  2026-05-14_22-55-00_enterprise-ai-market-shift.md
+  2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md
 ```
 
 Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
+- **YAML frontmatter**: source metadata, matched companies, categories, trending keywords, status
 - **Post body**: the full LinkedIn draft, ready to review and publish
 
 Change `status: draft` to `status: published` to track what's gone live.
@@ -105,13 +121,13 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
-- **Reads**: `config/topics.yaml`
+- **Reads**: `config/topics.yaml` (seed terms)
 - **Does**: Searches the web for trending AI topics from the past 7 days
 - **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
+- **Reads**: `config/brand_kit.yaml`, `config/tone_of_voice.yaml`, `config/research_standards.yaml`
 - **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
 
@@ -122,17 +138,18 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ---
 
-## Customising Your Brand
+## Customising Your Voice
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+The post-generator reads three files on every run:
 
-The post-generator agent reads this file on every run — no restarts needed.
+**`config/brand_kit.yaml`** — *Who you are and what you stand for*
+Set your name, professional focus areas, content angles, and hashtag strategy here.
+
+**`config/tone_of_voice.yaml`** — *How you write*
+Writing style rules, post structure, dos and don'ts, banned words. This is the most powerful lever — changing these rules changes how every post sounds.
+
+**`config/research_standards.yaml`** — *How you cite sources*
+Minimum sources per post, quote format, URL rules. Raise `min_sources` if you want posts backed by more evidence.
 
 ---
 
@@ -148,3 +165,5 @@ rss_feeds:
       priority: high
       enabled: true
 ```
+
+Set `enabled: false` to pause a feed without deleting it.
