@@ -1,0 +1,229 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS
+# This is YOUR lab notebook. Log every AI tool or workflow
+# you've genuinely tested. The post-generator reads this and
+# weaves relevant experiments into posts — "I've been testing
+# this myself and here's what I found."
+#
+# STATUS values:
+#   active      — you're still using it regularly
+#   tested      — tried it, have a formed opinion
+#   discontinued — moved on (and you know why)
+#   watching    — haven't tried it yet but tracking closely
+# ============================================================
+
+experiments:
+
+  # ── Claude Code / Anthropic Claude ──────────────────────
+  - tool: "Claude Code"
+    company: "Anthropic"
+    category: "AI Coding & Automation"
+    date_started: "2026-05"
+    status: active
+    what_i_did: >
+      Used Claude Code inside the terminal to build this LinkedIn post
+      generator — from writing the agent prompts to setting up the
+      config files and orchestrator logic.
+    what_worked: >
+      Iterating on agent instructions in plain English is remarkably
+      fast. Describing what I wanted in the orchestrator.md file and
+      watching it execute correctly the first time was a genuine
+      surprise. The subagent model means each component stays focused
+      and debuggable.
+    what_surprised_me: >
+      I expected to write a lot of Python. I wrote almost none.
+      The whole pipeline runs through markdown files and natural
+      language instructions. That changes who can build tools like this.
+    my_take: >
+      This is the clearest example I've seen of AI collapsing the gap
+      between having an idea and having a working tool. The human is
+      still doing all the thinking — the architecture, the logic,
+      the quality bar. The AI handles the implementation.
+    use_case_for_brands: >
+      Any marketing team running repetitive content workflows should
+      be experimenting with this. Not to replace writers — to remove
+      the parts that don't require creativity.
+    post_angle: >
+      "I built a working AI pipeline without writing a single line
+       of Python — here's what that actually looks like"
+
+  # ── ChatGPT / OpenAI ────────────────────────────────────
+  - tool: "ChatGPT"
+    company: "OpenAI"
+    category: "General AI Assistant"
+    date_started: "2023-01"
+    status: active
+    what_i_did: >
+      Daily use for drafting, ideation, research synthesis, brief
+      writing, and as a sounding board for brand strategy questions.
+    what_worked: >
+      Deep Research mode is genuinely useful for competitor analysis
+      and building briefing documents — it synthesises dozens of
+      sources into something coherent. The canvas/projects feature
+      makes it much easier to maintain context across a working session.
+    what_surprised_me: >
+      How much the quality of my output depends on the quality of
+      my input. The model is better than most people use it — the
+      bottleneck is almost always the prompt, not the model.
+    my_take: >
+      It's become a daily thinking partner, not just a writing tool.
+      The shift happened when I stopped using it to draft things and
+      started using it to stress-test ideas before I write anything.
+    use_case_for_brands: >
+      Briefing and strategy work. Give it a brand brief and ask it to
+      play devil's advocate, identify the weakest assumptions, or
+      rewrite the positioning from a competitor's POV. The output is
+      consistently useful.
+    post_angle: >
+      "The way most people use ChatGPT is leaving most of its value
+       on the table — here's what changed when I changed my approach"
+
+  # ── Perplexity AI ───────────────────────────────────────
+  - tool: "Perplexity"
+    company: "Perplexity AI"
+    category: "AI Search"
+    date_started: "2024-01"
+    status: active
+    what_i_did: >
+      Replaced traditional Google searches for anything that requires
+      synthesis rather than finding a specific page. Use it daily for
+      news research, fact-checking, and building source lists for posts.
+    what_worked: >
+      The cited-sources model is the key feature — it shows you exactly
+      where each claim came from, which makes fact-checking fast.
+      Deep Research takes considerably longer but produces something
+      closer to a proper research memo than a search result.
+    what_surprised_me: >
+      It has almost entirely replaced my use of Google for informational
+      queries. I still use Google for finding a specific website, but
+      for understanding a topic, Perplexity is faster and more useful.
+    my_take: >
+      The future of search is synthesis, not links. Perplexity is
+      showing what that looks like in practice. The brands that figure
+      out how to be cited by AI search tools — not just ranked by
+      traditional search — will have a significant advantage.
+    use_case_for_brands: >
+      Competitor research, trend analysis, customer question research.
+      Ask it what questions customers in your category are asking and
+      you'll surface content opportunities no keyword tool would find.
+    post_angle: >
+      "I've mostly stopped Googling. Here's what replaced it and
+       what that tells us about where search is going"
+
+  # ── ElevenLabs ──────────────────────────────────────────
+  - tool: "ElevenLabs"
+    company: "ElevenLabs"
+    category: "AI Voice / Audio"
+    date_started: "2024-06"
+    status: tested
+    what_i_did: >
+      Tested voice cloning for creating audio versions of written content
+      and explored the API for potential automated podcast-style formats.
+    what_worked: >
+      The voice quality is genuinely indistinguishable from human audio
+      at normal listening speeds. Setting up a cloned voice takes about
+      five minutes of sample audio. Text-to-speech turnaround is fast.
+    what_surprised_me: >
+      How quickly this erases the friction between written content and
+      audio content. An article, a newsletter, a LinkedIn post — they
+      can all become listenable within minutes. The format transformation
+      cost is nearly zero now.
+    my_take: >
+      Every content-heavy brand should be thinking about what happens
+      when all written content is automatically available in audio.
+      The distribution implications are real — commutes, workouts,
+      hands-busy moments are all suddenly available to written content.
+    use_case_for_brands: >
+      Repurposing long-form content as audio. Think: your blog posts
+      as a podcast, your case studies as audio testimonials, your
+      thought leadership as a daily briefing. The production cost is
+      now basically zero.
+    post_angle: >
+      "I turned six months of blog posts into audio in one afternoon —
+       here's what the cost of audio content looks like now"
+
+  # ── Midjourney ──────────────────────────────────────────
+  - tool: "Midjourney"
+    company: "Midjourney"
+    category: "AI Image Generation"
+    date_started: "2023-06"
+    status: active
+    what_i_did: >
+      Tested for brand mood boards, concept visualisation, social
+      media content, and as a creative starting point for campaign
+      ideation.
+    what_worked: >
+      Concept exploration is dramatically faster. What used to take
+      a designer a day to produce in rough directions now takes an
+      hour to explore across twenty different visual directions.
+      The quality of v6 outputs for lifestyle and abstract imagery
+      is production-quality for most digital contexts.
+    what_surprised_me: >
+      How much I use it for thinking rather than producing. Most of
+      the value isn't in the final image — it's in the dozens of
+      discarded directions that help sharpen what I actually want.
+    my_take: >
+      The creative bottleneck in most brand teams is not execution —
+      it's the speed of ideation and alignment. AI image generation
+      doesn't replace the art director. It collapses the time between
+      concept and visual evidence of what that concept looks like.
+    use_case_for_brands: >
+      Campaign concept exploration, mood board creation, and
+      stakeholder alignment. Show the idea before you brief the
+      photographer. Cut the rounds of ambiguous feedback.
+    post_angle: >
+      "I run Midjourney before every major creative brief now —
+       here's what that's changed about how I work with designers"
+
+  # ── Gemini (Google) ─────────────────────────────────────
+  - tool: "Gemini"
+    company: "Google DeepMind"
+    category: "General AI Assistant / Multimodal"
+    date_started: "2024-03"
+    status: active
+    what_i_did: >
+      Tested Gemini Advanced for document analysis, cross-referencing
+      research, and multimodal tasks combining images and text.
+      Also used the API via Google AI Studio.
+    what_worked: >
+      The integration with Google Workspace is the practical edge.
+      Analysing a Google Doc or summarising a long email thread inside
+      the tools you're already in reduces friction significantly.
+      NotebookLM for research synthesis is genuinely impressive —
+      it surfaces connections across multiple documents that I wouldn't
+      have found manually.
+    what_surprised_me: >
+      NotebookLM is underrated. Uploading ten research papers and
+      asking it to find the contradictions between them is a research
+      workflow that didn't exist a year ago.
+    my_take: >
+      Gemini's advantage is the ecosystem, not the model. If your
+      work lives in Google Workspace, the integration points change
+      the calculus. The model is excellent. The real argument is
+      whether the place where you work matters as much as the quality
+      of the AI itself.
+    use_case_for_brands: >
+      Research-heavy workflows, multi-document synthesis, anything
+      that starts and ends in Google Docs. NotebookLM for turning
+      a batch of customer interviews into structured insights.
+    post_angle: >
+      "NotebookLM might be the most underused AI tool in marketing
+       right now — here's what it actually does"
+
+  # ── ADD YOUR OWN EXPERIMENTS BELOW ──────────────────────
+  # Copy the format above and add your own entries.
+  # The post-generator will match these to relevant article topics
+  # and weave in your personal experience naturally.
+  #
+  # Example starter:
+  # - tool: "Cursor"
+  #   company: "Cursor"
+  #   category: "AI Coding"
+  #   date_started: "2025-01"
+  #   status: watching
+  #   what_i_did: ""
+  #   what_worked: ""
+  #   what_surprised_me: ""
+  #   my_take: ""
+  #   use_case_for_brands: ""
+  #   post_angle: ""

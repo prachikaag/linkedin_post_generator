@@ -31,6 +31,8 @@ Before starting, determine:
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
+Check whether `config/experiments.yaml` exists. If it does, note that the post-generator will automatically match and use relevant experiments — no extra steps required.
+
 ---
 
 ## Step 1 — Gather News
