@@ -5,16 +5,17 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — the post-generator writes in your name and voice.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "[Your Full Name]"                    # e.g. "Prachi Jain"
+  title: "[Your Professional Title]"          # e.g. "Brand Strategist & AI Experimenter"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "[Your City, Country]"            # e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Brand Building"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:

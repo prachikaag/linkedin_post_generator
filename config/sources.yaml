@@ -146,6 +146,29 @@ rss_feeds:
       priority: low
       enabled: true
 
+    # ── To add more YouTube channels ────────────────────────
+    # Find a channel's ID: go to the channel page → view source → search "channelId"
+    # Then set enabled: true to activate.
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_ELEVENLABS_CHANNEL_ID"
+      priority: low
+      enabled: false
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_MIDJOURNEY_CHANNEL_ID"
+      priority: low
+      enabled: false
+
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_PERPLEXITY_CHANNEL_ID"
+      priority: low
+      enabled: false
+
+    - name: "Mistral AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_MISTRAL_CHANNEL_ID"
+      priority: low
+      enabled: false
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:

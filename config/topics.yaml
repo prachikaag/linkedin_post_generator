@@ -351,7 +351,8 @@ trending_keywords:
   timeframe: "now 7-d" # last 7 days (options: now 1-d, now 7-d, now 1-m)
 
 # ── Freshness Settings ─────────────────────────────────────
+# Tip: if you get "no articles found", try raising max_article_age_hours to 72 or 96.
 freshness:
   max_article_age_hours: 48   # Only articles published in the last N hours
-  min_relevance_score: 2      # Minimum relevance score to include an article
+  min_relevance_score: 2      # Minimum relevance score to include an article (lower = more articles)
   max_articles_per_run: 25    # Cap how many articles are scored per run
