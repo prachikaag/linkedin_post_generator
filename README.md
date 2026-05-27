@@ -1,28 +1,25 @@
 # LinkedIn Post Generator
 
-An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and writes research-backed LinkedIn draft posts — entirely through Claude agents and subagents. No traditional code steps.
+An AI-powered pipeline that monitors trending AI news, tracks what's buzzing, and writes
+research-backed LinkedIn draft posts in your voice — using Claude agents and subagents.
+No code to run. Just configure and go.
 
 ---
 
-## Architecture
+## What It Does
 
-The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
-
-```
-orchestrator.md
-├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
-├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
-```
-
-Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
+1. **Fetches fresh AI news** from ~20 RSS feeds and company blogs (TechCrunch, VentureBeat,
+   OpenAI, Anthropic, DeepMind, YouTube channels, funding sources, and more)
+2. **Scores articles by relevance** against your tracked companies and topic categories
+3. **Finds what's trending** — searches for the most-discussed AI topics from the past 7 days
+4. **Generates LinkedIn posts** in your voice, with cited sources, following your brand kit and
+   tone of voice — including your personal experiments and opinions
+5. **Saves drafts** as markdown files in `posts/` — ready for you to review, tweak, and post
+6. **Optionally publishes to Notion** if you have a Notion integration configured
 
 ---
 
 ## How to Run
-
-### Inside Claude Code (the only way to run this)
 
 Open this project in Claude Code and say:
 
@@ -30,11 +27,7 @@ Open this project in Claude Code and say:
 Run the LinkedIn Post Generator pipeline.
 ```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
+Claude will read `orchestrator.md` and execute the full pipeline automatically.
 
 ### Custom parameters
 
@@ -48,50 +41,86 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ---
 
-## Configuration
+## Architecture
 
-All settings live in `config/`:
+The pipeline is a multi-agent system. The orchestrator spawns specialised subagents and passes
+data between them:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+```
+orchestrator.md
+├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
+├── .claude/agents/trending-tracker.md   → finds trending AI keyword phrases
+├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
+└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+```
 
-Edit these files directly — changes take effect on the next run.
+Each agent is a self-contained markdown file. The orchestrator passes JSON between them.
 
-### Environment Variables
+---
+
+## Configuration Files
+
+All settings live in `config/`. Edit these files — changes take effect on the next run.
+
+| File | What it Controls | Edit When |
+|------|-----------------|-----------|
+| `config/topics.yaml` | Which companies and keywords to track, freshness settings | You want to add/remove companies or topics |
+| `config/sources.yaml` | RSS feeds, YouTube channels, and API sources | You want new news sources |
+| `config/brand_kit.yaml` | Post structure rules, hashtags, length, citation standards | You want to change post format rules |
+| `config/tone_of_voice.md` | How you write — voice, rhythm, banned words, the "human in the loop" requirement | You want to adjust writing style |
+| `config/personal_context.yaml` | Your AI experiments, signature opinions, open questions, client patterns | You try new tools or want posts to reflect new thinking |
+
+### The most important file to keep updated: `personal_context.yaml`
+
+This is what makes posts sound like you instead of a generic AI summary. Update it when:
+- You try a new AI tool — add it to `current_experiments` with what you found
+- You form a new opinion — add it to `signature_opinions`
+- You notice a pattern in your work — add it to `patterns_from_client_work`
+
+---
+
+## Environment Variables
 
 Copy `.env.example` to `.env` and fill in:
 
 ```bash
-# Required for Notion publishing (optional feature)
-NOTION_PAGE_ID=your_32char_page_id_here
-
-# Optional: direct Notion REST API fallback
-NOTION_API_KEY=secret_xxx
-
-# Optional: NewsAPI for additional sources
-NEWSAPI_KEY=your_key_here
+cp .env.example .env
 ```
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `NOTION_PAGE_ID` | Optional | Pushes post drafts to your Notion page |
+| `NOTION_API_KEY` | Optional | Direct Notion REST API fallback |
+| `NEWSAPI_KEY` | Optional | Broader news coverage (free at newsapi.org) |
+| `ANTHROPIC_API_KEY` | Optional | Only needed outside Claude Code |
 
 ---
 
 ## Output
 
-Generated posts are saved to `posts/` as markdown files with YAML frontmatter:
+Generated posts are saved to `posts/` as markdown files:
 
 ```
 posts/
   2024-01-15_10-30-00_openai-launches-gpt5.md
-  2024-01-15_10-30-00_anthropic-funding-round.md
+  2024-01-15_10-35-00_anthropic-funding-round.md
 ```
 
-Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
-- **Post body**: the full LinkedIn draft, ready to review and publish
+Each file contains YAML frontmatter (metadata, sources, status) followed by the full post body.
 
 Change `status: draft` to `status: published` to track what's gone live.
+
+---
+
+## Tracking What You've Covered
+
+The frontmatter in each post file logs:
+- `matched_companies` — which AI companies the post covers
+- `matched_categories` — topic category (funding, product launch, research, etc.)
+- `all_sources` — every article used with full URLs
+- `status` — `draft` or `published`
+
+This lets you scan `posts/` to see what you've already written about before running again.
 
 ---
 
@@ -101,44 +130,26 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Tools**: Read, WebFetch
 - **Reads**: `config/sources.yaml`, `config/topics.yaml`
 - **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
-- **Output**: JSON array of scored article objects
 
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
 - **Reads**: `config/topics.yaml`
 - **Does**: Searches the web for trending AI topics from the past 7 days
-- **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/tone_of_voice.md`, `config/personal_context.yaml`
+- **Does**: Synthesises a cluster of articles into a branded LinkedIn post in your voice, with personal context layered in, saves as `.md` draft
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
 - **Does**: Appends the post as a toggle block on a Notion page
-- **Output**: `success` or `failed`
-
----
-
-## Customising Your Brand
-
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
-
-The post-generator agent reads this file on every run — no restarts needed.
 
 ---
 
 ## Adding News Sources
 
-Edit `config/sources.yaml` to add any RSS feed:
+Edit `config/sources.yaml`:
 
 ```yaml
 rss_feeds:
@@ -148,3 +159,21 @@ rss_feeds:
       priority: high
       enabled: true
 ```
+
+YouTube channels work via RSS too — any YouTube channel has a feed at:
+`https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID`
+
+---
+
+## Customising Your Voice
+
+The three files that shape how posts sound are read fresh on every run:
+
+1. **`config/tone_of_voice.md`** — narrative guide in plain English. Edit it like a document.
+   Change the banned words list, add new rhythm rules, adjust the "human in the loop" requirement.
+
+2. **`config/brand_kit.yaml`** — structural rules. Change post length, number of hashtags,
+   minimum sources required, your name and title.
+
+3. **`config/personal_context.yaml`** — personal experiments and opinions. This is the most
+   important one to keep current. Update it every time you try a new tool or form a new view.
