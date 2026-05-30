@@ -95,6 +95,7 @@ Input:
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
+  Type: {result.post_type}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```

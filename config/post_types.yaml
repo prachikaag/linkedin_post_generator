@@ -1,0 +1,276 @@
+# ============================================================
+# POST TYPES
+# Specific guidance for each content category you write about.
+# The post-generator selects the right type based on
+# what categories and keywords the news articles match.
+#
+# To add a new post type: copy any block below, give it a
+# new id, name, and trigger_categories, and save.
+# ============================================================
+
+post_types:
+
+  # ── 1. AI Feature or Product Launch ───────────────────────
+  # Use when: OpenAI, Anthropic, Google, Perplexity, ElevenLabs,
+  # Midjourney, or any AI company launches a new model, feature, or tool.
+  - id: "feature_launch"
+    name: "AI Feature or Product Launch"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "announced"
+      - "ships"
+      - "debuts"
+      - "unveils"
+      - "rolls out"
+      - "introduces"
+      - "available now"
+
+    hook_templates:
+      - "[Company] just changed what [use case] looks like."
+      - "The gap between what AI could do last month and what it can do now just got wider."
+      - "[Feature name] is live. Here's what it actually means — not the press release version."
+      - "A new [tool/model] dropped this week. The headline is obvious. The implication isn't."
+
+    key_angles:
+      - "What the feature does in plain language — no jargon, one sentence max"
+      - "What this makes possible that wasn't possible before"
+      - "How marketers, brand teams, or creative professionals can use it today"
+      - "What it signals about where this company is heading"
+      - "How this compares to what competitors offer"
+
+    your_take_prompts:
+      - "What pattern does this fit in across the AI landscape?"
+      - "Is this genuinely new ground or an incremental improvement?"
+      - "What's the 90-day implication for brands watching this space?"
+      - "Is this a tool for everyone, or only for technical teams right now?"
+
+    so_what_for_brands:
+      - "One specific use case to test this week"
+      - "What workflow or role this could change"
+      - "Whether to act now, pilot quietly, or wait 6 months"
+
+  # ── 2. AI Startup Funding ──────────────────────────────────
+  # Use when: An AI startup announces a funding round, acquisition,
+  # valuation milestone, or IPO. The money tells a story about the market.
+  - id: "startup_funding"
+    name: "AI Startup Funding & Investment"
+    trigger_categories:
+      - "AI Startup Funding"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture capital"
+      - "IPO"
+      - "unicorn"
+      - "million"
+      - "billion"
+
+    hook_templates:
+      - "Another AI startup just raised [amount]. The more interesting question is why."
+      - "Investors are betting [amount] that [problem] is worth solving. Let's talk about the bet."
+      - "[Company] just became the latest AI company to hit unicorn status. Here's what they actually build."
+      - "The money is flowing into AI. Where it's going tells you where this industry thinks the value is."
+
+    key_angles:
+      - "What the company actually builds — in one sentence, no jargon"
+      - "Who invested and what it signals about investor priorities"
+      - "What problem space this validates"
+      - "What this level of investment tells us about where the market is heading"
+      - "Whether this is early-stage experimentation or late-stage conviction"
+
+    your_take_prompts:
+      - "Why does this funding round matter beyond the dollar amount?"
+      - "What does this tell us about which AI categories investors believe in right now?"
+      - "Is this a bet on the technology, the team, or the market timing?"
+      - "Is this company solving a real business problem or chasing hype?"
+      - "How concentrated is this category getting — too many players or still wide open?"
+
+    so_what_for_brands:
+      - "Whether brands should be paying attention to this company now or in 12 months"
+      - "What category of AI capability this investment validates"
+      - "Whether to pilot, watch, or wait — and why"
+
+  # ── 3. YouTube Video or Media Drop ────────────────────────
+  # Use when: An AI company drops a YouTube video, product demo,
+  # keynote recording, or any major media moment worth watching.
+  - id: "youtube_video"
+    name: "YouTube Video or Media Drop"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "watch"
+      - "keynote"
+      - "released a video"
+      - "showed"
+      - "demonstrated"
+      - "revealed"
+
+    hook_templates:
+      - "[Company] dropped a video this week. It's worth 12 minutes of your time."
+      - "Watch this before reading about it — it hits differently when you see it."
+      - "[Company] showed something in a demo that changes how I think about [topic]."
+      - "The announcement was interesting. The demo was the real story."
+
+    key_angles:
+      - "What was shown or demonstrated — described vividly, not summarised flatly"
+      - "What the demo reveals that the press release doesn't"
+      - "What you noticed that others might have missed"
+      - "What it reveals about the company's direction or ambition"
+      - "Whether the demo represents today's reality or tomorrow's promise"
+
+    your_take_prompts:
+      - "What does seeing this in action tell you that reading about it wouldn't?"
+      - "What would a brand strategist or marketer notice here that a tech journalist might miss?"
+      - "What question does this raise that nobody in the coverage is asking?"
+      - "Is this demo showing what it can do, or what it can't yet do reliably?"
+
+    so_what_for_brands:
+      - "Whether to share this video internally with your team — and who specifically should see it"
+      - "What capability shown could slot into a specific marketing or creative workflow"
+      - "What to experiment with right now vs. what to put on a roadmap"
+
+  # ── 4. Big Tech AI News ────────────────────────────────────
+  # Use when: Microsoft, Google, Apple, Amazon, Meta, or Nvidia
+  # makes a significant AI move — new feature, partnership,
+  # product embed, or strategic announcement.
+  - id: "bigtech_ai"
+    name: "Big Tech AI Move"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+      - "AI Tools and Productivity"
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Copilot"
+      - "Apple Intelligence"
+      - "Amazon Q"
+      - "Azure AI"
+      - "Google Workspace"
+      - "Microsoft 365"
+
+    hook_templates:
+      - "Big tech just made AI [use case] a default feature. Here's what that means at scale."
+      - "[Company] changed their product this week. The AI angle is the whole story."
+      - "When [company] embeds AI into a product, [N] users notice immediately."
+      - "The startups are building. The platforms are embedding. [Company] just crossed a line."
+
+    key_angles:
+      - "Scale: how many people this affects immediately"
+      - "What this embeds AI into that wasn't AI-native before"
+      - "How this compares to what the pure-play AI companies are doing"
+      - "Whether this is catch-up or something genuinely new"
+      - "What this means for the competitive dynamics between big tech and AI startups"
+
+    your_take_prompts:
+      - "Does big tech doing this validate the AI category or threaten the pure-play startups?"
+      - "Is this good for users, or just good for the platform's lock-in?"
+      - "What does this tell us about where AI will be embedded as a default in 2 years?"
+      - "Is the pace of big tech AI integration faster or slower than it should be?"
+
+    so_what_for_brands:
+      - "How this changes what AI tools are available inside workflows brands already use"
+      - "Whether to wait for the platform to catch up, or build independently now"
+      - "What to test in the next 30 days vs. what to add to a 2026 roadmap"
+
+  # ── 5. Human-in-the-Loop Personal Experiment ──────────────
+  # Use when: You personally tested an AI tool, ran a workflow,
+  # or experimented with AI in your own work and want to share
+  # the honest, first-person results. These posts are the most
+  # engaging because they are real, specific, and vulnerable.
+  - id: "personal_experiment"
+    name: "Human-in-the-Loop Personal Experiment"
+    trigger_categories:
+      - "AI Tools and Productivity"
+      - "AI for Marketing and Brands"
+    trigger_keywords:
+      - "experiment"
+      - "tested"
+      - "tried"
+      - "workflow"
+      - "productivity"
+      - "tool"
+      - "prompt"
+      - "hands on"
+
+    hook_templates:
+      - "I spent [time] testing [tool] for [use case]. Here's the honest version."
+      - "[Tool] promised [outcome]. Here's what actually happened when I tried it."
+      - "Most people use [tool] wrong. I know because I did too."
+      - "I ran [experiment] this week. The results surprised me — and not in the way the hype suggests."
+
+    key_angles:
+      - "What you were actually trying to do — the real job to be done, not an abstract use case"
+      - "What you tried, step by step — specific and honest, no vague claims"
+      - "What worked, what didn't, and what surprised you"
+      - "What you'd do differently next time"
+      - "Where the human judgment was irreplaceable"
+
+    your_take_prompts:
+      - "What skill level does someone actually need to get value from this tool?"
+      - "Where is human judgment genuinely irreplaceable here?"
+      - "Is this tool-ready for a non-technical brand team, or is it still a specialist skill?"
+      - "What's the honest gap between the demo and the reality of using it at work?"
+
+    so_what_for_brands:
+      - "One specific prompt, template, or approach to try — not vague advice"
+      - "Where to start — not everything at once, one concrete first step"
+      - "What to measure to know if it's actually working"
+
+  # ── 6. AI Research Breakthrough ───────────────────────────
+  # Use when: A research paper, benchmark result, or capability
+  # milestone gets attention — and has real-world implications
+  # for how brands and marketers think about AI.
+  - id: "research_breakthrough"
+    name: "AI Research or Capability Breakthrough"
+    trigger_categories:
+      - "AI Research and Breakthroughs"
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+      - "state of the art"
+
+    hook_templates:
+      - "A new research result just changed how I think about what AI can do."
+      - "Researchers just published something that the press ignored — but brands shouldn't."
+      - "The benchmark that matters isn't the one making headlines."
+
+    key_angles:
+      - "What the research shows in plain language — one sentence, no jargon"
+      - "Why this matters outside of academic circles"
+      - "What it means for what AI can do in real applications today or soon"
+      - "How this changes the timeline for capabilities brands are waiting on"
+
+    your_take_prompts:
+      - "What does this mean for non-technical people making AI investment decisions?"
+      - "Is this a theoretical advance or something that changes real-world products in the next 12 months?"
+      - "What does this tell us about the direction AI development is heading?"
+
+    so_what_for_brands:
+      - "What to start testing now, while others are still reading about it"
+      - "Whether this changes any AI strategy decisions brands are weighing"

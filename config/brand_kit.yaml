@@ -1,90 +1,36 @@
 # ============================================================
-# BRAND KIT & TONE OF VOICE
-# Edit this file to match your personal brand and voice.
-# This drives how every LinkedIn post is written.
+# BRAND KIT
+# WHO you are and how your brand shows up on LinkedIn.
+#
+# What lives here:
+#   - Your name, title, tagline
+#   - Your professional brand focus areas
+#   - Hashtag strategy
+#   - Post length and citation standards
+#
+# What lives in separate files (edit those directly):
+#   - config/tone_of_voice.yaml  → HOW you write (voice, style, structure)
+#   - config/post_types.yaml     → WHAT type of post to write per topic
+#   - config/topics.yaml         → WHAT companies and keywords to track
+#   - config/sources.yaml        → WHERE to find the news
 # ============================================================
 
-# ── Who You Are ───────────────────────────────────────────
+# ── Who You Are ────────────────────────────────────────────
+# Fill in your real details. This is injected into every post.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                        # e.g. "Prachi Jain"
+  title: "Your Professional Title"         # e.g. "Brand Strategist & AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"           # e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
 
-# ── Your Voice ────────────────────────────────────────────
-tone_of_voice:
-
-  # How you come across to your audience
-  primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
-    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
-
-  # Rules for how you write every post
-  writing_style:
-    - "Write in first person. Share personal experiments and real observations."
-    - "Short paragraphs only — 1 to 3 sentences max per paragraph."
-    - "Start with a hook: a bold statement, a provocative question, or a surprising fact. Never start with 'I'."
-    - "Use generous line breaks — LinkedIn rewards whitespace."
-    - "End with a clear opinion, key takeaway, or specific call to action."
-    - "Avoid corporate jargon, buzzwords, and 'thought leadership' clichés."
-    - "Be direct. Be opinionated. Be real."
-    - "Use simple language — aim for a 9th grade reading level."
-    - "Use em-dashes (—) and ellipses (...) for natural rhythm."
-    - "Numbers and specifics beat vague claims. Use them."
-    - "Maximum sentence length: 15 words. Split anything longer into two sentences."
-    - "Tone is engaging and upbeat — curious, alive, not dry. Write like someone excited by what they're seeing."
-    - "One emoji per paragraph maximum. Place it where it adds energy, never as decoration. Never two in the same paragraph."
-    - "Write as a third-party observer. Present the full picture across companies — never frame the story as one company winning."
-    - "Lead with impact and meaning. What does this change for real people and teams? Numbers are a last resort, not a first instinct."
-    - "Only use numbers when they are the single most powerful way to make the point. Otherwise describe the impact in human terms."
-    - "Never reference past news as current. Before writing 'this week', 'today', or 'yesterday', verify the event date against today's actual date. If it happened more than 7 days ago, say 'recently' or give the context without a time reference."
-
-  # The blueprint for every post
-  post_structure:
-    - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
-    - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
-    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
-    - "CTA (1 line): A question that invites genuine discussion in the comments."
-    - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
-    - "HASHTAGS: 4-5 relevant hashtags on the very last line."
-
-  # What makes a great post from you
-  dos:
-    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
-    - "Give actionable insights brands can use today, not just future speculation"
-    - "Cite sources with full URLs so readers can dig deeper"
-    - "Ask engaging questions that invite genuine discussion in the comments"
-    - "Use specific numbers, quotes, or data points when available"
-    - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
-    - "Share your contrarian take when you disagree with the mainstream narrative"
-
-  # What undermines your credibility
-  donts:
-    - "Don't write vague, wishy-washy takes — have a clear opinion"
-    - "Don't use more than 2-3 emojis per post"
-    - "Don't make unsupported or exaggerated claims about AI capabilities"
-    - "Don't write walls of text — break everything up"
-    - "Don't start with 'I am excited to share' or 'Thrilled to announce'"
-    - "Don't summarise without adding your own perspective"
-    - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
-    - "Don't write hype — write insight"
-
 # ── Your Brand Focus ───────────────────────────────────────
+# The lenses you write through. Every post should connect
+# back to at least one of these areas.
 brand:
-
-  # The lenses you write through
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
@@ -93,21 +39,23 @@ brand:
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
 
-  # Example angles you love to write about
+  # Proven angles that work for your audience.
+  # Use these as inspiration when crafting your take.
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I ran [experiment] — here's the honest result"
 
-  # Hashtag strategy
+  # ── Hashtag Strategy ──────────────────────────────────────
+  # always_include: in every post, no exceptions
+  # rotate_from: pick 2-3 per post to complement the topic
   hashtags:
-    # Always included in every post
     always_include:
       - "#AI"
       - "#ArtificialIntelligence"
-    # Pick from this list to complement the post topic
     rotate_from:
       - "#GenerativeAI"
       - "#AITools"
@@ -127,29 +75,23 @@ brand:
 
   max_hashtags: 5
 
-  # Target post length
+  # ── Post Length ───────────────────────────────────────────
   # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
   post_length: "medium"
-  max_characters: 1457
-  max_words: 251
-
-  # Optional: words or phrases that are distinctly yours
-  signature_phrases:
-    - "Here's what I think brands are missing..."
-    - "The real question is..."
-    - "Worth paying attention to."
-    - "What does this mean for brands?"
+  max_characters: 1457   # Hard LinkedIn cap for readability
+  max_words: 251         # Rough word count to stay punchy
 
 # ── Research & Citation Standards ─────────────────────────
-# These rules are injected directly into the AI prompt as hard requirements.
+# These rules are injected directly into the post-generator
+# as hard requirements every run.
 research_standards:
-  # Minimum number of distinct sources that must be cited in every post
+  # Minimum number of distinct sources cited in every post
   min_sources: 4
 
   # Format for direct verbatim quotes — must include name, title, and company
   quote_format: '"[exact quote]" — Full Name, Job Title, Company/Publication'
 
-  # Format for source list at the bottom of each post
+  # Format for the source list at the bottom of each post
   source_list_format: "[N]. [Short descriptive title] → [full URL]"
 
   # If a quote cannot be verified as exact, paraphrase instead (no quote marks)
