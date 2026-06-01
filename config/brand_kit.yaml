@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Edit this section with your real name, title, and tagline.
+# These appear in the post-generator's context so it writes as you.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand Strategist & AI Practitioner"
+  # Your LinkedIn headline — make it specific to how you want to be found
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"   # e.g. "Sydney, Australia" or "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

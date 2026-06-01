@@ -1,0 +1,6 @@
+{
+  "seen_urls": [],
+  "processed_posts": [],
+  "last_updated": null,
+  "_note": "This file tracks articles that have already been processed into LinkedIn posts. The orchestrator updates it after each run to prevent duplicate posts."
+}

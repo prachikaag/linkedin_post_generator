@@ -12,12 +12,14 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[memory check]    → filter already-seen articles
+[news-gatherer]   → fetch + score articles
+[trending-tracker]→ trending keyword phrases
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]  → saved .md draft
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]→ published to Notion
+[memory update]   → record processed article URLs
 ```
 
 ---
@@ -27,30 +29,46 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
-- `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `DRY_RUN` — if true, run steps 1–3 only and stop before post generation (default: **false**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
-## Step 1 — Gather News
+## Step 1 — Load Memory (Deduplication)
+
+Read `memory/seen_articles.json`.
+
+Extract the `seen_urls` array — a list of article URLs already processed in previous runs.
+
+If the file is missing or unreadable, treat `seen_urls` as an empty array and continue.
+
+Print: `✓ Memory loaded — {N} previously processed articles will be skipped.`
+
+---
+
+## Step 2 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
 Task for the subagent:
 > "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
 
-Receive the JSON array of articles. If the array is empty, print:
-> "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
+Receive the JSON array of articles.
+
+**Filter out seen articles:** Remove any article whose `url` appears in `seen_urls`.
+
+If the array is empty after filtering, print:
+> "No new relevant articles found. All recent articles have already been processed, or try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
 Then stop.
 
-Print a summary line: `✓ {N} relevant articles fetched and scored.`
+Print: `✓ {N} new relevant articles fetched and scored ({skipped} skipped as already processed).`
 
 If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
 
 ---
 
-## Step 2 — Get Trending Keywords
+## Step 3 — Get Trending Keywords
 
 Spawn the **trending-tracker** subagent (defined in `.claude/agents/trending-tracker.md`).
 
@@ -62,7 +80,7 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
-## Step 3 — Build Article Clusters
+## Step 4 — Build Article Clusters
 
 Divide the articles into clusters — one cluster per post to generate.
 
@@ -76,7 +94,7 @@ Divide the articles into clusters — one cluster per post to generate.
 
 ---
 
-## Step 4 — Generate Posts
+## Step 5 — Generate Posts
 
 For each cluster, spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
 
@@ -103,7 +121,7 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +146,32 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Update Memory
+
+After all posts are generated, update `memory/seen_articles.json`.
+
+Read the current file contents. Then:
+1. Collect all URLs from the articles used across all clusters (deduplicated)
+2. Collect all filenames of posts generated in this run
+3. Append new URLs to the existing `seen_urls` array (no duplicates)
+4. Append new entries to `processed_posts` array, each with:
+   ```json
+   {
+     "filename": "<result.filename>",
+     "article_title": "<result.article_title>",
+     "source_url": "<result.source_url>",
+     "generated_at": "<ISO 8601 timestamp of now>"
+   }
+   ```
+5. Set `last_updated` to the current ISO 8601 timestamp
+
+Write the updated object back to `memory/seen_articles.json`.
+
+Print: `✓ Memory updated — {N} article URLs recorded for future deduplication.`
+
+---
+
+## Step 8 — Final Summary
 
 Print a summary table:
 
@@ -152,4 +195,5 @@ Then print each post's content in full so the author can review immediately.
 
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
+- If memory update fails, log a warning but do NOT stop the pipeline
 - Never stop the entire pipeline because of a single subagent failure
