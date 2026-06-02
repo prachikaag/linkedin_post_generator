@@ -28,6 +28,7 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `POST_TYPE_ID` — optional, force a specific post type for all posts (e.g. `human_in_the_loop`, `startup_funding`). If not set, each post-generator agent auto-detects the type from the article cluster.
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -88,7 +89,8 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "post_type_id": "<POST_TYPE_ID if set, otherwise omit this field>"
 }
 ```
 
@@ -96,6 +98,7 @@ Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
+  Type: {result.post_type or "auto-detected"}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
 

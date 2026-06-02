@@ -1,0 +1,232 @@
+# ============================================================
+# POST TYPES & CONTENT ANGLES
+# Edit this file to control what kind of posts get written.
+# Each post type has a trigger condition and a writing angle.
+# The post-generator agent reads this to pick the right frame.
+# ============================================================
+
+# ── Post Type Definitions ──────────────────────────────────
+# Each type has:
+#   id        — machine-readable identifier (do not change)
+#   name      — human label shown in summaries
+#   enabled   — set false to skip this type
+#   triggers  — keywords that signal this type of story
+#   angle     — the writing angle / frame the post takes
+#   hook_starters — opening line ideas specific to this type
+#   cta_style — the kind of call-to-action to end with
+
+post_types:
+
+  - id: "product_launch"
+    name: "New AI Feature or Product Launch"
+    enabled: true
+    triggers:
+      - "launch"
+      - "release"
+      - "introduces"
+      - "unveils"
+      - "announces"
+      - "ships"
+      - "debuts"
+      - "available now"
+      - "rolls out"
+      - "new model"
+      - "new feature"
+      - "update"
+      - "version"
+    angle: |
+      Write from the perspective of a brand strategist watching this space.
+      Lead with what this changes for real businesses and marketing teams.
+      Share an honest take — not just hype. Acknowledge limitations if they exist.
+      Tie the launch to a broader pattern in the space if you see one.
+    hook_starters:
+      - "[Company] just changed something quietly. Here's why it matters to brands."
+      - "A new [tool/model/feature] launched this week. Most posts will miss the real point."
+      - "Here's what [Company]'s new release actually means for marketing teams."
+    cta_style: "Ask readers what use case they'd test it for first, or if they've already tried it."
+
+  - id: "youtube_release"
+    name: "YouTube Video / Demo Release"
+    enabled: true
+    triggers:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "watch"
+      - "announced on stage"
+      - "revealed"
+      - "keynote"
+      - "showcase"
+    angle: |
+      Treat this as a signal — not just content. What is the company showing?
+      What are they choosing to highlight? What did they NOT show?
+      Break down the demo: what's real, what's staged, what's next.
+      Write like someone who watched it so the reader doesn't have to.
+    hook_starters:
+      - "I watched [Company]'s new demo so you don't have to. Here's what stood out."
+      - "The real story in [Company]'s latest video isn't what everyone is quoting."
+      - "[Company] put out a video this week. The third thing they showed is the one to watch."
+    cta_style: "Ask readers whether demos like this change how they evaluate AI tools, or if they wait for the real release."
+
+  - id: "startup_funding"
+    name: "AI Startup Funding or Acquisition"
+    enabled: true
+    triggers:
+      - "raises"
+      - "raised"
+      - "funding"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "valuation"
+      - "unicorn"
+      - "IPO"
+      - "billion"
+      - "million"
+    angle: |
+      Don't just report the number. Ask: why is capital flowing here now?
+      What does this bet say about where the market is heading?
+      Frame the funding as a signal about what investors think will matter next.
+      Connect it to what brands and marketers should be paying attention to.
+    hook_starters:
+      - "Someone just bet [amount] that [startup] is the future. Here's what that tells you."
+      - "A [amount] funding round just validated something I've been watching closely."
+      - "When investors write [amount] checks to an AI startup, it's worth asking why."
+    cta_style: "Ask readers whether they'd invest — or which space they think is most underfunded right now."
+
+  - id: "bigtech_news"
+    name: "Big Tech AI Move"
+    enabled: true
+    triggers:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+      - "partnership"
+      - "acqui-hire"
+      - "strategic"
+      - "enterprise"
+      - "platform"
+    angle: |
+      Big tech moves change the competitive landscape for everyone.
+      Focus on what this means for the tools brands and marketers already use.
+      Who loses when [BigCo] does this? Who wins?
+      Be honest about whether this is genuinely new or just branding on existing tech.
+    hook_starters:
+      - "[Big Company] just moved into AI territory that was startup-only six months ago."
+      - "When a company [Microsoft/Google/Apple/etc.] does this, it's not just a product update."
+      - "The most interesting thing [Big Company] did this week wasn't the headline."
+    cta_style: "Ask readers whether they trust big tech more or less than AI startups to deliver on AI promises."
+
+  - id: "human_in_the_loop"
+    name: "Personal AI Experiment"
+    enabled: true
+    triggers:
+      - "I tried"
+      - "I tested"
+      - "I used"
+      - "workflow"
+      - "experiment"
+      - "results"
+      - "hands on"
+      - "hands-on"
+      - "in practice"
+      - "real world"
+    angle: |
+      This is your most authentic content. Write in full first person.
+      Share exactly what you did, step by step (keep it brief).
+      Be honest about what worked and what surprised you — good or bad.
+      Give readers one thing they can replicate tomorrow.
+      You are the prototype — you're figuring this out in public so others don't have to.
+    hook_starters:
+      - "I spent [time] testing [tool] for [use case]. Here's the honest result."
+      - "Every AI post promises it's useful for [thing]. I actually tried it. Here's what happened."
+      - "My experiment with [tool]: the thing nobody tells you."
+    cta_style: "Ask readers to share their own experiments — what AI workflow has surprised them most?"
+
+  - id: "research_breakthrough"
+    name: "AI Research or Benchmark"
+    enabled: true
+    triggers:
+      - "research"
+      - "paper"
+      - "study"
+      - "benchmark"
+      - "breakthrough"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+      - "capability"
+      - "outperforms"
+      - "surpasses"
+    angle: |
+      Translate research into plain language without dumbing it down.
+      What is this actually measuring? Why does it matter beyond the benchmark?
+      What would this capability enable if it becomes a product?
+      Be the person who reads the papers so their audience doesn't have to.
+    hook_starters:
+      - "A new AI benchmark dropped this week. The number most people are sharing isn't the interesting one."
+      - "Researchers just published something that quietly changes what we think AI can do."
+      - "New AI research paper. Here's what it actually means — without the jargon."
+    cta_style: "Ask readers which research development they think has the most real-world implications right now."
+
+  - id: "ai_regulation"
+    name: "AI Policy or Regulation"
+    enabled: true
+    triggers:
+      - "regulation"
+      - "policy"
+      - "law"
+      - "EU AI Act"
+      - "ban"
+      - "copyright"
+      - "safety"
+      - "ethics"
+      - "governance"
+      - "Senate"
+      - "Congress"
+      - "government"
+    angle: |
+      Frame regulation through a business lens: what does compliance cost?
+      What happens to brands that ignore this?
+      Be fair — acknowledge when regulation gets something right.
+      Help readers think, not panic.
+    hook_starters:
+      - "New AI regulation dropped. Here's what it actually means for brands using AI today."
+      - "Governments are finally moving on AI policy. This part matters most to marketers."
+      - "The regulation most AI companies are quietly preparing for is [X]. Here's why."
+    cta_style: "Ask readers whether they think AI regulation will help or hurt their business."
+
+# ── Post Type Selection Logic ──────────────────────────────
+# How the post-generator picks a type for each article cluster:
+#
+# 1. Count trigger keyword matches across all articles in the cluster
+# 2. The type with the most trigger matches wins
+# 3. If tied, prefer in this priority order:
+#    human_in_the_loop > product_launch > startup_funding > youtube_release > bigtech_news > research_breakthrough > ai_regulation
+# 4. If no triggers match, default to: product_launch
+#
+# Override: you can force a specific post type by passing
+# "post_type_id": "<id>" in the orchestrator input.
+
+default_post_type: "product_launch"
+
+# ── Post Length per Type ───────────────────────────────────
+# Override the brand_kit.yaml default for specific post types.
+# Options: short (300-500 chars) | medium (500-900 chars) | long (900-1300 chars)
+length_overrides:
+  human_in_the_loop: "long"      # personal experiments deserve more space
+  startup_funding: "medium"
+  youtube_release: "medium"
+  product_launch: "medium"
+  bigtech_news: "medium"
+  research_breakthrough: "long"
+  ai_regulation: "medium"

@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# PERSONALISE THIS SECTION — these values are used in every post.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                          # ← your first name or full name
+  title: "Brand Strategist & AI Practitioner"   # ← your LinkedIn headline
+  # Your tagline appears in post context — it frames your point of view
+  tagline: "Helping brands understand and use AI in the real world — human in the loop, every step."
+  location: "Australia"                   # ← optional, used for context only
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

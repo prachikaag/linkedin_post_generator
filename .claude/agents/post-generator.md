@@ -24,34 +24,57 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read All Config Files
 
-Read `config/brand_kit.yaml` and extract:
-
+Read **`config/brand_kit.yaml`** and extract:
 - `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
+- `tone_of_voice.primary_traits`, `tone_of_voice.writing_style`, `tone_of_voice.post_structure`
 - `tone_of_voice.dos` and `tone_of_voice.donts`
-- `brand.focus_areas` — the lenses the author writes through
-- `brand.hashtags.always_include` — hashtags in every post
-- `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
-- `brand.post_length` — target length (short / medium / long)
-- `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+- `brand.focus_areas`, `brand.hashtags.always_include`, `brand.hashtags.rotate_from`
+- `brand.post_length`, `brand.max_characters`, `brand.max_words`
+- `research_standards.min_sources`
+
+Read **`config/post_types.yaml`** and extract:
+- The full list of `post_types` with their `triggers`, `angle`, `hook_starters`, `cta_style`
+- `default_post_type` and `length_overrides`
+
+**Determine the post type** for this cluster:
+1. Count how many `triggers` from each enabled post type appear across all article titles + summaries (combined, lowercased)
+2. The type with the most matches is selected
+3. Tie-break priority: `human_in_the_loop` > `product_launch` > `startup_funding` > `youtube_release` > `bigtech_news` > `research_breakthrough` > `ai_regulation`
+4. If no triggers match, use `default_post_type`
+5. If the input JSON includes `"post_type_id"`, use that type directly (overrides detection)
+
+Apply the `length_overrides` for the selected post type if one exists (otherwise use `brand.post_length`).
+
+Read **`config/prompts.yaml`** and extract:
+- `system_context` — inject at the very top of your internal reasoning
+- `core_question` — answer this before writing
+- `type_prompts[<selected_type_id>]` — the type-specific angle instruction
+- `research_brief` — rules for using the source articles
+- `hard_constraints` — non-negotiable rules applied to every post
+- `voice_examples` — use these to calibrate your tone
 
 ---
 
 ## Step 2 — Write the LinkedIn Post
 
-Following the brand kit precisely, write a post that:
+Apply these in order before writing a single word:
+1. Read `system_context` from prompts.yaml — set the scene
+2. Answer `core_question` internally — this is the spine of the post
+3. Apply `type_prompts[<selected_type_id>]` — this is the angle
+4. Apply `research_brief` — this governs how you use the articles
+5. Apply `hard_constraints` — these override everything
+
+Then write a post with this structure:
 
 ### Must follow this structure (in order):
-1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
+1. **HOOK** (1–2 lines): Use one of the selected post type's `hook_starters` as inspiration — adapt it to the actual news. Never start with "I".
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
 3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
-4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated.
+4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated. Use the selected type's `angle` to frame this section.
 5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable.
-6. **CTA** (1 line): A question that invites genuine discussion in the comments.
+6. **CTA** (1 line): Inspired by the selected type's `cta_style` — a question that invites genuine discussion.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
 
@@ -64,6 +87,7 @@ Following the brand kit precisely, write a post that:
 - No buzzwords: "game-changer", "revolutionary", "disruptive" without specifics
 - No walls of text; no corporate jargon
 - Write as `author.name` in first person
+- Use the `voice_examples` from prompts.yaml to calibrate your sentence rhythm
 
 ### URL rule (zero exceptions):
 - You may **only** use URLs that appear verbatim in the `"url"` fields of the supplied articles
@@ -116,6 +140,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+post_type: "<selected post type id>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

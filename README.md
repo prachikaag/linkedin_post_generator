@@ -4,9 +4,20 @@ An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and
 
 ---
 
+## What It Does
+
+1. **Monitors AI news** — reads 20+ RSS feeds from TechCrunch, The Verge, VentureBeat, company blogs (OpenAI, Anthropic, Google DeepMind, Mistral, ElevenLabs, etc.), and YouTube channels
+2. **Tracks trending topics** — searches the web for the AI stories generating the most buzz in the last 7 days
+3. **Classifies stories** — matches each article cluster to a post type (product launch, funding round, personal experiment, YouTube demo, big tech move, research paper, policy news)
+4. **Writes branded posts** — applies your tone of voice, writing style rules, and brand guidelines to generate LinkedIn drafts with cited sources
+5. **Saves as markdown drafts** — each post lands in `posts/` ready for you to review, edit, and publish
+6. **Publishes to Notion** — optionally pushes drafts to a Notion page as toggle blocks
+
+---
+
 ## Architecture
 
-The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
+The pipeline is a **multi-agent system** — an orchestrator spawns specialised subagents:
 
 ```
 orchestrator.md
@@ -16,13 +27,11 @@ orchestrator.md
 └── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
 ```
 
-Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
+Each agent is a self-contained markdown file. The orchestrator passes data between them.
 
 ---
 
 ## How to Run
-
-### Inside Claude Code (the only way to run this)
 
 Open this project in Claude Code and say:
 
@@ -30,49 +39,65 @@ Open this project in Claude Code and say:
 Run the LinkedIn Post Generator pipeline.
 ```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
-
-### Custom parameters
+Or with custom parameters:
 
 ```
-Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per cluster.
+Run the pipeline. Generate 3 posts.
+```
+
+```
+Run the pipeline. Generate 1 post about AI startup funding — force post type startup_funding.
 ```
 
 ```
 Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
 ```
 
+```
+Run the pipeline. Generate 1 post about my personal experiment with [tool].
+```
+
 ---
 
-## Configuration
+## Configuration Files
 
-All settings live in `config/`:
+All settings live in `config/`. **Edit these files to customise everything** — changes take effect on the next run.
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | What it controls |
+|------|-----------------|
+| `config/brand_kit.yaml` | Your name, title, tone of voice, writing style, post structure, hashtag strategy |
+| `config/topics.yaml` | Companies and keywords to track, trending keyword seeds, freshness settings |
+| `config/sources.yaml` | RSS feeds and APIs to fetch from (enable/disable per source) |
+| `config/post_types.yaml` | Post type definitions — triggers, angles, hook starters, CTA style |
+| `config/prompts.yaml` | System-level prompt templates and hard constraints injected into every generation |
 
-Edit these files directly — changes take effect on the next run.
+### Quick Personalisation Checklist
 
-### Environment Variables
+1. **`config/brand_kit.yaml`** → update `author.name` and `author.title` with your real details
+2. **`config/brand_kit.yaml`** → review `tone_of_voice.writing_style` and adjust any rules that don't match your voice
+3. **`config/post_types.yaml`** → enable/disable post types, edit `hook_starters` to sound more like you
+4. **`config/prompts.yaml`** → edit `voice_examples` with actual sentences you've written
+5. **`config/topics.yaml`** → add any companies or keywords you want tracked
 
-Copy `.env.example` to `.env` and fill in:
+---
 
-```bash
-# Required for Notion publishing (optional feature)
-NOTION_PAGE_ID=your_32char_page_id_here
+## Post Types
 
-# Optional: direct Notion REST API fallback
-NOTION_API_KEY=secret_xxx
+The pipeline auto-detects which type of post to write based on the article cluster. You can also force a specific type.
 
-# Optional: NewsAPI for additional sources
-NEWSAPI_KEY=your_key_here
+| Type ID | What it writes about |
+|---------|---------------------|
+| `product_launch` | New model releases, feature updates, product announcements |
+| `youtube_release` | YouTube demos, keynotes, on-stage reveals |
+| `startup_funding` | Funding rounds, acquisitions, IPOs, valuations |
+| `bigtech_news` | Microsoft, Google, Apple, Amazon, Meta, Nvidia, Salesforce AI moves |
+| `human_in_the_loop` | Personal experiments — what you tested, what happened, what you learned |
+| `research_breakthrough` | Research papers, benchmarks, capability milestones |
+| `ai_regulation` | Policy, regulation, governance, legal developments |
+
+Force a type by telling the pipeline:
+```
+Run the pipeline. Force post type: human_in_the_loop.
 ```
 
 ---
@@ -88,51 +113,39 @@ posts/
 ```
 
 Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
+- **YAML frontmatter**: post type, source metadata, companies matched, categories, trending keywords, status
 - **Post body**: the full LinkedIn draft, ready to review and publish
 
 Change `status: draft` to `status: published` to track what's gone live.
 
 ---
 
-## Agents Reference
+## Notion Integration (Optional)
 
-### `news-gatherer`
-- **Tools**: Read, WebFetch
-- **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
-- **Output**: JSON array of scored article objects
+To push drafts to a Notion page:
 
-### `trending-tracker`
-- **Tools**: Read, WebSearch
-- **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
-- **Output**: JSON array of 15–20 keyword phrases
+1. Go to [notion.so/my-integrations](https://www.notion.so/my-integrations) → create a new Internal integration
+2. Copy the integration token → add as `NOTION_API_KEY` in `.env`
+3. Open your LinkedIn Post Ideas Notion page → connect the integration
+4. Copy the 32-char page ID from the URL → add as `NOTION_PAGE_ID` in `.env`
 
-### `post-generator`
-- **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
-
-### `notion-publisher`
-- **Tools**: Read, Notion MCP
-- **Does**: Appends the post as a toggle block on a Notion page
-- **Output**: `success` or `failed`
+Each generated post is appended as a collapsible toggle block with a date heading and draft callout.
 
 ---
 
-## Customising Your Brand
+## Environment Variables
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+Copy `.env.example` to `.env`:
 
-The post-generator agent reads this file on every run — no restarts needed.
+```bash
+cp .env.example .env
+```
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `NOTION_PAGE_ID` | Optional | Enables Notion publishing |
+| `NOTION_API_KEY` | Optional | Fallback Notion REST API key |
+| `NEWSAPI_KEY` | Optional | Broader news coverage via NewsAPI |
 
 ---
 
@@ -148,3 +161,19 @@ rss_feeds:
       priority: high
       enabled: true
 ```
+
+---
+
+## Agents Reference
+
+### `news-gatherer`
+Reads `config/sources.yaml` + `config/topics.yaml`. Fetches all enabled RSS feeds via WebFetch. Scores articles by keyword relevance (+3 per company keyword match, +1 per category keyword match). Deduplicates and returns the top scored articles as a JSON array.
+
+### `trending-tracker`
+Reads seed terms from `config/topics.yaml`. Uses WebSearch to find the most-discussed AI topics from the last 7 days. Returns 15–20 keyword phrases as a JSON array.
+
+### `post-generator`
+Reads `config/brand_kit.yaml`, `config/post_types.yaml`, and `config/prompts.yaml`. Auto-detects post type from article triggers. Synthesises the article cluster into a branded LinkedIn post. Validates all URLs against input data. Saves as a `.md` draft with YAML frontmatter.
+
+### `notion-publisher`
+Reads the Notion page ID from `.env`. Appends the post as a toggle block on the configured Notion page using the Notion MCP connector.
