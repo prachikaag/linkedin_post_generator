@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  # ⬇ Fill in your details — these are injected into every post prompt
+  name: "Your Name"                  # e.g. "Prachi Kaag"
+  title: "Your Professional Title"   # e.g. "Brand Strategist & AI Experimenter"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"     # e.g. "Toronto, Canada"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
