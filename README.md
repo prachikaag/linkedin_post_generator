@@ -50,15 +50,21 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — each file has a single responsibility so you can edit one thing without touching the others:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | What to edit |
+|------|-------------|
+| `config/author.yaml` | Your name, title, tagline, location — **start here** |
+| `config/tone_of_voice.yaml` | How you write: style rules, post structure, dos/don'ts, words to avoid |
+| `config/brand_kit.yaml` | What you write about: focus areas, content angles, hashtags, post length |
+| `config/topics.yaml` | Which AI companies and keywords to track in the news |
+| `config/sources.yaml` | RSS feeds, company blogs, and YouTube channels to fetch from |
 
 Edit these files directly — changes take effect on the next run.
+
+### First-time setup
+
+Open `config/author.yaml` and fill in your name, title, and tagline. That's the only required step before running the pipeline.
 
 ### Environment Variables
 
@@ -124,15 +130,25 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ## Customising Your Brand
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+Each config file has one job — edit whichever one matches what you want to change:
 
-The post-generator agent reads this file on every run — no restarts needed.
+**`config/author.yaml`** — your name, title, tagline. Fill this in first.
+
+**`config/tone_of_voice.yaml`** — your writing voice:
+- Tone traits (curious, pragmatic, opinionated...)
+- Writing style rules (sentence length, hook style, whitespace...)
+- The post structure blueprint (hook → context → evidence → take → so what → CTA)
+- Dos and don'ts
+- Words/phrases you never use
+
+**`config/brand_kit.yaml`** — your brand identity:
+- Focus areas (the themes you write through)
+- Content angles (recurring post templates)
+- Hashtag strategy (always-include + rotation pool)
+- Post length and character limits
+- Citation and sourcing standards
+
+The post-generator reads all three files on every run — no restarts needed.
 
 ---
 

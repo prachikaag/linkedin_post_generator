@@ -24,19 +24,26 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read Configuration
 
-Read `config/brand_kit.yaml` and extract:
+Read all three config files before writing anything:
 
-- `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
-- `tone_of_voice.dos` and `tone_of_voice.donts`
-- `brand.focus_areas` — the lenses the author writes through
-- `brand.hashtags.always_include` — hashtags in every post
-- `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
-- `brand.post_length` — target length (short / medium / long)
+**`config/author.yaml`** — extract:
+- `name`, `title`, `tagline` — who you are writing as
+
+**`config/tone_of_voice.yaml`** — extract:
+- `primary_traits` — how the author comes across
+- `writing_style` — rules for every post
+- `post_structure` — the ordered blueprint to follow
+- `dos` and `donts`
+- `words_never_use` — phrases to avoid entirely
+
+**`config/brand_kit.yaml`** — extract:
+- `focus_areas` — the lenses the author writes through
+- `content_angles` — recurring post templates to draw from
+- `hashtags.always_include` — hashtags in every post
+- `hashtags.rotate_from` — pick from these to reach `max_hashtags` total
+- `post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
 ---

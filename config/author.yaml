@@ -1,0 +1,18 @@
+# ============================================================
+# AUTHOR PROFILE
+# Start here. Fill in your personal details.
+# This file is read by every post the pipeline generates.
+# ============================================================
+
+name: "Your Name"
+title: "Your Professional Title"
+# Example title: "Brand Strategist | Helping brands navigate the AI era"
+
+tagline: "Helping brands understand and leverage AI in the real world"
+location: "Your City, Country"
+linkedin_url: ""
+
+industries:
+  - "Marketing & Brand Strategy"
+  - "Artificial Intelligence"
+  - "Digital Innovation"
