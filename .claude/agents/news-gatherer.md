@@ -1,5 +1,5 @@
 ---
-description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates, and returns a ranked JSON array of the top articles.
+description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates, skips previously seen articles from memory/seen_articles.yaml, and returns a ranked JSON array of the top articles.
 tools: Read, WebFetch
 ---
 
@@ -10,7 +10,7 @@ Fetch fresh AI news from RSS feeds, score each article for relevance, deduplicat
 
 ---
 
-## Step 1 — Read Configuration
+## Step 1 — Read Configuration and Memory
 
 Read `config/sources.yaml`:
 - Collect all feeds where `enabled: true`
@@ -24,6 +24,10 @@ Read `config/topics.yaml`:
   - `max_article_age_hours` (default 48) — only articles published this recently
   - `min_relevance_score` (default 2) — minimum score to keep
   - `max_articles_per_run` (default 25) — maximum articles to return
+
+Read `memory/seen_articles.yaml` (if it exists):
+- Extract the list of `url` values under `seen_articles`
+- Store these as a set called `seen_urls` — you will filter these out in Step 3
 
 ---
 
@@ -45,10 +49,12 @@ If a feed errors or cannot be parsed, skip it silently and continue.
 
 ---
 
-## Step 3 — Filter by Freshness
+## Step 3 — Filter by Freshness and Memory
 
 Cutoff = `now − max_article_age_hours`.
 Discard articles where `published` is before the cutoff or is missing.
+
+Also discard any article whose exact URL appears in `seen_urls` (loaded from `memory/seen_articles.yaml` in Step 1). These have already been used in a previous run.
 
 ---
 

@@ -1,0 +1,32 @@
+# ============================================================
+# POST HISTORY — Log of all generated LinkedIn post drafts
+#
+# Each entry records when a post was generated, its topic,
+# filename, and number of sources cited.
+#
+# Used for reference only — does not affect pipeline behaviour.
+# ============================================================
+
+posts:
+  - date: "2026-05-14"
+    filename: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    topic: "Enterprise AI market shift — Anthropic vs OpenAI business customer data"
+    anchor_source: "TechCrunch"
+    sources_cited: 6
+    matched_companies:
+      - Anthropic
+      - OpenAI
+      - Microsoft
+      - Cerebras
+    status: "draft"
+
+  - date: "2026-05-14"
+    filename: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    topic: "Vertical AI — specialisation over horizontal platforms"
+    anchor_source: "VentureBeat"
+    sources_cited: 5
+    matched_companies:
+      - Harvey AI
+      - Glean
+      - Writer
+    status: "draft"
