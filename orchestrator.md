@@ -128,6 +128,22 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
+## Step 5.5 — Update Memory
+
+After all posts have been generated, update `data/memory.json` to record every article used.
+
+1. Read `data/memory.json`. If it does not exist, start with: `{"seen_urls": [], "seen_title_keys": [], "last_run": null, "total_posts_generated": 0}`
+2. For each article across all generated clusters, add:
+   - The article's `url` to `seen_urls` (skip duplicates)
+   - The article's normalized title key (lowercase, alphanumeric only, max 60 chars) to `seen_title_keys` (skip duplicates)
+3. Set `last_run` to the current ISO 8601 timestamp
+4. Increment `total_posts_generated` by the number of posts successfully generated this run
+5. Write the updated JSON back to `data/memory.json`
+
+Print: `✓ Memory updated — {N} article URLs recorded. Future runs will skip these stories.`
+
+---
+
 ## Step 6 — Final Summary
 
 Print a summary table:

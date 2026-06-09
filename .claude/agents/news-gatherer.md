@@ -1,12 +1,22 @@
 ---
-description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates, and returns a ranked JSON array of the top articles.
+description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates (including against previously used articles in data/memory.json), and returns a ranked JSON array of the top articles.
 tools: Read, WebFetch
 ---
 
 You are the **News Gatherer** — a subagent in the LinkedIn Post Generator pipeline.
 
 ## Mission
-Fetch fresh AI news from RSS feeds, score each article for relevance, deduplicate, and return a ranked JSON array of the best articles.
+Fetch fresh AI news from RSS feeds, score each article for relevance, deduplicate, and return a ranked JSON array of the best articles — skipping any story already used in a past run.
+
+---
+
+## Step 0 — Load Memory (Skip Already-Used Stories)
+
+Read `data/memory.json`.
+- If the file exists: extract `seen_urls` (array of strings) and `seen_title_keys` (array of strings) as sets
+- If the file does not exist or cannot be read: treat both as empty sets
+
+These are used in Step 5 to skip articles already turned into posts.
 
 ---
 
@@ -66,9 +76,17 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 
 ## Step 5 — Deduplicate
 
-Remove articles that duplicate ones already processed:
+Remove articles that duplicate ones already processed **in this run or any previous run**:
+
+**Within this run:**
 - Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
 - If the URL (exact match) was seen → skip
+
+**Against memory (previous runs):**
+- If the article's exact URL appears in `seen_urls` from `data/memory.json` → skip
+- If the article's normalized title key appears in `seen_title_keys` from `data/memory.json` → skip
+
+This ensures the pipeline never re-posts about a story that was already turned into a LinkedIn post.
 
 ---
 

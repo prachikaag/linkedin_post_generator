@@ -123,28 +123,64 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "a16z Blog"
+      url: "https://a16z.com/feed/"
+      priority: high
+      enabled: true
+
+    - name: "The Information"
+      url: "https://www.theinformation.com/feed"
+      priority: medium
+      enabled: true
+
+    - name: "Semafor Tech"
+      url: "https://www.semafor.com/feed/technology"
+      priority: medium
+      enabled: true
+
   # ── YouTube Channels (use RSS for channel updates) ──────
-  # YouTube video releases from key AI channels
+  # YouTube video releases from key AI companies/channels
+  # To find a channel ID: go to channel page → view source → search "channelId"
   youtube_channels:
     - name: "Google DeepMind YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "OpenAI YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "Anthropic YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+      priority: high
+      enabled: true
+
+    - name: "Microsoft Research YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCCTMsB2BptlGd6x3WOGF3wQ"
       priority: medium
       enabled: true
 
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
-      priority: low
+      priority: medium
       enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCM9JOxTAj5Htud0h_gNlPhQ"
+      priority: medium
+      enabled: true
+
+    # ── Add more channels below ──────────────────────────
+    # ElevenLabs:  find channel ID at youtube.com/@ElevenLabsio → view-source → search channelId
+    # Perplexity:  find channel ID at youtube.com/@perplexity_ai
+    # Midjourney:  find channel ID at youtube.com/@midjourney
+    # Matt Wolfe (AI tools):  UCKEKrVvd3IXS0j36xEp0bpQ
+    # - name: "Matt Wolfe - AI Tools"
+    #   url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCKEKrVvd3IXS0j36xEp0bpQ"
+    #   priority: low
+    #   enabled: false
 
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.

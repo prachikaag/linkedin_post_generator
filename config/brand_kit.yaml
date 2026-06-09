@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# ✏️  PERSONALISE THIS SECTION — these values are injected into every post
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"               # ← Replace with your full name (e.g. "Prachi Kaag")
+  title: "Brand Strategist | AI Experimenter"
+  # Shown as the lens through which you write
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"  # ← e.g. "London, UK" or "New York, US"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -47,6 +48,8 @@ tone_of_voice:
     - "Lead with impact and meaning. What does this change for real people and teams? Numbers are a last resort, not a first instinct."
     - "Only use numbers when they are the single most powerful way to make the point. Otherwise describe the impact in human terms."
     - "Never reference past news as current. Before writing 'this week', 'today', or 'yesterday', verify the event date against today's actual date. If it happened more than 7 days ago, say 'recently' or give the context without a time reference."
+    - "For posts about personal AI experiments: lead with exactly what you tried, what surprised you, and what the result was. Use 'I tested…' or 'I've been using…' as a natural opener in the body (not the hook)."
+    - "For YouTube video launches: treat the video as primary source. Note the key claim or demo shown in the video and link back to it in sources."
 
   # The blueprint for every post
   post_structure:
@@ -100,6 +103,10 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[Company] just shipped a new YouTube demo — here's the one thing brands should notice"
+    - "I've been experimenting with [AI tool] for [marketing use case] — honest results"
+    - "What [AI startup]'s latest funding round reveals about where the market is going"
+    - "The human-in-the-loop truth: what AI can draft, and what still needs you"
 
   # Hashtag strategy
   hashtags:
