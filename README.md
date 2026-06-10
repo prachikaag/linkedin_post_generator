@@ -57,6 +57,7 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/experiments_log.yaml` | Your personal "I tried X" AI experiment log — human-in-the-loop notes the post-generator can weave into posts |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -110,10 +111,10 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`
-- **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Tools**: Read, Write, Edit
+- **Reads**: `config/brand_kit.yaml`, `config/experiments_log.yaml`
+- **Does**: Synthesises a cluster of articles (plus a relevant personal experiment, if one is unused and on-topic) into a branded LinkedIn post, validates URLs, saves as `.md` draft, and marks any used experiment as `used`
+- **Output**: JSON object with filename, filepath, content, source metadata, and `experiment_used`
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
@@ -133,6 +134,37 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Logging Your Own AI Experiments
+
+`config/experiments_log.yaml` is where you capture the "I tried X, here's what happened" moments — the human-in-the-loop material that makes a post sound like you, not a news recap.
+
+Each time you test a tool, feature, or workflow worth sharing, add an entry:
+
+```yaml
+entries:
+  - id: "EXP-001"
+    date: "2026-06-10"
+    tool: "Claude"
+    related_keywords:
+      - "Claude"
+      - "Anthropic"
+      - "Skills"
+    what_i_tried: "Used Claude's Skills feature to draft a week of LinkedIn posts from one brief."
+    what_happened: "Cut drafting time from ~2 hours to 20 minutes, but it leaned hype-y until I hand-tuned the brand voice rules."
+    takeaway: "AI is a fast first-drafter, not a final editor — your voice still needs a human pass."
+    status: "unused"
+    used_in_post: ""
+```
+
+On each run, `post-generator`:
+1. Looks for `unused` entries whose `related_keywords` overlap with the news/trending topics it's writing about
+2. If it finds a match, opens **YOUR TAKE** with that anecdote in first person
+3. Marks the entry `status: used` and records `used_in_post` so it's never reused
+
+Keep `related_keywords` aligned with the company/product names in `config/topics.yaml` so the matcher can find them. Set `status` back to `"unused"` any time you want to reuse or re-edit an entry.
 
 ---
 

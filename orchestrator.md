@@ -92,11 +92,14 @@ Input:
 }
 ```
 
+The post-generator also checks `config/experiments_log.yaml` for a relevant, unused personal AI experiment to weave in as a first-person anecdote — and marks it `used` if so.
+
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
+  {if result.experiment_used: "  ✓ Wove in personal experiment " + result.experiment_used}
 ```
 
 Collect each result's JSON object.

@@ -1,0 +1,39 @@
+# ============================================================
+# HUMAN-IN-THE-LOOP EXPERIMENT LOG
+#
+# This is YOUR running log of hands-on experiments with AI
+# tools — the "I tried X, here's what happened" material that
+# makes your posts feel personal instead of a news recap.
+#
+# HOW IT WORKS
+# - Add a new entry under `entries:` every time you try
+#   something worth sharing (a new feature, a workflow, a
+#   prompt technique, a tool you tested).
+# - The post-generator agent scans this file. If an entry's
+#   `related_keywords` overlap with the news/trending topics
+#   in a given run, it weaves your experiment into the
+#   "YOUR TAKE" section as a first-person anecdote.
+# - Once an entry has been used in a post, the agent sets
+#   `status: used` and fills in `used_in_post` automatically —
+#   so the same anecdote is never reused.
+# - Entries with `status: unused` are fair game for the next run.
+# - Entries with `status: example` are ignored by the agent.
+#
+# TIP: keep `related_keywords` aligned with the company names
+# and keywords in config/topics.yaml so the matcher can find them.
+# ============================================================
+
+entries:
+  # ---- EXAMPLE — copy this block, fill in your own, then set status to "unused" ----
+  - id: "EXP-000"
+    date: "2026-01-01"
+    tool: "Example Tool"
+    related_keywords:
+      - "Example Tool"
+    what_i_tried: "One sentence: what you did, with which tool, for what task."
+    what_happened: "One or two sentences: the concrete result — what worked, what broke, what surprised you."
+    takeaway: "Your opinion: what this means for brands or marketers. This becomes the seed for YOUR TAKE."
+    status: "example"   # example | unused | used
+    used_in_post: ""
+
+  # ---- Add your real entries below this line ----
