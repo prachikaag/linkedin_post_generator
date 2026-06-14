@@ -57,8 +57,26 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/experiments_log.yaml` | Your personal "I tried this AI tool" notes — woven into posts as human-in-the-loop anecdotes |
 
 Edit these files directly — changes take effect on the next run.
+
+### Logging Your AI Experiments
+
+`config/experiments_log.yaml` is your lab notebook. Every time you try an AI tool, feature, or workflow, add an entry:
+
+```yaml
+experiments:
+  - date: "2026-06-14"
+    tool: "Midjourney v7"
+    company: "Midjourney"
+    what_i_tried: "Generated a week of brand social assets from one prompt template."
+    what_happened: "Consistency across images was much better, but text rendering still broke."
+    takeaway: "Good enough for concepting, not final assets — yet."
+    used: false
+```
+
+When the **post-generator** writes a post about a company/tool that matches an unused entry, it weaves in a short first-person "I tried this — here's what happened" anecdote and marks the entry `used: true` so it isn't repeated. Entries that don't match anything are simply left for a future run.
 
 ### Environment Variables
 
@@ -106,14 +124,14 @@ Change `status: draft` to `status: published` to track what's gone live.
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
 - **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
+- **Does**: Searches the web *and other platforms* (Reddit, X/Twitter, Hacker News, YouTube) for trending AI topics from the past 7 days
 - **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/experiments_log.yaml`
+- **Does**: Synthesises a cluster of articles (plus a personal experiment, if relevant) into a branded LinkedIn post, validates URLs, saves as `.md` draft, marks the experiment as used
+- **Output**: JSON object with filename, filepath, content, source metadata, and `experiment_referenced`
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

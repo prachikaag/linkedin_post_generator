@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/experiments_log.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -41,6 +41,20 @@ Read `config/brand_kit.yaml` and extract:
 
 ---
 
+## Step 1.5 — Check for a Personal Experiment to Weave In
+
+Read `config/experiments_log.yaml` if it exists — it's the author's personal lab notebook of hands-on AI experiments.
+
+Look for an entry where:
+- `used` is `false` or missing, **and**
+- its `company` or `tool` matches one of `matched_companies` across the supplied articles, or appears in `trending_keywords`
+
+If multiple entries match, pick the most recent by `date`. If none match, skip this step — never force an experiment into the post.
+
+Remember the matched entry (its `date` + `tool`) for Step 3.
+
+---
+
 ## Step 2 — Write the LinkedIn Post
 
 Following the brand kit precisely, write a post that:
@@ -64,6 +78,7 @@ Following the brand kit precisely, write a post that:
 - No buzzwords: "game-changer", "revolutionary", "disruptive" without specifics
 - No walls of text; no corporate jargon
 - Write as `author.name` in first person
+- If Step 1.5 found a matching experiment, weave it into EVIDENCE or YOUR TAKE as one short first-person anecdote — what you tried (`what_i_tried`), what happened (`what_happened`), and the takeaway. Follow the content angle "I tried [tool] for [use case] — here's what actually happened." Keep it to 1–2 sentences; it should support the post, not dominate it.
 
 ### URL rule (zero exceptions):
 - You may **only** use URLs that appear verbatim in the `"url"` fields of the supplied articles
@@ -139,6 +154,9 @@ Then append a blank line followed by the full post body.
 
 Save to `posts/<filename>`.
 
+### Mark the Experiment as Used
+If Step 1.5 found a matching experiment, edit `config/experiments_log.yaml` and set that entry's `used` field to `true`, so it isn't reused in a future post. If no experiment was used, leave the file untouched.
+
 ---
 
 ## Output
@@ -153,7 +171,8 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "experiment_referenced": "<tool name from experiments_log.yaml, or null if none>"
 }
 ```
 

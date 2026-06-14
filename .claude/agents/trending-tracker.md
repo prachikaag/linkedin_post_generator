@@ -16,13 +16,14 @@ Read `config/topics.yaml` and extract `trending_keywords.seed_terms` — the lis
 
 ---
 
-## Step 2 — Search for What's Trending
+## Step 2 — Search for What's Trending Across Platforms
 
-Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 2–3 targeted searches across these angles:
+Use **WebSearch** to find the hottest AI stories and discussions from the last 7 days. Run 3–4 targeted searches across these angles:
 
 1. **New model releases & launches** — e.g. `latest AI model release this week`
 2. **Funding & startup news** — e.g. `AI startup funding announcement this week`
 3. **Research breakthroughs & product launches** — e.g. `AI research breakthrough product launch`
+4. **Cross-platform buzz** — what people are actually discussing on Reddit, X/Twitter, Hacker News, and YouTube, e.g. `site:reddit.com AI tool discussion this week`, `AI news trending on X this week`, `AI YouTube video viral this week`
 
 Prioritise stories about the companies and topics named in the seed terms.
 

@@ -1,0 +1,39 @@
+# ============================================================
+# AI EXPERIMENTS LOG
+# Your personal "lab notebook" for hands-on AI experiments.
+#
+# Add an entry every time you try an AI tool, feature, or
+# workflow — even a quick test. When a news cluster touches the
+# same tool or company, the post-generator can weave one of
+# these in as a short first-person "I tried this" anecdote
+# (per brand_kit.yaml → content_angles).
+#
+# Fields:
+#   date           - YYYY-MM-DD, when you tried it
+#   tool           - the specific product/feature (e.g. "Claude Code")
+#   company        - the company behind it (must match a name in
+#                    config/topics.yaml → companies_to_track for matching)
+#   what_i_tried   - the use case, in your own words
+#   what_happened  - what actually happened — be honest, good or bad
+#   takeaway       - the one-line lesson or opinion for brands
+#   used           - leave as false; the post-generator flips this to
+#                    true after it references the entry, so you don't
+#                    repeat yourself in a future post
+# ============================================================
+
+experiments:
+  - date: "2026-06-01"
+    tool: "Claude Code"
+    company: "Anthropic"
+    what_i_tried: "Used Claude Code to draft and ship a small internal tool end-to-end, from spec to working code, in one sitting."
+    what_happened: "It got the boring 80% right immediately — scaffolding, config, docs — and I spent my time on the 20% that needed judgment calls."
+    takeaway: "The win isn't 'AI writes code' — it's 'AI clears the busywork so you can focus on decisions only a human should make.'"
+    used: false
+
+  - date: "2026-06-05"
+    tool: "NotebookLM"
+    company: "Google DeepMind"
+    what_i_tried: "Fed it a stack of competitor research docs and asked it to generate a briefing podcast."
+    what_happened: "The summary was solid, but it missed the one contradiction between two sources that mattered most for our strategy call."
+    takeaway: "Great for a first pass. Don't skip the human review step on anything you're about to act on."
+    used: false
