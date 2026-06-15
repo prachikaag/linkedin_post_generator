@@ -16,15 +16,18 @@ Read `config/topics.yaml` and extract `trending_keywords.seed_terms` — the lis
 
 ---
 
-## Step 2 — Search for What's Trending
+## Step 2 — Search Across Platforms for What's Trending
 
-Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 2–3 targeted searches across these angles:
+Use **WebSearch** to find the hottest AI stories and discussions from the last 7 days. Run 5–6 targeted searches across these angles and platforms:
 
 1. **New model releases & launches** — e.g. `latest AI model release this week`
 2. **Funding & startup news** — e.g. `AI startup funding announcement this week`
 3. **Research breakthroughs & product launches** — e.g. `AI research breakthrough product launch`
+4. **Reddit discussion** — e.g. `site:reddit.com AI news this week` or `reddit.com/r/artificialintelligence trending`
+5. **X / Twitter discussion** — e.g. `site:x.com OR site:twitter.com AI launch this week` to surface what's being shared and debated
+6. **YouTube coverage** — e.g. `site:youtube.com new AI model review this week` to catch demo videos and reaction content driving buzz
 
-Prioritise stories about the companies and topics named in the seed terms.
+Prioritise stories about the companies and topics named in the seed terms. Note which platform(s) each trending phrase is showing up on — a topic appearing across multiple platforms (e.g. news + Reddit + X) is a stronger signal than one appearing in only one place.
 
 ---
 
@@ -34,6 +37,7 @@ From your search results, extract **15–20 short keyword phrases** (2–5 words
 - Represent genuinely trending topics right now (not evergreen concepts)
 - Are specific enough to be useful in a post (prefer "GPT-5 reasoning benchmark" over just "AI")
 - Cover a mix of: model launches, company moves, funding, research, and policy/regulation
+- Are ordered with cross-platform topics first — phrases you found showing up in news AND on Reddit/X/YouTube should be ranked above single-source mentions
 
 Good examples:
 - "GPT-5 reasoning capabilities"

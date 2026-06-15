@@ -106,7 +106,7 @@ Change `status: draft` to `status: published` to track what's gone live.
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
 - **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
+- **Does**: Searches news, Reddit, X/Twitter, and YouTube for trending AI topics from the past 7 days and ranks cross-platform topics highest
 - **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`

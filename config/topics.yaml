@@ -337,7 +337,7 @@ topic_categories:
 
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
-  # Seed terms used to find related trending queries on Google Trends
+  # Seed terms used to anchor cross-platform trend searches
   seed_terms:
     - "artificial intelligence"
     - "ChatGPT"
@@ -347,8 +347,13 @@ trending_keywords:
     - "AI agent"
     - "Claude AI"
     - "Gemini AI"
-  geo: "US"           # Google Trends geography code (US, GB, AU, etc.)
   timeframe: "now 7-d" # last 7 days (options: now 1-d, now 7-d, now 1-m)
+  # Platforms the trending-tracker searches across to find cross-platform signal
+  platforms:
+    - "news"
+    - "reddit"
+    - "x_twitter"
+    - "youtube"
 
 # ── Freshness Settings ─────────────────────────────────────
 freshness:
