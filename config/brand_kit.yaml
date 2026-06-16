@@ -6,15 +6,15 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"
+  title: "Brand & AI Strategist"
+  tagline: "Helping brands understand and leverage AI in the real world — human in the loop, always"
+  location: "Global"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Strategy"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -100,6 +100,10 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI company] shipped a new feature — here's how brands can use it today"
+    - "I experimented with [tool] this week — honest results, no filter"
+    - "Big tech just moved on AI — what it means if you run a brand or agency"
+    - "[Startup] just raised [amount] — here's why it matters for the AI ecosystem"
 
   # Hashtag strategy
   hashtags:
