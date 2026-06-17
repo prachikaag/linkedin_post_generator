@@ -1,0 +1,245 @@
+# ============================================================
+# POST TEMPLATES
+# ============================================================
+# Each template defines the angle, hook style, and structure
+# for a specific content type. The post generator picks the
+# best-matching template based on the article cluster.
+#
+# Edit any template to change how that content type is written.
+# Add new templates below if you develop new content angles.
+# ============================================================
+
+templates:
+
+  # ── 1. Product Launch / New Feature ───────────────────────
+  # Use when: a major AI company releases a new model, product,
+  # feature, or capability update (GPT-5, Claude 4, Gemini Ultra, etc.)
+
+  product_launch:
+    name: "Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "announces"
+      - "introduces"
+      - "unveils"
+      - "ships"
+      - "available now"
+      - "new model"
+      - "new feature"
+      - "update"
+      - "v2"
+      - "v3"
+    hook_style: >
+      Open with what the launch actually changes for real people or teams —
+      not the feature itself. Example: "The gap between what brands can
+      create in-house vs. what they outsource just narrowed again."
+    angle: >
+      Frame this as a market moment, not a product announcement.
+      What does this launch tell us about where the category is heading?
+      What can brands do TODAY that they couldn't do yesterday?
+    must_include:
+      - "What the tool/feature actually does in plain English"
+      - "Who benefits most (brands, marketers, developers, etc.)"
+      - "One honest limitation or caveat"
+      - "What this signals about the broader market direction"
+    avoid:
+      - "Listing every feature like a press release"
+      - "Saying it's 'revolutionary' or 'game-changing' without specifics"
+      - "Treating it as the only relevant launch this week"
+    cta_style: >
+      Ask readers what use case they'd try first, or whether they've
+      had early access and what they noticed.
+    example_angle: >
+      "Here's what this launch actually means for brand teams — and the
+      one thing the announcement buried."
+
+  # ── 2. AI Startup Funding ─────────────────────────────────
+  # Use when: an AI startup raises a significant funding round,
+  # gets acquired, goes public, or hits a major valuation milestone.
+
+  funding_round:
+    name: "AI Startup Funding"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "investment"
+      - "venture capital"
+      - "billion"
+    hook_style: >
+      Open with what the money signals about where the market is heading —
+      not the funding amount itself. Example: "When $X flows into [vertical],
+      it means the market has decided something."
+    angle: >
+      Decode what the investment tells us about which problems are considered
+      worth solving and where AI value is actually being created.
+      Connect to 2-3 other related funding moves or acquisitions if available.
+    must_include:
+      - "What the company actually does (in one plain sentence)"
+      - "Why investors are betting on this space right now"
+      - "What it means for brands or teams operating in that vertical"
+      - "The broader funding pattern — is this part of a trend?"
+    avoid:
+      - "Just announcing the dollar amount — readers have already seen that headline"
+      - "Speculating on valuation without citing a source"
+      - "Treating one funding round as proof an entire category has won"
+    cta_style: >
+      Ask which AI startup the reader would most want to see succeed in their
+      space, or what problem they wish more capital was going toward.
+    example_angle: >
+      "The funding isn't the story. What it tells us about which AI bets are
+      paying off is."
+
+  # ── 3. Big Tech AI Move ───────────────────────────────────
+  # Use when: Microsoft, Google, Apple, Amazon, Meta, Nvidia, or
+  # Salesforce makes a significant AI announcement or strategic move.
+
+  big_tech_move:
+    name: "Big Tech AI Move"
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple Intelligence"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Salesforce"
+      - "Copilot"
+      - "Azure AI"
+      - "AWS AI"
+      - "partnership"
+      - "acquisition"
+      - "enterprise"
+    hook_style: >
+      Open with what this move changes for the 99% of companies that aren't
+      building their own AI. Example: "Big tech just made [X] accessible to
+      every mid-market team that couldn't afford it before."
+    angle: >
+      Reframe from the big tech lens to the brand/marketer lens.
+      When a major platform embeds AI, what does that mean for teams that
+      use that platform every day?
+    must_include:
+      - "What specifically is changing (product, policy, or partnership)"
+      - "Who this reaches — how many users / businesses does it affect"
+      - "The competitive dynamic: why now, and what are others doing"
+      - "One concrete thing a marketing or brand team should do in response"
+    avoid:
+      - "Treating this as just a tech story — always connect to brand/marketing implications"
+      - "Picking a winner between tech companies"
+      - "Ignoring the user experience in favour of technical specs"
+    cta_style: >
+      Ask which platform's AI integration has actually changed how their team
+      works, or which one they're watching most closely.
+    example_angle: >
+      "This isn't an enterprise story. It's a normalisation story —
+      and it matters for every brand team using [platform]."
+
+  # ── 4. Human-in-the-Loop Experiment ──────────────────────
+  # Use when: writing a first-person post about your own AI
+  # experiments, tool comparisons, or workflow findings.
+  # This is the most personal and highest-engagement post type.
+
+  personal_experiment:
+    name: "Human-in-the-Loop Experiment"
+    trigger_keywords:
+      - "experiment"
+      - "I tried"
+      - "tested"
+      - "workflow"
+      - "productivity"
+      - "how I use"
+      - "what I learned"
+    hook_style: >
+      Open with a result or surprise — not the fact that you ran a test.
+      Example: "I gave [tool] the same brief I'd give a junior copywriter.
+      Here's what came back."
+    angle: >
+      Document your actual experience: what you tried, what surprised you,
+      what didn't work, and what you'd now recommend to a brand team.
+      These posts perform best when they're honest, specific, and unpredictable.
+    must_include:
+      - "What you actually did (specific enough to be replicable)"
+      - "The result — with your honest reaction"
+      - "One thing that surprised you (positive or negative)"
+      - "Your specific recommendation for brands or marketers"
+    avoid:
+      - "Vague descriptions like 'I played around with it'"
+      - "Only positive outcomes — honest limitations make it credible"
+      - "Skipping the 'so what for brands' section"
+    personal_data:
+      instruction: >
+        ALWAYS draw from config/experiments.yaml to ground this post type.
+        Match the experiment to the relevant news or tool being discussed.
+        Use your real results as the primary evidence — supplemented by
+        external sources for context and credibility.
+    cta_style: >
+      Ask readers what they've tried recently or invite them to share
+      their own experiments with the same tool.
+    example_angle: >
+      "I ran the same brief through three AI tools. The results said more
+      about the tools than the brief did."
+
+  # ── 5. Industry Trend / Synthesis ────────────────────────
+  # Use when: multiple signals point to a broader pattern —
+  # not one announcement, but a movement across the space.
+
+  trend_synthesis:
+    name: "Industry Trend / Pattern"
+    trigger_keywords:
+      - "trend"
+      - "pattern"
+      - "across the industry"
+      - "multiple companies"
+      - "shift"
+      - "2026"
+      - "era of"
+      - "rise of"
+      - "wave"
+    hook_style: >
+      Open with the pattern, not any single data point. Example:
+      "Three different things happened in AI this week. They're all
+      the same thing."
+    angle: >
+      Synthesise 4-6 articles into a single coherent narrative about
+      where the market is heading. Your job is to connect the dots that
+      individual headlines don't connect.
+    must_include:
+      - "At least 3 data points or developments that support the thesis"
+      - "A clear named thesis (not just 'things are changing')"
+      - "At least one counterpoint or caveat"
+      - "What brands should actually DO in response"
+    avoid:
+      - "Picking a thesis before the evidence supports it"
+      - "Treating correlation as causation"
+      - "Writing a listicle when a narrative is more powerful"
+    cta_style: >
+      Ask readers whether they see the same pattern in their space,
+      or what signal they'd add to the thesis.
+    example_angle: >
+      "The market isn't choosing one AI winner. It's choosing depth
+      over breadth — and the implications for brand teams are significant."
+
+
+# ── Template Selection Logic ───────────────────────────────
+# The post generator will auto-select a template by matching
+# article keywords against trigger_keywords above.
+#
+# Priority order (highest match wins):
+#   1. personal_experiment — if experiments.yaml has a matching tool
+#   2. product_launch — launch/release keywords
+#   3. funding_round — funding/investment keywords
+#   4. big_tech_move — big tech company keywords
+#   5. trend_synthesis — default if no strong match or multiple articles
+#
+# Override: you can tell the orchestrator which template to use
+# by including "Use template: <template_name>" in your run command.
+# Example: "Run the pipeline. Use template: personal_experiment."

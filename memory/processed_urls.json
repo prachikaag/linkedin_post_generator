@@ -1,0 +1,4 @@
+{
+  "_comment": "Tracks article URLs that have already been used to generate posts. The orchestrator reads this before forming clusters and writes to it after each successful post generation. Do not edit manually unless you want to re-process a specific article — just delete its URL from this list.",
+  "processed": []
+}

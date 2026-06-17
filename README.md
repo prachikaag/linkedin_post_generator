@@ -50,15 +50,41 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit these files directly, changes take effect on the next run:
 
 | File | Purpose |
 |------|---------|
+| `config/brand_kit.yaml` | **Start here.** Your name, tone of voice, writing style, hashtags |
+| `config/topics.yaml` | Companies, keywords, and freshness settings to track |
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/post_templates.yaml` | Post angles for each content type (launch, funding, big tech, experiment, trend) |
+| `config/experiments.yaml` | **Your personal AI experiments log** — the "human in the loop" library |
 
-Edit these files directly — changes take effect on the next run.
+### `config/experiments.yaml` — Your experiments log
+
+This is the most personal piece of the system. Every time you try a new AI tool, add an entry here:
+
+```yaml
+experiments:
+  - date: "2026-06-01"
+    tool: "Perplexity"
+    tool_category: "research"
+    use_case: "Research for a client strategy deck"
+    what_i_did: "Used Perplexity Pro to pull competitor landscape data"
+    what_surprised_me: "Cited sources inline — saved hours of tracking references"
+    what_didnt_work: "Funding figures needed manual verification"
+    verdict: "Best research tool I've found; treat numbers as leads, not facts."
+    would_recommend_for: "Rapid competitive research and landscape analysis"
+    share_in_posts: true
+```
+
+When the post generator finds an article about a tool you've experimented with, it pulls your real experience and weaves it into the post — making the content uniquely yours.
+
+### Memory (deduplication)
+
+`memory/processed_urls.json` tracks which article URLs have already been used.
+On each run, the orchestrator filters those out so you never write two posts about the same article.
+To re-process an article, delete its URL from the `processed` list in that file.
 
 ### Environment Variables
 
@@ -111,9 +137,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/post_templates.yaml`, `config/experiments.yaml`
+- **Does**: Selects the right post template for the content type, optionally weaves in a first-person experiment, synthesises articles into a branded post, saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, template used, and whether a personal experiment was woven in
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

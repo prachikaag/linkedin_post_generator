@@ -1,0 +1,137 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# This is your "human in the loop" library.
+#
+# Log every AI tool you try, every workflow you test, every
+# surprising result you get. The post generator reads this file
+# and weaves your real experiments into posts — making them
+# first-person, credible, and uniquely yours.
+#
+# Set share_in_posts: true to make an experiment available
+# for the pipeline to reference. Set it to false to keep
+# a note private.
+#
+# HOW TO ADD AN ENTRY:
+# - Fill in the fields below — the more detail the better
+# - The pipeline matches experiments to posts by topic/tool
+# - Only experiments marked share_in_posts: true are used
+# ============================================================
+
+experiments:
+
+  # ── Template (copy this block to add a new experiment) ────
+  #
+  # - date: "YYYY-MM-DD"
+  #   tool: "Tool name"
+  #   tool_category: "writing | research | image | video | audio | coding | productivity | other"
+  #   use_case: "One sentence: what were you trying to do?"
+  #   what_i_did: "How did you use it? What prompt or workflow did you run?"
+  #   what_surprised_me: "What was unexpected — good or bad?"
+  #   what_didnt_work: "Honest note on limitations or frustrations"
+  #   verdict: "Your one-sentence takeaway"
+  #   would_recommend_for: "The specific use case where this tool shines"
+  #   share_in_posts: true
+  #
+  # ──────────────────────────────────────────────────────────
+
+  - date: "2026-05-01"
+    tool: "Claude"
+    tool_category: "writing"
+    use_case: "Drafting LinkedIn posts from news articles"
+    what_i_did: >
+      Fed Claude a cluster of news articles and asked it to write a LinkedIn post
+      in my brand voice. Iterated with follow-up prompts to sharpen the opinion
+      sections and reduce corporate-speak.
+    what_surprised_me: >
+      It matched the structure I wanted almost immediately. The hook quality
+      improved significantly when I gave it examples of hooks I liked.
+    what_didnt_work: >
+      The first draft always read too neutral — I had to push hard for a clear
+      opinion rather than a balanced summary.
+    verdict: "Excellent drafting partner; you still need to inject the opinion."
+    would_recommend_for: "First-draft content where you have a clear structure in mind"
+    share_in_posts: true
+
+  - date: "2026-04-20"
+    tool: "Perplexity"
+    tool_category: "research"
+    use_case: "Researching AI competitors for a client deck"
+    what_i_did: >
+      Used Perplexity Pro to pull recent news and funding data on AI startups
+      in a specific vertical. Cross-referenced with manual Google searches.
+    what_surprised_me: >
+      It cited sources inline, which saved hours of tracking down references.
+      The quality of summaries was noticeably better than basic search.
+    what_didnt_work: >
+      Occasionally hallucinated funding figures — anything with specific numbers
+      needed a manual verify before I put it in a client doc.
+    verdict: "Best research assistant I've found; treat numbers as leads, not facts."
+    would_recommend_for: "Rapid landscape research and competitive analysis"
+    share_in_posts: true
+
+  - date: "2026-04-10"
+    tool: "Midjourney"
+    tool_category: "image"
+    use_case: "Creating visuals for a brand campaign concept pitch"
+    what_i_did: >
+      Generated 40+ concept images for a brand campaign using v7. Iterated with
+      style references and negative prompts to dial in the aesthetic.
+    what_surprised_me: >
+      The gap between v6 and v7 in photorealism was huge — clients couldn't tell
+      it wasn't photography until I told them.
+    what_didnt_work: >
+      Text in images is still inconsistent. Anything with a logo or readable
+      copy needed a Canva layer on top.
+    verdict: "Game-level visuals for concept work; still needs human design sense."
+    would_recommend_for: "Mood boards, campaign concepts, social creative at speed"
+    share_in_posts: true
+
+  - date: "2026-03-28"
+    tool: "ElevenLabs"
+    tool_category: "audio"
+    use_case: "Voiceover for a brand explainer video"
+    what_i_did: >
+      Used ElevenLabs to generate voiceover from a script, tried 4 different
+      voice profiles, then used their instant voice cloning feature.
+    what_surprised_me: >
+      The cloned voice needed only 30 seconds of clean audio to train.
+      The result was indistinguishable from the original in a Zoom call test.
+    what_didnt_work: >
+      Emotional range is still flat — it reads well but doesn't modulate the
+      way a trained voice actor does for emphasis.
+    verdict: "Replaces basic VO entirely; not there yet for emotional storytelling."
+    would_recommend_for: "Explainer videos, ads, internal training content"
+    share_in_posts: true
+
+  - date: "2026-03-15"
+    tool: "ChatGPT"
+    tool_category: "productivity"
+    use_case: "Building a weekly content planning workflow"
+    what_i_did: >
+      Set up a GPT with custom instructions to act as a content strategist.
+      Fed it my brand kit and asked it to suggest post angles from a weekly
+      news digest I paste in.
+    what_surprised_me: >
+      The custom GPT retained my context between sessions and got noticeably
+      better at my style after 3-4 rounds of feedback.
+    what_didnt_work: >
+      It suggested angles that were too generic when news was slow.
+      Needed human curation to find the distinctive angle.
+    verdict: "Great for building repeatable content workflows; still needs your editorial eye."
+    would_recommend_for: "Teams building consistent content operations"
+    share_in_posts: true
+
+# ── BLANK ENTRY TEMPLATE ───────────────────────────────────
+# Uncomment and fill in to add a new experiment:
+#
+# - date: ""
+#   tool: ""
+#   tool_category: ""
+#   use_case: ""
+#   what_i_did: ""
+#   what_surprised_me: ""
+#   what_didnt_work: ""
+#   verdict: ""
+#   would_recommend_for: ""
+#   share_in_posts: false

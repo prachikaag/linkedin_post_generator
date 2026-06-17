@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — it drives how every post is signed off and framed.
+# Your name, title, and tagline appear in the post generator's context.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                          # e.g. "Prachi Kaag"
+  title: "Your Professional Title"           # e.g. "Brand Strategist & AI Enthusiast"
+  # Your LinkedIn headline — the one-liner that frames your point of view
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
