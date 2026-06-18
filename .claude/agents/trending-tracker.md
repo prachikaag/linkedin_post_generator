@@ -18,13 +18,14 @@ Read `config/topics.yaml` and extract `trending_keywords.seed_terms` — the lis
 
 ## Step 2 — Search for What's Trending
 
-Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 2–3 targeted searches across these angles:
+Use **WebSearch** to find the hottest AI stories from the last 7 days. Run these 4 targeted searches:
 
-1. **New model releases & launches** — e.g. `latest AI model release this week`
-2. **Funding & startup news** — e.g. `AI startup funding announcement this week`
-3. **Research breakthroughs & product launches** — e.g. `AI research breakthrough product launch`
+1. **New model releases & launches** — `latest AI model launch OR release site:techcrunch.com OR site:theverge.com OR site:venturebeat.com`
+2. **Startup funding news** — `AI startup funding round Series raised 2025 OR 2026`
+3. **Big Tech AI moves** — `Google OR Microsoft OR Apple OR Amazon OR Meta AI announcement this week`
+4. **YouTube & product launches** — `ChatGPT OR Claude OR Gemini OR Perplexity new feature video launch`
 
-Prioritise stories about the companies and topics named in the seed terms.
+Prioritise stories about the companies named in the seed terms. Look for repeated story themes across results — if 3+ results mention the same topic, that is a strong trending signal.
 
 ---
 

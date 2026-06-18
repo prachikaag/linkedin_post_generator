@@ -10,6 +10,17 @@ Fetch fresh AI news from RSS feeds, score each article for relevance, deduplicat
 
 ---
 
+## Step 0 — Load Already-Published URLs
+
+Before fetching any feeds, read all files in `posts/` (glob `posts/*.md`).
+For each file, scan for lines starting with `url:` inside the `all_sources:` block of the YAML frontmatter.
+Collect every URL found. These are **seen_urls** — already published or drafted.
+
+During Step 6 (Filter, Sort, Return), also exclude any article whose `url` is in `seen_urls`.
+This prevents re-generating posts from articles that have already been used.
+
+---
+
 ## Step 1 — Read Configuration
 
 Read `config/sources.yaml`:
