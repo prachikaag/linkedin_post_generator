@@ -62,6 +62,10 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 **Category keywords** (from `topic_categories` → each category's `keywords` list):
 - If a keyword appears in the text → `relevance_score += 1`, append category name to `matched_categories`
 
+**YouTube source boost:**
+- If the article's `source_name` contains "YouTube" → `relevance_score += 4`, append `"YouTube Video Drop"` to `matched_categories`
+- Rationale: video drops from AI companies are high-priority content for the author
+
 ---
 
 ## Step 5 — Deduplicate

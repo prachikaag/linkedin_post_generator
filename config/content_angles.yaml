@@ -1,0 +1,262 @@
+# ============================================================
+# CONTENT ANGLES & PILLARS
+# Edit this file to define the lenses you write through.
+# Each angle has its own trigger signals, framing instructions,
+# hook starters, and CTA style.
+#
+# The post-generator reads this file and selects the best-fit
+# angle for each article cluster before writing the post.
+#
+# Priority order (first match wins):
+#   human_in_loop → youtube_drop → ai_feature_launch →
+#   brands_leveraging_ai → big_tech_news → ai_startup_funding
+# ============================================================
+
+angles:
+
+  # ── 1. Human in the Loop Experiments ─────────────────────
+  # Your most authentic content — first-person AI experiments.
+  # You as the creative director, AI as the drafter.
+  human_in_loop:
+    name: "Human in the Loop Experiment"
+    priority: 1
+    description: >
+      First-person posts about experimenting with AI tools in your own work.
+      The point is your creative judgment — what you kept, changed, and why.
+    trigger_keywords:
+      - "workflow"
+      - "productivity"
+      - "AI assistant"
+      - "automation"
+      - "AI agent"
+      - "agentic"
+      - "copilot"
+      - "I tried"
+      - "experiment"
+    framing: |
+      Be specific: name the tool, the task, the output, what you edited.
+      Be honest about what worked and what fell flat — failure is more interesting than success.
+      Show the before/after: what would this have taken without AI?
+      Your role as the human editor is the point of the story, not the AI output.
+      Invite others to share their own experiments — make it a conversation.
+    hook_starters:
+      - "I gave [AI tool] a task I'd normally spend [X] on. Here's what happened."
+      - "Real talk: I've been using [tool] for [task]. Here's my honest take."
+      - "The part nobody tells you about using AI for [task]..."
+      - "I ran an experiment this week. The result surprised me."
+    cta_style: "Ask what tools they're experimenting with, or invite them to share their own results"
+    hashtags_extra:
+      - "#HumanInTheLoop"
+      - "#AIWorkflow"
+    post_template: |
+      What I set out to do: [The task or problem]
+      The tool I used: [AI tool name]
+      What the AI produced: [Honest description]
+      What I had to fix or change: [Where your judgment made the difference]
+      The result: [Outcome — time saved, quality delta, surprise]
+      The takeaway for brands: [What this means for teams doing the same]
+
+  # ── 2. YouTube Drops & Demo Videos ───────────────────────
+  # When AI companies publish a new YouTube demo or announcement.
+  # These are high-urgency — react while the video is fresh.
+  youtube_drop:
+    name: "YouTube Video Drop"
+    priority: 2
+    description: >
+      React to new YouTube demos, announcements, or explainers from AI companies.
+      Frame it through the eyes of a brand or marketing leader watching the video.
+    trigger_sources:
+      - "Google DeepMind YouTube"
+      - "OpenAI YouTube"
+      - "Anthropic YouTube"
+      - "Two Minute Papers"
+    trigger_keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "watch"
+      - "watch now"
+      - "new video"
+      - "showcases"
+      - "demonstrates"
+    framing: |
+      React to specific moments — name a timestamp, a capability, a line that stood out.
+      Frame what a brand or marketer would notice if they watched it.
+      YouTube drops often preview the future — speculate thoughtfully about what comes next.
+      Give people a reason to click through and watch. Link to the video directly.
+    hook_starters:
+      - "[Company] dropped a video this week that stopped me mid-scroll."
+      - "Just watched [Company]'s new demo. One thing stood out above everything else."
+      - "The most interesting part of [Company]'s latest video wasn't what they showed — it was..."
+    cta_style: "Ask if they've seen it / what moment stood out to them"
+    hashtags_extra:
+      - "#AIVideo"
+      - "#GenerativeAI"
+
+  # ── 3. AI Tool Feature Launches ──────────────────────────
+  # When ChatGPT, Claude, Perplexity, Gemini, ElevenLabs,
+  # Midjourney, Runway, etc. drop a new feature or model.
+  ai_feature_launch:
+    name: "AI Tool Feature Launch"
+    priority: 3
+    description: >
+      New feature drops, model releases, and capability updates from AI tools.
+      Lead with what the feature does for real people — not the technical spec.
+    trigger_companies:
+      - "OpenAI"
+      - "Anthropic"
+      - "Perplexity"
+      - "Google DeepMind"
+      - "ElevenLabs"
+      - "Midjourney"
+      - "Runway"
+      - "Suno"
+      - "xAI"
+      - "Mistral"
+    trigger_keywords:
+      - "launches"
+      - "releases"
+      - "new feature"
+      - "available now"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+      - "announces"
+    framing: |
+      Lead with what the feature does for real people, not the model spec.
+      Share your immediate reaction — would you use this? Have you tried it?
+      Tie it to a concrete brand or marketing use case.
+      Ask what this unlocks that wasn't possible last month.
+    hook_starters:
+      - "[Company] just changed how [task] works."
+      - "New from [Company]: [feature]. Here's why it actually matters."
+      - "I tested [feature] this morning. The results were [honest adjective]."
+      - "Most people are sleeping on what [Company] just released."
+    cta_style: "Ask what use case they'd try first, or if they've already tested it"
+    hashtags_extra:
+      - "#AITools"
+      - "#GenerativeAI"
+
+  # ── 4. Brands Leveraging AI ───────────────────────────────
+  # How real brands and marketing teams use AI in creative,
+  # strategy, and operations. Your core thesis: brands that
+  # understand AI will outpace those that don't.
+  brands_leveraging_ai:
+    name: "Brands Leveraging AI"
+    priority: 4
+    description: >
+      How real brands and marketing teams are using AI in creative, strategy,
+      and operations. You are the translator between AI capability and brand reality.
+    trigger_keywords:
+      - "brand"
+      - "marketing"
+      - "campaign"
+      - "agency"
+      - "creative"
+      - "CMO"
+      - "advertising"
+      - "content creation"
+      - "social media AI"
+      - "AI marketing"
+    framing: |
+      Name the specific brand or campaign — specifics beat generalities.
+      What can other brands replicate? Make the takeaway actionable today.
+      Push back on lazy AI adoption — not every AI application is worth copying.
+      Write for the CMO or brand director who needs to explain this to their board.
+    hook_starters:
+      - "[Brand] just used AI to [do something]. Here's the part worth copying."
+      - "Most brands are using AI wrong. Here's what the smart ones do instead."
+      - "The brands winning with AI aren't using the flashiest tools."
+      - "What [brand/company]'s AI move reveals about where brand-building is going."
+    cta_style: "Ask what their brand or team has tried, or what they'd experiment with next"
+    hashtags_extra:
+      - "#BrandStrategy"
+      - "#MarketingAI"
+      - "#AIMarketing"
+
+  # ── 5. Big Tech AI News ───────────────────────────────────
+  # Microsoft, Google, Apple, Amazon, Meta, Nvidia moves.
+  # Connect the strategic dots for brand and marketing leaders.
+  big_tech_news:
+    name: "Big Tech AI News"
+    priority: 5
+    description: >
+      Strategic AI moves from big tech. Write for the brand leader who needs to
+      understand the business implication, not the technical detail.
+    trigger_companies:
+      - "Microsoft"
+      - "Apple"
+      - "Amazon"
+      - "Meta AI"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+    trigger_keywords:
+      - "Microsoft AI"
+      - "Apple Intelligence"
+      - "Amazon AI"
+      - "Meta AI"
+      - "Nvidia"
+      - "Copilot"
+      - "enterprise AI"
+    framing: |
+      Big tech moves signal where the whole market is heading — connect the dots.
+      Write for the CMO or brand leader who isn't a technologist.
+      Avoid getting lost in product details — zoom out to the business pattern.
+      What should brands do differently after reading this? Be concrete.
+    hook_starters:
+      - "[Company] made a move this week that most brands probably missed."
+      - "Here's what [Company]'s latest AI announcement actually means for marketers."
+      - "The part of [Company]'s news nobody's talking about..."
+      - "A quiet shift just happened in [big tech company]'s AI strategy."
+    cta_style: "Ask if their team is tracking this / what they'd do with it"
+    hashtags_extra:
+      - "#BigTech"
+      - "#AIStrategy"
+      - "#FutureOfWork"
+
+  # ── 6. AI Startup Funding ─────────────────────────────────
+  # Investment rounds, acquisitions, valuations.
+  # Money tells you where the smart money sees the future.
+  ai_startup_funding:
+    name: "AI Startup Funding Round"
+    priority: 6
+    description: >
+      Funding rounds, acquisitions, and valuations in the AI startup ecosystem.
+      Interpret each through the lens of what it means for brands and marketers.
+    trigger_keywords:
+      - "raises"
+      - "funding"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "million"
+      - "billion"
+    framing: |
+      Money flowing into a space tells you where smart investors see the future.
+      Interpret the funding through the lens of brand and marketing implications.
+      Who is backing this and why? What problem are they betting will be solved?
+      Is this filling a gap that brands will eventually need filled?
+    hook_starters:
+      - "[Company] just raised [amount]. Here's why that number matters."
+      - "Follow the money: [Company] secured [amount] to build [what]. Here's the bet."
+      - "[Amount] just flowed into [space]. What it tells us about where AI is going."
+      - "Another AI funding round. But this one is different — here's why."
+    cta_style: "Ask what they think about the company or space being funded"
+    hashtags_extra:
+      - "#AIStartup"
+      - "#VentureCapital"
+      - "#AIInnovation"
+
+# ── Angle Selection Guide (for post-generator) ────────────
+# When multiple angles could apply, use priority (lower = higher priority).
+# If no angle triggers match, default to ai_feature_launch framing.
+# The angle shapes the hook, the framing lens, and the CTA only —
+# the brand kit rules still govern everything else.

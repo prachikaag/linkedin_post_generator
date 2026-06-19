@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Angles
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,21 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_angles.yaml` and select the best-fit angle for this article cluster:
+
+**Angle selection logic:**
+1. Check `matched_categories` in articles for `"YouTube Video Drop"` → select `youtube_drop` angle
+2. Check `matched_companies` against each angle's `trigger_companies` list
+3. Check article titles and summaries against each angle's `trigger_keywords`
+4. Use the matching angle with the lowest priority number (1 = highest priority)
+5. If no angle matches, default to `ai_feature_launch`
+
+Once the angle is selected:
+- Use its `framing` instructions as an additional lens when writing the post
+- Choose one of its `hook_starters` as the structural inspiration for your HOOK (adapt it — don't copy verbatim)
+- Apply its `cta_style` when writing the CTA line
+- Include its `hashtags_extra` when selecting rotation hashtags (up to `max_hashtags` total)
 
 ---
 

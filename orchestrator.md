@@ -22,6 +22,19 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 
 ---
 
+## Configuration Files
+
+The pipeline is fully driven by four editable config files:
+
+| File | What to edit |
+|------|-------------|
+| `config/topics.yaml` | Companies, keywords, and freshness settings |
+| `config/sources.yaml` | RSS feeds and YouTube channels to monitor |
+| `config/brand_kit.yaml` | Your name, voice, tone, and post structure — **fill in your name and title** |
+| `config/content_angles.yaml` | The 6 content pillars: human-in-loop, YouTube drops, feature launches, brands-leveraging-AI, big tech, funding |
+
+---
+
 ## Parameters
 
 Before starting, determine:
