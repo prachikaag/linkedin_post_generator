@@ -1,5 +1,13 @@
 {
   "_comment": "Tracks article URLs that have already been used in a generated post. Add URLs here to prevent them being reused.",
-  "processed_urls": [],
-  "last_updated": ""
+  "processed_urls": [
+    "https://www.tomsguide.com/news/live/microsoft-build-2026",
+    "https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem",
+    "https://www.techtimes.com/articles/318704/20260619/claude-mcp-connectors-now-provision-through-okta-employees-inherit-access-login.htm",
+    "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/",
+    "https://time.com/article/2026/06/13/anthropic-fable-mythos-ban-US-security/",
+    "https://azure.microsoft.com/en-us/blog/openais-gpt-5-5-in-microsoft-foundry-frontier-intelligence-on-an-enterprise-ready-platform/",
+    "https://releasebot.io/updates/eleven-labs"
+  ],
+  "last_updated": "2026-06-20"
 }
