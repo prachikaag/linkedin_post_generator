@@ -1,0 +1,5 @@
+{
+  "_comment": "Tracks article URLs that have already been used in a generated post. Add URLs here to prevent them being reused.",
+  "processed_urls": [],
+  "last_updated": ""
+}

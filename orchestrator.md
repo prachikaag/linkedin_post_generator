@@ -103,7 +103,25 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Update Article Memory
+
+Spawn the **memory-manager** subagent (defined in `.claude/agents/memory-manager.md`).
+
+Task for the subagent:
+```
+{
+  "action": "write",
+  "new_urls": [<all article URLs used across all generated post clusters>]
+}
+```
+
+This prevents the same articles from being re-used in the next pipeline run.
+
+Print: `✓ Article memory updated — {total_tracked} URLs tracked.`
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +146,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 
