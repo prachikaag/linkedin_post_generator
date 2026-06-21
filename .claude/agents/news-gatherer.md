@@ -25,6 +25,12 @@ Read `config/topics.yaml`:
   - `min_relevance_score` (default 2) — minimum score to keep
   - `max_articles_per_run` (default 25) — maximum articles to return
 
+Read `prompts/scoring_weights.yaml` if it exists:
+- Apply `category_multipliers` to each matched category's contribution to the score
+- Apply `source_priority_bonus` based on the feed's priority level
+- Apply `recency_bonus` for articles published within the specified hours window
+- Apply `penalty_score` for any article whose text matches a `penalty_triggers` keyword
+
 ---
 
 ## Step 2 — Fetch RSS Feeds

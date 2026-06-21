@@ -1,0 +1,111 @@
+# ============================================================
+# POST ANGLE TEMPLATES
+# Edit these angles to guide the post-generator toward the
+# types of stories you most want to write about.
+# Each angle is tried in priority order when multiple clusters
+# of articles are available.
+# ============================================================
+
+angles:
+
+  - id: "new_feature_launch"
+    priority: 1
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "announced"
+      - "new feature"
+      - "unveiled"
+      - "rolls out"
+    hook_template: >
+      [AI company] just changed what's possible for [use case] —
+      and brands should pay attention.
+    your_take_lens: >
+      What does this launch mean for marketers and brand teams right now?
+      What can they do with this today, not in 6 months?
+    example_titles:
+      - "Claude just launched [feature] — here's what brands need to know"
+      - "Midjourney v[X] is here — what this means for creative teams"
+      - "OpenAI's new [product] explained without the hype"
+
+  - id: "ai_startup_funding"
+    priority: 2
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series"
+      - "valuation"
+      - "acquired"
+      - "IPO"
+      - "unicorn"
+    hook_template: >
+      [AI startup] just raised [amount]. That tells you something about
+      where the market is going.
+    your_take_lens: >
+      What does this investment signal about which AI capabilities businesses
+      are betting on? What does it mean for brands watching this space?
+    example_titles:
+      - "What [startup]'s $[X]M raise tells us about where AI is heading"
+      - "The AI funding story nobody is talking about"
+
+  - id: "bigtech_ai_move"
+    priority: 3
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+    hook_template: >
+      [Big tech company] just made a move that changes the AI landscape
+      for enterprise teams.
+    your_take_lens: >
+      What does this mean for the everyday marketer or brand team?
+      Is this hype or a genuine workflow shift?
+    example_titles:
+      - "Google just did something that changes how marketing teams use AI"
+      - "Microsoft Copilot's [update]: what it actually means for your team"
+
+  - id: "human_in_the_loop"
+    priority: 4
+    trigger_keywords:
+      - "experiment"
+      - "workflow"
+      - "tried"
+      - "using AI for"
+      - "AI assistant"
+      - "agentic"
+      - "automation"
+    hook_template: >
+      I've been running an experiment with [AI tool] for [use case].
+      Here's what I found.
+    your_take_lens: >
+      What worked, what surprised me, and what brands should try first.
+      Honest results — not a product review.
+    example_titles:
+      - "I tried [AI tool] for [task] — here's what actually happened"
+      - "Running [workflow] with AI: the honest breakdown"
+      - "What happens when you use AI as your research assistant for [X]"
+
+  - id: "research_breakthrough"
+    priority: 5
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "AGI"
+      - "reasoning"
+    hook_template: >
+      A new [research / benchmark / capability] just dropped —
+      and the implications for brand work are worth understanding.
+    your_take_lens: >
+      Translate the research into what it means practically for
+      non-technical marketing and brand teams.
+    example_titles:
+      - "The AI research finding that changes how we think about [use case]"
+      - "[Capability] just got a lot better — what brand teams should know"

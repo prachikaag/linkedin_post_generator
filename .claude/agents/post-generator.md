@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Constraints
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,10 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `prompts/writing_constraints.yaml` if it exists — any enabled overrides there take precedence over brand_kit.yaml for the same setting.
+
+Also read `prompts/post_angles.yaml` if it exists — use it to identify which angle best fits the primary article, and apply that angle's `hook_template` and `your_take_lens` as guidance (not as literal text).
 
 ---
 

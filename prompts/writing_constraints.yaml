@@ -1,0 +1,63 @@
+# ============================================================
+# WRITING CONSTRAINTS
+# Hard rules injected into the post-generator prompt.
+# Edit here rather than in brand_kit.yaml when you want to
+# A/B test style changes without touching your core brand kit.
+# ============================================================
+
+# These override brand_kit.yaml when both are present.
+# Set enabled: false to disable an override.
+
+overrides:
+
+  length:
+    enabled: true
+    max_characters: 1457     # LinkedIn character limit for posts
+    max_words: 251
+    target_length: "medium"  # short (300-500) | medium (500-900) | long (900-1300)
+
+  structure:
+    enabled: true
+    required_sections:
+      - "HOOK"
+      - "CONTEXT"
+      - "EVIDENCE"
+      - "YOUR TAKE"
+      - "SO WHAT"
+      - "CTA"
+      - "SOURCES"
+      - "HASHTAGS"
+    min_sources: 4            # Minimum citations per post
+
+  voice:
+    enabled: true
+    never_start_with: "I"
+    never_use_words:
+      - "shipped"
+      - "AI lab"
+      - "game-changer"
+      - "revolutionary"
+      - "disruptive"
+      - "leveraged"
+      - "utilised"
+      - "synergy"
+      - "thought leader"
+      - "programmed"
+    max_sentence_words: 15
+    max_emojis_per_paragraph: 1
+    max_emojis_total: 3
+
+  citations:
+    enabled: true
+    url_policy: "only_use_urls_from_input"
+    # Never construct, guess, or modify URLs — use only what the news-gatherer returned
+    require_verified_quotes: true
+    # Paraphrase if a quote can't be confirmed as verbatim
+
+  time_references:
+    enabled: true
+    # Before using "this week", "today", or "yesterday",
+    # verify the article date against today. If > 7 days ago,
+    # use "recently" or drop the time reference.
+    stale_threshold_days: 7
+    stale_replacement: "recently"

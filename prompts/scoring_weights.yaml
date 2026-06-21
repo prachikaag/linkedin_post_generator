@@ -1,0 +1,45 @@
+# ============================================================
+# RELEVANCE SCORING WEIGHTS
+# Controls which types of news score higher and get prioritised.
+# Higher weight = more likely to become a post anchor.
+#
+# These are guidelines for the news-gatherer agent's scoring logic.
+# Edit to reprioritise what you care about most.
+# ============================================================
+
+scoring_weights:
+
+  # Base scores from topics.yaml keyword matching:
+  #   Company keyword match:  +3 per keyword
+  #   Category keyword match: +1 per keyword
+
+  # Multipliers applied on top of keyword scores
+  # (the news-gatherer agent reads this to boost/penalise categories)
+
+  category_multipliers:
+    "New AI Feature or Product Launch": 1.5   # launches always interesting
+    "AI Startup Funding": 1.3                 # funding = signal on where market is going
+    "AI for Marketing and Brands": 1.4        # directly on-brand for your audience
+    "AI Research and Breakthroughs": 1.0      # interesting but harder to make accessible
+    "AI Regulation and Policy": 0.8           # important but less urgent for your brand
+    "AI Tools and Productivity": 1.2          # workflow angle — good for your content
+
+  # Bonus score for articles from high-priority sources
+  source_priority_bonus:
+    high: 2
+    medium: 1
+    low: 0
+
+  # Recency bonus: articles published in last N hours get an extra score boost
+  recency_bonus:
+    within_hours: 12
+    bonus_score: 2
+
+  # Penalty for articles that are purely regulatory/legal without a practical angle
+  penalty_triggers:
+    - "lawsuit"
+    - "court"
+    - "congressional hearing"
+    - "senate"
+    - "EU fines"
+  penalty_score: -2
