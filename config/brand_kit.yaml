@@ -6,9 +6,9 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi Kaag"
+  title: "Brand Strategist | AI Enthusiast"
+  # Update name and title above to match your LinkedIn profile exactly.
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:
@@ -100,6 +100,23 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "Human in the loop: I used AI to [task] and here's what I edited vs kept"
+    - "I've been experimenting with [tool] for [weeks/months] — the honest verdict"
+    - "[Tool A] vs [Tool B] for brand work — what I actually use and why"
+
+  # ── Personal Experiment Post Type ─────────────────────────
+  # When the post is about your own hands-on experimentation with a tool,
+  # use this structure instead of the standard news post structure.
+  # Trigger this angle when an article is about a tool you've likely used,
+  # or when the post_generator has no strong news anchor.
+  personal_experiment_structure:
+    - "HOOK: Start with a result or observation from your experiment — something surprising or counter-intuitive."
+    - "WHAT I TRIED: The tool, the task, and the context — one short paragraph."
+    - "WHAT WORKED: The specific thing that impressed you. Be concrete."
+    - "WHAT DIDN'T: The honest gap or limitation. Never skip this — it's what makes you credible."
+    - "WHAT I CHANGED: What you edited, rewrote, or overrode as the human in the loop."
+    - "THE TAKEAWAY: One insight for brands or marketers who want to try this."
+    - "CTA: A question inviting others to share their experiments."
 
   # Hashtag strategy
   hashtags:

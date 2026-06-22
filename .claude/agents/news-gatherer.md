@@ -17,6 +17,10 @@ Read `config/sources.yaml`:
 - Each feed has `name`, `url`, `priority` (high / medium / low)
 - Order: high priority feeds first, then medium, then low
 
+Read `config/memory.yaml` (if it exists):
+- Collect all URLs listed under `used_sources[*].url` into a **seen_urls** set
+- These articles have already been turned into posts — skip them in Step 6
+
 Read `config/topics.yaml`:
 - **`companies_to_track`** — each company has a `keywords` list. Matching a keyword → `+3` score, record company name + keyword
 - **`topic_categories`** — each category has a `keywords` list. Matching a keyword → `+1` score, record category name
@@ -75,8 +79,9 @@ Remove articles that duplicate ones already processed:
 ## Step 6 — Filter, Sort, Return
 
 1. Drop articles where `relevance_score < min_relevance_score`
-2. Sort remaining articles by `relevance_score` descending
-3. Keep the top `max_articles_per_run`
+2. Drop articles whose `url` is in the **seen_urls** set from memory.yaml (already posted)
+3. Sort remaining articles by `relevance_score` descending
+4. Keep the top `max_articles_per_run`
 
 ---
 

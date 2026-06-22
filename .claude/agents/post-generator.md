@@ -139,6 +139,19 @@ Then append a blank line followed by the full post body.
 
 Save to `posts/<filename>`.
 
+### Update Memory
+
+After saving the post, append all source URLs from the input `articles` to `config/memory.yaml` under `used_sources`. For each article not already in the file:
+
+```yaml
+  - url: "<article.url>"
+    title: "<article.title, truncated to 80 chars>"
+    posted: "<today's date YYYY-MM-DD>"
+    status: "draft"
+```
+
+Read the existing `config/memory.yaml`, append the new entries to `used_sources`, and write the file back. This prevents the same stories from being reused in future runs.
+
 ---
 
 ## Output
