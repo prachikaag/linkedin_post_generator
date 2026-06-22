@@ -44,3 +44,63 @@ used_sources:
     title: "AlphaEvolve: Gemini-powered coding agent"
     posted: "2026-05-14"
     status: "draft"
+
+  - url: "https://www.anthropic.com/news/series-h"
+    title: "Anthropic raises $65 billion Series H funding round"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://blogs.microsoft.com/ai/mai-thinking-1"
+    title: "Microsoft launches MAI-Thinking-1: a new reasoning-first AI model"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://techcrunch.com/2026/06/21/xai-spacex-ipo-elon-musk"
+    title: "xAI and SpaceX explore joint IPO structure amid $80B valuation talks"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://venturebeat.com/ai/ai-infrastructure-investment-record-2026/"
+    title: "AI infrastructure funding hits record $40B in first half of 2026"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://venturebeat.com/ai/odyssey-world-models-series-b/"
+    title: "Odyssey raises $50M Series B for world model AI platform"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://www.wired.com/story/ai-funding-frenzy-2026-market-implications/"
+    title: "The AI funding frenzy: what $65B rounds mean for the market"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://www.theverge.com/ai-artificial-intelligence/2026/6/20/anthropic-claude-fable-export-control"
+    title: "US export controls block Claude Fable 5 from dozens of countries"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://www.anthropic.com/news/claude-opus-4-8-swe-bench"
+    title: "Claude Opus 4.8 tops SWE-bench leaderboard with 72% score"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://blog.research.google/2026/06/gemini-35-flash-benchmark"
+    title: "Gemini 3.5 Flash achieves record benchmark performance"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://huggingface.co/blog/glm-52-mit-release"
+    title: "Open source GLM-5.2 released under MIT license"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://techcrunch.com/2026/06/22/github-copilot-claude-opus-agentic-coding"
+    title: "GitHub Copilot integrates agentic coding with Claude Opus 4.8"
+    posted: "2026-06-22"
+    status: "draft"
+
+  - url: "https://www.technologyreview.com/2026/06/21/ai-export-controls-us-china-tech-war/"
+    title: "AI model export controls: the new front in the US-China tech war"
+    posted: "2026-06-22"
+    status: "draft"
