@@ -57,8 +57,27 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/my_ai_experiments.yaml` | Log of personal AI tool experiments — makes posts feel human and first-hand |
+| `data/published_topics.yaml` | Memory of past posts — prevents repeating the same topics |
 
 Edit these files directly — changes take effect on the next run.
+
+### Adding a personal AI experiment
+
+Open `config/my_ai_experiments.yaml` and add a new entry. The post-generator reads this on every run and will weave in your personal experience whenever a relevant company appears in the news. This is what makes the posts feel like genuine "human in the loop" content rather than AI news summaries.
+
+```yaml
+- tool: "Tool Name"
+  company: "Company Name"
+  use_case: "What you used it for"
+  what_i_tried: >
+    Describe exactly what you did — the more specific the better.
+  honest_verdict: >
+    What worked, what didn't, what surprised you. Be real.
+  date_tried: "2026-06"
+  status: "active"
+  post_angle: "The angle this could become in a post"
+```
 
 ### Environment Variables
 
@@ -111,9 +130,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/my_ai_experiments.yaml`, `data/published_topics.yaml`
+- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, weaves in personal experiments, avoids recent topics, validates URLs, saves as `.md` draft, updates post memory
+- **Output**: JSON object with filename, filepath, content, source metadata, and `personal_experiment_used` flag
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

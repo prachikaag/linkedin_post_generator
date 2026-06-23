@@ -1,0 +1,57 @@
+# ============================================================
+# POST MEMORY
+# Auto-updated by the post-generator agent after each run.
+# The pipeline reads this before generating posts so it can
+# avoid repeating topics you've already written about recently.
+#
+# You can also manually mark a post as "published" here to
+# track what's gone live on LinkedIn vs. still in draft.
+#
+# STATUS VALUES:
+#   draft     — generated but not yet posted to LinkedIn
+#   published — posted to LinkedIn
+#   skipped   — generated but decided not to use
+# ============================================================
+
+published:
+
+  - date: "2026-05-14"
+    filename: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    title: "Something shifted in enterprise AI this week — and the data is catching up to the feeling"
+    status: "draft"
+    hook: "Something shifted in enterprise AI this week."
+    companies:
+      - "Anthropic"
+      - "OpenAI"
+      - "Microsoft"
+      - "Cerebras"
+    topics:
+      - "enterprise AI adoption"
+      - "AI business spend data"
+      - "AI for small business"
+      - "AI hardware IPO"
+    keywords:
+      - "enterprise AI spend"
+      - "Ramp data AI"
+      - "Microsoft Copilot users"
+      - "Cerebras IPO"
+
+  - date: "2026-05-14"
+    filename: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    title: "The era of one AI tool for everything is quietly ending"
+    status: "draft"
+    hook: "The era of one AI tool for everything is quietly ending."
+    companies:
+      - "Anthropic"
+      - "Google DeepMind"
+      - "Salesforce"
+    topics:
+      - "vertical AI vs horizontal AI"
+      - "industry-specific AI tools"
+      - "legal tech AI"
+      - "AI agents for financial services"
+    keywords:
+      - "vertical AI"
+      - "purpose-built AI"
+      - "AI agents finance"
+      - "legal AI platform"

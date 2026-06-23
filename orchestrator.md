@@ -30,6 +30,7 @@ Before starting, determine:
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+Check `data/published_topics.yaml` to brief yourself on topics already covered — pass this awareness to your mental context when reviewing post outputs.
 
 ---
 

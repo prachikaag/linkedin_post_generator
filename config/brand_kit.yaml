@@ -6,11 +6,10 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi Kaag"
+  title: "Brand Strategist | AI Experimenter"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: ""   # Add your city/country here if you'd like it referenced in posts
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

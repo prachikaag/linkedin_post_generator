@@ -1,0 +1,123 @@
+# ============================================================
+# MY AI EXPERIMENTS
+# Log every AI tool you personally try here.
+# The post-generator reads this file so it can reference your
+# real-world experience and write "human in the loop" posts that
+# feel genuine — not just AI news summaries.
+#
+# HOW TO USE:
+#   - Add a new entry each time you try a tool or workflow
+#   - Be honest: what worked, what didn't, what surprised you
+#   - The generator will weave your experience in when the tool
+#     or company shows up in the news
+# ============================================================
+
+experiments:
+
+  # ── WRITING & CONTENT ──────────────────────────────────────
+
+  - tool: "Claude"
+    company: "Anthropic"
+    use_case: "LinkedIn post drafting"
+    what_i_tried: >
+      Used Claude to write first drafts of LinkedIn posts, then edited heavily
+      to bring in my own voice, examples, and opinions before publishing.
+    honest_verdict: >
+      The first draft is surprisingly structured and follows brand guidelines well.
+      I spend most of my time adding my perspective, not rewriting sentences.
+      The biggest time save is not starting from a blank page.
+    time_saved: "~70% writing time saved on first drafts"
+    would_recommend: true
+    date_tried: "2026-05"
+    status: "active"   # active | stopped | testing | on-hold
+    post_angle: "human-in-the-loop drafting workflow"
+
+  - tool: "Perplexity"
+    company: "Perplexity AI"
+    use_case: "Research and fact-checking before publishing"
+    what_i_tried: >
+      Used Perplexity to quickly verify claims, find cited sources, and check
+      whether a trend was real or just loud on my feed.
+    honest_verdict: >
+      Faster than Google for getting a sourced answer. Citations are hit-or-miss
+      on accuracy — I still click through to verify. Great for rapid research,
+      not a replacement for reading the actual article.
+    would_recommend: true
+    date_tried: "2026-04"
+    status: "active"
+    post_angle: "AI-assisted research workflow"
+
+  - tool: "Midjourney"
+    company: "Midjourney"
+    use_case: "Creating visuals for LinkedIn posts and brand decks"
+    what_i_tried: >
+      Generated images to accompany marketing strategy decks and test
+      brand visual concepts without a designer.
+    honest_verdict: >
+      Aesthetic quality is outstanding. Prompt engineering takes time to learn.
+      Not production-ready without editing, but dramatically speeds up concept work.
+    would_recommend: true
+    date_tried: "2026-03"
+    status: "testing"
+    post_angle: "AI-generated visuals for brand work"
+
+  - tool: "ElevenLabs"
+    company: "ElevenLabs"
+    use_case: "Voiceover for short-form video content"
+    what_i_tried: >
+      Generated AI voiceovers from scripts to test video content ideas before
+      investing in professional recording.
+    honest_verdict: >
+      The voice quality is genuinely hard to distinguish from human. Worked
+      perfectly for internal concept testing. Not something I'd use for
+      client-facing work without disclosure.
+    would_recommend: true
+    date_tried: "2026-02"
+    status: "testing"
+    post_angle: "AI voice for rapid content prototyping"
+
+  - tool: "ChatGPT"
+    company: "OpenAI"
+    use_case: "Brainstorming post angles and content ideas"
+    what_i_tried: >
+      Used ChatGPT to generate 10 different post angles on a topic, then picked
+      the most interesting one to develop properly.
+    honest_verdict: >
+      Excellent for ideation and getting unstuck. The ideas are generic until
+      you push it with your specific context. Providing a brief with your
+      audience and goal in the prompt makes a significant difference.
+    would_recommend: true
+    date_tried: "2026-01"
+    status: "active"
+    post_angle: "AI for content ideation and brainstorming"
+
+  - tool: "Gemini"
+    company: "Google DeepMind"
+    use_case: "Analysing long documents and research papers"
+    what_i_tried: >
+      Uploaded long PDFs and asked Gemini to extract key insights, quotes,
+      and stats relevant to my content calendar.
+    honest_verdict: >
+      Strong at document analysis and keeping long context. Interface is less
+      polished than Claude or ChatGPT for writing tasks. The Google Workspace
+      integration is its biggest advantage if your team lives in Docs/Sheets.
+    would_recommend: true
+    date_tried: "2026-04"
+    status: "testing"
+    post_angle: "AI document analysis and research extraction"
+
+# ── ADD NEW EXPERIMENTS BELOW ──────────────────────────────
+# Template:
+#
+# - tool: "Tool Name"
+#   company: "Company Name"
+#   use_case: "What you used it for"
+#   what_i_tried: >
+#     Describe exactly what you did — the more specific the better.
+#   honest_verdict: >
+#     What worked, what didn't, what surprised you. Be real.
+#   time_saved: "Optional — quantify if you can"
+#   would_recommend: true/false
+#   date_tried: "YYYY-MM"
+#   status: "active | stopped | testing | on-hold"
+#   post_angle: "The angle this experiment could become in a post"
