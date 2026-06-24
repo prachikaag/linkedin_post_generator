@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Tone of Voice
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -34,10 +34,26 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.human_in_the_loop` — experiment-style content angles
+- `brand.content_angles` — the framing angles to choose from
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/tone_of_voice.md` for the full writing guidelines, post structure blueprint, and content angle library. The rules in this file take precedence over brief descriptions in the YAML.
+
+### Detect post angle
+
+Before writing, examine the articles to choose the best content angle:
+
+- **YouTube video post**: if any article title contains "YouTube", "video", "demo", or links to youtube.com → use angle "New [YouTube video / demo] from [Company] — the one thing marketers should take away"
+- **Funding post**: if `matched_categories` contains "AI Startup Funding" → use angle "What [funding/acquisition] tells us about where AI is heading"
+- **Feature launch post**: if `matched_categories` contains "New AI Feature or Product Launch" → use angle "[Company] just launched [feature] — here's what brands should know"
+- **Human-in-the-loop post**: if the anchor article is about a tool the author could experiment with → consider "I tried [AI tool] for [use case] — here's what actually happened" (use this angle sparingly, only for highly hands-on tool launches)
+- **Default**: use "The real reason [AI development] matters for marketers"
+
+State the chosen angle as the first line of your internal working before writing the post.
 
 ---
 

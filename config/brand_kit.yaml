@@ -6,15 +6,16 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi J"
+  title: "Brand Strategist & AI Practitioner"
+  # Your LinkedIn headline — edit to match exactly
+  tagline: "Helping brands understand and leverage AI in the real world | Experimenting with AI so you don't have to start from scratch"
+  location: "Mumbai, India"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative & Content Strategy"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -100,6 +101,24 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "New [YouTube video / demo] from [Company] — the one thing marketers should take away"
+    - "[AI tool] just got [new feature] — I tested it for brand use cases, here's my take"
+    - "How I used [AI tool] to [task] — a human-in-the-loop experiment"
+
+  # Human-in-the-loop focus
+  # Posts written from the perspective of someone actively experimenting with AI
+  # in their own work — not just reporting on AI, but doing it.
+  human_in_the_loop:
+    description: >
+      A subset of posts where you share personal experiments with AI tools in
+      real brand / marketing contexts. You are the human in the loop: you
+      direct, edit, and evaluate. The AI is the drafter.
+    experiment_angles:
+      - "Used [AI tool] to write [copy type] — here's what I had to edit and why"
+      - "Asked [model] and [model] to do the same task — the difference was surprising"
+      - "3 things I learned using [AI tool] for [use case] this week"
+      - "My workflow for writing a LinkedIn post in 20 minutes with AI (and why I still review everything)"
+      - "The prompt I use every time I brief an AI on a brand project"
 
   # Hashtag strategy
   hashtags:

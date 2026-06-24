@@ -1,0 +1,64 @@
+# ============================================================
+# PUBLISHED POSTS MEMORY
+# Automatically updated after each pipeline run.
+# Prevents the same news story from being written about twice.
+# DO NOT edit manually unless you want to force a re-run on a topic.
+# ============================================================
+
+# Each entry represents a story that was already covered.
+# The pipeline checks this list before generating new posts.
+published_posts:
+  # Example entry (auto-populated by the memory-manager agent):
+  # - date: "2026-05-14"
+  #   filename: "2026-05-14_22-55-00_enterprise-ai-market-shift.md"
+  #   article_title: "Something shifted in enterprise AI this week"
+  #   primary_source_url: "https://techcrunch.com/2026/..."
+  #   matched_companies:
+  #     - Anthropic
+  #     - OpenAI
+  #   matched_keywords:
+  #     - "enterprise AI adoption"
+  #     - "Anthropic Claude business"
+  #   topic_fingerprint: "anthropic-enterprise-market-share-2026-05"
+
+  - date: "2026-05-14"
+    filename: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    article_title: "Something shifted in enterprise AI this week — and the data is catching up to the feeling"
+    primary_source_url: "https://techcrunch.com/2026/05/13/anthropic-now-has-more-business-customers-than-openai-according-to-ramp-data/"
+    matched_companies:
+      - Anthropic
+      - OpenAI
+      - Microsoft
+      - Cerebras
+    matched_keywords:
+      - "enterprise AI adoption"
+      - "AI business customers"
+      - "Cerebras IPO"
+    topic_fingerprint: "anthropic-enterprise-ramp-data-2026-05"
+
+  - date: "2026-05-14"
+    filename: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    article_title: "Vertical AI is winning — and that's the strategic shift brands should watch"
+    primary_source_url: ""
+    matched_companies:
+      - Harvey AI
+      - Writer AI
+      - Glean
+    matched_keywords:
+      - "vertical AI"
+      - "enterprise AI specialisation"
+    topic_fingerprint: "vertical-ai-specialisation-2026-05"
+
+# ── Dedup Rules ────────────────────────────────────────────
+# The memory-manager blocks a new post if:
+# 1. The same primary_source_url appears in published_posts
+# 2. A matching topic_fingerprint exists within the last 14 days
+# 3. 3+ matched_companies overlap AND the post is from the same calendar week
+#
+# To reset memory for a specific company (e.g. force a new OpenAI post),
+# delete the relevant entries above.
+
+# ── Settings ───────────────────────────────────────────────
+settings:
+  memory_window_days: 14   # How far back to check for duplicates
+  max_company_overlap: 3   # Block if this many companies overlap with a recent post
