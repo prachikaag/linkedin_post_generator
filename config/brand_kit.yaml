@@ -6,27 +6,29 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                        # ← update with your full name
+  title: "Brand Strategist | AI Experimenter"   # ← update with your exact LinkedIn title
+  # Shown at the bottom of some post formats and used to shape the first-person voice
+  tagline: "Helping brands understand and actually use AI — not just talk about it"
+  location: "Your City, Country"        # ← update if you want location references
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Strategy"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
-    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Curious and experimental — you try AI tools hands-on and share honest, specific results"
+    - "Pragmatic and brand-focused — you connect every AI development to real marketing and brand outcomes"
+    - "Accessible, never technical for its own sake — you translate complexity into plain, useful language"
+    - "Forward-thinking but grounded — genuinely excited about AI, with well-reasoned takes, not hype"
+    - "Opinionated — you have a clear point of view, not just a neutral news summary"
+    - "Human in the loop — you position yourself as the editor and curator, AI as the capable drafter"
+    - "Relatable — you share experiments that didn't work as willingly as ones that did"
 
   # Rules for how you write every post
   writing_style:
@@ -51,24 +53,26 @@ tone_of_voice:
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the AI space right now, not just one article. Reference multiple developments."
     - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean for brands specifically? Be specific and opinionated."
     - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
-    - "CTA (1 line): A question that invites genuine discussion in the comments."
+    - "CTA (1 line): A question that invites genuine discussion in the comments — especially from brand and marketing leaders."
     - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
     - "HASHTAGS: 4-5 relevant hashtags on the very last line."
 
   # What makes a great post from you
   dos:
     - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
-    - "Give actionable insights brands can use today, not just future speculation"
+    - "Give actionable insights brands and marketers can use today, not just future speculation"
     - "Cite sources with full URLs so readers can dig deeper"
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your professional lens — branding, marketing, creativity, content strategy"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Connect AI tool launches to specific marketing workflows or brand challenges"
+    - "Write about your own AI experiments — successful or not"
 
   # What undermines your credibility
   donts:
@@ -80,26 +84,32 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't use 'shipped' — say launched, released, put out, or announced"
+    - "Don't use 'AI lab' — say the company name or 'AI company'"
+    - "Don't use 'leveraged', 'utilised', 'synergy', 'thought leader'"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
-  # The lenses you write through
+  # The lenses you write through — what makes your perspective unique
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
-    - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Practical AI tools for marketing teams and brand builders — what actually works day-to-day"
+    - "Human-in-the-loop AI workflows — you as the editor and curator, AI as the capable drafter"
+    - "How brands can start experimenting with AI without waiting for a strategy"
+    - "The future of creative work with generative AI — images, copy, video, voice"
+    - "AI literacy for marketing leaders — what they actually need to understand"
+    - "The AI startup ecosystem and what funding and acquisitions signal about where the market is going"
+    - "Honest experiments: what you tried with AI, what worked, what didn't, what surprised you"
 
-  # Example angles you love to write about
+  # Signature content angles — the types of posts your audience loves
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "I tested [AI tool] for [marketing use case] — here's exactly what happened"
+    - "[Company] just launched [feature] — here's what brands should actually care about"
+    - "The real reason [AI development] matters for marketers (it's not what most people say)"
+    - "[Trending AI topic] explained without the hype or the jargon"
+    - "What [funding round / acquisition / IPO] tells us about where AI is heading for brands"
+    - "Everyone is talking about [model launch] — here's the angle brands are missing"
+    - "I used AI to [specific task] for a week — honest results inside"
 
   # Hashtag strategy
   hashtags:
@@ -107,7 +117,7 @@ brand:
     always_include:
       - "#AI"
       - "#ArtificialIntelligence"
-    # Pick from this list to complement the post topic
+    # Pick 2-3 from this list to complement the post topic
     rotate_from:
       - "#GenerativeAI"
       - "#AITools"
@@ -124,24 +134,28 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#MarketingStrategy"
 
   max_hashtags: 5
 
-  # Target post length
+  # Target post length — medium works best on LinkedIn for this type of content
   # Options: "short" (300-500 chars) | "medium" (500-900 chars) | "long" (900-1300 chars)
   post_length: "medium"
   max_characters: 1457
   max_words: 251
 
-  # Optional: words or phrases that are distinctly yours
+  # Phrases that feel distinctly like you — use sparingly, never force them
   signature_phrases:
     - "Here's what I think brands are missing..."
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I ran this experiment so you don't have to."
+    - "Here's my honest take..."
 
 # ── Research & Citation Standards ─────────────────────────
-# These rules are injected directly into the AI prompt as hard requirements.
+# These rules are injected directly into the post-generator prompt as hard requirements.
 research_standards:
   # Minimum number of distinct sources that must be cited in every post
   min_sources: 4
@@ -154,3 +168,6 @@ research_standards:
 
   # If a quote cannot be verified as exact, paraphrase instead (no quote marks)
   require_verified_quotes: true
+
+  # Only use URLs that appear verbatim in the article data — never construct or guess URLs
+  strict_url_policy: true

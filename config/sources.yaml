@@ -54,6 +54,16 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "Forbes AI"
+      url: "https://www.forbes.com/ai/feed/"
+      priority: low
+      enabled: true
+
+    - name: "Fast Company Tech"
+      url: "https://www.fastcompany.com/technology/rss"
+      priority: low
+      enabled: true
+
   # ── AI Company Blogs ────────────────────────────────────
   company_blogs:
     - name: "OpenAI Blog"
@@ -106,6 +116,26 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "xAI Blog"
+      url: "https://x.ai/news/rss"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney Blog"
+      url: "https://www.midjourney.com/updates/rss"
+      priority: medium
+      enabled: false   # enable if Midjourney publishes an active RSS feed
+
+    - name: "Runway Blog"
+      url: "https://runwayml.com/blog/rss"
+      priority: medium
+      enabled: true
+
+    - name: "Cursor Blog"
+      url: "https://www.cursor.com/blog/rss"
+      priority: low
+      enabled: true
+
   # ── Startup & Funding News ──────────────────────────────
   funding_news:
     - name: "TechCrunch Startups"
@@ -143,6 +173,49 @@ rss_feeds:
 
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: low
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCxiMdRH0uiSo5RbnOL6-RoA"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCNkZ_0IJcjEAcIPknZ_3WYg"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCfnNkHDZ3EpfNGmHKpRwJoQ"
+      priority: medium
+      enabled: true
+
+  # ── AI Newsletters & Substacks ─────────────────────────
+  # These are high-signal sources with strong opinions and analysis
+  newsletters:
+    - name: "Ben's Bites"
+      url: "https://bensbites.beehiiv.com/feed"
+      priority: high
+      enabled: true
+
+    - name: "The Rundown AI"
+      url: "https://www.therundown.ai/rss"
+      priority: high
+      enabled: true
+
+    - name: "Import AI (Jack Clark)"
+      url: "https://jack-clark.net/feed/"
+      priority: medium
+      enabled: true
+
+    - name: "The Batch (Andrew Ng)"
+      url: "https://www.deeplearning.ai/the-batch/feed/"
+      priority: medium
+      enabled: true
+
+    - name: "AI Supremacy Substack"
+      url: "https://aisupremacy.substack.com/feed"
       priority: low
       enabled: true
 

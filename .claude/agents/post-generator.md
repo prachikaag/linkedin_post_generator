@@ -18,9 +18,20 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
+  "avoid_topics": [ /* list of topics from config/editorial_rules.yaml to exclude */ ],
   "posts_dir": "posts/"
 }
 ```
+
+---
+
+## Step 0 — Topic Guard
+
+Before writing anything, check the `avoid_topics` list from the input.
+
+If the anchor article (`articles[0]`) is primarily about a topic in `avoid_topics`:
+- Do not generate the post
+- Return: `{"error": "avoided_topic", "reason": "Anchor article matches avoided topic: {topic}"}`
 
 ---
 
@@ -54,6 +65,13 @@ Following the brand kit precisely, write a post that:
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
+
+### YouTube video content:
+- If `articles[0].content_type == "youtube_video"`, frame the post around the video announcement:
+  - Hook: what the video reveals or announces
+  - Use the angle: "I watched [company]'s latest video so you don't have to" or "Here's what [Company] just put out"
+  - The video URL is the primary source — include it as source [1]
+  - Still weave in supporting articles for context and additional sources
 
 ### Content rules:
 - Synthesise **all** provided articles — do not just summarise article 1
@@ -116,6 +134,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+content_type: "<articles[0].content_type — 'article' or 'youtube_video'>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

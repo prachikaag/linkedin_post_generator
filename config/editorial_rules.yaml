@@ -1,0 +1,124 @@
+# ============================================================
+# EDITORIAL RULES
+# Controls content mix, quality gates, what to avoid, and
+# which angles to prioritise each week.
+# Edit this file to shift your content strategy at any time.
+# ============================================================
+
+# ── Content Mix Targets ────────────────────────────────────
+# Rough percentage targets per content type per week.
+# These guide the orchestrator in how to prioritise article clusters.
+content_mix:
+
+  # An opinionated take on a new model launch, feature release, or YouTube video
+  ai_launches_and_releases:
+    target_percent: 35
+    description: "New model launches, feature releases, product updates from AI companies"
+    example_angles:
+      - "What [company]'s new [model/feature] actually means for marketers"
+      - "[Tool] just added [capability] — here's how brands can use it now"
+      - "I watched [company]'s latest YouTube announcement so you don't have to"
+
+  # A reaction to a funding round, acquisition, valuation, or IPO
+  funding_and_startup_news:
+    target_percent: 20
+    description: "VC funding rounds, seed rounds, Series A/B/C, acquisitions, IPOs"
+    example_angles:
+      - "What [company]'s [amount] raise tells us about where AI is going"
+      - "[Acquisition] just changed the competitive map — here's what brands should watch"
+
+  # A breakdown of BigTech AI moves (Microsoft, Google, Apple, Meta, Amazon)
+  bigtech_ai_moves:
+    target_percent: 20
+    description: "How major tech platforms are integrating AI into their products"
+    example_angles:
+      - "Every brand that uses [platform] just got a new AI capability — here's what it does"
+      - "[BigTech]'s AI play this week is aimed directly at [audience] — here's the implication"
+
+  # A post about your own experiment or hands-on use of an AI tool
+  personal_ai_experiments:
+    target_percent: 15
+    description: "Human-in-the-loop — your personal tests, workflows, and honest results"
+    example_angles:
+      - "I used [AI tool] for [specific task] for [duration] — honest results"
+      - "Here's the AI workflow I built for [marketing task] — including what failed"
+
+  # A synthesis post connecting multiple AI developments to brand strategy
+  ai_strategy_for_brands:
+    target_percent: 10
+    description: "Pattern synthesis — what multiple AI trends mean for brands collectively"
+    example_angles:
+      - "Three AI things that happened this week — and the one brand insight they share"
+      - "What marketers should be paying attention to right now (and what they can ignore)"
+
+# ── Quality Gates ──────────────────────────────────────────
+# A post cluster must pass these checks before post-generator is called.
+quality_gates:
+
+  # Minimum number of distinct articles in a cluster to generate a post
+  min_articles_in_cluster: 3
+
+  # Minimum combined relevance score across cluster articles
+  min_cluster_relevance_score: 6
+
+  # Only proceed if at least one article is from a high-priority source
+  require_high_priority_source: false   # set true to be more selective
+
+  # Skip post generation if the anchor article (articles[0]) is older than this
+  max_anchor_age_hours: 72
+
+# ── Topics to Prioritise ──────────────────────────────────
+# These topics get a score boost during article clustering.
+# Add anything timely you want the pipeline to surface.
+prioritise_this_week:
+  - "Claude"
+  - "ChatGPT"
+  - "Gemini"
+  - "AI agent"
+  - "generative AI marketing"
+  - "AI for brands"
+  # ↑ Update this list each Monday with what you want more of this week
+
+# ── Topics to Avoid ────────────────────────────────────────
+# The post-generator will not write about these topics.
+# Use this to skip angles that aren't relevant to your audience.
+avoid_topics:
+  - "crypto"
+  - "blockchain"
+  - "NFT"
+  - "Web3"
+  - "political AI"       # AI in elections, political campaigns
+  - "AI weapons"
+  - "AI surveillance"
+  - "AI romance"         # companion apps, social AI
+  # ↑ Add to this list if an angle starts showing up that isn't relevant
+
+# ── YouTube / Video Detection ─────────────────────────────
+# Controls how the news-gatherer handles YouTube channel RSS entries.
+youtube_content:
+  # If a YouTube video is in the article cluster, always move it to anchor position
+  prioritise_youtube_as_anchor: true
+  # Minimum video description length to consider it substantive
+  min_description_chars: 100
+  # Labels used to flag video articles in metadata
+  content_type_label: "youtube_video"
+
+# ── Post Frequency ─────────────────────────────────────────
+publishing:
+  # Target posts per week — used for scheduling guidance, not enforced by pipeline
+  target_posts_per_week: 3
+
+  # Best days to publish on LinkedIn (1=Monday, 5=Friday)
+  preferred_publish_days: [1, 2, 3]   # Mon, Tue, Wed
+
+  # Best time windows (UTC)
+  preferred_publish_times_utc: ["07:00", "08:00", "12:00", "13:00"]
+
+  # Minimum hours between posts to avoid flooding followers
+  min_hours_between_posts: 20
+
+# ── Freshness Override ─────────────────────────────────────
+# These settings override config/topics.yaml freshness when set.
+freshness_override:
+  enabled: false
+  max_article_age_hours: 48   # set higher (72-96) for slower news weeks
