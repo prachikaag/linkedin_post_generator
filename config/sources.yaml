@@ -141,8 +141,23 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCGQOZbTYkJ5YADMX2OllkWA"
+      priority: medium
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCy6hNVQi3N2dLZy0YFNyPnw"
+      priority: medium
+      enabled: true
+
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: low
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC-4zPBD9x4OFHVMb1JX-7mA"
       priority: low
       enabled: true
 

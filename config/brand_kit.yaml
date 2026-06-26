@@ -5,12 +5,12 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN YOUR DETAILS BELOW — these appear in every post
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                    # ← Replace with your actual name
+  title: "Your Professional Title"     # ← e.g. "Brand Strategist & AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"       # ← e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -88,18 +88,21 @@ brand:
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "New feature launches from ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney"
+    - "Big tech AI moves — what they mean for marketers, not just engineers"
+    - "AI startup funding rounds and what they signal about where the market is heading"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Experimenting with AI in your own work and sharing honest, unfiltered results"
 
   # Example angles you love to write about
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
+    - "I tested [AI tool] for [use case] — here's what actually happened"
+    - "[Company] just launched [feature] — here's what brands should pay attention to"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "What [funding/acquisition/YouTube launch] tells us about where AI is heading"
+    - "[AI tool] added [new capability] — and this changes the brief for creative teams"
+    - "My honest take: I experimented with [AI workflow] for [X days] and learned this"
 
   # Hashtag strategy
   hashtags:

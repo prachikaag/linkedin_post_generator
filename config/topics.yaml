@@ -335,6 +335,34 @@ topic_categories:
       - "AI assistant"
       - "copilot"
 
+  - name: "Human-in-the-Loop AI"
+    description: "People experimenting with AI, AI + human collaboration, AI for creatives"
+    keywords:
+      - "human in the loop"
+      - "AI experiment"
+      - "I tested"
+      - "tried AI"
+      - "AI workflow"
+      - "AI for creators"
+      - "AI for marketers"
+      - "prompt engineering"
+      - "AI collaboration"
+      - "AI-assisted"
+
+  - name: "AI Video and Audio"
+    description: "AI-generated video, voice cloning, music, and multimedia"
+    keywords:
+      - "AI video"
+      - "video generation"
+      - "voice cloning"
+      - "AI voice"
+      - "text to video"
+      - "Sora"
+      - "Veo"
+      - "AI music"
+      - "AI audio"
+      - "voice synthesis"
+
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
   # Seed terms used to find related trending queries on Google Trends
