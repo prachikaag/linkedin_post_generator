@@ -1,0 +1,29 @@
+# ============================================================
+# YOUR PERSONAL PROFILE
+# Edit this file to set your name, title, and professional
+# identity. This is used in every generated post.
+# ============================================================
+
+name: "Your Name"
+# Example: "Prachi Jain"
+
+title: "Your Professional Title"
+# Example: "Brand Strategist | AI Enthusiast"
+
+tagline: "Helping brands understand and leverage AI in the real world"
+# This appears in your LinkedIn bio. Keep it to one line.
+
+location: "Your City, Country"
+# Example: "Sydney, Australia"
+
+industries:
+  - "Marketing & Brand Strategy"
+  - "Artificial Intelligence"
+  - "Digital Innovation"
+# Add or remove industries that describe your professional world.
+
+linkedin_url: ""
+# Optional: your LinkedIn profile URL (used in future email/newsletter features)
+
+website: ""
+# Optional: your personal site or agency URL

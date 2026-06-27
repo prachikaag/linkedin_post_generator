@@ -9,6 +9,20 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 
 ---
 
+## Configuration Files
+
+The pipeline is driven by four config files — all editable:
+
+| File | What it controls |
+|------|-----------------|
+| `config/profile.yaml` | Your name, title, and tagline |
+| `config/tone_of_voice.md` | How every post sounds — writing rules, structure, dos/don'ts |
+| `config/brand_kit.yaml` | Focus areas, hashtags, post length, citation standards |
+| `config/topics.yaml` | Companies to track, keywords, trending seed terms, freshness settings |
+| `config/sources.yaml` | RSS feeds and optional API sources |
+
+---
+
 ## Pipeline Overview
 
 ```
