@@ -24,20 +24,30 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Tone of Voice
 
-Read `config/brand_kit.yaml` and extract:
+Read **both** config files before writing anything.
 
+### `config/brand_kit.yaml` — extract:
 - `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
-- `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+### `config/tone_of_voice.yaml` — extract:
+- `point_of_view` — the author's core perspective; this is the lens for every opinion
+- `persona` — the identity ("Human in the loop") that shapes how the author presents themselves
+- `primary_traits` — how the author comes across
+- `sentence_rules` — sentence-level writing constraints (apply every single one)
+- `structural_rules` — structural constraints (apply every single one)
+- `energy_rules` — tone and energy constraints (apply every single one)
+- `post_structure` — the ordered blueprint to follow step by step
+- `content_angles` — pick the angle that best fits the article cluster; use its `opening_frame` and `key_move` as guidance
+- `words_never_to_use` — hard prohibited words/phrases; check every sentence before saving
+- `signature_phrases` — phrases natural to this author; use 1–2 per post where they fit
+- `brand_strategy_lenses` — questions to ask yourself when writing the SO WHAT section; answer at least one of them explicitly
 
 ---
 

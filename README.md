@@ -50,15 +50,16 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` as four standalone, editable components:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | What it controls | Edit when you want to... |
+|------|------------------|--------------------------|
+| `config/topics.yaml` | Companies to track, topic categories, trending seed terms, freshness settings | Add/remove companies, change what counts as relevant news |
+| `config/sources.yaml` | RSS feeds and API sources to fetch from | Add new news sources, disable feeds you don't want |
+| `config/brand_kit.yaml` | Author identity, brand focus areas, hashtag strategy, post length, citation standards | Update your name/title, change hashtags, adjust post length |
+| `config/tone_of_voice.yaml` | Writing voice, sentence rules, post structure blueprint, content angles, banned words | Change how you write — energy, style, structure, the angles you use |
 
-Edit these files directly — changes take effect on the next run.
+Edit these files directly — changes take effect on the next run. No code restarts needed.
 
 ### Environment Variables
 
