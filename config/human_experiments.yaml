@@ -1,0 +1,210 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# This is the "human in the loop" component of the post generator.
+# Log your real, hands-on experiments with AI tools here.
+#
+# The post generator reads this file on every run. When an
+# experiment matches the current news topic, it weaves your
+# first-person anecdote into the YOUR TAKE section —
+# making the post distinctly yours, not just a news summary.
+#
+# ── How to add an experiment ──────────────────────────────
+#   1. Try an AI tool for a real task (campaign brief, research,
+#      image gen, voice, coding, analysis — anything)
+#   2. Copy the template at the bottom and fill it in honestly
+#   3. Set ready_to_publish: true when it's ready to use
+#   4. After it appears in a post, set used_in_post: true
+#
+# ── Matching logic ────────────────────────────────────────
+# The post generator matches experiments to articles using
+# relevant_topics. Include the company name AND the use case
+# so matches are precise (e.g. both "ChatGPT" and "briefs"
+# will match an article about ChatGPT + marketing content).
+#
+# ── Tone guidance ─────────────────────────────────────────
+# Be specific and honest — what_worked and what_didnt are
+# the most valuable fields. Readers trust you more when you
+# share what didn't work than when you only share wins.
+# Keep honest_take to 1–2 sentences: your clearest insight.
+# ============================================================
+
+experiments:
+
+  # ── Example 1: ChatGPT for campaign briefs ──────────────
+  - id: "exp-001"
+    tool: "ChatGPT"
+    date: "2024-01-10"
+    use_case: "Writing campaign briefs"
+    what_i_tried: >
+      Used GPT-4 to draft a full creative brief from a single
+      one-line prompt — brand name, target audience, and desired
+      emotion. No other context.
+    what_worked: >
+      The structure was solid immediately. It surfaced questions
+      I hadn't thought to ask the client. Saved a good chunk of
+      the initial thinking time.
+    what_didnt: >
+      The tone was completely generic. Every sentence sounded
+      like it could belong to any brief for any brand. Heavy
+      editing required to get any personality into it.
+    honest_take: >
+      Great for scaffolding, weak on voice. You are still the
+      editor — the AI is your first draft intern.
+    relevant_topics:
+      - "ChatGPT"
+      - "OpenAI"
+      - "AI for marketing"
+      - "content creation"
+      - "brand strategy"
+    ready_to_publish: true
+    used_in_post: false
+    post_file: null
+
+  # ── Example 2: Claude for research synthesis ─────────────
+  - id: "exp-002"
+    tool: "Claude"
+    date: "2024-01-18"
+    use_case: "Synthesising competitor research"
+    what_i_tried: >
+      Pasted 8 competitor positioning pages and asked Claude to
+      identify the whitespace — what no one was saying that
+      the market clearly needed to hear.
+    what_worked: >
+      Genuinely impressive synthesis. It spotted a pattern across
+      the 8 brands I had missed after two hours of manual review.
+      The whitespace it identified became the core of the strategy.
+    what_didnt: >
+      It got one company's positioning slightly wrong and
+      presented it with full confidence. I caught it because I
+      knew the brand — a less familiar reader wouldn't have.
+    honest_take: >
+      Use it as a thinking partner, not a source of truth. Verify
+      anything it states as fact before you put it in a deck.
+    relevant_topics:
+      - "Claude"
+      - "Anthropic"
+      - "AI research"
+      - "AI for marketing"
+      - "brand strategy"
+    ready_to_publish: true
+    used_in_post: false
+    post_file: null
+
+  # ── Example 3: Midjourney for brand visuals ──────────────
+  - id: "exp-003"
+    tool: "Midjourney"
+    date: "2024-02-05"
+    use_case: "Generating brand concept visuals for a pitch"
+    what_i_tried: >
+      Created 40+ visual concept directions for a rebrand pitch
+      in about 90 minutes using Midjourney v6 — something that
+      would have taken a designer 2–3 days.
+    what_worked: >
+      Speed was extraordinary. The client could react to real
+      visual directions in the first meeting instead of
+      hypothetical descriptions. Changed the whole dynamic.
+    what_didnt: >
+      Consistency was the killer. Getting the same character or
+      brand element to look the same across multiple images
+      is still genuinely hard without fine-tuning.
+    honest_take: >
+      It unlocks early-stage ideation completely. For final
+      brand assets you still need a human who cares about detail.
+    relevant_topics:
+      - "Midjourney"
+      - "AI image generation"
+      - "creative AI"
+      - "AI for marketing"
+      - "generative AI"
+    ready_to_publish: true
+    used_in_post: false
+    post_file: null
+
+  # ── Example 4: ElevenLabs for content repurposing ────────
+  - id: "exp-004"
+    tool: "ElevenLabs"
+    date: "2024-02-20"
+    use_case: "Converting written content to audio for social"
+    what_i_tried: >
+      Cloned my own voice and converted three newsletter issues
+      into spoken audio — testing whether audio posts on LinkedIn
+      got more reach than text.
+    what_worked: >
+      The voice clone was remarkably good on the first attempt.
+      Setup took 15 minutes. Audio quality was indistinguishable
+      from a studio recording to non-audio professionals.
+    what_didnt: >
+      Emotional nuance was flat. The AI version of my voice
+      reads everything with the same energy, where I naturally
+      vary pace and emphasis. It felt robotic on anything funny
+      or emotionally charged.
+    honest_take: >
+      Perfect for factual content. The moment tone matters —
+      humour, warmth, urgency — you feel the gap immediately.
+    relevant_topics:
+      - "ElevenLabs"
+      - "Eleven Labs"
+      - "voice AI"
+      - "AI voice cloning"
+      - "content creation"
+      - "AI for marketing"
+    ready_to_publish: true
+    used_in_post: false
+    post_file: null
+
+  # ── Example 5: Perplexity for live research ───────────────
+  - id: "exp-005"
+    tool: "Perplexity"
+    date: "2024-03-01"
+    use_case: "Real-time market research before a client call"
+    what_i_tried: >
+      Used Perplexity Pro the morning before a client meeting
+      to rapid-fire research their competitive landscape,
+      recent press, and industry shifts — no manual search.
+    what_worked: >
+      15 minutes of Perplexity replaced what used to be 2 hours
+      of browser tabs. The cited sources meant I could verify
+      anything that felt shaky before walking into the room.
+    what_didnt: >
+      It missed some niche trade press that mattered in this
+      particular category. Coverage of smaller publications
+      is thinner than the big outlets.
+    honest_take: >
+      It's the best research starting point I've used. But
+      treat it as a starting point — go deeper on what matters.
+    relevant_topics:
+      - "Perplexity"
+      - "Perplexity AI"
+      - "AI research"
+      - "AI tools"
+      - "AI for marketing"
+    ready_to_publish: true
+    used_in_post: false
+    post_file: null
+
+
+# ── TEMPLATE — copy and fill in ─────────────────────────────
+# - id: "exp-XXX"
+#   tool: "Tool name"
+#   date: "YYYY-MM-DD"
+#   use_case: "What you were trying to do (1 line)"
+#   what_i_tried: >
+#     Describe what you did specifically. Be concrete —
+#     "I pasted X and asked it to Y" is better than
+#     "I used it for Z".
+#   what_worked: >
+#     What actually impressed you. Be specific.
+#   what_didnt: >
+#     What fell short or surprised you negatively. Be honest.
+#     This is the most credible part of the story.
+#   honest_take: >
+#     Your 1–2 sentence conclusion. What should a brand
+#     professional know from your experience?
+#   relevant_topics:
+#     - "Company name (e.g. OpenAI)"
+#     - "Product name (e.g. ChatGPT)"
+#     - "Use case topic (e.g. AI for marketing)"
+#   ready_to_publish: false
+#   used_in_post: false
+#   post_file: null

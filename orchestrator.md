@@ -96,6 +96,7 @@ Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
+  Personal experiment: {result.personal_experiment_used or "none"}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
 

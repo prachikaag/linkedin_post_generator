@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# IMPORTANT: Fill these in with your actual details.
+# These appear in every post — the post generator writes as you.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                          # e.g. "Prachi Kaag"
+  title: "Your Professional Title"           # e.g. "Brand Strategist & AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # e.g. "New York, USA"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -93,6 +94,42 @@ brand:
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
 
+  # ── Content Pillars ─────────────────────────────────────
+  # These are the four recurring topics that define your LinkedIn presence.
+  # Every post should map to at least one of these pillars.
+  content_pillars:
+
+    - name: "AI Company News & Feature Launches"
+      description: >
+        When ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney,
+        or any tracked AI company launches a new feature, model, or ships
+        a major YouTube video — you write about it. Your angle: what does
+        this mean for brands and marketers, not just technologists?
+      post_trigger: "New product launch, model release, major feature update, or YouTube debut"
+
+    - name: "Big Tech & AI Startup Funding"
+      description: >
+        When big tech makes an AI move or an AI startup secures funding,
+        you connect the dots. Your angle: what does the money and the
+        momentum tell us about where AI for business is actually heading?
+      post_trigger: "Funding round, acquisition, IPO, big tech AI announcement"
+
+    - name: "Human in the Loop — My Experiments"
+      description: >
+        Your most personal and distinctive pillar. You document real
+        experiments — what you actually tried, what worked, what failed,
+        and your honest conclusion. This is not hype. It is field notes
+        from someone doing the work. The personal experiment log in
+        config/human_experiments.yaml feeds directly into these posts.
+      post_trigger: "Any article about a tool you have personally used"
+
+    - name: "AI for Brands & Marketing"
+      description: >
+        How brands, creative agencies, and marketing teams can use AI
+        right now — not hypothetically. You translate complex AI
+        developments into concrete, actionable moves for brand leaders.
+      post_trigger: "Any AI development with a clear brand or marketing application"
+
   # Example angles you love to write about
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
@@ -100,6 +137,8 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "Everyone is talking about [AI story]. Here's what they're missing."
+    - "I used [AI tool] to do [task]. Here's what it got right and wrong."
 
   # Hashtag strategy
   hashtags:
