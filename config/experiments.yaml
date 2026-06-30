@@ -1,0 +1,64 @@
+# ============================================================
+# MY AI EXPERIMENTS LOG  (Human-in-the-Loop)
+# ============================================================
+# This is YOUR log of hands-on AI experiments — tools you tried,
+# features you tested, workflows you automated. It's what makes
+# your posts read like a person experimenting with AI, not a
+# news aggregator.
+#
+# Add an entry every time you try something new. Set status to
+# "ready" when you're ready for it to become a post. The pipeline
+# turns "ready" entries into "I tried X" LinkedIn posts — citing
+# the tool's official source alongside your honest, first-person
+# take — then flips status to "posted" and links the generated file.
+#
+# ── status values ──────────────────────────────────────────
+#   "idea"   - noted, not tried yet. Ignored by the pipeline.
+#   "ready"  - tried it, written up below. Pipeline will draft a post.
+#   "posted" - already turned into a post. Pipeline skips it.
+#
+# Edit, reorder, or delete entries freely. Nothing here is auto-generated
+# except `linked_post`, which the pipeline fills in after drafting.
+# ============================================================
+
+experiments:
+  - id: "exp-001"
+    status: "idea"
+    date_tried: ""
+    tool: ""                # e.g. "Claude", "ChatGPT", "Midjourney"
+    feature: ""              # e.g. "Agent Skills", "Sora 2", "v7 personalization"
+    use_case: ""             # what you used it for
+    what_i_did: >
+      Short description of what you actually did — be specific.
+    what_happened: >
+      What actually happened. Be honest — good and bad both work.
+    surprises: >
+      Anything that surprised you, good or bad.
+    would_recommend: null    # true / false
+    rating: null              # your honest 1-5
+    source_url: ""           # official launch/feature page for the tool you tested
+    source_name: ""          # publisher of that source, e.g. "Anthropic", "OpenAI Blog"
+    linked_post: null        # auto-filled by the pipeline once a post is drafted
+
+# ── Example (copy this block to add a real entry) ───────────
+# - id: "exp-002"
+#   status: "ready"
+#   date_tried: "2026-06-25"
+#   tool: "Claude"
+#   feature: "Claude Code on the web"
+#   use_case: "Automating my LinkedIn content research pipeline"
+#   what_i_did: >
+#     Built a multi-agent pipeline that tracks AI news, finds trending
+#     topics, and drafts LinkedIn posts in my own voice automatically.
+#   what_happened: >
+#     It worked end-to-end on the first real run — fetched articles,
+#     found trending keywords, and wrote a post that needed only light
+#     editing before I'd publish it.
+#   surprises: >
+#     The hardest part wasn't the AI writing — it was getting the
+#     citation rules tight enough that every URL was real and verifiable.
+#   would_recommend: true
+#   rating: 4
+#   source_url: "https://www.anthropic.com/news/claude-code-on-the-web"
+#   source_name: "Anthropic"
+#   linked_post: null

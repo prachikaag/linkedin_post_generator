@@ -1,5 +1,5 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, experiment-post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
 tools: Read, Write, Agent
 ---
 
@@ -16,6 +16,8 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
 [post-generator] → saved .md draft
+         ↓
+[experiment-post-generator] → saved .md draft per "ready" entry in config/experiments.yaml
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```
@@ -25,9 +27,10 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many news-based posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `MAX_EXPERIMENT_POSTS` — how many "ready" experiment log entries to turn into posts this run (default: **2**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -103,11 +106,43 @@ Collect each result's JSON object.
 
 ---
 
+## Step 4b — Generate Experiment Posts (Human-in-the-Loop)
+
+Read `config/experiments.yaml`. Filter entries where `status == "ready"`.
+
+If none are found, print: `No experiments marked "ready" — nothing to draft. Log a hands-on AI experiment in config/experiments.yaml when you have one.` and skip to Step 5.
+
+Otherwise, take up to `MAX_EXPERIMENT_POSTS` ready entries (oldest `date_tried` first).
+
+For each, spawn the **experiment-post-generator** subagent (defined in `.claude/agents/experiment-post-generator.md`).
+
+Task for the subagent (include the full JSON data inline):
+```
+Generate a first-person "I tried X" LinkedIn post from this experiment log entry and save it to posts/.
+
+Input:
+{
+  "experiment": <experiment entry as JSON>,
+  "posts_dir": "posts/"
+}
+```
+
+Print progress per experiment post:
+```
+Experiment post — {experiment.tool}: {experiment.feature}
+  ✓ Saved → {result.filename}
+  ✓ config/experiments.yaml entry {experiment.id} marked "posted"
+```
+
+Collect each result's JSON object alongside the news-based post results — both feed into Step 5 (Notion) and Step 6 (summary).
+
+---
+
 ## Step 5 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
-For each generated post, spawn the **notion-publisher** subagent (defined in `.claude/agents/notion-publisher.md`).
+For each generated post — both news-based (Step 4) and experiment-based (Step 4b) — spawn the **notion-publisher** subagent (defined in `.claude/agents/notion-publisher.md`).
 
 Task for the subagent:
 ```
@@ -115,7 +150,7 @@ Publish this post draft to Notion.
 
 Input:
 {
-  "article_title": "<result.article_title>",
+  "article_title": "<result.article_title, or 'I tried {result.feature}' for experiment posts>",
   "content": "<result.content>",
   "source_count": <result.source_count>,
   "page_id": "<NOTION_PAGE_ID>"
@@ -136,8 +171,9 @@ Print a summary table:
 ╔══════════════════════════════════════════════════════╗
 ║  LinkedIn Post Generator — Run Complete              ║
 ╠══════════════════════════════════════════════════════╣
-║  Posts generated : {N}                               ║
-║  Saved to        : posts/                            ║
+║  News posts generated       : {N}                    ║
+║  Experiment posts generated : {M}                     ║
+║  Saved to                   : posts/                  ║
 ╠══════════════════════════════════════════════════════╣
 ║  {filename}  ·  {source_count} sources               ║
 ║  ...                                                 ║
@@ -152,4 +188,5 @@ Then print each post's content in full so the author can review immediately.
 
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
+- If an experiment post fails to generate, leave that entry's `status` as `"ready"` in `config/experiments.yaml` so it's retried next run
 - Never stop the entire pipeline because of a single subagent failure
