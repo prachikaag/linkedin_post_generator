@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, saves it as a YAML-frontmatter markdown draft in posts/, and appends the used article URLs to config/seen_articles.yaml.
 tools: Read, Write
 ---
 
@@ -138,6 +138,35 @@ status: "draft"
 Then append a blank line followed by the full post body.
 
 Save to `posts/<filename>`.
+
+---
+
+## Step 4 — Update Cross-Run Memory
+
+After the post is saved, append every article URL from this cluster to `config/seen_articles.yaml` so the news-gatherer skips them on the next run.
+
+1. Read `config/seen_articles.yaml` — extract the current `seen_urls` list (may be empty)
+2. Add each `articles[i].url` that is not already in the list
+3. Write the full updated file back — preserve the comment header exactly, update only the `seen_urls` list
+
+Format to write:
+```yaml
+# ============================================================
+# SEEN ARTICLES — Cross-Run Memory
+# Tracks article URLs that have already been turned into posts.
+# The post-generator agent appends to this file after each save.
+# The news-gatherer agent reads this file and skips these URLs.
+#
+# To reset (re-allow all articles): clear the list below to [].
+# To remove a specific article: delete its line.
+# ============================================================
+
+seen_urls:
+  - "https://..."
+  - "https://..."
+```
+
+Do not overwrite URLs already in the list — only append new ones.
 
 ---
 

@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS: Replace the placeholder values with your actual details.
+# These appear in the post frontmatter and shape the writing voice.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"                           # Your full name as it appears on LinkedIn
+  title: "Brand & AI Strategist"           # Your LinkedIn headline / professional title
+  # Your LinkedIn tagline — one line that positions you clearly
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"           # e.g. "Toronto, Canada" or "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

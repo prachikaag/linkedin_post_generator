@@ -1,0 +1,11 @@
+# ============================================================
+# SEEN ARTICLES — Cross-Run Memory
+# Tracks article URLs that have already been turned into posts.
+# The post-generator agent appends to this file after each save.
+# The news-gatherer agent reads this file and skips these URLs.
+#
+# To reset (re-allow all articles): clear the list below to [].
+# To remove a specific article: delete its line.
+# ============================================================
+
+seen_urls: []
