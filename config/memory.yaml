@@ -1,0 +1,37 @@
+# ============================================================
+# CONTENT MEMORY — Topic Tracker
+# Prevents the pipeline from writing about the same topic twice
+# within the recency window.
+#
+# This file is updated automatically after each pipeline run.
+# You can also edit it manually to:
+#   - Clear old entries so a topic becomes writable again
+#   - Add past posts you've already published
+#   - Adjust recency_days to widen or narrow the dedup window
+# ============================================================
+
+settings:
+  # Topics covered within this many days will be skipped or down-weighted
+  recency_days: 14
+
+# ── Recently Covered Topics ────────────────────────────────
+# Each entry is written by the orchestrator after a post is generated.
+# Fields:
+#   slug        — the filename slug from the generated post
+#   date_covered — YYYY-MM-DD when the post was created
+#   post_file   — the markdown filename in posts/
+#   matched_companies — companies prominently featured in the post
+covered_topics:
+  - slug: "enterprise-ai-market-shift-real-data"
+    date_covered: "2026-05-14"
+    post_file: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    matched_companies:
+      - Anthropic
+      - OpenAI
+      - Microsoft
+      - Cerebras
+
+  - slug: "vertical-ai-depth-over-horizontal"
+    date_covered: "2026-05-14"
+    post_file: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    matched_companies: []

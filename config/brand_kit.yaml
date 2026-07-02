@@ -5,16 +5,27 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Fill in your details below. These appear in the post-generator's context
+# so it writes in your voice and from your professional perspective.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"               # e.g. "Prachi Kaag"
+  title: "Your Professional Title" # e.g. "Brand Strategist | AI Enthusiast"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"   # e.g. "London, UK"
+  linkedin_url: ""                 # optional — your LinkedIn profile URL
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+
+# ── Your Core Content Pillars ─────────────────────────────
+# These are the 4 types of posts you consistently publish.
+# Full templates for each pillar live in config/content_angles.yaml.
+content_pillars:
+  - "New AI feature launches — breaking down what ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney, and others ship, and what it means for brands"
+  - "Human in the loop — sharing honest experiments where you test AI tools for real marketing and brand tasks, with actual results"
+  - "AI startup funding & big tech moves — translating what investment rounds and platform plays signal about where AI is heading"
+  - "Big tech AI — what Microsoft, Google, Apple, Nvidia moves mean for brands already using their products"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -61,7 +72,10 @@ tone_of_voice:
 
   # What makes a great post from you
   dos:
-    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you"
+    - "Share personal experiments with AI tools — what you tested, what worked, what surprised you. Be specific about the task, the tool, and the result."
+    - "When writing about a new AI feature, always include one concrete use case a brand or marketing team could act on today"
+    - "When writing about YouTube videos from AI companies, highlight the specific moment or demo that stood out — don't just recap the video"
+    - "When writing about startup funding, always explain WHAT the company does first before explaining why the round matters"
     - "Give actionable insights brands can use today, not just future speculation"
     - "Cite sources with full URLs so readers can dig deeper"
     - "Ask engaging questions that invite genuine discussion in the comments"
@@ -69,6 +83,7 @@ tone_of_voice:
     - "Acknowledge uncertainty when you genuinely don't know something"
     - "React to news within your own professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Always frame AI developments through the lens of: what does this mean for brands, creative teams, or marketers specifically?"
 
   # What undermines your credibility
   donts:

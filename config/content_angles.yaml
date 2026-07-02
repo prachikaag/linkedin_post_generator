@@ -1,0 +1,196 @@
+# ============================================================
+# CONTENT ANGLES
+# The 5 types of LinkedIn posts this pipeline generates.
+# Each angle has its own hook templates, content focus, and examples.
+# The post-generator picks the best-fitting angle for each article cluster.
+#
+# To add a new angle: copy any block below, give it a unique id,
+# and describe the trigger keywords and hook templates.
+# ============================================================
+
+content_angles:
+
+  # ── 1. New Feature or Product Launch ──────────────────────
+  # When ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney,
+  # or any tracked AI company ships a new feature, model, or capability.
+  - id: "new_feature_launch"
+    name: "New Feature or Product Launch"
+    priority: 1
+    description: >
+      A tracked AI company has shipped something new — a model update, a new tool,
+      a capability expansion. Focus on what it actually does, one real-world use case
+      for brands, and your honest take on hype vs. genuine value.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "announces"
+      - "ships"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+      - "new model"
+      - "new feature"
+      - "available now"
+    hook_templates:
+      - "[Company] just changed what's possible with [use case]. Here's why brands should care."
+      - "The new [feature] from [company] isn't just a product update. It's a signal."
+      - "[Feature] just shipped. I've been waiting for this one."
+      - "Something quietly changed in how we can [use case]. [Company] just released [feature]."
+    post_focus:
+      - "What the feature actually does — cut the jargon, plain language"
+      - "One specific way a marketing or brand team could use this today"
+      - "What this reveals about where the company is heading"
+      - "Honest reaction: real capability vs. demo polish"
+    example_titles:
+      - "Claude just got longer memory — what that actually means for workflows"
+      - "Midjourney v7 is out. Here's what changed for creative teams"
+      - "Perplexity just added [feature]. This is the one to pay attention to."
+
+  # ── 2. YouTube Video Analysis ─────────────────────────────
+  # When a major AI company drops a new YouTube video — a demo, a product
+  # showcase, a keynote, or a tutorial showing real capability.
+  - id: "youtube_video"
+    name: "AI Company YouTube Video"
+    priority: 2
+    description: >
+      An AI company has published a new YouTube video showcasing a feature, demo,
+      or product announcement. Break down what the video actually shows, highlight
+      the one moment that mattered most, and explain what it means for brands.
+    trigger_keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "showcase"
+      - "keynote"
+      - "tutorial"
+      - "watch"
+    hook_templates:
+      - "[Company] dropped a new video. Here's the part that actually matters."
+      - "I watched [company]'s latest demo so you don't have to — the key moment is..."
+      - "This [company] video explains [topic] better than any article I've read."
+      - "[Company] released a [X-minute] video. Here are the 3 things worth your attention."
+    post_focus:
+      - "What the video is actually showing — the demo or announcement in plain terms"
+      - "The one moment or detail in the video that stood out most"
+      - "What this reveals about where the company is heading next"
+      - "What you would do differently as a brand after watching it"
+    example_titles:
+      - "OpenAI's new video shows something brands have been waiting for"
+      - "Google released a 10-minute demo of Gemini this week. Here's what stood out."
+
+  # ── 3. Big Tech AI Move ────────────────────────────────────
+  # Significant AI moves from Microsoft, Apple, Amazon, Google,
+  # Nvidia, Salesforce, or Adobe that impact brands and marketers.
+  - id: "big_tech_ai"
+    name: "Big Tech AI Move"
+    priority: 3
+    description: >
+      A big tech company has made a meaningful AI move — a product announcement,
+      a partnership, a strategy shift. Translate what it means for brands that
+      already use or are considering their platforms.
+    trigger_keywords:
+      - "Microsoft"
+      - "Apple"
+      - "Amazon"
+      - "Google"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+      - "Copilot"
+      - "Gemini"
+      - "Azure"
+    hook_templates:
+      - "The quiet thing [Company] did in AI this week is more interesting than the headline."
+      - "[Company]'s latest AI move isn't about the product. It's about the strategy."
+      - "[Company] announced [X]. Here's what it means if you're already using their tools."
+      - "Everyone's talking about [Company]'s announcement. The part that actually matters is..."
+    post_focus:
+      - "What the company actually announced vs. what the headlines say"
+      - "The broader pattern — is this part of a bigger play?"
+      - "What it means for brands currently using or considering their platforms"
+      - "Which teams or workflows are most affected — marketing, creative, ops?"
+    example_titles:
+      - "Microsoft Copilot just got a major update. Here's what changes for marketing teams."
+      - "Apple Intelligence expanded. What it means for brand apps and customer experience."
+
+  # ── 4. AI Startup Funding ─────────────────────────────────
+  # When an AI startup closes a notable funding round, gets acquired,
+  # goes public, or hits a major valuation milestone.
+  - id: "startup_funding"
+    name: "AI Startup Funding"
+    priority: 4
+    description: >
+      An AI startup has raised a significant round, been acquired, or hit a major
+      milestone. Explain what the company does, why investors are betting on it,
+      and what this signals about where the AI market is heading next.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "billion"
+      - "million"
+    hook_templates:
+      - "[Company] just raised [amount]. Here's why this one is different."
+      - "Another AI startup just reached unicorn status. [Company]'s raise tells us something."
+      - "[Amount] went into [Company] this week. Here's the bet investors are making."
+      - "[Company] raised [amount]. The product matters less than the thesis behind the funding."
+    post_focus:
+      - "What the company does and why it's attracting investment now"
+      - "The broader thesis: what does this bet say about AI's near-term direction?"
+      - "Which industries or brands should be paying closest attention to this"
+      - "The honest question: does the funding match the technology's current maturity?"
+    example_titles:
+      - "Harvey AI raised $X00M. This is what that says about AI in professional services."
+      - "Another AI voice startup just got funded. The real competition is just starting."
+
+  # ── 5. Human in the Loop Experiment ──────────────────────
+  # Personal experiments with AI tools — what you tried, what worked,
+  # what didn't, what surprised you. Your most authentic content.
+  - id: "human_in_loop"
+    name: "Human in the Loop Experiment"
+    priority: 5
+    description: >
+      You personally tested an AI tool for a specific task and want to share
+      honest results. This is your most distinctive content — real experiments,
+      real outcomes, no hype. Focus on the process, the surprises, and the
+      practical takeaway for brands or marketing teams.
+    trigger_keywords:
+      - "experiment"
+      - "tested"
+      - "tried"
+      - "used"
+      - "workflow"
+      - "productivity"
+      - "I used"
+      - "we used"
+    hook_templates:
+      - "I spent [time] using [AI tool] for [task]. Honest results below."
+      - "Here's what actually happens when you use [AI tool] for [real marketing task]."
+      - "I tested [AI tool A] against [AI tool B] for [task]. Not what I expected."
+      - "I've been quietly using [AI tool] for [weeks/months]. Here's my honest take."
+      - "[AI Tool] promised it could [do X]. I put it to the test."
+    post_focus:
+      - "The specific task you were trying to accomplish (be concrete, not vague)"
+      - "The exact process — what you prompted, what you got, what you had to edit"
+      - "What worked well, what fell flat, and the surprise moment"
+      - "The business implication: could this replace or augment a marketing workflow?"
+      - "Your honest recommendation: use it now / wait for V2 / not for this use case"
+    example_titles:
+      - "I used Claude to draft a full brand strategy. Here's what I had to fix."
+      - "I tested Perplexity vs. Google for market research. The results were surprising."
+      - "I ran a whole campaign brief through AI. Here's what the human still has to do."
+
+# ── How the Post Generator Uses This File ─────────────────
+# When generating a post, the post-generator:
+# 1. Reads the article cluster's matched_categories and matched_companies
+# 2. Compares them to trigger_keywords above to identify the best-fit angle
+# 3. Uses the hook_templates and post_focus as additional structure guidance
+# 4. Falls back to the default post_structure in brand_kit.yaml if no angle matches
