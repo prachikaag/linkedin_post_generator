@@ -12,12 +12,13 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
+[memory check]     → filter already-seen article URLs
+[news-gatherer]    → articles JSON
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
-         ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[post-generator]   → saved .md draft
+         ↓ (update memory)
+[notion-publisher] → published to Notion (if configured)
 ```
 
 ---
@@ -33,6 +34,16 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Memory
+
+Read `data/seen_articles.json` — this is a JSON array of article URLs that have already been used in a previous run.
+
+If the file is missing or empty, treat it as `[]`.
+
+Hold this list in memory as `seen_urls`.
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
@@ -40,11 +51,13 @@ Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.m
 Task for the subagent:
 > "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
 
-Receive the JSON array of articles. If the array is empty, print:
-> "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
-Then stop.
+Receive the JSON array of articles.
 
-Print a summary line: `✓ {N} relevant articles fetched and scored.`
+**Filter out seen articles**: Remove any article whose `url` appears in `seen_urls`. If the filtered list is empty, print:
+> "All recent articles have already been used in previous runs. No new posts to generate."
+Then stop (do not update memory).
+
+Print a summary line: `✓ {N} fresh articles available (filtered from {M} total fetched).`
 
 If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
 
@@ -103,7 +116,20 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Update Memory
+
+After all posts are generated successfully, collect every article URL that was used across all clusters.
+
+Read the current `data/seen_articles.json` array.
+Append all newly-used article URLs (deduplicated).
+Keep only the most recent **500** URLs (trim from the front if needed).
+Write the updated array back to `data/seen_articles.json`.
+
+Print: `✓ Memory updated — {N} article URLs now tracked.`
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +154,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 
@@ -153,3 +179,4 @@ Then print each post's content in full so the author can review immediately.
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
 - Never stop the entire pipeline because of a single subagent failure
+- If memory cannot be updated (write fails), log a warning but do not fail the run

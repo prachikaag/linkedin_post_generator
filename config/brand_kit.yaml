@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN: Replace the placeholder values below with your actual details.
+# These are injected into every post — the AI writes as you.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
+  name: "Prachi"                          # FILL IN: Your full name
+  title: "Your Professional Title"        # FILL IN: e.g. "Brand Strategist & AI Advisor"
   # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"          # FILL IN: e.g. "Toronto, Canada"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

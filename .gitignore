@@ -14,3 +14,9 @@ env/
 
 # OS
 .DS_Store
+
+# Memory cache — tracked in repo so seen_articles persists across sessions
+# (data/seen_articles.json is intentionally committed)
+
+# Lock files
+.claude/scheduled_tasks.lock
