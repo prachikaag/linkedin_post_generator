@@ -95,6 +95,7 @@ Input:
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
+  Template: {result.template_used}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -118,6 +119,7 @@ Input:
   "article_title": "<result.article_title>",
   "content": "<result.content>",
   "source_count": <result.source_count>,
+  "template_used": "<result.template_used>",
   "page_id": "<NOTION_PAGE_ID>"
 }
 ```
@@ -139,7 +141,7 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {source_count} sources  ·  {template_used}  ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```

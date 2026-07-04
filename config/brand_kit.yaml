@@ -1,16 +1,30 @@
 # ============================================================
 # BRAND KIT & TONE OF VOICE
-# Edit this file to match your personal brand and voice.
-# This drives how every LinkedIn post is written.
+# ============================================================
+# This file controls HOW every post is written: tone, voice,
+# style rules, post structure, hashtags, and content standards.
+#
+# To edit WHO you are (name, title, background):
+#   → config/author_profile.yaml
+#
+# To edit WHAT post type templates to use:
+#   → config/post_templates.yaml
+#
+# To edit WHAT topics and companies to follow:
+#   → config/topics.yaml
+#
+# To edit WHERE news comes from (RSS feeds):
+#   → config/sources.yaml
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Note: Primary author info lives in config/author_profile.yaml.
+# These values are kept as a fallback — update author_profile.yaml first.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand Strategist & AI Enthusiast"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
