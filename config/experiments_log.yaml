@@ -1,0 +1,72 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# This is the "human in the loop" heart of your content.
+#
+# Log every AI tool or workflow you personally test here.
+# The post-generator reads this file and weaves your real
+# experiments into posts — turning news into first-person
+# insight rather than just commentary.
+#
+# HOW TO USE:
+#   1. After you test any AI tool or workflow, add an entry below
+#   2. Be honest — note what worked AND what surprised or failed
+#   3. Run the pipeline — your experiments will appear in posts
+#      as authentic first-person evidence
+#
+# TIPS:
+#   - Even a 10-minute test is worth logging
+#   - The "hook_ideas" field feeds directly into post hooks
+#   - Set status: "unused" → "used_in_post" to track which
+#     experiments have already been featured
+# ============================================================
+
+experiments:
+
+  # ── TEMPLATE — copy this block to add a new experiment ───
+  # - tool: "Tool or product name"
+  #   company: "Company behind the tool"
+  #   date_tested: "YYYY-MM-DD"
+  #   use_case: "What you were trying to do"
+  #   what_i_did: "Step-by-step: what you actually tried"
+  #   what_worked: "What impressed you"
+  #   what_surprised_me: "Unexpected outcome, good or bad"
+  #   what_didnt_work: "Limitation or frustration you hit"
+  #   time_saved: "Rough estimate, e.g. '2 hours on a task that would have taken a day'"
+  #   honest_verdict: "One sentence: would you use this again and why?"
+  #   hook_ideas:
+  #     - "Hook sentence you could open a post with"
+  #   status: "unused"  # unused | used_in_post | skip
+
+  # ── YOUR EXPERIMENTS ──────────────────────────────────────
+
+  - tool: "Claude Code"
+    company: "Anthropic"
+    date_tested: "2026-07-05"
+    use_case: "Building this LinkedIn post generator — writing agents that write posts"
+    what_i_did: >
+      Asked Claude Code to design and build a multi-agent pipeline entirely from
+      natural language instructions. No manual coding. Just describing what I wanted
+      each component to do and letting the agent build the files.
+    what_worked: >
+      It understood the full architecture from a single description and created
+      all the agent files, config components, and orchestrator logic in one session.
+      Each component is a separate editable markdown file — exactly what I asked for.
+    what_surprised_me: >
+      The agent correctly inferred that separate YAML config files would make the
+      system easier to personalise, without me specifying that architecture.
+    what_didnt_work: >
+      The initial Notion publisher had wrong tool names — required one fix.
+      A reminder that even AI-built systems need a human in the loop to verify.
+    time_saved: "A full day of design and engineering work compressed into one session"
+    honest_verdict: >
+      Yes — this is exactly the kind of workflow where human-in-the-loop AI shines.
+      I directed, reviewed, and corrected. The agent built. The outcome is better
+      than what I would have architected alone in the same time.
+    hook_ideas:
+      - "I just built a system that writes my LinkedIn posts. Here's how the human in the loop still matters."
+      - "What happens when you ask AI to build the tool that makes your content? I tried it."
+      - "The most useful thing I've learned about working with AI: describe the outcome, not the steps."
+    status: "unused"
+
+  # Add your experiments below this line ───────────────────
+  # (copy the template above)
