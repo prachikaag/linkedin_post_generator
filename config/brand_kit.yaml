@@ -5,16 +5,18 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS: Fill in your own details. These appear in post frontmatter
+# and inform the tone and perspective used in every post.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Your Name"                          # e.g. "Prachi Jain"
+  title: "Your Professional Title"           # e.g. "Brand Strategist & AI Enthusiast"
+  tagline: "I follow AI news so brands don't have to — and share what it actually means for marketing teams."
+  location: "Your City, Country"             # e.g. "Toronto, Canada"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Strategy"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -85,21 +87,22 @@ tone_of_voice:
 brand:
 
   # The lenses you write through
+  # These are the 5 recurring angles — full details in config/content_angles.yaml
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
+    - "AI feature and product launches — what new tools mean for brands (ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney, Runway, Suno, etc.)"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
-    - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "AI startup funding — what investment signals tell us about where AI is heading"
+    - "YouTube video and demo drops from key AI companies — showing capabilities before the press does"
+    - "Big tech AI news — Microsoft, Google, Apple, Amazon, Nvidia moves and what they mean for brands"
+    - "Personal AI experiments — what you tested, what worked, what surprised you"
 
-  # Example angles you love to write about
+  # Short descriptions of the 5 post angles (full config in config/content_angles.yaml)
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "Stop what you're doing and watch [Company]'s latest demo"
 
   # Hashtag strategy
   hashtags:

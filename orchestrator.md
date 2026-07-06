@@ -1,21 +1,23 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, content-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
 tools: Read, Write, Agent
 ---
 
 You are the **LinkedIn Post Generator Orchestrator**.
 
-Your job is to run the full pipeline end-to-end by delegating to four specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
+Your job is to run the full pipeline end-to-end by delegating to five specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
 
 ---
 
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[news-gatherer]   → raw articles JSON
+[content-tracker] → filters out already-covered articles
+[trending-tracker] → trending keyword phrases
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]  → saved .md draft
+[content-tracker] → records newly published URLs (memory update)
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```
@@ -46,7 +48,33 @@ Then stop.
 
 Print a summary line: `✓ {N} relevant articles fetched and scored.`
 
-If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
+---
+
+## Step 1.5 — Filter Already-Covered Articles (Memory Check)
+
+Spawn the **content-tracker** subagent (defined in `.claude/agents/content-tracker.md`).
+
+Task for the subagent (include the full articles JSON inline):
+```
+Filter out already-covered articles.
+
+Input:
+{
+  "mode": "filter",
+  "articles": [<articles JSON from Step 1>]
+}
+```
+
+Receive the filtered JSON array (articles not yet covered).
+
+- If the filtered array is empty, print:
+  > "All fetched articles have already been covered. No new posts to generate."
+  Then stop.
+- Print: `✓ {N} new articles after filtering ({skipped} already covered).`
+
+Use the filtered articles for all subsequent steps.
+
+If `DRY_RUN` is true, print the top 12 filtered articles (title, score, source) and stop here.
 
 ---
 
@@ -64,7 +92,7 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ## Step 3 — Build Article Clusters
 
-Divide the articles into clusters — one cluster per post to generate.
+Divide the filtered articles into clusters — one cluster per post to generate.
 
 **Clustering algorithm:**
 - `n_posts = min(MAX_POSTS, len(articles))`
@@ -100,6 +128,27 @@ Post {i+1} — anchor: {cluster[0].title[:65]}
 ```
 
 Collect each result's JSON object.
+
+---
+
+## Step 4.5 — Update Memory (Record Covered Articles)
+
+After all posts are generated, spawn the **content-tracker** subagent again.
+
+Collect all article URLs from all clusters used across every generated post.
+
+Task for the subagent:
+```
+Update the seen articles memory.
+
+Input:
+{
+  "mode": "update",
+  "published_urls": [<flat list of all article URLs used across all generated posts>]
+}
+```
+
+Print: `✓ Memory updated — {N} article URLs recorded.`
 
 ---
 
@@ -152,4 +201,5 @@ Then print each post's content in full so the author can review immediately.
 
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
+- If the content-tracker fails to update memory, log a warning but do not stop the pipeline
 - Never stop the entire pipeline because of a single subagent failure

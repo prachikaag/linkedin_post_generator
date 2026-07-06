@@ -24,8 +24,9 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read Configuration
 
+### Brand Kit
 Read `config/brand_kit.yaml` and extract:
 
 - `author.name`, `author.title`, `author.tagline`
@@ -38,6 +39,21 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+### Content Angle
+Read `config/content_angles.yaml`. Look at the `angles` array.
+
+Examine the `articles` input. For the anchor article (`articles[0]`), build a combined text:
+`title + " " + summary` (lowercased).
+
+Match against each angle's `trigger_keywords`. Pick the angle with the most keyword matches.
+If no matches, use the `default_angle`.
+
+Extract from the matched angle:
+- `name` — the angle label (used in frontmatter only)
+- `hook_starters` — example hooks to inspire (don't copy verbatim)
+- `post_angle` — the narrative lens to write through
+- `cta_examples` — questions to inspire the CTA (don't copy verbatim)
 
 ---
 
@@ -116,6 +132,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+content_angle: "<matched angle id, e.g. feature_launch>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

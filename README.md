@@ -11,9 +11,10 @@ The pipeline is a **multi-agent system** where an orchestrator spawns specialise
 ```
 orchestrator.md
 ├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
-├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+├── .claude/agents/content-tracker.md   → filters already-covered articles (memory)
+├── .claude/agents/trending-tracker.md  → finds trending keyword phrases
+├── .claude/agents/post-generator.md    → writes & saves LinkedIn post drafts
+└── .claude/agents/notion-publisher.md  → publishes drafts to Notion (optional)
 ```
 
 Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
@@ -50,13 +51,14 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any of these directly, changes take effect on the next run:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/brand_kit.yaml` | **Start here.** Your name, title, tone of voice, writing style, hashtags |
+| `config/topics.yaml` | Companies and keywords to track (ChatGPT, Claude, Gemini, etc.) |
+| `config/sources.yaml` | RSS feeds, company blogs, YouTube channels, and optional NewsAPI |
+| `config/content_angles.yaml` | The 5 post types: feature launch, funding, YouTube demo, big tech, personal experiment |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -103,6 +105,12 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
 - **Output**: JSON array of scored article objects
 
+### `content-tracker`
+- **Tools**: Read, Write
+- **Reads/Writes**: `data/seen_articles.json`
+- **Does**: Two modes — `filter` removes already-covered article URLs; `update` records newly used URLs to prevent repeats on future runs
+- **Output**: Filtered article array (filter mode) or `updated` (update mode)
+
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
 - **Reads**: `config/topics.yaml`
@@ -111,9 +119,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/content_angles.yaml`
+- **Does**: Picks the best content angle for the article cluster, writes a branded LinkedIn post, validates URLs, saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, angle, and source metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

@@ -1,0 +1,207 @@
+# ============================================================
+# CONTENT ANGLES
+# The 5 types of LinkedIn posts you write.
+# ============================================================
+# The post-generator reads this file to identify the best angle
+# for each news cluster and shape the post narrative accordingly.
+#
+# Edit: hook_starters, post_angle, and cta_examples to match your voice.
+# Add: new angles below if your focus evolves.
+# Remove: angles you don't want by setting enabled: false.
+# ============================================================
+
+angles:
+
+  # ── 1. AI Feature / Product Launch ──────────────────────
+  - id: "feature_launch"
+    name: "AI Feature or Product Launch"
+    enabled: true
+    description: |
+      When a tracked AI tool launches a new feature, model, or capability.
+      Companies to watch: ChatGPT, Claude, Perplexity, Gemini, ElevenLabs,
+      Midjourney, Runway, Suno, Synthesia, Cursor, and any tool you use day-to-day.
+    trigger_keywords:
+      - "launch"
+      - "releases"
+      - "announces"
+      - "unveiled"
+      - "available now"
+      - "new model"
+      - "new feature"
+      - "introduces"
+      - "debuts"
+      - "rolls out"
+      - "update"
+    hook_starters:
+      - "[Company] just changed what's possible in [use case]."
+      - "A new release from [Company] has me rethinking how brands approach [use case]."
+      - "[Feature] is live. Here's what brands need to know — and what most are missing."
+      - "Everyone's talking about [launch]. Here's the part that actually matters."
+      - "[Company] just made [task] significantly easier. Brands should pay attention."
+    post_angle: |
+      Focus on: what can brands and marketers DO with this that they couldn't before?
+      Test it yourself where possible. Share what surprised you.
+      Connect it to a broader pattern — is this one-off or part of a shift?
+      Avoid: just summarising the press release. Add your own reaction and opinion.
+    cta_examples:
+      - "Have you tested [feature] yet? What was your first reaction?"
+      - "Which team in your org would benefit most from this — marketing, content, product?"
+      - "What use case would you tackle first with this?"
+
+  # ── 2. AI Startup Funding ───────────────────────────────
+  - id: "startup_funding"
+    name: "AI Startup Funding"
+    enabled: true
+    description: |
+      When an AI startup secures a funding round, announces a valuation,
+      gets acquired, or goes public. The signal matters as much as the number.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "raised"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquisition"
+      - "acquired"
+      - "investment"
+      - "venture capital"
+      - "IPO"
+      - "unicorn"
+      - "billion"
+      - "million round"
+    hook_starters:
+      - "[Company] just raised $[X]. The number matters less than the signal it sends."
+      - "Another AI company secured major funding. Here's why this round is different."
+      - "When VCs put $[X] into [use case], it's worth asking what they know that brands don't."
+      - "Funding news in AI can be noise. This one caught my attention."
+    post_angle: |
+      Go beyond the press release: why this company, why now, what market gap they're filling.
+      Connect the investment to a broader pattern — what vertical or capability is
+      suddenly getting capital attention?
+      End with: what should brands be preparing for in 6–18 months based on this signal?
+    cta_examples:
+      - "Are you tracking AI startups in your industry, or waiting for them to go mainstream?"
+      - "Which AI category do you think is most underfunded right now?"
+      - "What would you build if you had this company's tech available today?"
+
+  # ── 3. YouTube Video or Demo Drop ──────────────────────
+  - id: "youtube_demo"
+    name: "YouTube Video or Demo Release"
+    enabled: true
+    description: |
+      When a key AI company drops a major YouTube video, product demo, or keynote.
+      Companies to track: OpenAI, Anthropic, Google DeepMind, ElevenLabs, Midjourney,
+      Runway, Two Minute Papers. Demos often show capabilities before the press catches up.
+    trigger_keywords:
+      - "video"
+      - "demo"
+      - "YouTube"
+      - "watch"
+      - "keynote"
+      - "showcase"
+      - "live demo"
+      - "announcement video"
+      - "premiered"
+      - "episode"
+    hook_starters:
+      - "Stop what you're doing and watch [Company]'s latest demo."
+      - "I just watched [Company]'s new video and I've been thinking about it all day."
+      - "[Company] dropped a demo this week. Worth 10 minutes of your time."
+      - "The demo making the rounds in AI circles right now — here's what I actually took away."
+    post_angle: |
+      Describe what the demo SHOWS, not what the press release SAYS.
+      What moment surprised you? What did you see that others are glossing over?
+      What use case immediately jumped to mind for a brand or creative team?
+      Link to the actual video so readers can watch it themselves.
+    cta_examples:
+      - "Have you watched the demo? What was your reaction?"
+      - "What would you use this capability for in your current work?"
+      - "What use case do you wish they had demoed?"
+
+  # ── 4. Big Tech AI Move ─────────────────────────────────
+  - id: "big_tech_news"
+    name: "Big Tech AI News"
+    enabled: true
+    description: |
+      When Microsoft, Google, Apple, Amazon, or Nvidia makes a significant AI move —
+      product integrations, enterprise partnerships, infrastructure announcements,
+      or major strategic bets. Big tech AI = unavoidable AI.
+    trigger_keywords:
+      - "Microsoft Copilot"
+      - "Apple Intelligence"
+      - "Amazon Bedrock"
+      - "Amazon Q"
+      - "Google Workspace"
+      - "Nvidia"
+      - "Azure AI"
+      - "AWS AI"
+      - "integrated into"
+      - "built into"
+      - "Microsoft 365"
+      - "Agentforce"
+      - "Salesforce"
+    hook_starters:
+      - "[Feature] is now built into [product]. [X] million people just got AI in their workflow."
+      - "Big tech's AI race isn't slowing. [Company]'s latest move tells you where this is going."
+      - "When [Company] puts AI into [product], the mainstream adoption question answers itself."
+      - "[Company] just made a bet that affects everyone using [common tool]."
+    post_angle: |
+      Focus on the distribution advantage big tech has: when AI is in tools people
+      already use daily, the adoption barrier disappears.
+      What does this mean for teams who have been "planning to start with AI"?
+      The waiting period is ending — brands that treat this as optional are falling behind.
+    cta_examples:
+      - "Is your team using AI inside tools you already pay for, or going elsewhere for it?"
+      - "What Microsoft/Google/Apple AI feature has actually changed how your team works?"
+      - "Which big tech AI integration do you think brands are most underusing right now?"
+
+  # ── 5. Human in the Loop — Personal Experiment ─────────
+  - id: "human_in_the_loop"
+    name: "Human in the Loop — Personal Experiment"
+    enabled: true
+    description: |
+      First-person stories about experimenting with AI tools yourself.
+      Testing, observing, learning, failing, discovering.
+      The 'you as editor, AI as drafter' angle that builds trust and relatability.
+      These posts don't need a news hook — they come from your own experimentation.
+    trigger_keywords:
+      - "I tested"
+      - "I tried"
+      - "experiment"
+      - "week with"
+      - "using AI for"
+      - "workflow"
+      - "productivity"
+    hook_starters:
+      - "I spent [time] testing [AI tool] for [task]. Here's what no one tells you."
+      - "I gave [AI tool] one of my real [tasks]. The results surprised me."
+      - "Three things I learned using AI for [task] — the honest version."
+      - "I tried to [task] entirely with AI. Here's what I still had to do myself."
+      - "Most AI posts skip the part where it failed. Here's mine."
+    post_angle: |
+      Be specific: name the exact tool, describe the exact task.
+      Share what worked, what failed, what surprised you.
+      The 'human in the loop' moment is key: where did you have to step in, edit, redirect?
+      End with: what would you do differently? What should brands know about this workflow?
+      Don't oversell AI or undersell it — be honest about the gap between promise and reality.
+    cta_examples:
+      - "Are you using AI in your [workflow area]? What's actually working?"
+      - "What AI tool are you most curious to try but haven't yet?"
+      - "Where do you still find AI falls short in your daily work?"
+
+# ── Default Angle ──────────────────────────────────────────
+# When no specific angle is a clear match, use this.
+default_angle:
+  post_angle: |
+    Look for the brand/marketing angle: how can a marketing team or brand
+    leader act on this news today? What does it mean for creative work,
+    content strategy, or customer experience?
+    Your job is to filter AI news through a brand and marketing lens —
+    that's the unique value you bring to your audience.
+  cta_examples:
+    - "What's your take on this — hype, or real shift?"
+    - "How is your team thinking about AI this year?"
+    - "What's one thing you wish more marketers understood about AI right now?"
