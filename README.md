@@ -10,9 +10,12 @@ The pipeline is a **multi-agent system** where an orchestrator spawns specialise
 
 ```
 orchestrator.md
+├── config/content_ideas.yaml            → user-queued post ideas (loaded first)
 ├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
 ├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
 ├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
+│     └── config/experiments.yaml        → personal AI experiments for first-person angles
+│     └── config/brand_kit.yaml          → tone of voice and writing rules
 └── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
 ```
 
@@ -50,15 +53,29 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any file directly, changes take effect on the next run:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds, YouTube channels, and API sources to fetch from |
+| `config/topics.yaml` | Companies, keywords, trending seed terms, and freshness settings |
+| `config/brand_kit.yaml` | Author voice, tone of voice, writing style, and hashtag rules |
+| `config/experiments.yaml` | Your personal AI experiments — the post-generator uses these for first-person angles |
+| `config/content_ideas.yaml` | A queue of post ideas you want the pipeline to build around |
 
-Edit these files directly — changes take effect on the next run.
+### Quick guide: adding an experiment
+
+Open `config/experiments.yaml` and copy the template block at the bottom. Fill in:
+- `tool` — which AI tool you tested
+- `use_case` — what you were trying to accomplish
+- `what_surprised_me` — this usually becomes your hook
+- `verdict` — your honest conclusion
+
+Set `post_used: false` and the post-generator will pick it up on the next run. It sets this to the frontmatter `experiment_used` field once the post is saved so you can track it.
+
+### Quick guide: queueing a post idea
+
+Open `config/content_ideas.yaml` and copy the template block. Set `priority: high` for ideas you want picked up next run. The orchestrator passes the idea to the post-generator, which uses the `angle` and `notes` fields to shape the post's framing — while still grounding it in fresh news.
 
 ### Environment Variables
 
@@ -100,24 +117,24 @@ Change `status: draft` to `status: published` to track what's gone live.
 ### `news-gatherer`
 - **Tools**: Read, WebFetch
 - **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
+- **Does**: Fetches all enabled RSS feeds and YouTube channel feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
 - **Output**: JSON array of scored article objects
 
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
 - **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
+- **Does**: Searches the web for trending AI topics from the past 7 days across model releases, funding, and research
 - **Output**: JSON array of 15–20 keyword phrases
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/experiments.yaml`
+- **Does**: Synthesises a cluster of articles into a branded LinkedIn post; injects a first-person experiment angle if a relevant experiment exists; honours a content idea if supplied; validates URLs; saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, experiment used, and source metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
-- **Does**: Appends the post as a toggle block on a Notion page
+- **Does**: Appends the post as a collapsible toggle block on a Notion page with status callout
 - **Output**: `success` or `failed`
 
 ---

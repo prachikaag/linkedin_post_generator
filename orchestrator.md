@@ -12,10 +12,11 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
+[news-gatherer]    → articles JSON
 [trending-tracker] → keywords JSON
+[content ideas]    → pending ideas from config/content_ideas.yaml
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]   → saved .md draft (uses experiments + ideas for personal angles)
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```
@@ -30,6 +31,18 @@ Before starting, determine:
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+
+---
+
+## Step 0 — Load Content Ideas
+
+Read `config/content_ideas.yaml`.
+
+Collect all ideas where `status: "pending"`, sorted by priority (`high` first, then `medium`, then `low`).
+
+Store as `pending_ideas`. If the file is missing or empty, set `pending_ideas = []`.
+
+Print: `✓ {N} content idea(s) queued.` (or `No content ideas queued.` if empty)
 
 ---
 
@@ -78,7 +91,11 @@ Divide the articles into clusters — one cluster per post to generate.
 
 ## Step 4 — Generate Posts
 
-For each cluster, spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
+For each cluster (0-indexed `i`), determine the `content_idea` to pass:
+- If `i < len(pending_ideas)`, use `pending_ideas[i]` as the content idea
+- Otherwise, set `content_idea` to `null`
+
+Spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
 
 Task for the subagent (include the full JSON data inline):
 ```
@@ -88,6 +105,7 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
+  "content_idea": <content_idea object or null>,
   "posts_dir": "posts/"
 }
 ```
@@ -96,6 +114,7 @@ Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
+  Content idea: {content_idea.title if set, else "news-driven"}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
 

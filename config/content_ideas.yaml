@@ -1,0 +1,112 @@
+# ============================================================
+# CONTENT IDEAS QUEUE
+# ============================================================
+# Add post ideas here manually. The orchestrator reads this
+# file before generating posts and can build a post around
+# your idea rather than purely from news.
+#
+# HOW TO USE:
+#   1. Add an idea whenever one strikes you
+#   2. Set priority: high to have it picked up next run
+#   3. Set status: done once the post is live
+#   4. Leave notes — they become the post's raw material
+#
+# STATUS OPTIONS: pending | in_progress | done | skipped
+# PRIORITY OPTIONS: high | medium | low
+# ============================================================
+
+ideas:
+
+  # ── ACTIVE IDEAS ─────────────────────────────────────────────
+
+  - title: "What I learned running my content through 3 different AI writing tools"
+    angle: |
+      Personal experiment post — compare Claude, ChatGPT, and Gemini for writing
+      LinkedIn content. Judge by tone accuracy, not just output quality. Show brands
+      that the tool matters less than the brief you give it.
+    priority: high
+    tools_involved:
+      - "Claude"
+      - "ChatGPT"
+      - "Gemini"
+    status: "pending"
+    added_date: "2026-05-10"
+    notes: |
+      Focus on the prompt structure I used, not just which one won.
+      Brands reading this care about replicating the workflow, not picking a winner.
+      Hook idea: "I ran the same brief through 3 AI tools. The output was almost identical.
+      The process to get there? Completely different."
+
+  - title: "Why AI startup funding numbers matter for marketers, not just investors"
+    angle: |
+      Industry take — when an AI company raises $200M, what does that mean for
+      how brands should think about that platform? Specialisation = commitment.
+      Big rounds signal where the category is heading, not just who has money.
+    priority: medium
+    status: "pending"
+    added_date: "2026-05-10"
+    notes: |
+      Tie to a specific recent funding round. Explain what the specialisation signal
+      means for agencies deciding which AI platforms to build on. This is underexplained
+      in most coverage — everything focuses on investor returns, not platform strategy.
+
+  - title: "The AI tool I was most sceptical about that changed how I work"
+    angle: |
+      Honest reversal post — start with the scepticism, end with the specific
+      use case that converted me. Keep it grounded in one concrete workflow, not vague.
+    priority: medium
+    status: "pending"
+    added_date: "2026-05-12"
+    notes: |
+      Could be about voice AI (ElevenLabs) or image generation (Midjourney).
+      The hook is the honest scepticism — that's what stops the scroll.
+      Don't oversell. End with what I'd still use a human for.
+
+  - title: "I used AI to analyse how brands talk about AI. Here's the pattern."
+    angle: |
+      Meta-observation post — took 20 brand announcements about their AI features and
+      ran them through a sentiment/language analysis. The results reveal a gap between
+      what brands say about AI and what customers actually want to hear.
+    priority: medium
+    status: "pending"
+    added_date: "2026-05-14"
+    notes: |
+      The insight: most brands talk about AI in terms of speed and efficiency.
+      Customers respond to autonomy and confidence. Different emotional register.
+      This could anchor a broader piece about AI brand communication.
+
+  # ── RECURRING FORMATS ─────────────────────────────────────────
+  # These are repeatable column ideas — come back to them monthly
+
+  - title: "Monthly AI tools roundup: what I actually used this month"
+    angle: |
+      Monthly digest format — specific tools, specific use cases, honest verdicts.
+      No affiliate links. No sponsorships. Just what I actually used and whether
+      it was worth it.
+    priority: low
+    status: "pending"
+    added_date: "2026-05-01"
+    notes: |
+      Keep it to 4-5 tools max. One paragraph per tool. No preamble.
+      The value is specificity and honesty, not comprehensiveness.
+      Run this at the end of every month.
+
+  # ── DONE ─────────────────────────────────────────────────────
+  # Move ideas here once the post is live. Keep for reference.
+
+  # - title: ""
+  #   status: "done"
+  #   published_date: ""
+  #   post_file: "posts/..."
+
+  # ── TEMPLATE — copy/paste to add a new idea ───────────────────
+  #
+  # - title: ""
+  #   angle: |
+  #
+  #   priority: medium
+  #   tools_involved:
+  #     - ""
+  #   status: "pending"
+  #   added_date: "YYYY-MM-DD"
+  #   notes: |

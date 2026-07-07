@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml, config/experiments.yaml, and config/content_ideas.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles, personal experiments, and trending keywords, saved as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -18,14 +18,16 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
+  "content_idea": { /* optional: a pending idea from content_ideas.yaml, or null */ },
   "posts_dir": "posts/"
 }
 ```
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read Config Files
 
+### 1a — Brand Kit
 Read `config/brand_kit.yaml` and extract:
 
 - `author.name`, `author.title`, `author.tagline`
@@ -39,6 +41,18 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
+### 1b — Personal Experiments
+Read `config/experiments.yaml`.
+
+Find experiments where `post_used: false`. From those, identify any that are **relevant** to the articles' topics — match by checking if the experiment's `related_topics` or `tool` name overlaps with the `matched_companies` or `matched_categories` in the articles.
+
+If a relevant experiment is found, extract its `what_I_tried`, `what_worked`, `what_surprised_me`, `what_didnt_work`, and `verdict` fields. You will use one of these as a first-person angle in the YOUR TAKE or SO WHAT section of the post.
+
+If no experiment is directly relevant, note this and continue — the post will be news-only.
+
+### 1c — Content Idea (if supplied)
+If `content_idea` is non-null in the input, read its `angle` and `notes` fields. These represent the author's specific framing intention for this post. Honour that angle — it takes precedence over a purely news-driven framing. The `notes` field often contains a ready-to-use hook or specific take to develop.
+
 ---
 
 ## Step 2 — Write the LinkedIn Post
@@ -49,8 +63,8 @@ Following the brand kit precisely, write a post that:
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
 3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
-4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated.
-5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable.
+4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated. If a relevant experiment was found in Step 1b, weave in one concrete first-person observation here — drawn from `what_surprised_me` or `verdict`. Frame it as personal experience, not a claim.
+5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable. If a content idea was supplied, make sure the SO WHAT directly reflects the idea's `angle`.
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
@@ -131,6 +145,8 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+experiment_used: "<tool name from experiments.yaml, or null>"
+content_idea_title: "<idea title from content_ideas.yaml, or null>"
 status: "draft"
 ---
 ```

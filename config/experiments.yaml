@@ -1,0 +1,193 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# Add every AI tool experiment you run. The post-generator reads
+# this file to inject authentic first-person angles into posts.
+#
+# HOW TO USE:
+#   1. Add an entry below every time you test an AI tool
+#   2. Keep notes raw and honest — that's what makes great content
+#   3. Set post_used: true once it appears in a published post
+#   4. The more specific your notes, the richer the posts
+# ============================================================
+
+experiments:
+
+  # ── TEMPLATE — copy/paste this block to add a new experiment ──
+  #
+  # - tool: "Tool name (e.g. Claude, ChatGPT, Perplexity, Midjourney)"
+  #   use_case: "One-line description of what you were trying to do"
+  #   date_tested: "YYYY-MM-DD"
+  #   what_I_tried: |
+  #     Describe exactly what you did. Be specific.
+  #     What prompt did you use? What workflow?
+  #   what_worked: |
+  #     Honest take on what was genuinely useful.
+  #   what_surprised_me: |
+  #     The unexpected result — good or bad. This is usually your hook.
+  #   what_didnt_work: |
+  #     Be direct. What failed, broke, or disappointed you?
+  #   verdict: |
+  #     Would you use it again? What would you change?
+  #   related_topics:
+  #     - "keyword 1"
+  #     - "keyword 2"
+  #   post_used: false
+
+  # ── AI WRITING & CONTENT ──────────────────────────────────────
+
+  - tool: "Claude"
+    use_case: "Drafting LinkedIn posts from news articles"
+    date_tested: "2026-05-01"
+    what_I_tried: |
+      Gave Claude 5 recent AI news articles and asked it to write a LinkedIn post in
+      my voice — short paragraphs, cited sources, a clear opinion. Tested multiple
+      prompts to see how much of the brand kit it could absorb.
+    what_worked: |
+      The source citations were accurate and the structure held up well. Saved roughly
+      45 minutes per post. The hook quality was consistently better than my first drafts.
+    what_surprised_me: |
+      It matched my paragraph rhythm almost immediately. I expected to spend a lot of
+      time editing cadence — I didn't. The opinions were more opinionated than I expected.
+    what_didnt_work: |
+      It sometimes added emojis I wouldn't use and occasionally hedged when I wanted a
+      clear take. Had to edit those out. The time references ("this week") were sometimes
+      stale by the time I reviewed the draft.
+    verdict: |
+      Worth using as a first draft every time. I still edit every post before it
+      goes live — usually tightening language and adjusting the CTA. Human-in-the-loop
+      is the right model here.
+    related_topics:
+      - "generative AI"
+      - "content creation"
+      - "AI writing assistant"
+      - "LinkedIn content"
+    post_used: false
+
+  - tool: "Perplexity"
+    use_case: "Real-time competitor brand positioning research"
+    date_tested: "2026-04-20"
+    what_I_tried: |
+      Asked Perplexity to summarise how 5 AI companies position themselves to
+      marketing audiences. Compared against my own manual research from a few weeks prior.
+    what_worked: |
+      Much faster than Googling each company manually. Good for identifying where
+      positioning overlaps — which is usually where the real story is.
+    what_surprised_me: |
+      The sources it cited were genuinely recent. I expected evergreen blog posts.
+      It pulled from announcements and articles I hadn't seen yet.
+    what_didnt_work: |
+      It couldn't access paywalled content and mixed up a few quotes. Not reliable
+      enough to use for direct attribution. Always verify before citing.
+    verdict: |
+      Strong for first-pass research and getting up to speed fast. Not a replacement
+      for reading the primary source — especially when you're citing someone directly.
+    related_topics:
+      - "brand strategy"
+      - "AI research tools"
+      - "competitive analysis"
+    post_used: false
+
+  - tool: "Midjourney"
+    use_case: "Generating brand imagery for a client pitch"
+    date_tested: "2026-04-10"
+    what_I_tried: |
+      Generated a full set of brand visual concepts for a pitch — 12 different directions,
+      4 variations each. Used v6. Tested detailed style prompts vs. short prompts.
+    what_worked: |
+      Speed is genuinely unmatched. What took a designer 3 days took 4 hours.
+      The variety of directions you get from a single session is something a
+      traditional moodboard process can't replicate.
+    what_surprised_me: |
+      The client could see themselves in the images much faster than with traditional
+      moodboards. The images are "real enough" that the emotional reaction is immediate.
+      That changes the pitch dynamic significantly.
+    what_didnt_work: |
+      Consistency across a set of images is still hard. Faces and hands remain
+      unreliable. Anything requiring logo accuracy needs manual work on top.
+    verdict: |
+      It's changed how I approach visual concepting. Not a replacement for a designer
+      but a different kind of tool — one for volume, speed, and exploration, not final
+      delivery. The human edit is still essential.
+    related_topics:
+      - "generative AI"
+      - "AI image generation"
+      - "creative AI"
+      - "brand strategy"
+      - "AI for marketers"
+    post_used: false
+
+  - tool: "ElevenLabs"
+    use_case: "Creating a voiceover for a client video without a studio session"
+    date_tested: "2026-03-28"
+    what_I_tried: |
+      Cloned a client's voice from 5 minutes of approved audio. Used it to generate
+      voiceover for a 90-second explainer video. Full workflow from upload to final
+      render was under 2 hours.
+    what_worked: |
+      The voice match was good enough that internal stakeholders approved it as-is.
+      No studio booking. No client availability scheduling. Just turnaround.
+    what_surprised_me: |
+      The emotional range was better than expected for a synthetic voice. The natural
+      pacing and pause placement felt human. That's the hardest thing to get right.
+    what_didnt_work: |
+      Brand names and unusual proper nouns sometimes got mispronounced. Technical
+      terminology needed careful phonetic guidance. Not hands-free.
+    verdict: |
+      For explainers, internal comms, and rapid content — genuinely useful. For premium
+      brand campaigns where voice is core to the identity, I'd still use a professional
+      voice artist. The tools are getting close, though.
+    related_topics:
+      - "voice AI"
+      - "AI voice cloning"
+      - "ElevenLabs"
+      - "content production"
+      - "AI for brands"
+    post_used: false
+
+  - tool: "ChatGPT"
+    use_case: "Analysing 50 customer reviews to find brand perception patterns"
+    date_tested: "2026-03-15"
+    what_I_tried: |
+      Pasted 50 customer reviews from a brand into a structured prompt. Asked it to
+      identify recurring sentiment patterns, hidden frustrations, and the language
+      customers actually use vs. how the brand describes itself.
+    what_worked: |
+      The gap analysis between brand language and customer language was immediately
+      useful. Found 3 recurring words customers used that the brand had never put in
+      their own copy. Small but significant.
+    what_surprised_me: |
+      It identified a consistent emotional subtext across reviews that I hadn't
+      noticed in a manual read. The pattern was subtle — a sense of "relief" rather
+      than "delight." That changed the creative brief completely.
+    what_didnt_work: |
+      It sometimes conflated negative and neutral reviews. Needed multiple passes
+      with more precise prompts to get accurate sentiment segmentation.
+    verdict: |
+      Excellent for qualitative synthesis at scale. Would do this again. The key is
+      precise prompting — vague questions get vague answers.
+    related_topics:
+      - "ChatGPT"
+      - "AI for marketing"
+      - "brand strategy"
+      - "consumer insights"
+    post_used: false
+
+  # ── ADD YOUR OWN EXPERIMENTS BELOW ───────────────────────────
+  #
+  # - tool: ""
+  #   use_case: ""
+  #   date_tested: ""
+  #   what_I_tried: |
+  #
+  #   what_worked: |
+  #
+  #   what_surprised_me: |
+  #
+  #   what_didnt_work: |
+  #
+  #   verdict: |
+  #
+  #   related_topics:
+  #     - ""
+  #   post_used: false
