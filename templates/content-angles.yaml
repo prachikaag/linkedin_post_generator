@@ -1,0 +1,193 @@
+# ============================================================
+# CONTENT ANGLES
+# ============================================================
+# Each angle is a distinct post framing. The content-angle-
+# selector agent picks the best one for each article cluster.
+#
+# Edit these freely — change hooks, prompts, and triggers to
+# match how you like to write about each type of story.
+# ============================================================
+
+content_angles:
+
+  # ── 1. New Feature or Product Launch ─────────────────────
+  product_launch:
+    label: "New Feature or Product Launch"
+    description: >
+      A major AI company ships something new — model, product, feature, or YouTube demo.
+      Focus on what it changes for brands, marketers, and teams. Not what it is — what it enables.
+    triggers:
+      - "launch"
+      - "release"
+      - "announced"
+      - "new feature"
+      - "available now"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+      - "introduces"
+      - "ships"
+    hook_starters:
+      - "[Company] just changed how [audience] will [task]."
+      - "Something important just launched. Here's what brands actually need to know."
+      - "[Number] things just changed in [space]. Here's the one that matters most."
+      - "A new [product] just landed. The benchmark scores aren't the story."
+    your_take_prompt: >
+      What does this launch mean for marketers and brand leaders right now?
+      What can they do today that they couldn't do last week?
+      Is this genuinely new capability, or incremental polish?
+      Name one concrete thing a brand leader should test this week.
+    so_what_prompt: >
+      Frame the action: what should a marketing or brand team do in response to this launch?
+      Should they pilot it, wait, or change their strategy?
+
+  # ── 2. AI Startup Funding or Acquisition ─────────────────
+  funding_news:
+    label: "AI Startup Funding or Acquisition"
+    description: >
+      A startup raises a round, gets acquired, or goes public.
+      Focus on what the money movement signals about where AI is heading —
+      and what it means for which tools brands will be using in 12 months.
+    triggers:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "million"
+      - "billion"
+    hook_starters:
+      - "[Amount] just went into [space]. That's worth understanding."
+      - "The money flowing into AI right now is not random. [Company] just proved it."
+      - "Another AI company just [raised/was acquired]. The pattern is getting clearer."
+      - "When investors move this fast, it usually means something is about to change."
+    your_take_prompt: >
+      What does this funding or acquisition signal about where the market is heading?
+      Is this a category that's about to consolidate, explode, or shift?
+      What does it tell us about what brands will need in the next 12-18 months?
+      Is this validation of something we already suspected, or a genuine surprise?
+    so_what_prompt: >
+      Should brand and marketing leaders pay attention to this company?
+      Is this a tool or category worth piloting now, before it becomes table stakes?
+
+  # ── 3. Big Tech AI Move ───────────────────────────────────
+  bigtech_move:
+    label: "Big Tech AI Move"
+    description: >
+      Microsoft, Google, Apple, Amazon, Nvidia, or Salesforce makes a significant AI move.
+      Big tech moves move entire markets — interpret what this means for everyone else,
+      especially brands that use these platforms every day.
+    triggers:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Nvidia"
+      - "Salesforce"
+      - "Copilot"
+      - "Azure AI"
+      - "Apple Intelligence"
+      - "Amazon Bedrock"
+      - "Agentforce"
+    hook_starters:
+      - "[Big Tech Company] just moved. Here's what it means for everyone else."
+      - "When [Big Tech] commits to [thing], it usually means the rest of the market follows."
+      - "[Company] didn't just launch a feature. They changed the default for [audience]."
+      - "The platforms your brand already uses just got a lot more powerful. Worth knowing."
+    your_take_prompt: >
+      Is this defensive, offensive, or transformative for big tech?
+      What does this change for smaller teams and brands who rely on this platform?
+      Is this something that will reach most business users quickly, or stay enterprise-only?
+      What's the thing most brands are underestimating about this move?
+    so_what_prompt: >
+      What should a brand leader or marketing team do differently today as a result of this?
+      Is this worth piloting now, or one to watch in 6 months?
+
+  # ── 4. Human-in-the-Loop Personal Experiment ─────────────
+  personal_experiment:
+    label: "Human-in-the-Loop Personal Experiment"
+    description: >
+      You tried a specific AI tool for a real task. You share honest results —
+      what worked, what surprised you, what flopped. This is your most credible content type
+      because it's earned by doing, not theorising.
+      Triggered when a news story relates to a tool you've personally tested.
+    triggers: []  # Selected from personal_experiments.yaml, not article keywords
+    hook_starters:
+      - "I tried [tool] for [task] for [time]. Here's the honest version:"
+      - "Something unexpected happened when I let AI handle [task]."
+      - "[Tool] didn't do what I expected — it did something [better/worse/different]."
+      - "The AI hype around [tool] is [real / partially real / oversold]. Here's what I found."
+      - "Everyone is talking about [tool]. I actually used it for [specific task]. Results:"
+    your_take_prompt: >
+      What surprised you most — positively or negatively?
+      What specific result did you get (time saved, quality output, mistake made)?
+      Would you recommend this to a brand leader, a marketer, a creative?
+      What would they need to do differently to get the same results you got?
+      Be honest about the limits — that's what builds credibility.
+    so_what_prompt: >
+      What is the one thing a brand team should do as a result of reading this?
+      Should they try it, wait, or avoid it for a specific reason?
+    rules:
+      - "Always share a specific, concrete result — never generalise"
+      - "Include at least one thing that didn't work or surprised you negatively"
+      - "Name the exact task and tool — never vague ('I used AI to help with content')"
+      - "This post should feel like you're talking to a peer, not writing a review"
+
+  # ── 5. Research Breakthrough Explained ───────────────────
+  ai_research_explainer:
+    label: "Research or Breakthrough Explained"
+    description: >
+      A research paper, benchmark result, or technical capability milestone —
+      translated into plain language for brand leaders and marketers.
+      You are the translator, not the researcher.
+    triggers:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "reasoning"
+      - "AGI"
+      - "multimodal"
+    hook_starters:
+      - "A research paper just changed what we thought AI could do. Here's the plain-English version."
+      - "The benchmark everyone's talking about — here's what it actually means for you."
+      - "[Technical thing] just happened. Here's why it matters beyond the labs."
+      - "Researchers just proved [thing]. Strip away the jargon and here's what changed."
+    your_take_prompt: >
+      Translate this into one clear sentence that a brand leader would understand.
+      What does this capability change, specifically, for how brands can use AI?
+      Is this a step-change or incremental progress in the bigger picture?
+      Where does this sit on the timeline from 'research' to 'usable product'?
+    so_what_prompt: >
+      Should brands be paying attention to this now, or is it 12-18 months away from being relevant?
+      What early signal should they watch for to know when it's about to matter?
+
+  # ── 6. Industry Trend Read ────────────────────────────────
+  industry_trend:
+    label: "Broader Industry Trend"
+    description: >
+      Multiple signals from different sources all point to the same shift.
+      You synthesise them into a single coherent read on what is actually changing —
+      and why brands should care. Best when you have 4+ articles from different angles.
+    triggers: []  # Triggered when multiple articles point to the same pattern
+    hook_starters:
+      - "Something is shifting in [space]. The signals are everywhere this week."
+      - "Three separate things happened recently. They all point in the same direction."
+      - "The pattern is emerging. Here's what it means for brands."
+      - "A quiet change is happening across [space]. Worth naming before it becomes obvious."
+    your_take_prompt: >
+      What is the single underlying pattern connecting all these separate developments?
+      What does this pattern mean for how brands should be thinking about AI right now?
+      Is this a durable shift or a moment? How do you know?
+      What is the most important thing brands are underestimating about this trend?
+    so_what_prompt: >
+      Give one or two concrete actions a brand or marketing leader should take in the next 30 days
+      as a result of understanding this trend.

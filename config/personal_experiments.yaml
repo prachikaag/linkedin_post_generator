@@ -1,0 +1,112 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS
+# ============================================================
+# This is YOUR experiment log. Every time you try an AI tool
+# in your actual work, add an entry here.
+#
+# The content-angle-selector agent checks this file first.
+# When a news story is directly related to a tool you've
+# personally tested, it triggers a "human-in-the-loop" post
+# framed in your own experience — your most credible angle.
+#
+# Set status to "ready_to_post" when you've fleshed it out.
+# Set to "posted" after the LinkedIn post goes live.
+# ============================================================
+
+experiments:
+
+  # ── Template — copy this block to add a new experiment ──
+  #
+  # - tool: "Tool Name"
+  #   date: "YYYY-MM"
+  #   category: "text-to-text | image-gen | video-gen | voice | code | search | agent"
+  #   use_case: "What you actually used it for (be specific)"
+  #   how_long: "How long you ran the experiment"
+  #   what_worked: "What genuinely surprised you in a good way"
+  #   what_flopped: "What didn't work as advertised"
+  #   time_saved: "Estimated hours/week saved (or lost)"
+  #   honest_verdict: "One honest sentence — would you recommend it and to whom?"
+  #   post_angle: "The specific brand/marketing lens you'd use to write about this"
+  #   status: "draft"  # draft | ready_to_post | posted
+  #
+  # ────────────────────────────────────────────────────────
+
+  - tool: "Claude Code"
+    date: "2025-06"
+    category: "agent"
+    use_case: >
+      Built and run this LinkedIn post generator — an AI pipeline
+      that reads news, scores relevance, and drafts posts in my brand voice.
+    how_long: "Ongoing"
+    what_worked: >
+      Reads 15+ RSS feeds, scores articles against 200+ keywords,
+      synthesises 6 sources into a single coherent draft in under 2 minutes.
+      Follows brand guidelines precisely without needing reminders.
+    what_flopped: >
+      Occasionally uses slightly stale time references ("this week")
+      if the article dates are not checked carefully. Needs human review.
+    time_saved: "2-3 hours per week on content research and drafting"
+    honest_verdict: >
+      If you produce weekly thought-leadership content, this setup
+      pays for itself in the first month. Requires setup time upfront.
+    post_angle: "AI as a content research and drafting co-pilot for brand leaders"
+    status: "draft"
+
+  - tool: "Perplexity AI"
+    date: "2025-04"
+    category: "search"
+    use_case: "Real-time research for brand strategy briefs and client prep"
+    how_long: "3 months daily use"
+    what_worked: >
+      Answers with cited sources — far more useful than Google for
+      'what is happening right now in [industry]' questions.
+      Pro search mode pulls from recent articles, not cached summaries.
+    what_flopped: >
+      Occasionally cites sources that don't exist or misquotes them.
+      Always verify before including in client-facing work.
+    time_saved: "45 minutes per research session"
+    honest_verdict: >
+      Replaced Google as my default for competitive and trend research.
+      Paywalled sources still appear as summaries only.
+    post_angle: "How AI search is changing the research workflow for brand strategists"
+    status: "ready_to_post"
+
+  - tool: "Midjourney"
+    date: "2025-03"
+    category: "image-gen"
+    use_case: >
+      Brand mood board creation and concept visualisation
+      for client presentations before going to a designer.
+    how_long: "6 weeks, 3-4 sessions per week"
+    what_worked: >
+      Cuts the time from 'idea' to 'something visual clients can react to'
+      from days to 30 minutes. Clients give better feedback on rough visuals.
+    what_flopped: >
+      Still struggles with text in images and consistent brand character faces.
+      Hands remain a problem on v6. Not a replacement for production design.
+    time_saved: "1-2 days per client pitch"
+    honest_verdict: >
+      Invaluable at the concept stage. Not at the production stage.
+      Learn the prompt syntax — it's not English, it's a dialect.
+    post_angle: >
+      Human-in-the-loop creative: using AI for concept speed,
+      humans for brand accuracy and production quality
+    status: "ready_to_post"
+
+  - tool: "ElevenLabs"
+    date: "2025-05"
+    category: "voice"
+    use_case: "Turning blog drafts into podcast-style audio summaries for LinkedIn"
+    how_long: "2 weeks"
+    what_worked: >
+      Voice cloning from 30 seconds of sample audio is genuinely impressive.
+      Output sounds natural enough that most people don't notice it's AI.
+    what_flopped: >
+      Pronunciation of brand names and technical terms needs manual phonetic
+      correction. Emotion feels flat on content that should sound excited.
+    time_saved: "3 hours per audio piece"
+    honest_verdict: >
+      Strong for repurposing existing written content into audio.
+      Not ready for live, nuanced audio storytelling without a human edit pass.
+    post_angle: "Voice AI for brand content — practical limits and real use cases"
+    status: "draft"

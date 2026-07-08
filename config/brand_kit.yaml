@@ -4,13 +4,13 @@
 # This drives how every LinkedIn post is written.
 # ============================================================
 
-# ── Who You Are ───────────────────────────────────────────
+# ── Who You Are ─────────────────────────────────────────── ← FILL THIS IN
+# These values appear in every post. Update them before your first run.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                        # e.g. "Prachi Jain"
+  title: "Your Professional Title"         # e.g. "Brand Strategist & AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"           # e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
