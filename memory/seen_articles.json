@@ -1,0 +1,4 @@
+{
+  "_comment": "Tracks article URLs already used in generated posts. Updated automatically after each pipeline run. Delete entries to allow re-coverage of a topic.",
+  "seen_urls": []
+}

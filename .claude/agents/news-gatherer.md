@@ -1,5 +1,5 @@
 ---
-description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates, and returns a ranked JSON array of the top articles.
+description: Fetches AI news from RSS feeds in config/sources.yaml, scores articles by relevance using config/topics.yaml keywords, deduplicates, filters out already-seen URLs from memory/seen_articles.json, and returns a ranked JSON array of the top articles.
 tools: Read, WebFetch
 ---
 
@@ -66,7 +66,11 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 
 ## Step 5 — Deduplicate
 
-Remove articles that duplicate ones already processed:
+**A. Filter already-published articles:**
+Read `memory/seen_articles.json`. Extract the `seen_urls` array. If an article's URL exactly matches any entry in that array, skip it — it has already been used in a past run.
+
+**B. Deduplicate within this run:**
+Remove articles that duplicate others already processed this run:
 - Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
 - If the URL (exact match) was seen → skip
 

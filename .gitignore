@@ -9,6 +9,10 @@ env/
 # Environment
 .env
 
+# Memory files — tracked in git so runs are persistent, but you can reset them
+# memory/seen_articles.json   ← delete entries here to re-cover old topics
+# memory/post_history.json    ← safe to delete entirely to reset the log
+
 # Generated posts (tracked individually when ready)
 # posts/*.md   ← uncomment this line to stop tracking generated posts
 

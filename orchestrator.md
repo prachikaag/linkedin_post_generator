@@ -103,7 +103,30 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Update Memory
+
+After all posts are generated, spawn the **memory-updater** subagent (defined in `.claude/agents/memory-updater.md`).
+
+Collect:
+- `used_article_urls`: all article URLs from every cluster that was processed (deduplicated)
+- `post_results`: the result objects from Step 4 — include `filename`, `article_title`, `source_count`, and use the current ISO timestamp as `generated_at`
+
+Task for the subagent:
+```
+Update the memory files with the results of this pipeline run.
+
+Input:
+{
+  "used_article_urls": [<all article URLs from all clusters>],
+  "post_results": [<array of post result objects with generated_at timestamps>]
+}
+```
+
+Print the subagent's returned line verbatim, prefixed with `✓ `.
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +151,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 
