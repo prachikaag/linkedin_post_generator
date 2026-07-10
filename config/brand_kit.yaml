@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS: Replace the placeholder values below with your own details.
+# These appear in post attribution and set the "voice" for generation.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi Jain"                           # ← your full name
+  title: "Brand Strategist & AI Experimenter"   # ← your current title / role
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"                # ← optional, can leave blank
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

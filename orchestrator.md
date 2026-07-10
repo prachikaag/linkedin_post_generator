@@ -33,12 +33,33 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Published Memory
+
+Before fetching news, scan `posts/` for all existing `.md` files (excluding `.gitkeep`).
+
+For each file, read its YAML frontmatter and extract:
+- `primary_source_url`
+- Every `url` inside the `all_sources` list
+
+Collect all these into a deduplicated list called `already_used_urls`.
+
+Print: `✓ Memory loaded — {N} previously used article URLs will be excluded.`
+
+If no posts exist yet, set `already_used_urls = []`.
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
-Task for the subagent:
-> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
+Task for the subagent (include the already_used_urls list inline):
+```
+Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array.
+
+Exclude articles whose URL exactly matches any URL in this already-used list:
+{already_used_urls as JSON array}
+```
 
 Receive the JSON array of articles. If the array is empty, print:
 > "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."

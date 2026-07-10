@@ -70,6 +70,8 @@ Remove articles that duplicate ones already processed:
 - Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
 - If the URL (exact match) was seen → skip
 
+Also check the `already_used_urls` list supplied in the task (if provided). If an article's URL exactly matches any URL in that list, discard it — it was already used in a previous run.
+
 ---
 
 ## Step 6 — Filter, Sort, Return
