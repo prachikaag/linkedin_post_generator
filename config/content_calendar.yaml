@@ -1,0 +1,129 @@
+# ============================================================
+# CONTENT CALENDAR & POSTING STRATEGY
+# Edit this file to control how the pipeline schedules posts
+# and what content mix it aims for across runs.
+# ============================================================
+
+# ── Posting Frequency ─────────────────────────────────────
+posting_strategy:
+  # How many LinkedIn posts you aim to publish per week
+  posts_per_week: 3
+
+  # Preferred days to publish (Monday = 0, Sunday = 6)
+  preferred_days:
+    - 1   # Tuesday
+    - 3   # Thursday
+    - 5   # Saturday
+
+  # Best time to post (your audience's timezone)
+  preferred_time: "08:00"
+  timezone: "Europe/London"  # Update to your timezone
+
+# ── Content Mix ───────────────────────────────────────────
+# Target percentage of posts per content type across a month.
+# The content-planner agent uses this to recommend what to write next.
+content_mix:
+
+  feature_launches:
+    label: "AI Feature / Product Launch Reaction"
+    target_pct: 35
+    description: >
+      React to a new product launch, model release, or major feature update
+      from companies like ChatGPT, Claude, Perplexity, Gemini, ElevenLabs,
+      Midjourney. Connect it to what brands can actually do with it.
+    post_angle: >
+      "[Company] just launched [feature] — here's what brands should know."
+    triggers:
+      - "new feature"
+      - "launch"
+      - "release"
+      - "unveiled"
+      - "announces"
+
+  human_in_the_loop:
+    label: "I Tried It — Human in the Loop Experiment"
+    target_pct: 30
+    description: >
+      Personal experiment posts where you test an AI tool yourself and share
+      honest results. The goal: show you're not just commenting on AI news,
+      you're actually using it in your work and sharing what you learned.
+    post_angle: >
+      "I tried [AI tool] for [specific marketing/brand use case] — here's
+      what actually happened."
+    triggers:
+      - "experiment"
+      - "I tried"
+      - "hands on"
+      - "workflow"
+      - "tested"
+
+  bigtech_ai_news:
+    label: "BigTech AI Move — Brand Strategy Lens"
+    target_pct: 20
+    description: >
+      Commentary on BigTech AI announcements (Microsoft, Google, Apple,
+      Amazon, Nvidia, Meta) through the lens of what it means for brands
+      and marketing teams — not just a tech recap.
+    post_angle: >
+      "The real reason [BigTech move] matters for marketers."
+    triggers:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Nvidia"
+      - "Meta"
+
+  ai_startup_funding:
+    label: "AI Startup Funding — What It Signals"
+    target_pct: 15
+    description: >
+      React to significant funding rounds, acquisitions, or valuations.
+      Connect the dollars to the direction the market is moving and what
+      it means for brands deciding which tools to invest in.
+    post_angle: >
+      "What [funding/acquisition] tells us about where AI is heading."
+    triggers:
+      - "funding"
+      - "raises"
+      - "valuation"
+      - "Series"
+      - "acquired"
+      - "IPO"
+      - "billion"
+
+# ── Content Queue Thresholds ──────────────────────────────
+queue:
+  # Alert if the number of unreviewed drafts exceeds this
+  max_unreviewed_drafts: 6
+
+  # Do not generate more posts if there are already this many drafts
+  # waiting to be published (prevents a backlog)
+  pause_generation_at: 8
+
+# ── YouTube Video Alerts ──────────────────────────────────
+youtube:
+  # React to YouTube video launches from AI companies
+  # (sources.yaml already tracks the RSS feeds for these channels)
+  enabled: true
+  priority_channels:
+    - "OpenAI"
+    - "Anthropic"
+    - "Google DeepMind"
+    - "Midjourney"
+    - "ElevenLabs"
+  post_angle: >
+    "[Company] just released a new YouTube video — here's the key takeaway
+    for brands watching this space."
+
+# ── Variety Rules ─────────────────────────────────────────
+variety:
+  # Avoid writing two posts about the same company in a row
+  avoid_consecutive_same_company: true
+
+  # Minimum number of different companies across 5 consecutive posts
+  min_company_variety_window: 5
+  min_unique_companies: 3
+
+  # Avoid the same top-level topic category twice in a row
+  avoid_consecutive_same_category: true

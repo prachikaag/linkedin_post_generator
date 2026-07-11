@@ -34,10 +34,22 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.content_types` — the four core post types with their angles and key questions
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+### Determine Post Type
+
+Look at `articles[0].matched_categories` and `articles[0].matched_companies` to classify this cluster into one of the four content types from `brand.content_types`:
+
+- **feature_launch_reaction**: article covers a new launch, release, or feature from a tracked AI company
+- **human_in_the_loop**: article covers a personal AI experiment or "I tried it" use case
+- **bigtech_ai_commentary**: article covers Microsoft, Google, Apple, Amazon, Nvidia, Meta, Salesforce, or Adobe AI news
+- **ai_startup_funding**: article covers a funding round, acquisition, valuation, or IPO
+
+Use the matching content type's `angle` as a framing guide and its `key_question` as the anchor for your "YOUR TAKE" section.
 
 ---
 

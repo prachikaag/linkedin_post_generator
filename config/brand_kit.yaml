@@ -5,12 +5,12 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# TODO: Fill in your own details below before running the pipeline.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                         # e.g. "Prachi J"
+  title: "Your Professional Title"          # e.g. "Brand Strategist | AI Enthusiast"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"            # e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -92,6 +92,42 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "How brands can leverage AI today — not tomorrow, not hypothetically, right now"
+    - "Watching the AI tool wars (ChatGPT vs Claude vs Gemini vs Perplexity) through a brand lens"
+
+  # Four core content types — see content_calendar.yaml for mix targets
+  content_types:
+
+    feature_launch_reaction:
+      label: "Feature Launch Reaction"
+      when_to_use: >
+        When ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney, or any
+        tracked AI company launches a new feature, ships a YouTube video, or releases
+        a new model.
+      angle: "[Company] just launched [feature] — here's what brands should know."
+      key_question: "What does this change for brand teams and marketers specifically?"
+
+    human_in_the_loop:
+      label: "Human in the Loop — I Tried It"
+      when_to_use: >
+        When you have personally tested an AI tool for a real work use case.
+        These are your most authentic posts — you are the guinea pig.
+      angle: "I tried [AI tool] for [marketing/brand use case] — here's what actually happened."
+      key_question: "Would I recommend this to a brand team? What worked, what didn't?"
+
+    bigtech_ai_commentary:
+      label: "BigTech AI Move"
+      when_to_use: >
+        Major AI announcements from Microsoft, Google, Apple, Amazon, Nvidia, Meta, Salesforce, Adobe.
+      angle: "The real reason [BigTech move] matters for marketers."
+      key_question: "What does this mean for brands' tech stack and creative workflows?"
+
+    ai_startup_funding:
+      label: "AI Startup Funding Signal"
+      when_to_use: >
+        Significant funding rounds, acquisitions, valuations, or IPOs in the AI space.
+      angle: "What [funding/acquisition] tells us about where AI is heading."
+      key_question: "Is this a tool category brands should pay attention to now?"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +136,8 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI company] shipped a new YouTube video — here's the one thing brands should take from it"
+    - "I've been watching the ChatGPT vs Claude vs Gemini rivalry — here's what it means for your team"
 
   # Hashtag strategy
   hashtags:

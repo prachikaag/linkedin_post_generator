@@ -1,0 +1,34 @@
+# ============================================================
+# PIPELINE MEMORY
+# Tracks article URLs already turned into posts and a log of
+# all generated drafts. The memory-checker agent reads this
+# file before each run to filter out already-processed articles.
+#
+# The pipeline updates this file automatically after each run.
+# You can manually clear processed_article_urls if you want to
+# re-run on the same articles (e.g. after editing a post).
+# ============================================================
+
+# Article URLs that have already been used in a generated post.
+# The memory-checker filters any incoming article whose URL appears here.
+processed_article_urls: []
+
+# Log of every post generated (for your reference — not used by agents).
+generated_posts: []
+  # Example entry (auto-appended by the pipeline):
+  # - filename: "2024-01-15_10-30-00_openai-launches-gpt5.md"
+  #   date: "2024-01-15"
+  #   article_title: "OpenAI launches GPT-5"
+  #   primary_source: "TechCrunch AI"
+  #   status: "draft"
+
+# Topics covered in recent posts (used to encourage content variety).
+# The pipeline appends matched_categories from each post here.
+recent_topics_covered: []
+
+# How many days back the memory-checker looks when filtering URLs.
+# Articles older than this are eligible for reuse even if they appear in the log.
+memory_retention_days: 30
+
+# Last time the pipeline ran (ISO 8601).
+last_run: ""

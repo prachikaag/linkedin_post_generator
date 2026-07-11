@@ -50,6 +50,32 @@ If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop 
 
 ---
 
+## Step 1.5 — Filter Already-Processed Articles (Memory Check)
+
+Spawn the **memory-checker** subagent (defined in `.claude/agents/memory-checker.md`).
+
+Task for the subagent (include the full articles JSON inline):
+```
+Filter these articles to remove any that have already been used in a generated post.
+
+Input:
+{
+  "articles": [<articles JSON from Step 1>]
+}
+```
+
+Receive the filtered JSON array of articles.
+
+If the filtered array is empty, print:
+> "All fetched articles have already been used in previous posts. No new content to generate. Wait for fresh news or clear config/memory.yaml to reprocess."
+Then stop.
+
+Print: `✓ {M} new articles (filtered from {N} — {N-M} already covered).`
+
+Use this filtered array for all subsequent steps.
+
+---
+
 ## Step 2 — Get Trending Keywords
 
 Spawn the **trending-tracker** subagent (defined in `.claude/agents/trending-tracker.md`).
@@ -100,6 +126,38 @@ Post {i+1} — anchor: {cluster[0].title[:65]}
 ```
 
 Collect each result's JSON object.
+
+---
+
+## Step 4.5 — Update Pipeline Memory
+
+Spawn the **memory-updater** subagent (defined in `.claude/agents/memory-updater.md`).
+
+Build the list of all article URLs used across all clusters — every article URL from every cluster, not just the primary source.
+
+Task for the subagent (include full data inline):
+```
+Update the pipeline memory with the articles and posts from this run.
+
+Input:
+{
+  "generated_posts": [
+    {
+      "filename": "<result.filename>",
+      "filepath": "<result.filepath>",
+      "article_title": "<result.article_title>",
+      "source_url": "<result.source_url>",
+      "source_name": "<result.source_name>",
+      "source_count": <result.source_count>,
+      "all_article_urls": [<all article URLs from this post's cluster>],
+      "matched_categories": [<matched_categories from cluster articles>]
+    }
+  ],
+  "run_timestamp": "<current ISO 8601 timestamp>"
+}
+```
+
+Print: `✓ Memory updated — {urls_added} article URLs recorded.`
 
 ---
 
