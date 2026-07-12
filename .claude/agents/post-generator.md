@@ -18,9 +18,12 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "save": true
 }
 ```
+
+`save` defaults to `true`. When the orchestrator sets `"save": false`, generate the full post content and metadata but **do not write any file** — return the content in the JSON output for the reviewer to check first.
 
 ---
 
@@ -96,7 +99,13 @@ Following the brand kit precisely, write a post that:
 
 ---
 
-## Step 3 — Save the Post
+## Step 3 — Save or Preview the Post
+
+If `input.save` is `false`, skip writing the file entirely. Include all the same fields in the JSON output but set `"saved": false`.
+
+---
+
+## Step 3 — Save the Post (when save is true)
 
 ### Filename
 Format: `YYYY-MM-DD_HH-MM-SS_slug.md`
@@ -143,18 +152,21 @@ Save to `posts/<filename>`.
 
 ## Output
 
-After saving, return **only** a raw JSON object — no markdown fences, no extra text:
+Return **only** a raw JSON object — no markdown fences, no extra text:
 
 ```json
 {
   "filename": "2024-01-15_10-30-00_openai-launches-gpt5-model.md",
   "filepath": "posts/2024-01-15_10-30-00_openai-launches-gpt5-model.md",
-  "content": "<full post text, identical to what was saved>",
+  "content": "<full post text, identical to what was saved or previewed>",
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "saved": true
 }
 ```
+
+When `save` was `false`, set `"saved": false` and `"filepath": null`.
 
 Start your response with `{` and end with `}`. Nothing else.

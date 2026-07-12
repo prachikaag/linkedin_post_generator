@@ -6,11 +6,15 @@ __pycache__/
 venv/
 env/
 
-# Environment
+# Environment — never commit your actual keys
 .env
 
-# Generated posts (tracked individually when ready)
-# posts/*.md   ← uncomment this line to stop tracking generated posts
+# Generated posts are git-tracked (commit them when you publish)
+# posts/*.md   ← uncomment to stop tracking generated posts entirely
+
+# memory.json is git-tracked — it prevents duplicate posts across runs
+# memory.json  ← uncomment only to reset memory on every fresh clone
 
 # OS
 .DS_Store
+.claude/scheduled_tasks.lock

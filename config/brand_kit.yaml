@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — fill in your own details before first run
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                          # ← replace with your full name
+  title: "Your Professional Title"           # ← e.g. "Brand Strategist & AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # ← e.g. "London, UK"
+  linkedin_url: "https://linkedin.com/in/yourhandle"   # ← your LinkedIn URL
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
