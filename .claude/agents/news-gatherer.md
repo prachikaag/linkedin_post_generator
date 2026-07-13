@@ -52,6 +52,15 @@ Discard articles where `published` is before the cutoff or is missing.
 
 ---
 
+## Step 3b — Read Content Pillars
+
+Read `config/content_pillars.yaml` and extract the `trigger_keywords` from each pillar.
+These are used in Step 4 to assign an additional score boost.
+
+Also read `config/memory.yaml` and note `used_primary_urls` — these are not excluded (the article can still appear as a supporting source) but should be tagged as `already_used_as_primary: true` in the output.
+
+---
+
 ## Step 4 — Score Articles
 
 For each article, build a combined text string: `title + " " + summary` (lowercased).
@@ -61,6 +70,14 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 
 **Category keywords** (from `topic_categories` → each category's `keywords` list):
 - If a keyword appears in the text → `relevance_score += 1`, append category name to `matched_categories`
+
+**YouTube content bonus:**
+- If the article URL contains "youtube.com" → `relevance_score += 4`, set `is_youtube: true`
+- YouTube content gets priority because it is often the first signal of a new product or demo
+
+**Content pillar keyword boost:**
+- If any pillar trigger keyword appears in the combined text → `relevance_score += 1`
+- This helps surface articles that map to a specific content type
 
 ---
 
@@ -97,6 +114,8 @@ Each element must have exactly these fields:
   "relevance_score": 9,
   "matched_companies": ["OpenAI", "Anthropic"],
   "matched_categories": ["New AI Feature or Product Launch"],
-  "matched_keywords": ["ChatGPT", "Claude", "launch"]
+  "matched_keywords": ["ChatGPT", "Claude", "launch"],
+  "is_youtube": false,
+  "already_used_as_primary": false
 }
 ```

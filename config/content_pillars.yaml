@@ -1,0 +1,256 @@
+# ============================================================
+# CONTENT PILLARS — What You Write About
+# ============================================================
+# Each pillar = one type of LinkedIn post you publish.
+# These are your editorial categories — the lenses you use
+# to decide what to write about and how to frame it.
+#
+# The post-generator reads this to:
+#   1. Match each article cluster to the best-fit pillar
+#   2. Use the pillar's hook style and CTA format
+#   3. Apply the right framing angle for that post type
+#
+# Edit freely. Add new pillars, tweak angles, change hooks.
+# ============================================================
+
+pillars:
+
+  # ── Pillar 1: New AI Feature or Product Launch ──────────
+  - id: "feature_launch"
+    name: "New AI Feature or Product Launch"
+    description: |
+      When an AI company (ChatGPT, Claude, Perplexity, Gemini, ElevenLabs,
+      Midjourney, etc.) ships a new model, feature, update, or product.
+      This is high-frequency content — react quickly, add your angle.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "announces"
+      - "unveils"
+      - "ships"
+      - "available now"
+      - "introduces"
+      - "rolls out"
+      - "debuts"
+      - "update"
+    post_angle: |
+      Lead with what changed, not who did it. Then pivot immediately to:
+      what does this actually enable for a brand or marketing team?
+      Be specific. What can they do tomorrow that they couldn't do yesterday?
+      Share your initial reaction — is this as significant as the announcement
+      makes it sound, or is it incremental?
+    example_hooks:
+      - "Something just changed about how brands will create content."
+      - "A new AI feature dropped this week. Here's what brands actually need to know."
+      - "Every few months a product update genuinely shifts what's possible. This is one."
+    example_ctas:
+      - "Have you tried this yet — and does it live up to the announcement?"
+      - "What's the first thing you'd use this for? Drop it in the comments."
+      - "Is this a meaningful upgrade or incremental polish? I'm genuinely curious what you think."
+    priority: high
+
+  # ── Pillar 2: YouTube Video Drop ────────────────────────
+  - id: "youtube_video"
+    name: "AI Company YouTube Video or Demo"
+    description: |
+      When a major AI company (OpenAI, Anthropic, Google DeepMind, Midjourney,
+      ElevenLabs, Runway etc.) publishes a significant YouTube video, demo,
+      or product reveal. These are often the first look at something new.
+    trigger_keywords:
+      - "video"
+      - "demo"
+      - "watch"
+      - "youtube"
+      - "reveal"
+      - "showcases"
+      - "shows off"
+      - "walkthrough"
+      - "preview"
+    post_angle: |
+      Reference the video directly — what did it demonstrate?
+      Your job is to be the person your network doesn't have time to watch
+      every AI company's YouTube channel, but trusts you to surface what matters.
+      Tell them what you saw, what you thought, and whether it's worth their time.
+      Be honest: sometimes demos are more impressive than the reality.
+    example_hooks:
+      - "I watched [Company]'s new demo so you don't have to. Here's what stood out."
+      - "Every brand team should watch this 3-minute video."
+      - "New video from [Company] just dropped — the capability they showed is worth understanding."
+    example_ctas:
+      - "Have you watched this? What's your read on the real-world implications?"
+      - "If this works as shown, what's the first use case you'd try in your own workflow?"
+      - "What would you test first if you had early access to this?"
+    priority: high
+
+  # ── Pillar 3: AI Startup Funding & Market Moves ─────────
+  - id: "startup_funding"
+    name: "AI Startup Funding or Market Move"
+    description: |
+      When an AI startup raises a significant round, gets acquired, IPOs,
+      or makes a major strategic move. The signal here isn't the money —
+      it's what the investment thesis tells us about where AI is heading.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture capital"
+      - "IPO"
+      - "unicorn"
+      - "billion"
+      - "million"
+    post_angle: |
+      The post isn't about the money. It's about what the investment signals.
+      Who funded this? What problem is this company solving? What does it tell
+      us about where the AI market thinks value will be created?
+      Connect the dots for your audience: if this startup wins, what changes
+      for brands and marketers?
+    example_hooks:
+      - "An AI startup just raised $X. The interesting part isn't the number."
+      - "Every now and then a funding round tells you exactly where the AI market is heading."
+      - "This one is worth paying attention to."
+    example_ctas:
+      - "What does this tell you about where AI value is concentrating?"
+      - "Are you watching this space — or waiting until it's mainstream?"
+      - "Which AI startup has surprised you most this year — and why?"
+    priority: high
+
+  # ── Pillar 4: Big Tech AI News ───────────────────────────
+  - id: "big_tech"
+    name: "Big Tech AI Strategy or Move"
+    description: |
+      When Microsoft, Apple, Google, Meta, Amazon, Nvidia, Salesforce, or
+      Adobe makes a significant AI move — a new partnership, a strategic
+      pivot, a platform integration, or a market-shifting announcement.
+      These companies move markets and set the tools most brand teams will use.
+    trigger_keywords:
+      - "Microsoft Copilot"
+      - "Apple Intelligence"
+      - "Google AI"
+      - "Amazon AI"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe Firefly"
+      - "partnership"
+      - "integration"
+      - "enterprise AI"
+      - "platform"
+    post_angle: |
+      Big tech AI news matters for a different reason than startup news.
+      These are the platforms most brand teams are already paying for.
+      When Microsoft adds AI to Office, or Adobe ships AI to Creative Cloud,
+      those changes land on the desks of your audience immediately.
+      Focus on the practical: what just changed for someone using these tools?
+    example_hooks:
+      - "Most brand teams are already paying for this software. AI just changed what it does."
+      - "This is the AI news that will quietly affect more people than any startup launch."
+      - "Big tech made a move this week that the AI world focused on but marketers should too."
+    example_ctas:
+      - "Is your team actively using AI inside the tools you already pay for?"
+      - "What's the AI feature in your existing software stack you've actually found useful?"
+      - "How is your team thinking about AI inside existing platforms vs. new point solutions?"
+    priority: medium
+
+  # ── Pillar 5: Human in the Loop — "I Tried It" ──────────
+  - id: "hitl_experiment"
+    name: "Human in the Loop — I Tried It"
+    description: |
+      Posts about your own experiments with AI tools. You tested something,
+      you're sharing what you found — honest, specific, first-person.
+      This is the most personal pillar and the one that builds the most trust.
+      AI company news is the trigger; your experiment is the story.
+    trigger_keywords:
+      - "new tool"
+      - "beta"
+      - "early access"
+      - "I tested"
+      - "tried"
+      - "experiment"
+      - "workflow"
+      - "result"
+    post_angle: |
+      Lead with what you actually did — be specific about the task, the tool,
+      the prompt or approach. Then share what happened: the surprising bit,
+      the limitation you hit, the thing that changed how you think about it.
+      You are the narrator. AI is the character you're describing.
+      Honest > positive. Your audience trusts you because you don't pretend
+      everything works perfectly.
+    example_hooks:
+      - "I spent [time] testing [tool] for [specific task]. Here's what I actually found."
+      - "Tried something this week I didn't expect to work as well as it did."
+      - "Real experiment, real result — not a sponsored post."
+    example_ctas:
+      - "Has anyone else tried this? What did you find?"
+      - "What would you test next if you had a free afternoon to experiment?"
+      - "What AI experiment has surprised you most recently — positive or negative?"
+    priority: high
+    note: "Use this pillar when you have a personal experiment to share alongside the news. The news is context; your experiment is the story."
+
+  # ── Pillar 6: How Brands Can Leverage AI ─────────────────
+  - id: "brand_strategy"
+    name: "Brand Strategy Meets AI"
+    description: |
+      Posts that synthesise multiple AI developments into strategic advice
+      for brand and marketing leaders. Less about one specific news item,
+      more about the pattern you're seeing across the space.
+      This is your highest-authority content — opinionated, strategic,
+      actionable for CMOs and brand directors.
+    trigger_keywords:
+      - "marketing"
+      - "brand"
+      - "CMO"
+      - "creative"
+      - "campaign"
+      - "strategy"
+      - "content creation"
+      - "advertising"
+      - "agency"
+      - "team"
+      - "workflow"
+      - "productivity"
+    post_angle: |
+      You're writing for the brand director who has read the headlines but
+      doesn't have time to synthesise what they mean for their team.
+      Your job is to do that synthesis. What's the pattern across multiple
+      developments? What should they actually do this week? What's a myth
+      that the news is reinforcing that you want to push back on?
+      Be more opinionated here than anywhere else.
+    example_hooks:
+      - "Brands are spending on AI. Most aren't getting value yet. Here's the gap I keep seeing."
+      - "The real AI question for marketing teams in 2025 isn't which tool. It's this."
+      - "Here's what I think brands are missing in all the AI conversation right now."
+    example_ctas:
+      - "What's the most useful AI integration your marketing team has actually shipped?"
+      - "How is your team thinking about AI in your creative process right now?"
+      - "What's one AI workflow change you wish you'd made earlier?"
+    priority: medium
+
+# ── Pillar Matching Rules ──────────────────────────────────
+# Used by the post-generator to assign the right pillar to each cluster.
+# Order of precedence when multiple pillars match:
+
+matching_priority:
+  1: "hitl_experiment"    # If you have a personal experiment note, always lead with it
+  2: "youtube_video"      # YouTube drops are time-sensitive — react fast
+  3: "feature_launch"     # Most common — new products and features
+  4: "startup_funding"    # Funding news has a clear template
+  5: "big_tech"           # Big tech requires more context to be interesting
+  6: "brand_strategy"     # Synthesis posts — use when multiple articles cluster together
+
+# ── Post Mix Target ────────────────────────────────────────
+# Rough target for post type diversity over time.
+# (Purely informational — tracked manually or adjusted per run.)
+weekly_mix_target:
+  feature_launch: 2
+  hitl_experiment: 1
+  startup_funding: 1
+  youtube_video: 1
+  big_tech: 1
+  brand_strategy: 1

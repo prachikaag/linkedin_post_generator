@@ -5,28 +5,27 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
-author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
-  industries:
-    - "Marketing & Brand Strategy"
-    - "Artificial Intelligence"
-    - "Digital Innovation"
+# Author identity has moved to config/persona.yaml.
+# Edit that file to update your name, title, bio, and POV.
+# This file controls ONLY how you write — your voice and style.
+# The post-generator reads both files on every run.
+author_config:
+  persona_file: "config/persona.yaml"     # ← Edit that file for identity
+  pillars_file: "config/content_pillars.yaml"  # ← Edit that for post types
+  memory_file: "config/memory.yaml"       # ← Tracks what's been written
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
-    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Curious and experimental — you try AI tools firsthand and share honest results, not just summaries"
+    - "Pragmatic and business-focused — you always connect AI news to real brand and marketing outcomes"
+    - "Accessible, not overly technical — you translate AI complexity into plain language for brand leaders"
+    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism about hype"
+    - "Opinionated — you have a clear point of view, not a neutral news summary"
+    - "Human — you write like a person who is genuinely excited by what they are seeing"
+    - "Human-in-the-loop — AI helps you draft; you are always the editor, the thinker, the author"
 
   # Rules for how you write every post
   writing_style:
@@ -69,6 +68,9 @@ tone_of_voice:
     - "Acknowledge uncertainty when you genuinely don't know something"
     - "React to news within your own professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Explicitly call out when you are speaking from personal experiment ('I tested this', 'I tried this workflow', 'Here's what I found')"
+    - "Make the human-in-the-loop visible — readers should know you are the thinker and AI helped you draft, not the reverse"
+    - "React quickly to YouTube videos from AI companies — these are often the first signal of what's coming"
 
   # What undermines your credibility
   donts:

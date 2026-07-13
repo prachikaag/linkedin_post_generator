@@ -24,20 +24,44 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read All Configuration
+
+Read `config/persona.yaml` and extract:
+- `author.name`, `author.title`, `author.tagline`
+- `perspective` — the author's point of view (use this to calibrate voice)
+- `authority_topics` — the lenses they write through
+- `tools_i_use` — tools the author has firsthand experience with
+- `not_my_lane` — things to never claim or imply
 
 Read `config/brand_kit.yaml` and extract:
-
-- `author.name`, `author.title`, `author.tagline`
 - `tone_of_voice.primary_traits` — how the author comes across
 - `tone_of_voice.writing_style` — rules for every post
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
-- `brand.focus_areas` — the lenses the author writes through
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_pillars.yaml` and extract all pillars with their `post_angle`, `example_hooks`, and `example_ctas`.
+
+Read `config/memory.yaml` and note `used_primary_urls` — skip any article in this list as the anchor source.
+
+---
+
+## Step 1b — Assign a Content Pillar
+
+Before writing, determine which content pillar best fits this article cluster:
+
+1. Check if any article URL contains "youtube.com" → pillar: `youtube_video`
+2. Check `matched_categories` against each pillar's `trigger_keywords`
+3. Check `matched_companies` against pillar descriptions
+4. Apply `matching_priority` from pillars file to break ties
+5. Default to `feature_launch` if no clear match
+
+Use the assigned pillar's `post_angle`, `example_hooks`, and `example_ctas` as your creative brief for this specific post. Do not blend multiple pillar styles in one post.
+
+If the pillar is `hitl_experiment` and the author's `tools_i_use` list includes the company/tool in the articles, explicitly frame at least one paragraph as a firsthand perspective ("I've used this tool for X — here's what I've found..."). This is the human-in-the-loop voice.
 
 ---
 
@@ -141,6 +165,28 @@ Save to `posts/<filename>`.
 
 ---
 
+## Step 4 — Update Memory
+
+After saving the post, update `config/memory.yaml`:
+
+1. Append `articles[0].url` to `used_primary_urls`
+2. Append the filename slug to `covered_slugs`
+3. Append all company names from `matched_companies` to `recently_covered_companies` (keep only the last 20 entries total)
+4. Append a new entry to `post_history`:
+   ```yaml
+   - filename: "<filename>"
+     date: "<today's date>"
+     pillar: "<assigned pillar id>"
+     anchor_url: "<articles[0].url>"
+     companies: ["<matched company names>"]
+     status: "draft"
+   ```
+5. Update `last_run` to the current ISO 8601 timestamp
+
+Read the current `memory.yaml` first, merge your new entries, and write back the full file.
+
+---
+
 ## Output
 
 After saving, return **only** a raw JSON object — no markdown fences, no extra text:
@@ -153,7 +199,9 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "pillar": "<assigned content pillar id>",
+  "pillar_name": "<assigned content pillar name>"
 }
 ```
 

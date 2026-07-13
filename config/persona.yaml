@@ -1,0 +1,78 @@
+# ============================================================
+# PERSONA — Who You Are
+# ============================================================
+# This file holds your professional identity, bio, and POV.
+# Edit this independently from brand_kit.yaml — your voice
+# guidelines live there; your identity lives here.
+#
+# The post-generator reads this file to write in your voice,
+# from your real-world context and professional lens.
+# ============================================================
+
+# ── Identity ──────────────────────────────────────────────
+author:
+  name: "Prachi Jain"
+  title: "Brand Strategist & AI Enthusiast"
+  tagline: "Helping brands understand and leverage AI in the real world"
+  linkedin_url: "https://www.linkedin.com/in/prachijain"
+  location: "Your City, Country"   # ← update with your location
+
+# ── Professional Background ────────────────────────────────
+background:
+  current_role: "Brand strategist and AI practitioner working at the intersection of brand, marketing, and emerging AI tools"
+  experience_summary: |
+    I've spent my career building brands and marketing strategies.
+    Now I spend a significant portion of my time experimenting with AI tools
+    — not because I'm a developer, but because I believe the best brand
+    strategists today need to understand what AI can and can't do firsthand.
+    I document what I find, what works, what doesn't, and what it means for
+    how brands create, communicate, and connect.
+  industries:
+    - "Marketing & Brand Strategy"
+    - "Artificial Intelligence"
+    - "Digital Innovation"
+    - "Content & Creative"
+
+# ── Your Unique Point of View ──────────────────────────────
+# This is the perspective that makes your posts distinctly yours.
+# The post-generator uses this to calibrate the editorial angle.
+perspective: |
+  I sit at the intersection of brand strategy and AI.
+  I'm not an engineer — I'm a brand person who treats AI tools like a lab.
+  I test things. I share the honest results. I connect what I find to what
+  it means for marketing teams, creative directors, and brand leaders.
+  My lens is always: what does this actually change for how brands work?
+  Not the hype. The real thing. The practical implication.
+
+# ── Authority Topics ───────────────────────────────────────
+# The specific areas you're building a reputation in.
+# These shape how you frame every post — your authority filter.
+authority_topics:
+  - "AI tools for marketing and brand teams — what actually works"
+  - "Human-in-the-loop creative workflows — you as editor, AI as drafter"
+  - "What AI feature and product launches mean for brand strategy"
+  - "The AI startup ecosystem and what it signals for the future of brands"
+  - "How brands can experiment with AI today without waiting for a strategy"
+  - "Translating AI complexity into plain language for business leaders"
+
+# ── Personal Experiments ───────────────────────────────────
+# AI tools you actively use and can write firsthand about.
+# When the news-gatherer surfaces stories about these tools,
+# posts get an additional "I've used this" framing available.
+tools_i_use:
+  - "Claude (Anthropic) — for writing, research, and drafting"
+  - "ChatGPT — for brainstorming and iteration"
+  - "Perplexity — for research and source discovery"
+  - "Midjourney — for visual ideation and brand exploration"
+  - "ElevenLabs — for voice and audio experiments"
+  - "Runway / Pika — for video and motion exploration"
+  - "Notion AI — for knowledge management"
+  - "Canva AI — for quick creative production"
+
+# ── What You're Not ────────────────────────────────────────
+# Helps the post-generator avoid positioning you incorrectly.
+not_my_lane:
+  - "I don't write deep technical explainers about model architecture"
+  - "I don't make predictions about AGI timelines or existential AI risk"
+  - "I don't endorse products I haven't personally tried or researched"
+  - "I'm not a developer — I write from a brand and business lens, not engineering"

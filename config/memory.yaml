@@ -1,0 +1,53 @@
+# ============================================================
+# MEMORY — What Has Been Written About
+# ============================================================
+# This file tracks post history to prevent the pipeline from
+# writing about the same story or source twice.
+#
+# Updated automatically by the post-generator agent after
+# each successful post. You can also edit it manually to
+# reset history or mark something as "skip".
+#
+# DO NOT delete this file — the post-generator reads it on
+# every run. Clear the arrays inside if you want a fresh start.
+# ============================================================
+
+# ── Used Source URLs ───────────────────────────────────────
+# URLs that have already been used as the PRIMARY source
+# (articles[0]) of a published or saved post.
+# Articles matching these URLs are skipped as anchors,
+# but can still appear as supporting sources.
+used_primary_urls: []
+
+# ── Covered Topics / Slugs ────────────────────────────────
+# Slugs from previously generated post filenames.
+# Used to detect topic overlap across runs.
+covered_slugs: []
+
+# ── Covered Companies (recent) ────────────────────────────
+# Companies that have been the MAIN focus of posts in the
+# last N runs. Used to encourage topic diversity.
+# Reset this list to allow re-covering a company.
+recently_covered_companies: []
+
+# ── Last Run ──────────────────────────────────────────────
+last_run: null    # ISO 8601 timestamp of last pipeline execution
+last_run_post_count: 0
+
+# ── Skip List ─────────────────────────────────────────────
+# URLs to permanently ignore — paywalled articles, low-quality
+# sources, or anything you never want to write about.
+# Add manually as needed.
+skip_urls: []
+
+# ── Post History ──────────────────────────────────────────
+# Full record of all generated posts.
+# Appended by the post-generator on every successful run.
+post_history: []
+# Format:
+# - filename: "2024-01-15_10-30-00_openai-launches-gpt5-model.md"
+#   date: "2024-01-15"
+#   pillar: "feature_launch"
+#   anchor_url: "https://..."
+#   companies: ["OpenAI"]
+#   status: "draft"    # draft | published | skipped
