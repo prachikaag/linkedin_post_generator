@@ -5,12 +5,12 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN: Replace placeholders with your actual details before your first run.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                                          # FILL IN: Full name
+  title: "Brand Strategist | AI Experimentalist"         # FILL IN: Your LinkedIn headline
+  tagline: "I help brands understand and actually use AI — not just talk about it"
+  location: "Your City, Country"                         # FILL IN: Location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

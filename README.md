@@ -50,15 +50,41 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any file directly, changes take effect on the next run.
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | Purpose | Edit when... |
+|------|---------|-------------|
+| `config/topics.yaml` | AI companies, keywords, and freshness settings | Adding a new company or topic to track |
+| `config/sources.yaml` | RSS feeds and API sources | Adding a new publication or blog |
+| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules | Changing how your posts sound |
+| `config/experiments.yaml` | Personal AI experiments log (human-in-the-loop) | After trying a new AI tool on a real task |
 
-Edit these files directly — changes take effect on the next run.
+### Personalising your Brand Kit
+
+Open `config/brand_kit.yaml` and fill in the `author` section — name, title, tagline, and location.
+The post generator reads this on every run; no restart needed.
+
+### Logging Personal Experiments
+
+After you experiment with an AI tool on a real task, add an entry to `config/experiments.yaml`:
+
+```yaml
+- date: "2024-01-20"
+  tool: "Claude"
+  use_case: "Writing a brand positioning brief"
+  what_happened: "Output a solid structure in 5 mins. Needed 30 mins of editing for tone."
+  time_saved: "3 hours → 45 mins"
+  quality_verdict: "better than expected"
+  would_use_again: true
+  post_angle: "AI as first-drafter. Human as the editor who knows the client."
+  status: "ready"   # change to "used" once you publish a post about it
+  tags:
+    - "strategy"
+    - "claude"
+```
+
+When `status: "ready"`, the post generator will weave your first-hand account into the
+**YOUR TAKE** section of relevant posts — giving them an authentic human-in-the-loop angle.
 
 ### Environment Variables
 

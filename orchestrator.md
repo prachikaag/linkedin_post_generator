@@ -80,6 +80,11 @@ Divide the articles into clusters — one cluster per post to generate.
 
 For each cluster, spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
 
+The post-generator will automatically read `config/experiments.yaml` for any personal AI experiments
+(status: "ready") that match the article topics. These are woven into the YOUR TAKE section to give
+the post a human-in-the-loop, first-person angle. No action needed from the orchestrator — the
+subagent handles this.
+
 Task for the subagent (include the full JSON data inline):
 ```
 Generate a LinkedIn post draft from the following data and save it to posts/.

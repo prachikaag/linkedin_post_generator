@@ -1,0 +1,113 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# This is the "human in the loop" component.
+#
+# When you try an AI tool for a real task, add an entry here.
+# The post generator reads this file and can weave your actual
+# experiments into posts — giving them a first-person, honest,
+# "I tried this" angle that makes them stand out from news summaries.
+#
+# HOW TO ADD AN EXPERIMENT:
+#   1. Copy a block from the examples below
+#   2. Fill in your real details
+#   3. Set status to "ready" when you want it used in posts
+#   4. Change to "used" once a post has been published about it
+#
+# POST ANGLE SUGGESTIONS (use one per experiment):
+#   - "I tried [tool] for [use case] — here's what actually happened"
+#   - "The real reason [AI tool] surprised me"
+#   - "I gave [tool] a brief that would take a junior 2 hours..."
+#   - "[Tool] can do [X] — but here's what it still can't do"
+# ============================================================
+
+experiments:
+
+  # ── TEMPLATE — copy and fill in for new experiments ───────
+  # - date: "2024-01-15"
+  #   tool: "ChatGPT / Claude / Midjourney / etc."
+  #   use_case: "What task did you try to accomplish?"
+  #   what_happened: "Be honest. What worked, what didn't, what surprised you?"
+  #   time_saved: "e.g. 2 hours → 20 mins"
+  #   quality_verdict: "better than expected / about what I expected / disappointing"
+  #   would_use_again: true
+  #   post_angle: "The honest angle you'd write about this"
+  #   status: "draft"   # draft | ready | used
+  #   tags:
+  #     - "content-creation"
+
+  # ── EXAMPLE EXPERIMENTS — replace with your real ones ─────
+
+  - date: "2024-01-01"
+    tool: "Claude"
+    use_case: "Writing a brand strategy brief from a short client briefing call transcript"
+    what_happened: >
+      Fed it a rough 20-minute call transcript. It structured the brief beautifully —
+      positioning, audience, tone — but missed the emotional nuance of what the founder
+      was really worried about. I had to add a whole section. The bones were good. The
+      soul needed me.
+    time_saved: "3 hours → 45 mins (including my edits)"
+    quality_verdict: "better than expected"
+    would_use_again: true
+    post_angle: "AI as first-drafter. Human as the editor who knows what the client actually meant."
+    status: "ready"    # Change to "used" once you publish a post about this
+    tags:
+      - "strategy"
+      - "brief-writing"
+      - "human-in-the-loop"
+
+  - date: "2024-01-01"
+    tool: "Midjourney"
+    use_case: "Generating brand mood board concepts for a pitch"
+    what_happened: >
+      Generated 40+ images in under an hour. Client picked 3 as directions.
+      Would have taken a designer a full day to produce comparable variety.
+      Quality was inconsistent — some were stunning, some generic — but the
+      volume made up for it. Best used for ideation, not final delivery.
+    time_saved: "1 day → 1 hour"
+    quality_verdict: "better than expected for ideation, not ready for delivery"
+    would_use_again: true
+    post_angle: "Volume beats perfection at the ideation stage. Midjourney changed what pitching looks like."
+    status: "ready"
+    tags:
+      - "creative"
+      - "design"
+      - "pitching"
+      - "generative-ai"
+
+  - date: "2024-01-01"
+    tool: "Perplexity"
+    use_case: "Competitive research for a client in the fintech space"
+    what_happened: >
+      Used it to map competitor positioning, find recent brand pivots, and pull
+      together a positioning landscape. Cited sources I could actually verify.
+      Google would have taken me 2 hours of tab-juggling. Perplexity did it
+      in 15 minutes with better synthesis. The sources weren't always tier-1,
+      though — had to double-check a few.
+    time_saved: "2 hours → 20 mins"
+    quality_verdict: "better than expected"
+    would_use_again: true
+    post_angle: "Why I stopped using Google for research. (Mostly.)"
+    status: "draft"    # Not ready yet — needs more context
+    tags:
+      - "research"
+      - "competitive-intelligence"
+      - "perplexity"
+
+  - date: "2024-01-01"
+    tool: "ElevenLabs"
+    use_case: "Testing AI voice for a brand podcast intro"
+    what_happened: >
+      Cloned a voice sample (with permission) and ran a script through it.
+      The output was uncanny — 95% of listeners in an informal test thought
+      it was real. But the pacing was off. You can hear the AI 'breathing'
+      in the wrong places. Powerful, but needs human editing for rhythm.
+    time_saved: "Would have cost £300 for a voice artist. Cost pennies."
+    quality_verdict: "about what I expected — impressive but needs polish"
+    would_use_again: true
+    post_angle: "AI voice is here. The question is whether your audience will care."
+    status: "ready"
+    tags:
+      - "audio"
+      - "voice-ai"
+      - "elevenlabs"
+      - "podcast"

@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Experiments
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,8 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/experiments.yaml` (if it exists) and collect all experiments where `status: "ready"`. For each, note the `tool`, `use_case`, `what_happened`, `post_angle`, and `tags`. These are personal first-hand accounts the author has actually experienced — they can be woven into posts as "I tried this" evidence when the topic matches.
 
 ---
 
@@ -64,6 +66,13 @@ Following the brand kit precisely, write a post that:
 - No buzzwords: "game-changer", "revolutionary", "disruptive" without specifics
 - No walls of text; no corporate jargon
 - Write as `author.name` in first person
+
+### Personal experiment injection (human-in-the-loop):
+- Check the `status: "ready"` experiments from `config/experiments.yaml`
+- If any experiment's `tool` or `tags` match companies or topics in the articles, **optionally** weave it into the YOUR TAKE section as a first-person observation
+- Example: if articles are about ElevenLabs' new feature and you have a ready experiment with `tool: "ElevenLabs"`, you can add 1–2 sentences like: "I tested this on a client project last month. Here's what actually happened..."
+- Only inject if it genuinely fits. Never force it. If no experiment matches, skip this step entirely.
+- Do NOT fabricate experiments. Only reference what is in experiments.yaml with `status: "ready"`.
 
 ### URL rule (zero exceptions):
 - You may **only** use URLs that appear verbatim in the `"url"` fields of the supplied articles
@@ -131,6 +140,7 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+experiment_used: "<tool name if a personal experiment was woven in, else null>"
 status: "draft"
 ---
 ```
