@@ -15,7 +15,7 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 [news-gatherer] → articles JSON
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator] → reads brand_kit.yaml + content-angles.yaml → saved .md draft
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```

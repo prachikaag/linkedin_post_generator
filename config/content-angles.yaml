@@ -1,0 +1,103 @@
+# ============================================================
+# CONTENT ANGLES & POST TEMPLATES
+# These angles define the kind of posts you write.
+# The post-generator picks the most fitting angle for each
+# article cluster and uses it to shape the narrative.
+# Add, remove, or tweak these to match your voice.
+# ============================================================
+
+# ── The Angles You Write From ──────────────────────────────
+# Each angle has a trigger (when to use it) and a framing
+# (how to open and structure the post).
+
+angles:
+
+  - id: new-feature-launch
+    name: "New Feature or Product Launch"
+    trigger: "An AI company released a new model, feature, or product"
+    hook_pattern: "[Company] just [launched/released/announced] [thing]. Here's what it actually means for brands."
+    narrative_lens: "What does this change for marketing teams or brand builders? What can you do with it today that you couldn't yesterday?"
+    personal_angle: "If you've tested it, share what you found. If you haven't, say what you're going to test."
+    example_hook: "Perplexity just launched a shopping feature. Brands need to start thinking about this now."
+
+  - id: funding-round
+    name: "AI Startup Funding"
+    trigger: "An AI startup raised a significant funding round"
+    hook_pattern: "[Company] raised [amount]. The number matters less than what they're building."
+    narrative_lens: "What problem does this company solve? What does the funding signal about where the market is heading? What should brands or marketers pay attention to?"
+    personal_angle: "Have you used their product? What was your experience?"
+    example_hook: "Another AI startup just raised $100M. Here's the one they're building that you should actually care about."
+
+  - id: big-tech-ai-move
+    name: "Big Tech AI Development"
+    trigger: "Microsoft, Google, Apple, Amazon, Meta, or Nvidia made a significant AI announcement"
+    hook_pattern: "When [Big Tech Company] does this, the whole market moves."
+    narrative_lens: "What does this mean for the tools and platforms brands already use? Is this a threat to other players or an upgrade to the ecosystem?"
+    personal_angle: "You probably use products from this company. How does this change how you'd use them?"
+    example_hook: "Google just updated Gemini inside Workspace. Most people will miss what actually changed."
+
+  - id: youtube-video-reaction
+    name: "Reacting to an AI YouTube Video"
+    trigger: "A major AI company or researcher published a YouTube video demo or explainer"
+    hook_pattern: "Watched [Company]'s new video on [topic]. Three things stood out."
+    narrative_lens: "What was actually shown vs. what was implied? What's real today, what's coming? What should brands watch for?"
+    personal_angle: "Share your reaction as someone watching with a marketer's or brand strategist's eye."
+    example_hook: "OpenAI dropped a 12-minute video yesterday. Most people focused on the demo. I was watching something else."
+
+  - id: human-in-the-loop
+    name: "Personal AI Experiment"
+    trigger: "You tried an AI tool, workflow, or prompt and have something to share"
+    hook_pattern: "I spent [time] testing [tool/approach]. Here's what actually happened."
+    narrative_lens: "What worked, what didn't, what surprised you? Give real specifics — not a polished success story."
+    personal_angle: "This IS the personal angle. Be honest. Include a failure or unexpected result if there is one."
+    example_hook: "I gave Claude my entire brand strategy deck and asked it to write a comms plan. The result was… not what I expected."
+
+  - id: trend-synthesis
+    name: "Connecting Multiple Developments"
+    trigger: "Several different things happened in AI this week that tell a bigger story"
+    hook_pattern: "Three things happened in AI this week. Separately, they're interesting. Together, they're a signal."
+    narrative_lens: "What's the pattern? What does it mean collectively? Are these dots connecting to something?"
+    personal_angle: "You're the synthesiser — this is your value-add. Don't just report; interpret."
+    example_hook: "This week: OpenAI dropped prices. Meta open-sourced another model. Nvidia stock hit a new high. These aren't separate stories."
+
+  - id: contrarian-take
+    name: "Contrarian or Nuanced Take"
+    trigger: "Everyone is excited or panicking about something, but there's a more nuanced truth"
+    hook_pattern: "Everyone is talking about [hot topic]. I think they're missing the point."
+    narrative_lens: "What's the mainstream narrative? Why is it incomplete or wrong? What's the more honest version?"
+    personal_angle: "A contrarian take only works if it's well-reasoned. Explain your logic."
+    example_hook: "Every brand wants to 'use AI for content.' Most are doing it in a way that will hurt them long-term."
+
+  - id: how-brands-can-use-this
+    name: "Practical Brand Playbook"
+    trigger: "A new AI capability has clear applications for marketers or brand teams"
+    hook_pattern: "If you run a brand or marketing team, this is the one [development] you should act on."
+    narrative_lens: "Move from 'interesting news' to 'here's what to do Monday morning.' Be specific about the use case."
+    personal_angle: "Have you used it in your own work? Or what would you do if you could test it today?"
+    example_hook: "ElevenLabs launched a new voice cloning API. Here's the one use case that brands should move on immediately."
+
+# ── Evergreen Formats ──────────────────────────────────────
+# These post templates work regardless of the news cycle.
+# Use them when you want to write a post unprompted.
+
+evergreen_formats:
+
+  - id: weekly-roundup
+    name: "Weekly AI Roundup for Brands"
+    description: "A curated list of 3-5 things that happened in AI this week, with your take on each"
+    structure: "Intro → Item 1 + your take → Item 2 + your take → ... → What to watch next week"
+
+  - id: tool-review
+    name: "AI Tool Review"
+    description: "You tested a specific AI tool and share your honest assessment"
+    structure: "What I tested → What I expected → What actually happened → Who should use it → Who shouldn't"
+
+  - id: myth-busting
+    name: "AI Myth vs Reality"
+    description: "Address a common misconception about AI in marketing or branding"
+    structure: "The myth → Why people believe it → The reality → What to do instead"
+
+  - id: prediction
+    name: "Prediction or Forward Look"
+    description: "Based on recent trends, where do you think AI is heading in the next 6-12 months?"
+    structure: "What's happening now → The pattern → Your prediction → Why it matters → What to do"

@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read Config Files
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,8 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/content-angles.yaml` — this file defines the narrative angles available (e.g. new feature launch, funding round, human-in-the-loop experiment, YouTube video reaction). Select the angle from `angles` that best fits the supplied articles, and use its `hook_pattern` and `narrative_lens` to shape the post.
 
 ---
 
