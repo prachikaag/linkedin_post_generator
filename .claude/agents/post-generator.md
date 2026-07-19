@@ -17,10 +17,12 @@ The orchestrator will supply a JSON object in your task with:
 ```json
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
-  "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
+  "trending_keywords": [ /* array of {phrase, source_url} objects from the Trending Tracker */ ],
   "posts_dir": "posts/"
 }
 ```
+
+`trending_keywords` may be an array of plain strings **or** objects `{phrase, source_url}`. Handle both formats — extract the `phrase` string in either case, and use `source_url` (when present and non-null) as an additional citable source.
 
 ---
 

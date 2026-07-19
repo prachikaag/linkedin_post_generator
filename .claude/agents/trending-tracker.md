@@ -18,40 +18,49 @@ Read `config/topics.yaml` and extract `trending_keywords.seed_terms` — the lis
 
 ## Step 2 — Search for What's Trending
 
-Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 2–3 targeted searches across these angles:
+Use **WebSearch** to find the hottest AI stories from the last 7 days. Run **4–5 targeted searches** across these angles:
 
-1. **New model releases & launches** — e.g. `latest AI model release this week`
-2. **Funding & startup news** — e.g. `AI startup funding announcement this week`
-3. **Research breakthroughs & product launches** — e.g. `AI research breakthrough product launch`
+1. **New model releases & launches** — e.g. `latest AI model release announcement this week`
+2. **Funding & startup news** — e.g. `AI startup funding raise million billion this week`
+3. **Big tech AI moves** — e.g. `OpenAI ChatGPT Claude Gemini Perplexity new feature 2024`
+4. **YouTube releases from AI companies** — e.g. `OpenAI Anthropic Google DeepMind ElevenLabs Midjourney new video YouTube`
+5. **AI + marketing & brands** — e.g. `brands using AI marketing creative strategy`
 
-Prioritise stories about the companies and topics named in the seed terms.
+Prioritise stories about: ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney, Runway, Suno, Cursor, and any big-tech AI (Microsoft Copilot, Apple Intelligence, Amazon Bedrock, Nvidia).
 
 ---
 
-## Step 3 — Extract Trending Phrases
+## Step 3 — Extract Trending Phrases + Sources
 
 From your search results, extract **15–20 short keyword phrases** (2–5 words each) that:
 - Represent genuinely trending topics right now (not evergreen concepts)
 - Are specific enough to be useful in a post (prefer "GPT-5 reasoning benchmark" over just "AI")
-- Cover a mix of: model launches, company moves, funding, research, and policy/regulation
+- Cover a mix of: model launches, company moves, funding, YouTube releases, research, and policy/regulation
 
 Good examples:
 - "GPT-5 reasoning capabilities"
 - "Anthropic Claude 4 release"
 - "AI agent frameworks 2024"
-- "EU AI Act enforcement"
-- "multimodal model benchmark"
+- "ElevenLabs voice model launch"
+- "Midjourney v7 image generation"
+
+For each phrase, record the best source URL from your search results (if one is available).
 
 ---
 
 ## Output
 
-Return **only** a raw JSON array — no markdown fences, no explanation, no preamble.
+Return **only** a raw JSON array of objects — no markdown fences, no explanation, no preamble.
 Start your entire response with `[` and end with `]`.
 
-Example format:
+Each element:
 ```json
-["GPT-5 reasoning capabilities", "Anthropic funding round", "AI agent frameworks", "EU AI Act enforcement", "multimodal benchmarks"]
+{
+  "phrase": "GPT-5 reasoning capabilities",
+  "source_url": "https://techcrunch.com/2024/..." 
+}
 ```
 
-15–20 phrases. Nothing else.
+If no URL is available for a phrase, set `"source_url": null`.
+
+15–20 items. Nothing else.
