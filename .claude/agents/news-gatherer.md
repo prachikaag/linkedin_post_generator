@@ -10,6 +10,23 @@ Fetch fresh AI news from RSS feeds, score each article for relevance, deduplicat
 
 ---
 
+## Step 0 — Load Memory (Seen Articles)
+
+Read `posts/memory.json` if it exists. This file has the shape:
+
+```json
+{
+  "seen_urls": ["https://...", "https://..."],
+  "seen_slugs": ["openai-launches-gpt5", "anthropic-funding-round"]
+}
+```
+
+If the file does not exist or is invalid JSON, treat `seen_urls` and `seen_slugs` as empty arrays.
+
+Store these in memory — you will use them in Step 5 to exclude already-processed articles.
+
+---
+
 ## Step 1 — Read Configuration
 
 Read `config/sources.yaml`:
@@ -69,6 +86,7 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 Remove articles that duplicate ones already processed:
 - Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
 - If the URL (exact match) was seen → skip
+- If the URL appears in `seen_urls` from `posts/memory.json` (loaded in Step 0) → skip (already generated a post for this article)
 
 ---
 

@@ -128,7 +128,29 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 6 — Update Memory
+
+After all posts are generated, update `posts/memory.json` to record the new articles so they won't be re-fetched on the next run.
+
+1. Read `posts/memory.json` if it exists (ignore if missing or invalid)
+2. For each successfully generated post result:
+   - Add all `url` values from the post's article cluster to `seen_urls`
+   - Add the post's slug (the filename without date prefix and `.md`) to `seen_slugs`
+3. Deduplicate both arrays
+4. Write back to `posts/memory.json` with this shape:
+
+```json
+{
+  "seen_urls": ["https://...", "..."],
+  "seen_slugs": ["openai-launches-gpt5", "..."]
+}
+```
+
+If no posts were generated, skip this step.
+
+---
+
+## Step 7 — Final Summary
 
 Print a summary table:
 
