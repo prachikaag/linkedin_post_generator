@@ -50,15 +50,29 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — each file is a standalone component you can edit independently:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | Purpose | Edit when... |
+|------|---------|--------------|
+| `config/topics.yaml` | Companies, keywords, and freshness settings | Adding a new AI company to track, adjusting how old articles can be |
+| `config/sources.yaml` | RSS feeds and API sources | Adding a new news source, disabling a feed |
+| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules | Updating your name/title, changing tone or post length |
+| `config/post_templates.yaml` | Post templates by content type | Tweaking how funding posts vs. product launch posts are framed |
 
 Edit these files directly — changes take effect on the next run.
+
+### First-time setup: fill in your brand
+
+Open `config/brand_kit.yaml` and update:
+```yaml
+author:
+  name: "Your Name"          # ← your full name
+  title: "Your Title"        # ← e.g. "Brand Strategist & AI Experimenter"
+  tagline: "..."             # ← your LinkedIn headline
+  location: "City, Country"  # ← your location
+```
+
+Everything else in `brand_kit.yaml` is pre-configured with good defaults for AI-focused marketing content.
 
 ### Environment Variables
 
@@ -111,9 +125,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/post_templates.yaml`
+- **Does**: Selects the best-fit post template (product launch, funding, big tech, human-in-the-loop, etc.), synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, source metadata, and template used
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
@@ -133,6 +147,24 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Post Templates
+
+`config/post_templates.yaml` contains six post templates, each tuned for a different kind of story:
+
+| Template | Triggered by | Best for |
+|----------|-------------|---------|
+| `ai_product_launch` | Feature/launch articles | ChatGPT, Claude, Gemini, ElevenLabs, Midjourney announcements |
+| `ai_startup_funding` | Funding/acquisition articles | Series A–C rounds, unicorn valuations, acquisitions |
+| `big_tech_ai` | Microsoft, Google, Apple, Meta, Nvidia moves | Strategic pivots, enterprise partnerships, platform plays |
+| `human_in_the_loop` | Marketing/experiment articles | Your personal AI workflow experiments and honest results |
+| `ai_regulation_policy` | Regulation/policy articles | EU AI Act, copyright battles, government AI rules |
+| `ai_research` | Research/benchmark articles | Papers, capability milestones, benchmark results |
+| `default` | Fallback | General AI news that doesn't fit the above |
+
+To add a new template, copy any existing block, give it a unique `name`, set `trigger_categories` and `trigger_keywords`, and fill in the five guidance fields.
 
 ---
 

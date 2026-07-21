@@ -80,6 +80,8 @@ Divide the articles into clusters — one cluster per post to generate.
 
 For each cluster, spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
 
+The post-generator will automatically select the best-fit template from `config/post_templates.yaml` based on the matched article categories (product launch, funding, big tech, human-in-the-loop, etc.).
+
 Task for the subagent (include the full JSON data inline):
 ```
 Generate a LinkedIn post draft from the following data and save it to posts/.

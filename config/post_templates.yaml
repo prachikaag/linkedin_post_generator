@@ -1,0 +1,330 @@
+# ============================================================
+# POST TEMPLATES
+# One template per content type. Each controls the angle,
+# hook framing, and CTA style for that kind of story.
+#
+# The post-generator reads this file and selects the best-fit
+# template based on the matched_categories of the article cluster.
+# You can edit any template without touching the other components.
+# ============================================================
+
+# ── How templates are selected ────────────────────────────
+# The post-generator matches article categories to template trigger_categories.
+# First match wins. If no match, "default" is used.
+# Add new templates freely — just give them a unique name.
+
+templates:
+
+  # ── Template 1: AI Product Launch ─────────────────────────
+  - name: "ai_product_launch"
+    display_name: "AI Product Launch"
+    description: "New model releases, feature launches, product updates from AI companies"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "announces"
+      - "ships"
+      - "introduces"
+      - "unveils"
+      - "youtube video"
+      - "demo"
+
+    hook_style: |
+      Lead with what changed and why it matters for real users. Avoid hype words.
+      Options: a surprising capability, a shift in what was previously impossible, a direct question
+      about how your audience will use it. Never start with "I".
+      Example frames:
+        - "[Company] just made [X] possible. Here's why that changes things."
+        - "This changes what's possible for [role/use case]."
+        - "[Feature] has been the missing piece for [workflow]. Not anymore."
+
+    evidence_focus: |
+      Describe what the product actually does — in concrete, capability-level terms.
+      If a demo video was released, describe what the demo showed.
+      Compare to what was possible before. Quote the company only if the quote is exact and adds colour.
+      Name any pricing tiers, access tiers, or waitlists — specifics are better than vague claims.
+
+    your_take_focus: |
+      Your angle as a brand/marketing person: what does this unlock for marketing teams or brand creators?
+      Is this better or worse than alternatives? What's the catch or limitation nobody is talking about?
+      Have you tested it? Share what you found. Be opinionated — a neutral summary adds no value.
+
+    so_what_focus: |
+      One or two things brand or marketing people should do right now:
+      - Try the feature for [specific use case]
+      - Watch for the rollout if it's limited access
+      - Understand what this competes with in their current stack
+
+    cta_style: |
+      Ask what the reader will use the feature for, or whether they've tested it yet.
+      Example: "Have you had a chance to test [feature] yet? What use case are you starting with?"
+
+  # ── Template 2: AI Startup Funding ────────────────────────
+  - name: "ai_startup_funding"
+    display_name: "AI Startup Funding"
+    description: "Funding rounds, acquisitions, valuations, and IPOs in the AI startup space"
+    trigger_categories:
+      - "AI Startup Funding"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "billion"
+      - "million"
+
+    hook_style: |
+      Lead with what the funding tells us about where the market is going — not just the number.
+      Options: a surprising bet, a category that's heating up, or a signal about what investors believe.
+      Example frames:
+        - "Investors just made a $[X] bet that [belief]. Here's what that says about where AI is heading."
+        - "[Number] of AI companies raised [category] rounds this week. The pattern is worth paying attention to."
+        - "This acquisition doesn't make sense on the surface. Until you look at what [acquirer] is building."
+
+    evidence_focus: |
+      Name all companies, amounts, and lead investors exactly as reported.
+      Describe what the company does in one sharp sentence.
+      Put the round size in context — compare to previous rounds or industry averages if available.
+      If multiple funding events are in the cluster, weave them together as a sector signal.
+
+    your_take_focus: |
+      What does this money signal about where the market is going?
+      Is this category getting crowded? Is this a defensive acquisition?
+      What does it mean for the companies that didn't raise? For the incumbents?
+      Be direct — if you think the valuation is stretched, say so (carefully).
+
+    so_what_focus: |
+      What brand and marketing leaders should watch:
+      - Does this affect a tool your team uses or is evaluating?
+      - Does this change the competitive landscape for your clients or category?
+      - Is there a new player to watch or an existing one to reevaluate?
+
+    cta_style: |
+      Ask about the reader's bet or observation on the space.
+      Example: "What's the funding story you're watching most closely right now?"
+
+  # ── Template 3: Big Tech AI News ──────────────────────────
+  - name: "big_tech_ai"
+    display_name: "Big Tech AI Move"
+    description: "AI strategy moves, partnerships, or product shifts from Microsoft, Google, Apple, Amazon, Meta, Nvidia"
+    trigger_categories:
+      - "AI Tools and Productivity"
+      - "AI Research and Breakthroughs"
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Copilot"
+      - "Gemini"
+      - "partnership"
+      - "enterprise"
+      - "Azure"
+      - "AWS"
+
+    hook_style: |
+      Frame it as a strategic move, not just a product update.
+      What is the big tech company actually betting on? What does this say about their AI strategy?
+      Example frames:
+        - "Big tech just made its clearest AI bet yet. Here's what [Company] is actually trying to own."
+        - "The [feature/product] isn't the real story. The real story is what [Company] is building toward."
+        - "[Company]'s AI move this week matters more than it looks. Here's why."
+
+    evidence_focus: |
+      Describe the strategic move, the product or announcement, and the context.
+      Connect it to what this company has done previously — show the direction of travel.
+      Include what this means for existing customers or competitors.
+      If multiple big tech moves happened, show the pattern — are they converging or diverging?
+
+    your_take_focus: |
+      Your angle: how does this affect brands and marketing teams who use or might use these platforms?
+      Is this an acceleration or a pivot?
+      Who benefits? Who should be worried?
+      Name your opinion explicitly — "I think", "In my view" — you are the author, not a journalist.
+
+    so_what_focus: |
+      For brand and marketing leaders specifically:
+      - Does this change which AI tools your team should be using?
+      - Is there an integration or partnership opportunity here?
+      - Is this a signal to lock in now, or wait?
+
+    cta_style: |
+      Ask the reader's take on the strategic implication.
+      Example: "Do you think [Company] is making the right bet here? What would you do differently?"
+
+  # ── Template 4: Human in the Loop (Personal Experimentation) ──
+  - name: "human_in_the_loop"
+    display_name: "Human in the Loop"
+    description: "Posts about your own AI experiments, workflows, and honest results. First-person, exploratory, test-driven."
+    trigger_categories:
+      - "AI for Marketing and Brands"
+    trigger_keywords:
+      - "I tried"
+      - "I tested"
+      - "workflow"
+      - "experiment"
+      - "results"
+      - "honest"
+      - "what actually happened"
+
+    hook_style: |
+      Start with the experiment or question — not the conclusion.
+      The reader should want to know how it turned out.
+      Example frames:
+        - "I gave [AI tool] [a task]. Here's what actually happened."
+        - "[Task] used to take me [time]. I tried doing it with AI. Honest results below."
+        - "I ran an experiment this week that I keep thinking about."
+
+    evidence_focus: |
+      Describe what you did step by step — enough that the reader could replicate it.
+      Share what worked, what didn't, and what surprised you.
+      Use specific numbers if you have them: time saved, quality comparison, error rate.
+      If you have a screenshot or example, describe it clearly.
+      Cite any AI tools or sources you used.
+
+    your_take_focus: |
+      What is your honest verdict?
+      Not "AI is amazing" or "AI is overhyped" — something more specific.
+      What would you do differently next time?
+      What does this mean for how you work, and how others in your field might work?
+      This is where your opinion must be clear and personal.
+
+    so_what_focus: |
+      What should the reader take from your experiment?
+      - Try this themselves? Here's where to start.
+      - Avoid this pitfall?
+      - Consider a tool or workflow they haven't thought of?
+
+    cta_style: |
+      Invite the reader to share their own experiments.
+      Example: "Have you tried using AI for [task]? What was your result?"
+
+  # ── Template 5: AI Regulation and Policy ──────────────────
+  - name: "ai_regulation_policy"
+    display_name: "AI Regulation & Policy"
+    description: "Government regulation, AI safety debates, copyright battles, and ethics news"
+    trigger_categories:
+      - "AI Regulation and Policy"
+    trigger_keywords:
+      - "regulation"
+      - "policy"
+      - "EU AI Act"
+      - "copyright"
+      - "safety"
+      - "ethics"
+      - "ban"
+      - "law"
+      - "Congress"
+      - "government"
+
+    hook_style: |
+      Frame it through the lens of what changes for real companies and creators — not just the policy itself.
+      Example frames:
+        - "A [law/ruling/regulation] just passed. Here's what it means for any brand using AI."
+        - "The [topic] debate isn't actually about [surface issue]. It's about [deeper implication]."
+        - "This regulation sounds technical. Its implications for marketers are not."
+
+    evidence_focus: |
+      Name the specific law, ruling, or policy exactly.
+      Describe what it requires or prohibits in plain language.
+      Note which companies or industries are affected and how.
+      If multiple regulatory moves are in the cluster, show whether they signal convergence or divergence globally.
+
+    your_take_focus: |
+      Your angle: practical impact on marketing, brand, and creative work.
+      Is this a problem for how your clients or team currently uses AI?
+      What should brands be doing now to prepare?
+      Name the thing most people are missing in the coverage.
+
+    so_what_focus: |
+      Concrete actions for brand and marketing leaders:
+      - What to review in your current AI usage
+      - What to ask your legal team
+      - What to watch for in the next 90 days
+
+    cta_style: |
+      Ask for the reader's view on how this affects their work.
+      Example: "How is your team thinking about [the regulation] in your AI workflows?"
+
+  # ── Template 6: AI Research Breakthrough ─────────────────
+  - name: "ai_research"
+    display_name: "AI Research & Breakthrough"
+    description: "Research papers, benchmark results, capability milestones, and technical advances"
+    trigger_categories:
+      - "AI Research and Breakthroughs"
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "AGI"
+      - "reasoning"
+      - "multimodal"
+      - "new capability"
+
+    hook_style: |
+      Translate the research into what it means for real people — before you explain the technical finding.
+      Example frames:
+        - "Researchers just showed that AI can [capability]. This isn't theoretical. Here's why it matters."
+        - "A new paper changed how I think about [AI topic]. The finding is simpler than you'd expect."
+        - "The benchmark result everyone is talking about — and the part nobody is discussing."
+
+    evidence_focus: |
+      Describe the finding clearly without jargon.
+      Who ran the research? What did they test? What did they find?
+      How does this compare to what was believed before?
+      Cite the paper or institution exactly. If quoting directly from the paper, mark it clearly.
+
+    your_take_focus: |
+      What does this research signal about where AI capabilities are heading?
+      Is this a genuine leap or a narrowly scoped result?
+      What does it mean for the brands and marketers you work with?
+      Be honest about uncertainty: if you're not sure of the implications, say so.
+
+    so_what_focus: |
+      Should marketers care about this now or in 6–12 months?
+      Is there a capability here they can already access via a commercial tool?
+      What should they keep an eye on?
+
+    cta_style: |
+      Ask for reactions to the research or its implications.
+      Example: "Does this change how you think about [capability / tool / workflow]?"
+
+  # ── Default fallback template ──────────────────────────────
+  - name: "default"
+    display_name: "General AI News"
+    description: "Fallback used when no specific template matches the article cluster"
+    trigger_categories: []
+    trigger_keywords: []
+
+    hook_style: |
+      Open with the single most interesting or surprising thing from the cluster.
+      Be direct. Avoid vague openers like "There's a lot happening in AI."
+
+    evidence_focus: |
+      Surface the most concrete, newsworthy developments from the articles.
+      Name companies and specifics. Avoid vague summaries.
+
+    your_take_focus: |
+      Your angle: what's the pattern? What's the implication for brands?
+      Be specific and opinionated.
+
+    so_what_focus: |
+      One or two concrete actions or watchpoints for brand and marketing leaders.
+
+    cta_style: |
+      Ask the reader a genuine question about their experience or take.

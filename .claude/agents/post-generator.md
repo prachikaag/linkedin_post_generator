@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/post_templates.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords using the best-fit template, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Post Templates
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -39,6 +39,14 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
+Then read `config/post_templates.yaml`. Select the best-fit template:
+1. Collect all `matched_categories` from the supplied articles
+2. For each template in order (skip "default"), check if any `trigger_categories` item matches a matched category. First match wins.
+3. If no category matches, scan article titles + summaries for any `trigger_keywords` in each template. First match wins.
+4. If still no match, use the "default" template.
+
+Extract from the selected template: `hook_style`, `evidence_focus`, `your_take_focus`, `so_what_focus`, `cta_style`. These override the generic guidance below for those sections only. Record the template `name` for the YAML frontmatter.
+
 ---
 
 ## Step 2 — Write the LinkedIn Post
@@ -46,12 +54,12 @@ Read `config/brand_kit.yaml` and extract:
 Following the brand kit precisely, write a post that:
 
 ### Must follow this structure (in order):
-1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
+1. **HOOK** (1–2 lines): Use the selected template's `hook_style` guidance. Never start with "I".
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
-3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
-4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated.
-5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable.
-6. **CTA** (1 line): A question that invites genuine discussion in the comments.
+3. **EVIDENCE** (4–6 lines): Apply the template's `evidence_focus`. Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
+4. **YOUR TAKE** (3–5 lines): Apply the template's `your_take_focus`. Your synthesis and personal opinion. Be specific and opinionated.
+5. **SO WHAT** (2–3 lines): Apply the template's `so_what_focus`. What this means for brands, marketers, or business leaders. Concrete and actionable.
+6. **CTA** (1 line): Use the template's `cta_style`. A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
 
@@ -131,6 +139,7 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+post_template: "<selected template name>"
 status: "draft"
 ---
 ```
