@@ -12,12 +12,14 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[memory load]       → seen article URLs
+[news-gatherer]     → articles JSON
+[trending-tracker]  → keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]    → saved .md draft
+[memory save]       → update seen URLs
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]  → published to Notion
 ```
 
 ---
@@ -30,6 +32,16 @@ Before starting, determine:
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+
+---
+
+## Step 0 — Load Memory
+
+Read `posts/.memory.json`. If the file does not exist, treat `seen_article_urls` as an empty array.
+
+Extract the `seen_article_urls` array — this is the list of article URLs that have already been used in a previous run. You will use this in Step 3 to prevent duplicate posts.
+
+Print: `✓ Memory loaded — {N} previously seen article URLs.`
 
 ---
 
@@ -62,16 +74,19 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
-## Step 3 — Build Article Clusters
+## Step 3 — Filter Memory & Build Article Clusters
 
-Divide the articles into clusters — one cluster per post to generate.
+**First, remove already-seen articles:**
+- From the articles returned in Step 1, discard any article whose `url` appears in `seen_article_urls` from Step 0.
+- Print: `✓ After memory filter: {N} fresh articles remain (discarded {M} already-seen).`
+- If zero fresh articles remain, print: `No new articles found since the last run. Run again later.` and stop.
 
-**Clustering algorithm:**
-- `n_posts = min(MAX_POSTS, len(articles))`
+**Then, divide fresh articles into clusters — one cluster per post to generate:**
+- `n_posts = min(MAX_POSTS, len(fresh_articles))`
 - For post `i` (0-indexed):
-  - `start = min(i, max(0, len(articles) - SOURCE_POOL_SIZE))`
-  - `cluster = articles[start : start + SOURCE_POOL_SIZE]`
-  - Move `articles[i]` to position 0 of the cluster (it becomes the anchor article)
+  - `start = min(i, max(0, len(fresh_articles) - SOURCE_POOL_SIZE))`
+  - `cluster = fresh_articles[start : start + SOURCE_POOL_SIZE]`
+  - Move `fresh_articles[i]` to position 0 of the cluster (it becomes the anchor article)
 - Result: `n_posts` clusters, each with up to `SOURCE_POOL_SIZE` articles, each with a distinct anchor
 
 ---
@@ -103,7 +118,40 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Save Memory
+
+After all posts have been generated, update `posts/.memory.json` to record the articles that were used.
+
+Read the current contents of `posts/.memory.json` (or start with an empty structure if it does not exist):
+
+```json
+{
+  "version": 1,
+  "seen_article_urls": [],
+  "generated_posts": []
+}
+```
+
+For each successfully generated post result:
+1. Add all article URLs from that cluster to `seen_article_urls` (deduplicated)
+2. Append an entry to `generated_posts`:
+   ```json
+   {
+     "filename": "<result.filename>",
+     "date": "<YYYY-MM-DD of today>",
+     "article_urls": ["<url of each article in the cluster>"]
+   }
+   ```
+
+Keep `seen_article_urls` capped at the most recent **500** URLs (drop oldest if over the limit).
+
+Write the updated JSON back to `posts/.memory.json`.
+
+Print: `✓ Memory updated — {total} URLs now tracked.`
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +176,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 

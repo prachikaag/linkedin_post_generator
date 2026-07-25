@@ -146,6 +146,31 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC-ew9TfeD887qUSiWWAAj1w"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCYqxnCFtaC4-iC_bwt2bRLg"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCN27knAu2YqrBvVNF-GQsWw"
+      priority: medium
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCxevw55Jhu0JNtBCMpw_EGw"
+      priority: medium
+      enabled: true
+
+    - name: "NVIDIA YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCHuiy8bXnmK5nisYHUd1J5g"
+      priority: medium
+      enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:

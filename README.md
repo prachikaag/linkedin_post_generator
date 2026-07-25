@@ -13,10 +13,19 @@ orchestrator.md
 ├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
 ├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
 ├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+├── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+└── posts/.memory.json                   → cross-run dedup so the same news is never posted twice
 ```
 
 Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
+
+---
+
+## Quick-Start Checklist
+
+1. **Personalise your brand kit** — open `config/brand_kit.yaml` and fill in `author.name`, `author.title`, and `author.location`
+2. **Set up Notion (optional)** — copy `.env.example` to `.env` and fill in `NOTION_PAGE_ID`
+3. **Run the pipeline** — open this project in Claude Code and say the command below
 
 ---
 
@@ -31,10 +40,13 @@ Run the LinkedIn Post Generator pipeline.
 ```
 
 Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
+1. **Memory load** → reads `posts/.memory.json` to know which articles were already used
+2. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
+3. Spawns **trending-tracker** → searches trending AI topics via WebSearch
+4. Filters out already-seen articles, then clusters fresh ones
+5. For each article cluster, spawns **post-generator** → writes and saves a draft
+6. **Memory save** → updates `posts/.memory.json` so these articles won't repeat
+7. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
 
 ### Custom parameters
 
@@ -119,6 +131,12 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Tools**: Read, Notion MCP
 - **Does**: Appends the post as a toggle block on a Notion page
 - **Output**: `success` or `failed`
+
+### Memory file: `posts/.memory.json`
+- Tracks all article URLs that have already been used in a previous post
+- The orchestrator reads this at the start and skips already-seen articles
+- Updated after every successful run — prevents duplicate posts across runs
+- Capped at 500 URLs (oldest dropped when limit is reached)
 
 ---
 
