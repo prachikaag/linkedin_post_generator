@@ -1,11 +1,11 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, seen-articles-tracker, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
 tools: Read, Write, Agent
 ---
 
 You are the **LinkedIn Post Generator Orchestrator**.
 
-Your job is to run the full pipeline end-to-end by delegating to four specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
+Your job is to run the full pipeline end-to-end by delegating to five specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
 
 ---
 
@@ -47,6 +47,30 @@ Then stop.
 Print a summary line: `✓ {N} relevant articles fetched and scored.`
 
 If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
+
+---
+
+## Step 1b — Filter Already-Covered Articles
+
+Spawn the **seen-articles-tracker** subagent (defined in `.claude/agents/seen-articles-tracker.md`).
+
+Task for the subagent:
+```
+Filter this candidate article list to remove any articles already covered in a prior post.
+
+Input:
+{
+  "candidates": [<full articles array as JSON>]
+}
+```
+
+Receive the filtered JSON array. Update `articles` to this filtered list.
+
+Print: `✓ {M} new articles after deduplication ({N-M} already covered in prior posts).`
+
+If the filtered list is empty, print:
+> "All fetched articles have already been covered. Run again after 48 hours for fresh content."
+Then stop.
 
 ---
 
