@@ -50,15 +50,17 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` as separate editable files:
 
 | File | Purpose |
 |------|---------|
+| `config/author_profile.yaml` | Your name, title, tagline, bio, and personal positioning |
+| `config/tone_of_voice.yaml` | How you write — traits, style rules, post structure, dos/don'ts |
+| `config/brand_kit.yaml` | Content focus areas, content angles, hashtag strategy, post length |
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/topics.yaml` | Companies to track, topic categories, freshness settings |
 
-Edit these files directly — changes take effect on the next run.
+Edit any file directly — changes take effect on the next run. Each file is self-contained so you can tweak one without touching the others.
 
 ### Environment Variables
 
@@ -124,15 +126,26 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ## Customising Your Brand
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+The brand config is split into three focused files — edit each independently:
 
-The post-generator agent reads this file on every run — no restarts needed.
+**`config/author_profile.yaml`** — your identity
+- Your name, title, tagline, location, and bio
+- Your personal positioning on LinkedIn
+
+**`config/tone_of_voice.yaml`** — how you sound
+- Tone traits (curious, pragmatic, opinionated, etc.)
+- Writing style rules (paragraph length, hook style, sentence length)
+- Post structure blueprint (hook → context → evidence → your take → so what → CTA)
+- Do/don't guardrails and banned words
+
+**`config/brand_kit.yaml`** — your content strategy
+- Focus areas and content angles
+- Human-in-the-loop experiment angles
+- Hashtag strategy
+- Post length target and character limits
+- Citation and research standards
+
+All three files are read on every run — no restarts needed.
 
 ---
 

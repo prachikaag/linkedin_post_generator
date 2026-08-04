@@ -24,19 +24,28 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Config
 
-Read `config/brand_kit.yaml` and extract:
+Read all three config files:
 
-- `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
-- `tone_of_voice.dos` and `tone_of_voice.donts`
-- `brand.focus_areas` — the lenses the author writes through
-- `brand.hashtags.always_include` — hashtags in every post
-- `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
-- `brand.post_length` — target length (short / medium / long)
+**`config/author_profile.yaml`** — extract:
+- `name`, `title`, `tagline` — used to write in first person as the author
+- `personal_positioning` — what the author wants to be known for
+- `bio` — short author context for framing posts
+
+**`config/tone_of_voice.yaml`** — extract:
+- `primary_traits` — how the author comes across
+- `writing_style` — rules for every post (apply all of them)
+- `post_structure` — the ordered blueprint to follow
+- `dos` and `donts` — quality guardrails
+- `banned_words` — never use these words; use the `replace_with` alternative instead
+
+**`config/brand_kit.yaml`** — extract:
+- `focus_areas` — the lenses the author writes through
+- `personal_experiment_angles` — inspiration for human-in-the-loop framing
+- `hashtags.always_include` — hashtags in every post
+- `hashtags.rotate_from` — pick from these to reach `max_hashtags` total
+- `post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
 ---

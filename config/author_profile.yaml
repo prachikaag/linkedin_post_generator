@@ -1,0 +1,32 @@
+# ============================================================
+# AUTHOR PROFILE
+# Edit this file with your personal details.
+# This is used to personalise every LinkedIn post.
+# ============================================================
+
+name: "Your Name"
+title: "Your Professional Title"
+# Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+tagline: "Helping brands understand and leverage AI in the real world"
+location: "Your City, Country"
+
+industries:
+  - "Marketing & Brand Strategy"
+  - "Artificial Intelligence"
+  - "Digital Innovation"
+
+# Your LinkedIn profile URL (optional — used in post footers if set)
+linkedin_url: ""
+
+# A short 2–3 sentence bio used when the post generator needs context about you.
+# Write it in third person.
+bio: >
+  A brand and marketing professional who experiments with AI tools daily and shares
+  honest, practical observations. Focused on helping brands navigate the AI era with
+  clarity — not hype.
+
+# What you want to be known for on LinkedIn
+personal_positioning:
+  - "AI literacy for marketers and brand leaders"
+  - "Honest experiments with AI tools — sharing what works and what doesn't"
+  - "Translating complex AI news into practical brand strategy"
