@@ -1,0 +1,23 @@
+# ============================================================
+# PUBLISHED ARTICLES MEMORY
+# Auto-updated by the pipeline after each run.
+# Tracks article URLs and slugs already used to avoid re-writing
+# posts about the same stories.
+#
+# Structure per entry:
+#   - url: the exact article URL used as anchor source
+#     slug: the post filename slug
+#     date_generated: ISO date the post was generated
+#     post_file: relative path to the saved .md file
+#     status: draft | published | skipped
+# ============================================================
+
+published_urls: []
+
+# Example entry (generated automatically — do not edit manually):
+# published_urls:
+#   - url: "https://techcrunch.com/2026/05/13/anthropic-now-has-more..."
+#     slug: "enterprise-ai-market-shift-real-data"
+#     date_generated: "2026-05-14"
+#     post_file: "posts/2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+#     status: "draft"

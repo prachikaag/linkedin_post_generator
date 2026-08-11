@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  # ↓ Fill these in with your actual details
+  name: "Prachi"                        # EDIT: Your first + last name
+  title: "Brand & AI Strategist"        # EDIT: Your professional title
+  tagline: "Helping brands understand and leverage AI in the real world"  # EDIT: Your LinkedIn tagline
+  location: "Your City, Country"        # EDIT: e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -100,6 +100,29 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I've been using [AI tool] in my workflow for [X weeks] — honest take"
+    - "[AI tool] vs [AI tool] — I tested both for [use case] and here's the truth"
+    - "New YouTube from [Company] — what it means and why it matters"
+    - "AI startup [Name] just raised [amount] — here's why the category matters"
+    - "Big Tech's AI bet this week: [move] — and what it signals for brands"
+
+  # ── Human-in-the-Loop Experimentation Posts ───────────────
+  # Your signature format: you try AI tools personally and share honest observations.
+  # These posts show you as someone experimenting with AI, not just reporting on it.
+  experimentation_post_triggers:
+    - "New model release from any tracked company"
+    - "New product feature launch from ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, or Midjourney"
+    - "New YouTube video from a tracked AI company"
+    - "Any AI tool you have personally tested or plan to test"
+    - "Notable AI workflow automation update"
+    - "AI tool that changed how you work with a client or on a project"
+
+  experimentation_post_structure:
+    hook: "The new tool / feature / observation — stated as a bold personal experience"
+    experiment: "What you actually tested — be specific about the task or use case"
+    result: "What happened — honest, not hyped. Include surprises."
+    brand_take: "What this means for brands and marketing teams — concrete and actionable"
+    invite: "A question that invites others to share their own experiments"
 
   # Hashtag strategy
   hashtags:

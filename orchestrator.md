@@ -16,8 +16,8 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
 [post-generator] → saved .md draft
-         ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+         ↓ (updates published memory)
+[notion-publisher] → published to Notion (if configured)
 ```
 
 ---
@@ -25,10 +25,11 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many posts to generate (default: read from `config/content_themes.yaml` → `posts_per_run`, fallback **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 
+Read `config/content_themes.yaml` to get `posts_per_run` for MAX_POSTS.
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
@@ -103,7 +104,26 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Update Published Memory
+
+After all posts are generated, update `data/published_memory.yaml` to record the anchor article URL of each post that was generated.
+
+For each generated post result, append to `published_urls`:
+```yaml
+- url: "<result.source_url>"
+  slug: "<result.filename without extension>"
+  date_generated: "<today's date YYYY-MM-DD>"
+  post_file: "<result.filepath>"
+  status: "draft"
+```
+
+Read the existing `data/published_memory.yaml`, append the new entries, and write it back. Preserve all existing entries.
+
+Print: `✓ Published memory updated with {N} new entries.`
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +148,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 

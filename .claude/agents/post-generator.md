@@ -41,11 +41,22 @@ Read `config/brand_kit.yaml` and extract:
 
 ---
 
-## Step 2 — Write the LinkedIn Post
+## Step 2 — Choose Post Type and Write
+
+### Determine post type
+
+Look at the anchor article (`articles[0]`):
+- If it is a **YouTube video** from a tracked AI company: write an **AI Experimentation / Reaction post**
+- If the article is about a **new model or product launch** from ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, or Midjourney: write an **AI Experimentation / Reaction post**
+- Otherwise: write a **Research-backed News post**
+
+---
+
+### Post Type A: Research-Backed News Post (default)
 
 Following the brand kit precisely, write a post that:
 
-### Must follow this structure (in order):
+Must follow this structure (in order):
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
 3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
@@ -54,6 +65,23 @@ Following the brand kit precisely, write a post that:
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
+
+---
+
+### Post Type B: AI Experimentation / Human-in-the-Loop Post
+
+Use this format when the news is a tool launch, new model, or YouTube video from a tracked AI company.
+
+Write in the **author's voice as a practitioner** — someone who experiments with AI tools and shares honest takes, not just a news reporter.
+
+Must follow this structure (in order):
+1. **HOOK** (1–2 lines): Lead with what changed — the new tool, feature, or video. Make it feel like a discovery, not a press release. Never start with "I".
+2. **WHAT'S NEW** (2–3 lines): Describe the launch or development specifically. What is it, what does it do, what's notable about it.
+3. **PRACTITIONER'S TAKE** (3–5 lines): Write as someone who has used (or will immediately test) AI tools. What will you try? What does this unlock for your work? Be honest if you don't know yet — curiosity is the voice, not authority.
+4. **BRAND IMPLICATIONS** (2–3 lines): Specifically for marketing teams and brand leaders — one or two concrete things this enables or changes for them.
+5. **CTA** (1 line): Invite others to share experiments, questions, or reactions. Make it feel like a conversation, not a broadcast.
+6. **SOURCES**: Minimum 2 sources (the YouTube video or launch post + at least one article about it). Format: `[N]. [Short title] → [full URL]`
+7. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`.
 
 ### Content rules:
 - Synthesise **all** provided articles — do not just summarise article 1

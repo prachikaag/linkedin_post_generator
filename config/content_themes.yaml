@@ -1,0 +1,91 @@
+# ============================================================
+# WEEKLY CONTENT THEMES
+# Edit this file to set recurring weekly themes for your posts.
+# The pipeline uses this to prioritise which types of news to
+# lead with each week. All themes are always tracked — this
+# controls which angle gets the headline spot.
+#
+# Rotate themes to keep your feed varied and consistent.
+# ============================================================
+
+# ── Weekly Rotation ───────────────────────────────────────
+# Assign a focus theme to each week of the month.
+# Week 1 = first 7 days of month, Week 4 = days 22-31.
+weekly_rotation:
+  week_1:
+    theme: "AI Tool Experimentation"
+    description: "Personal experiments with AI tools — what you tried, what worked, what surprised you"
+    preferred_categories:
+      - "New AI Feature or Product Launch"
+      - "AI Tools and Productivity"
+    preferred_companies:
+      - "OpenAI"
+      - "Anthropic"
+      - "Perplexity"
+      - "Gemini"
+      - "ElevenLabs"
+      - "Midjourney"
+
+  week_2:
+    theme: "AI for Brands and Marketing"
+    description: "How AI is reshaping marketing, creative work, and brand strategy"
+    preferred_categories:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+    preferred_companies:
+      - "Adobe"
+      - "Salesforce"
+      - "Microsoft"
+      - "Canva"
+
+  week_3:
+    theme: "AI Startup Ecosystem"
+    description: "Funding rounds, new entrants, acquisitions — what the money tells us about where AI is heading"
+    preferred_categories:
+      - "AI Startup Funding"
+      - "New AI Feature or Product Launch"
+    preferred_companies:
+      - "Cerebras"
+      - "Groq"
+      - "Harvey AI"
+      - "Cognition AI"
+      - "Writer"
+
+  week_4:
+    theme: "Big Tech AI Moves"
+    description: "What Google, Microsoft, Apple, Amazon, and Meta are doing with AI — and what it means"
+    preferred_categories:
+      - "New AI Feature or Product Launch"
+      - "AI Research and Breakthroughs"
+    preferred_companies:
+      - "Google DeepMind"
+      - "Microsoft"
+      - "Meta AI"
+      - "Apple"
+      - "Amazon"
+      - "Nvidia"
+
+# ── Special Topic Spotlights ──────────────────────────────
+# Evergreen high-priority topics that always jump the queue
+# when a relevant story breaks — regardless of weekly theme.
+always_prioritise:
+  - "GPT model release or major update"
+  - "Claude model release or major update"
+  - "Gemini model release or major update"
+  - "ElevenLabs new voice feature"
+  - "Midjourney new version"
+  - "AI startup raises over $100M"
+  - "Big Tech acquires AI startup"
+  - "New AI regulation or policy"
+  - "AI YouTube video from tracked company"
+
+# ── Post Frequency Target ─────────────────────────────────
+# How many posts to aim for per pipeline run.
+# Adjust based on how often you want to post.
+posts_per_run: 2          # Default posts to generate each run
+max_posts_per_week: 5     # Hard cap — don't flood the feed
+
+# ── Minimum Gap Between Posts ─────────────────────────────
+# Don't generate a post if an identical topic was covered
+# within this many days. Prevents repetitive content.
+min_days_between_same_topic: 7
