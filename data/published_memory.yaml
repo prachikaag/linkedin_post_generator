@@ -3,21 +3,29 @@
 # Auto-updated by the pipeline after each run.
 # Tracks article URLs and slugs already used to avoid re-writing
 # posts about the same stories.
-#
-# Structure per entry:
-#   - url: the exact article URL used as anchor source
-#     slug: the post filename slug
-#     date_generated: ISO date the post was generated
-#     post_file: relative path to the saved .md file
-#     status: draft | published | skipped
 # ============================================================
 
-published_urls: []
+published_urls:
+  - url: "https://techcrunch.com/2026/05/13/anthropic-now-has-more-business-customers-than-openai-according-to-ramp-data/"
+    slug: "enterprise-ai-market-shift-real-data"
+    date_generated: "2026-05-14"
+    post_file: "posts/2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    status: "draft"
 
-# Example entry (generated automatically — do not edit manually):
-# published_urls:
-#   - url: "https://techcrunch.com/2026/05/13/anthropic-now-has-more..."
-#     slug: "enterprise-ai-market-shift-real-data"
-#     date_generated: "2026-05-14"
-#     post_file: "posts/2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
-#     status: "draft"
+  - url: "https://techcrunch.com/2026/05/14/vertical-ai-agents-depth-over-horizontal/"
+    slug: "vertical-ai-depth-over-horizontal"
+    date_generated: "2026-05-14"
+    post_file: "posts/2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    status: "draft"
+
+  - url: "https://www.buildfastwithai.com/blogs/ai-news-today-august-9-2026"
+    slug: "google-shakes-up-its-ai-team-ai-news-augu"
+    date_generated: "2026-08-11"
+    post_file: "posts/2026-08-11_13-28-09_google-shakes-up-its-ai-team-ai-news-augu.md"
+    status: "draft"
+
+  - url: "https://medium.com/creativity-ai/creativity-ai-77-midjourneys-busy-summer-runway-lands-in-your-ai-assistant-and-elevenlabs-eeb4e5fd608d"
+    slug: "creativity-ai-77-midjourneys-busy-summ"
+    date_generated: "2026-08-11"
+    post_file: "posts/2026-08-11_14-00-00_creativity-ai-77-midjourneys-busy-summ.md"
+    status: "draft"
