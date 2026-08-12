@@ -1,0 +1,115 @@
+# ============================================================
+# CONTENT PILLARS
+# The four angles you rotate between for your LinkedIn posts.
+# Each pillar maps to a trigger event and a writing angle.
+# Edit this file to add, remove, or refine your content strategy.
+# The post-generator reads this to choose the right frame for each post.
+# ============================================================
+
+pillars:
+
+  - id: "ai_tool_experiment"
+    name: "AI Tool Experiments"
+    tagline: "I tried it so you don't have to."
+    description: >
+      First-person experiments with AI tools applied to real brand and marketing tasks.
+      You tried it. You have opinions. You're sharing the honest result.
+    trigger_events:
+      - "New product or feature launch from any AI company in topics.yaml"
+      - "YouTube demo video from an AI company"
+      - "New AI model release (image, video, text, audio)"
+    post_angle: "I tried [AI tool] for [brand/marketing use case] — here's what actually happened"
+    tone_notes:
+      - "Be specific about what you tested, not just what was announced"
+      - "Include what worked, what didn't, and what surprised you"
+      - "Translate capability into a brand/marketing outcome"
+    example_hooks:
+      - "I spent an afternoon with [tool]. Here's the honest breakdown."
+      - "[Tool] just dropped [feature]. I ran it through a real brief. Notes below."
+      - "Everyone is asking about [tool]. I tried it on [actual task]. Here's the reality."
+
+  - id: "ai_news_for_brands"
+    name: "AI News for Brand Leaders"
+    tagline: "What just happened in AI, and why your brand team should care."
+    description: >
+      Translated AI news for marketing and brand professionals who don't have time to follow
+      every announcement. You've read it. You've filtered it. You're telling them what matters.
+    trigger_events:
+      - "BigTech AI announcement (Microsoft, Google, Apple, Amazon, Meta)"
+      - "AI startup funding round or acquisition"
+      - "Major AI company partnership or enterprise deal"
+      - "AI regulation or policy that affects how brands use AI"
+    post_angle: "[Company] just launched [feature] — here's what brand teams should actually know"
+    tone_notes:
+      - "Don't just summarise the press release — add your read on the implications"
+      - "Connect to a real brand or marketing scenario"
+      - "Be opinionated: is this a big deal or being overhyped?"
+    example_hooks:
+      - "[Company] made a move this week that most marketers will underestimate."
+      - "BigTech just upgraded [product]. Here's the one thing brand teams need to understand."
+      - "A [X]M funding round just closed. Here's what it signals about where AI is heading."
+
+  - id: "pattern_behind_the_news"
+    name: "The Pattern Behind the News"
+    tagline: "Three things happened this week that look unrelated. They're not."
+    description: >
+      A synthesis post connecting multiple AI news events into one insight.
+      This is where your analytical, strategic thinking shows up.
+      You're not just reporting — you're seeing the signal in the noise.
+    trigger_events:
+      - "Multiple related AI events in the same news cycle (3+ stories on similar themes)"
+      - "A convergence: funding + product launch + regulation all happening together"
+      - "A shift you've been watching for weeks that finally has enough data to write about"
+    post_angle: "The real story isn't [obvious thing]. It's [the pattern you spotted]."
+    tone_notes:
+      - "Name the pattern explicitly — don't be vague"
+      - "Use evidence from at least 3 separate sources"
+      - "End with a clear prediction or recommendation"
+    example_hooks:
+      - "Three things happened in AI this week. They look unrelated. They're not."
+      - "The news cycle is talking about [X]. But the real story is [Y]."
+      - "Something quietly shifted in [AI space] this month. Here's the evidence."
+
+  - id: "contrarian_take"
+    name: "Contrarian Takes"
+    tagline: "Everyone is saying X. Here's why the brands getting it right are doing the opposite."
+    description: >
+      A post that pushes back on the mainstream AI narrative with a grounded, specific argument.
+      You have a clear opinion and you're willing to defend it.
+    trigger_events:
+      - "A hyped AI announcement that's being overclaimed"
+      - "An AI trend that brands are misapplying"
+      - "A mainstream take you genuinely disagree with"
+    post_angle: "Hot take: [mainstream view] — and here's where I think brands are getting it wrong"
+    tone_notes:
+      - "Lead with the claim, not the caveats"
+      - "Use specific evidence to back your position"
+      - "Acknowledge the strongest counterargument, then refute it"
+      - "End with a concrete alternative"
+    example_hooks:
+      - "Hot take: [common AI belief] is overstated. Here's why."
+      - "Brands are spending on [AI tool] for [reason]. I think they're solving the wrong problem."
+      - "The 'AI will replace [job]' take is missing the point. Here's what's actually happening."
+
+# ── Rotation Strategy ─────────────────────────────────────
+# How to cycle through pillars across posts.
+# The post-generator will use the anchor article's category to select the best pillar.
+rotation:
+  default_order:
+    - "ai_tool_experiment"
+    - "ai_news_for_brands"
+    - "pattern_behind_the_news"
+    - "contrarian_take"
+
+  # Category-to-pillar mapping: when an article matches this category,
+  # prefer this pillar as the post frame.
+  category_pillar_map:
+    "New AI Feature or Product Launch": "ai_tool_experiment"
+    "AI Video and YouTube Launch": "ai_tool_experiment"
+    "AI Startup Funding": "ai_news_for_brands"
+    "AI for Marketing and Brands": "ai_tool_experiment"
+    "AI for Marketing and Creative": "ai_tool_experiment"
+    "AI Research and Breakthroughs": "pattern_behind_the_news"
+    "AI Regulation and Policy": "contrarian_take"
+    "AI Tools and Productivity": "ai_tool_experiment"
+    "Human in the Loop AI": "ai_tool_experiment"

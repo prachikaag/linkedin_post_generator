@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillars
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,16 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_pillars.yaml` and extract:
+- The four content pillars with their angles, tone notes, and example hooks
+- `rotation.category_pillar_map` — maps article categories to pillars
+
+**Select the content pillar** for this post by looking at `articles[0].matched_categories`:
+- If any category matches the `category_pillar_map`, use the mapped pillar
+- Otherwise default to `ai_news_for_brands`
+
+Use the selected pillar's `post_angle`, `tone_notes`, and `example_hooks` to guide the hook and framing of the post.
 
 ---
 

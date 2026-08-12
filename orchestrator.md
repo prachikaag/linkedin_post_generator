@@ -1,5 +1,5 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn post drafts saved to posts/.
 tools: Read, Write, Agent
 ---
 
@@ -12,12 +12,14 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[memory check]    → load seen URLs
+[news-gatherer]   → articles JSON (filtered by seen URLs)
+[trending-tracker]→ keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]  → saved .md draft
+[memory update]   → mark article URLs as seen
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]→ published to Notion
 ```
 
 ---
@@ -33,18 +35,28 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Memory
+
+Read `memory/seen_articles.json`.
+
+- If the file is missing or `seen_urls` is absent, continue with an empty seen list.
+- Store the `seen_urls` array internally — you will use it to update memory in Step 4.5.
+- Print: `✓ Memory loaded — {N} previously-seen article URLs on record.`
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
 Task for the subagent:
-> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
+> "Fetch AI news articles from the RSS feeds and topics config. Filter out any URL already in memory/seen_articles.json. Return a scored JSON array of unseen articles only."
 
 Receive the JSON array of articles. If the array is empty, print:
-> "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
+> "No new relevant articles found (all matching articles may already be in memory). Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
 Then stop.
 
-Print a summary line: `✓ {N} relevant articles fetched and scored.`
+Print a summary line: `✓ {N} new relevant articles fetched and scored.`
 
 If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
 
@@ -103,6 +115,28 @@ Collect each result's JSON object.
 
 ---
 
+## Step 4.5 — Update Memory
+
+After all posts are generated, update `memory/seen_articles.json`.
+
+1. Read the current `memory/seen_articles.json` to get the existing `seen_urls` list.
+2. Collect all article URLs from every cluster used in Step 4 (not just the anchor — all articles in each cluster).
+3. Merge with the existing `seen_urls` list, deduplicating.
+4. Write back to `memory/seen_articles.json` with this structure:
+
+```json
+{
+  "seen_urls": ["https://...", "https://..."],
+  "last_run": "<ISO 8601 timestamp of now>",
+  "total_posts_generated": <prior total + posts generated this run>,
+  "_note": "This file is updated automatically after each pipeline run. Add URLs manually here to permanently exclude specific articles."
+}
+```
+
+Print: `✓ Memory updated — {N} total URLs on record.`
+
+---
+
 ## Step 5 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
@@ -153,3 +187,4 @@ Then print each post's content in full so the author can review immediately.
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
 - Never stop the entire pipeline because of a single subagent failure
+- If memory update fails, log a warning but do not stop the pipeline
