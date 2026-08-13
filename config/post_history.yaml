@@ -1,0 +1,48 @@
+# ============================================================
+# POST HISTORY
+# Tracks all posts that have been published to LinkedIn.
+# Add an entry here + change status in the .md file when you publish.
+# The pipeline reads this to avoid regenerating duplicate content.
+# ============================================================
+
+published:
+
+  - filename: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    title: "Something shifted in enterprise AI this week — and the data is catching up to the feeling"
+    published_date: "2026-05-14"
+    linkedin_url: ""  # Add the LinkedIn post URL after publishing
+    primary_companies:
+      - Anthropic
+      - OpenAI
+      - Microsoft
+    topic: "Enterprise AI adoption + market share shift"
+    notes: ""
+
+  - filename: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    title: "The era of one AI tool for everything is quietly ending"
+    published_date: "2026-05-14"
+    linkedin_url: ""
+    primary_companies:
+      - Anthropic
+      - Google DeepMind
+      - Salesforce
+    topic: "Vertical AI vs horizontal AI tools"
+    notes: ""
+
+# ── Draft Posts (not yet published) ───────────────────────
+# These are tracked but not yet live. Move to 'published' once live.
+
+drafts: []
+
+# ── Notes ─────────────────────────────────────────────────
+# Format for new entries:
+#
+#   - filename: "YYYY-MM-DD_HH-MM-SS_slug.md"
+#     title: "Post title"
+#     published_date: "YYYY-MM-DD"   # Date you published on LinkedIn
+#     linkedin_url: "https://www.linkedin.com/posts/..."
+#     primary_companies:
+#       - Company1
+#       - Company2
+#     topic: "One-line topic description"
+#     notes: "Any notes about this post's performance or context"

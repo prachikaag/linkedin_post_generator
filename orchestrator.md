@@ -1,23 +1,25 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, experiment-writer, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
 tools: Read, Write, Agent
 ---
 
 You are the **LinkedIn Post Generator Orchestrator**.
 
-Your job is to run the full pipeline end-to-end by delegating to four specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
+Your job is to run the full pipeline end-to-end by delegating to five specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
 
 ---
 
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
-         ↓ (for each article cluster)
-[post-generator] → saved .md draft
-         ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[news-gatherer]     → articles JSON
+[trending-tracker]  → keywords JSON
+        ↓ (for each article cluster)
+[post-generator]    → saved .md draft (news-based posts)
+        ↓ (optional, if my_experiments.md has ready entries)
+[experiment-writer] → saved .md draft (personal "I tried this" posts)
+        ↓ (optional, if Notion is configured)
+[notion-publisher]  → published to Notion
 ```
 
 ---
@@ -25,9 +27,10 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many news-based posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `INCLUDE_EXPERIMENTS` — if true, also run the experiment-writer step (default: **true**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -103,7 +106,28 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Write Experiment Posts (optional)
+
+If `INCLUDE_EXPERIMENTS` is true (the default), spawn the **experiment-writer** subagent (defined in `.claude/agents/experiment-writer.md`).
+
+Task for the subagent:
+> "Check my_experiments.md for any entries marked post_ready: true and status: draft. Write a LinkedIn post for the first eligible entry and save it to posts/."
+
+If the subagent returns `NO_EXPERIMENTS`, print:
+> `No experiment entries ready — add entries to config/my_experiments.md with post_ready: true to generate personal posts.`
+
+If it returns a JSON result, print:
+```
+Experiment post — tool: {result.tool}
+  Use case: {result.use_case}
+  ✓ Saved → {result.filename}
+```
+
+Add the result to the collected posts list.
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +152,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 
