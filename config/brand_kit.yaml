@@ -6,15 +6,16 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand & AI Strategy Consultant"
+  # Your LinkedIn headline / professional tagline
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -27,6 +28,7 @@ tone_of_voice:
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
     - "Opinionated — you have a clear point of view, not just a neutral summary"
     - "Human — you write like a person, not a press release"
+    - "Credible — you cite sources and back opinions with evidence, not just vibes"
 
   # Rules for how you write every post
   writing_style:
@@ -69,6 +71,8 @@ tone_of_voice:
     - "Acknowledge uncertainty when you genuinely don't know something"
     - "React to news within your own professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Write about experiments you've actually run — 'I tried X and here's what happened'"
+    - "Draw connections between AI capability news and brand/marketing implications"
 
   # What undermines your credibility
   donts:
@@ -80,6 +84,7 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't speculate on AI timelines without grounding in current evidence"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
@@ -92,6 +97,7 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "How brands can responsibly and effectively adopt AI tools"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +106,8 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I watched [YouTube video from AI company] — here's my take"
+    - "New [AI tool feature] dropped — I tested it and here's my honest review"
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +132,8 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#AIExperiment"
 
   max_hashtags: 5
 
@@ -139,6 +149,8 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I've been experimenting with this, and..."
+    - "This changes how I think about..."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.
@@ -154,3 +166,38 @@ research_standards:
 
   # If a quote cannot be verified as exact, paraphrase instead (no quote marks)
   require_verified_quotes: true
+
+# ── Post Type Angles ───────────────────────────────────────
+# These guide the tone and angle for different types of news.
+# The post-generator uses these when a post_type is supplied.
+post_type_guidance:
+
+  youtube_launch:
+    hook_style: "Bold observation about what the video reveals — not 'X posted a video'"
+    angle: "What the video shows about the company's direction, and what it means for how brands use that tool"
+    cta_style: "Ask if the audience has watched it or used the feature being showcased"
+
+  feature_launch:
+    hook_style: "Lead with the capability or outcome the feature unlocks, not the product name"
+    angle: "How brands, marketers, or creatives can practically use this right now"
+    cta_style: "Ask how the audience sees themselves using it in their workflow"
+
+  funding_news:
+    hook_style: "Open with what the funding signals about where AI is heading — not just the dollar amount"
+    angle: "What this investment tells us about which AI categories are winning, and what it means for brand/marketing teams"
+    cta_style: "Ask if the audience is already using the funded company's tools"
+
+  big_tech_ai:
+    hook_style: "Lead with the strategic implication — not 'Big Tech is doing X'"
+    angle: "What big tech AI moves mean for marketing teams, agencies, and mid-size brands — who benefits, who needs to adapt"
+    cta_style: "Ask how the audience's organisation is thinking about this"
+
+  ai_experiment:
+    hook_style: "Start with the result or the surprising thing you found — not 'I tested something'"
+    angle: "Honest walkthrough of what you tried, what worked, what didn't, and what you'd do differently"
+    cta_style: "Invite others to share their own experiments or ask what they'd try next"
+
+  research_breakthrough:
+    hook_style: "Lead with the human implication of the breakthrough — not the technical achievement"
+    angle: "What this capability milestone means practically for brands, creative teams, or marketers — not just researchers"
+    cta_style: "Ask what area of brand/marketing the audience thinks this unlocks first"

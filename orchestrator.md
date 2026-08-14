@@ -1,5 +1,5 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts aligned to the author's brand voice.
 tools: Read, Write, Agent
 ---
 
@@ -12,12 +12,12 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[news-gatherer]      → scored articles JSON (with post_type per article)
+[trending-tracker]   → trending keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]     → saved .md draft (post_type-aware)
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]   → published to Notion with emoji label
 ```
 
 ---
@@ -38,7 +38,7 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
 Task for the subagent:
-> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
+> "Fetch AI news articles from the RSS feeds and topics config. Return a scored JSON array with post_type detected for each article."
 
 Receive the JSON array of articles. If the array is empty, print:
 > "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
@@ -46,7 +46,19 @@ Then stop.
 
 Print a summary line: `✓ {N} relevant articles fetched and scored.`
 
-If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
+Show a breakdown by post_type:
+```
+  Post types in batch:
+    youtube_launch:       {count}
+    feature_launch:       {count}
+    funding_news:         {count}
+    big_tech_ai:          {count}
+    research_breakthrough:{count}
+    ai_regulation:        {count}
+    other:                {count}
+```
+
+If `DRY_RUN` is true, print the top 12 articles (title, score, post_type, source) and stop here.
 
 ---
 
@@ -55,7 +67,7 @@ If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop 
 Spawn the **trending-tracker** subagent (defined in `.claude/agents/trending-tracker.md`).
 
 Task for the subagent:
-> "Search the web for trending AI keyword phrases from the past 7 days."
+> "Search the web for trending AI keyword phrases from the past 7 days. Focus on ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney, Runway, and AI startup funding."
 
 Receive the JSON array of keyword phrases.
 Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
@@ -68,11 +80,14 @@ Divide the articles into clusters — one cluster per post to generate.
 
 **Clustering algorithm:**
 - `n_posts = min(MAX_POSTS, len(articles))`
+- Sort articles so that different `post_type` values are represented across clusters (avoid generating 2 posts of the same type if possible — prefer diversity)
 - For post `i` (0-indexed):
   - `start = min(i, max(0, len(articles) - SOURCE_POOL_SIZE))`
   - `cluster = articles[start : start + SOURCE_POOL_SIZE]`
-  - Move `articles[i]` to position 0 of the cluster (it becomes the anchor article)
+  - Move `articles[i]` to position 0 of the cluster (it becomes the anchor article and determines the post_type)
 - Result: `n_posts` clusters, each with up to `SOURCE_POOL_SIZE` articles, each with a distinct anchor
+
+**Prioritisation rule:** Prefer clusters where the anchor is a `youtube_launch` article, followed by `funding_news`, then `feature_launch`. This ensures the highest-signal posts are generated first.
 
 ---
 
@@ -84,6 +99,8 @@ Task for the subagent (include the full JSON data inline):
 ```
 Generate a LinkedIn post draft from the following data and save it to posts/.
 
+The anchor article (articles[0]) has post_type: {cluster[0].post_type} — use the matching template from config/post_templates.yaml.
+
 Input:
 {
   "articles": [<cluster articles as JSON>],
@@ -94,7 +111,7 @@ Input:
 
 Print progress per post:
 ```
-Post {i+1} — anchor: {cluster[0].title[:65]}
+Post {i+1} [{post_type}] — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -118,6 +135,7 @@ Input:
   "article_title": "<result.article_title>",
   "content": "<result.content>",
   "source_count": <result.source_count>,
+  "post_type": "<result.post_type>",
   "page_id": "<NOTION_PAGE_ID>"
 }
 ```
@@ -139,7 +157,7 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  [{post_type}]  ·  {source_count} sources  ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```

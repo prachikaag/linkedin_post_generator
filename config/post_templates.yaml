@@ -1,0 +1,232 @@
+# ============================================================
+# POST TEMPLATES
+# One template per post type. The post-generator reads this
+# file and selects the matching template based on the detected
+# post_type in the article cluster.
+#
+# Edit the angle, hook_prompts, and cta_examples for each type
+# to tune how posts are framed. Add new types as needed.
+# ============================================================
+
+# ── Template: YouTube Video Launch ────────────────────────
+youtube_launch:
+  description: "Used when an AI company publishes a new YouTube video — demo, keynote, tutorial, or feature reveal"
+  detection_keywords:
+    - "youtube"
+    - "video"
+    - "watch"
+    - "demo"
+    - "keynote"
+    - "tutorial"
+    - "livestream"
+    - "recorded"
+  hook_prompts:
+    - "What does this video reveal about the company's direction that most people will miss?"
+    - "What capability or shift does this demo make undeniable?"
+    - "What's the one thing in this video that changes how you should think about the tool?"
+  angle: >
+    Frame the video as a window into the company's strategic direction.
+    Describe what the demo or content shows, what it implies about where the product is heading,
+    and what marketers or brand teams should take away — not just 'they released a video'.
+    If the video shows a new feature, treat it as a feature_launch too.
+  cta_examples:
+    - "Have you watched this? What caught your attention?"
+    - "What does this make you think about how brands will use [tool] in 6 months?"
+    - "Is this on your radar — or are you waiting to see how it evolves?"
+
+# ── Template: Feature or Product Launch ───────────────────
+feature_launch:
+  description: "Used when an AI company launches a new feature, product, or model version"
+  detection_keywords:
+    - "launch"
+    - "release"
+    - "new feature"
+    - "update"
+    - "announced"
+    - "ships"
+    - "available now"
+    - "introduces"
+    - "unveils"
+    - "rolls out"
+    - "debuts"
+    - "version"
+    - "upgrade"
+    - "model"
+  hook_prompts:
+    - "What does this feature actually unlock that wasn't possible before?"
+    - "Why does this launch matter beyond the headline number or stat?"
+    - "Who benefits most from this — and who should be paying attention?"
+  angle: >
+    Lead with the practical capability unlocked, not the product announcement.
+    Focus on how a marketer, brand team, or creative could use this today.
+    Ground the post in at least two or three sources — show you've read the room, not just one press release.
+    Where possible, weave in a personal reaction or a quick experiment you could imagine running.
+  cta_examples:
+    - "How would you use this in your current workflow?"
+    - "What's the first thing you'd try with this?"
+    - "Is this on your roadmap — or does it change what your roadmap looks like?"
+
+# ── Template: AI Startup Funding ──────────────────────────
+funding_news:
+  description: "Used when an AI startup raises a round, gets acquired, or hits a major valuation milestone"
+  detection_keywords:
+    - "funding"
+    - "raises"
+    - "series a"
+    - "series b"
+    - "series c"
+    - "seed round"
+    - "valuation"
+    - "acquired"
+    - "acquisition"
+    - "investment"
+    - "venture capital"
+    - "million"
+    - "billion"
+    - "ipo"
+    - "unicorn"
+    - "backed by"
+  hook_prompts:
+    - "What does this investment tell us about where AI is heading — beyond the headline number?"
+    - "Why are investors betting here, and what does that signal for brands?"
+    - "What does this funding round make possible that wasn't possible before?"
+  angle: >
+    Treat funding news as a market signal, not just a business story.
+    Who is betting, how much, and why — and what does the investor thesis say about
+    which AI categories are real and which are hype?
+    Connect the dots for brand leaders: should they be experimenting with this company's tools now,
+    or watching and waiting?
+    Bring in at least 2-3 other related funding or market signals to paint a broader picture.
+  cta_examples:
+    - "Are you already using [company]'s tools — and does this funding change how you think about them?"
+    - "Which AI category do you think deserves more investment attention right now?"
+    - "Does this change how your team is thinking about which AI vendors to bet on?"
+
+# ── Template: Big Tech AI News ────────────────────────────
+big_tech_ai:
+  description: "Used when Microsoft, Google, Apple, Meta, Amazon, or Nvidia makes a significant AI move"
+  detection_keywords:
+    - "microsoft"
+    - "google"
+    - "apple intelligence"
+    - "meta ai"
+    - "amazon ai"
+    - "aws ai"
+    - "nvidia"
+    - "copilot"
+    - "gemini"
+    - "agentforce"
+    - "salesforce"
+    - "adobe firefly"
+  hook_prompts:
+    - "What does this big tech move mean for the teams and tools brands already use every day?"
+    - "When a company this size bets on AI, what does the bet tell us about what's real?"
+    - "Most coverage misses the point — here's what this actually changes for marketers."
+  angle: >
+    Big tech AI moves are often covered as technology stories.
+    Frame them as business and marketing stories instead.
+    What does this mean for the tools brands use daily (Office, Google Workspace, Adobe, Salesforce)?
+    Who benefits — enterprise customers, SMEs, creative teams? Who needs to adapt?
+    What does the underlying investment or strategy signal about where the market is heading?
+  cta_examples:
+    - "Is your organisation already using [big tech tool] with AI features — what's your experience?"
+    - "How is your team thinking about integrating this into your existing stack?"
+    - "Does this change your view on which AI platforms brands should be building on?"
+
+# ── Template: Human-in-the-Loop Experiment ────────────────
+ai_experiment:
+  description: "Used when the author shares a personal experiment with an AI tool or workflow"
+  detection_keywords:
+    - "experiment"
+    - "tested"
+    - "tried"
+    - "using ai for"
+    - "ai workflow"
+    - "human in the loop"
+    - "ai assisted"
+    - "co-wrote"
+    - "ai generated"
+    - "prompt"
+    - "results"
+    - "honest review"
+  hook_prompts:
+    - "Start with the result or the most surprising thing that happened — not 'I tried something'"
+    - "What was the assumption you went in with, and how did the experiment flip it?"
+    - "What did the AI do that you couldn't have done alone — and where did it fall flat?"
+  angle: >
+    This is your most personal post type. Write as a practitioner sharing field notes.
+    Structure it as: what I tried → what I expected → what actually happened → what I'd do differently.
+    Be honest about failures and limitations — credibility comes from nuance, not hype.
+    Connect your personal experiment to the broader pattern: what does this tell us about
+    how brands should (or shouldn't) be using AI in their workflows?
+    Cite any tools, models, or articles that informed the experiment.
+  cta_examples:
+    - "Have you tried something similar? What was your experience?"
+    - "What would you experiment with next if you were in my shoes?"
+    - "What's the AI workflow you're most curious about trying in your own team?"
+
+# ── Template: Research Breakthrough ──────────────────────
+research_breakthrough:
+  description: "Used when an AI research paper, benchmark result, or capability milestone makes news"
+  detection_keywords:
+    - "research"
+    - "paper"
+    - "benchmark"
+    - "breakthrough"
+    - "study"
+    - "capability"
+    - "agi"
+    - "reasoning"
+    - "multimodal"
+    - "arxiv"
+    - "published"
+    - "outperforms"
+    - "state of the art"
+    - "sota"
+  hook_prompts:
+    - "Lead with the human implication of the result — not the technical achievement"
+    - "If this benchmark result is real, what does it make possible that wasn't possible before?"
+    - "The research community is excited about X — here's why brand and marketing teams should care too"
+  angle: >
+    Translate the research into plain language first — what did the study actually show?
+    Then bridge to practical implications: what does this capability milestone mean for
+    the tools brands will have access to in 6-12 months?
+    Be appropriately skeptical — benchmark results don't always translate to real-world performance.
+    Use the research as a lens into where the whole field is heading.
+  cta_examples:
+    - "What area of brand or creative work do you think this unlocks first?"
+    - "Does this change your timeline for when AI becomes essential in your workflow?"
+    - "What's still missing before this research translates into tools you'd actually use?"
+
+# ── Template: AI Regulation and Policy ───────────────────
+ai_regulation:
+  description: "Used when there's significant AI regulation, policy, or safety news"
+  detection_keywords:
+    - "regulation"
+    - "policy"
+    - "safety"
+    - "ethics"
+    - "eu ai act"
+    - "ban"
+    - "law"
+    - "copyright"
+    - "bias"
+    - "fines"
+    - "compliance"
+    - "government"
+    - "congress"
+    - "parliament"
+  hook_prompts:
+    - "Most brands are unprepared for what this regulation actually requires — here's the plain-language version"
+    - "AI regulation sounds dry. The implications for brands and agencies are anything but."
+    - "This policy change creates a real decision point for any brand using AI in content or marketing"
+  angle: >
+    Frame regulation as a practical business question, not a political one.
+    What does this rule or policy actually require brands to do (or stop doing)?
+    What's the timeline? Who enforces it? What are the penalties?
+    What does this mean for AI in advertising, content creation, customer data, and brand communications?
+    Give the audience a clear "so what" — what should they do this week as a result of this news?
+  cta_examples:
+    - "Is your team thinking about AI compliance — or does this feel distant from your day-to-day?"
+    - "What's the one AI use case in your organisation that you'd want to audit against this?"
+    - "Does this change how urgently you think brands need an AI governance framework?"
