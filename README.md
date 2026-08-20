@@ -50,15 +50,33 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` as standalone, independently editable files:
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| File | Purpose | Edit to… |
+|------|---------|----------|
+| `config/topics.yaml` | Companies, keywords, and freshness settings | Add/remove companies and keywords to track |
+| `config/sources.yaml` | RSS feeds and API sources | Add/remove news feeds; toggle any source off |
+| `config/brand_kit.yaml` | Author identity, hashtag strategy, focus areas | Update your name, title, brand angles |
+| `config/tone_of_voice.yaml` | Writing style, voice traits, forbidden words, character limits | Adjust how every post sounds and reads |
+| `config/post_templates.yaml` | 7 post-type templates (launch, funding, hot take, etc.) | Customise hook patterns and structure for each story type |
 
-Edit these files directly — changes take effect on the next run.
+Edit any file directly — changes take effect on the next pipeline run with no restarts needed.
+
+### Post Templates
+
+The `post-generator` agent automatically selects the best template from `config/post_templates.yaml` based on the news cluster:
+
+| Template ID | Used when… |
+|-------------|-----------|
+| `FEATURE_LAUNCH` | An AI product, model, or feature was released |
+| `FUNDING_NEWS` | A startup raised a round, was acquired, or went public |
+| `I_TRIED_THIS` | You tested a tool personally and have honest results |
+| `HOT_TAKE` | Multiple stories reveal a contrarian pattern worth naming |
+| `BIG_TECH_NEWS` | Microsoft, Google, Apple, Meta, Amazon, or Nvidia made an AI move |
+| `RESEARCH_BREAKTHROUGH` | A research paper or capability milestone was published |
+| `VIDEO_RELEASE` | An AI company released a YouTube video or product demo |
+
+Each generated post records `template_used` in its frontmatter so you can see which template was applied.
 
 ### Environment Variables
 

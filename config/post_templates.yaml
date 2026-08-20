@@ -1,0 +1,222 @@
+# ============================================================
+# POST TEMPLATES
+# Six reusable story types for LinkedIn posts.
+# The post-generator picks the best template based on the
+# news cluster it receives. Edit any template to change how
+# that story type is structured and sounded.
+# ============================================================
+# Each template defines:
+#   when_to_use  — signals in the articles that trigger this template
+#   hook_patterns — example opening lines to adapt (not copy verbatim)
+#   structure_notes — adjustments on top of the default post structure
+#   tone_notes — voice calibration for this story type
+#   cta_patterns — question starters that fit this story type
+# ============================================================
+
+templates:
+
+  # ── Template 1: Feature / Product Launch ─────────────────
+  - id: FEATURE_LAUNCH
+    name: "New Feature or Product Launch"
+    when_to_use:
+      - "An AI company released a new model, product, or feature"
+      - "A tool the author tracks announced something new"
+      - "Matched categories include 'New AI Feature or Product Launch'"
+      - "Keywords: launch, release, new feature, announced, unveils, introduces, rolls out, debuts, available now"
+    hook_patterns:
+      - "[Company] just changed what [use case] looks like — and most people missed why."
+      - "The new [feature name] from [Company] is not the headline. The real story is what it enables."
+      - "[Company] launched [product] this week. Here's what it means beyond the press release."
+      - "Something shifted for [category] when [Company] announced [feature]."
+      - "The [feature name] announcement is really about one thing: [core insight]."
+    structure_notes:
+      - "HOOK: Lead with the insight, not the announcement. Don't write a press release opener."
+      - "CONTEXT: Place this launch in the broader momentum — what else is moving in the same direction?"
+      - "EVIDENCE: Include what the feature actually does, with a concrete example if available."
+      - "YOUR TAKE: What does this change for brands or marketers specifically? Be opinionated."
+      - "SO WHAT: Give one concrete thing a brand or marketer should do or watch as a result."
+    tone_notes:
+      - "Curious, not breathless. You're interested, not in awe."
+      - "Connect the feature to a real workflow or use case — not just the spec sheet."
+      - "If you've tested it personally, say so and share what you found."
+    cta_patterns:
+      - "Have you tried [feature] yet — and what did you find?"
+      - "Which brands do you think will move fastest on this?"
+      - "What use case does this unlock for your team?"
+
+  # ── Template 2: AI Startup Funding ───────────────────────
+  - id: FUNDING_NEWS
+    name: "AI Startup Funding or Acquisition"
+    when_to_use:
+      - "An AI startup raised a funding round"
+      - "An acquisition was announced in the AI space"
+      - "An AI company announced an IPO or major valuation milestone"
+      - "Matched categories include 'AI Startup Funding'"
+      - "Keywords: funding, raises, Series A/B/C, seed round, valuation, acquired, acquisition, unicorn, IPO"
+    hook_patterns:
+      - "Another [amount] just went into AI. But this one is worth paying attention to — here's why."
+      - "[Company] just raised [amount]. The number matters less than what they're building."
+      - "When [investor type] starts backing [category], pay attention. [Company] just proved it."
+      - "The real story behind [Company]'s funding round is not the amount."
+      - "[Company] is now worth [valuation]. That tells you something about where this market is heading."
+    structure_notes:
+      - "HOOK: The funding amount is not the lead. The insight behind it is."
+      - "CONTEXT: What does this funding tell us about the broader AI investment climate?"
+      - "EVIDENCE: Note the investors, the company's category, and any related deals in the space."
+      - "YOUR TAKE: What does this investment signal about where smart money thinks AI is going? Which verticals are getting funded and why?"
+      - "SO WHAT: What does a brand or marketing leader need to watch as a result of this funding?"
+    tone_notes:
+      - "Analytical, not breathless. You're a pattern-reader, not a hype machine."
+      - "Connect the funding to the broader market signal — one deal is a data point; multiple deals are a trend."
+      - "Acknowledge what you don't know as well as what you do."
+    cta_patterns:
+      - "Which AI category do you think is most underinvested right now?"
+      - "Does this investment change how you think about [category]?"
+      - "What does this tell us about where enterprise AI is heading?"
+
+  # ── Template 3: I Tried This (Personal Experiment) ───────
+  - id: I_TRIED_THIS
+    name: "Personal AI Experiment or Human-in-the-Loop"
+    when_to_use:
+      - "The author has tested an AI tool and has honest results to share"
+      - "A new tool, feature, or workflow is worth a personal take"
+      - "The article is about a tool the author uses regularly"
+      - "Content angles from brand_kit include 'I tried [AI tool] for [use case] — here's what actually happened'"
+    hook_patterns:
+      - "I spent [time] testing [tool] for [use case]. Honest take: [verdict in one sentence]."
+      - "Everyone is talking about [tool/feature]. I actually tried it. Here's what nobody mentions."
+      - "The [feature name] works. But not in the way the launch video suggests."
+      - "[Tool] can do [capability]. I tested it [N] times to find out when it actually holds."
+      - "Before you adopt [tool] for [use case], read this first."
+    structure_notes:
+      - "HOOK: Lead with your verdict or the most surprising thing you found."
+      - "CONTEXT: What were you trying to do, and why did you choose this tool? One sentence setup."
+      - "EVIDENCE: Walk through 2-3 specific tests or moments. What worked, what didn't, what surprised you."
+      - "YOUR TAKE: What does this mean for brands or teams thinking about adopting this? Be direct."
+      - "SO WHAT: One specific recommendation — use it for X, don't use it for Y, or wait until Z."
+    tone_notes:
+      - "First-person and honest. You are the experiment, not a commentator on someone else's results."
+      - "Specifics over generalities. 'It hallucinated 2 of the 5 times I asked about pricing' beats 'it sometimes makes mistakes'."
+      - "Credibility comes from what didn't work, not just what did."
+      - "This is the human-in-the-loop angle — always mention what you had to fix, improve, or correct."
+    cta_patterns:
+      - "Have you tested [tool] for [use case] — what did you find?"
+      - "What's the most useful AI workflow you've built this year?"
+      - "Where do you still think human judgment beats AI for [task]?"
+
+  # ── Template 4: Hot Take / Opinion ───────────────────────
+  - id: HOT_TAKE
+    name: "Opinion or Contrarian Take"
+    when_to_use:
+      - "The author has a strong opinion about a trend or development"
+      - "The mainstream narrative around a story feels incomplete or wrong"
+      - "Multiple articles together reveal a pattern worth calling out"
+      - "The author wants to push back on common wisdom about AI"
+    hook_patterns:
+      - "Here's what everyone is getting wrong about [topic]."
+      - "The [trend] conversation is missing the most important question."
+      - "I'll say what a lot of people are thinking but not writing: [opinion]."
+      - "Not everything happening in AI is good for brands. [Specific concern] is the one I keep coming back to."
+      - "The [feature/trend] hype is real. The strategy most brands are building around it is not."
+    structure_notes:
+      - "HOOK: State your contrarian take clearly. Don't bury the opinion."
+      - "CONTEXT: Acknowledge the mainstream view first — steelman it briefly, then challenge it."
+      - "EVIDENCE: Use evidence to support your angle, not the consensus view. What are others missing?"
+      - "YOUR TAKE: This IS your take — go deeper here than in any other template. Be specific and defend your position."
+      - "SO WHAT: What should brands do differently based on your read?"
+    tone_notes:
+      - "Confident, not aggressive. You're sharing a considered opinion, not picking a fight."
+      - "Acknowledge where you could be wrong — it builds credibility, not undermines it."
+      - "The strongest hot takes have evidence behind them, not just feeling."
+      - "Never punch at people — punch at ideas."
+    cta_patterns:
+      - "Am I wrong? I'd genuinely like to hear the counterargument."
+      - "Where do you disagree with this take?"
+      - "What's the most underrated concern in AI right now?"
+
+  # ── Template 5: Big Tech AI News ─────────────────────────
+  - id: BIG_TECH_NEWS
+    name: "Big Tech AI Move"
+    when_to_use:
+      - "Microsoft, Google, Apple, Amazon, Meta, Nvidia, Salesforce, or Adobe announced an AI move"
+      - "A major enterprise AI partnership or deal was announced"
+      - "An AI policy, regulation, or compliance development at scale"
+      - "Matched companies include 'Microsoft', 'Google DeepMind', 'Apple', 'Amazon', 'Nvidia', 'Salesforce', 'Adobe'"
+    hook_patterns:
+      - "[Company] just made a move that will change how [category of people] work."
+      - "When [Big Tech Company] does something in AI, it doesn't just affect its own users."
+      - "The [announcement] from [Company] is bigger than it looks. Here's the second-order effect."
+      - "[Company] is [action]. And that tells us everything about where enterprise AI is actually heading."
+      - "This [product/decision] from [Company] is the one to watch — not for what it is now, but for what it enables."
+    structure_notes:
+      - "HOOK: Focus on the strategic implication, not the announcement itself."
+      - "CONTEXT: Big tech moves affect the whole ecosystem — who else is affected beyond the company named?"
+      - "EVIDENCE: Include what the move means in practice for the people who use these tools. Numbers where genuinely useful."
+      - "YOUR TAKE: What does this mean for brands that rely on or compete with these platforms?"
+      - "SO WHAT: One specific action or watch-out for marketing and brand leaders."
+    tone_notes:
+      - "Measured and strategic. Big tech news is often over-hyped on day one and under-appreciated six months later."
+      - "Connect the announcement to the real-world workflows of your audience — marketers, brand leaders, agencies."
+      - "Call out the business model logic behind the move when it's visible."
+    cta_patterns:
+      - "How is your team thinking about [platform]'s AI direction?"
+      - "Does this change your toolset planning for next year?"
+      - "What's the enterprise AI decision you're watching most closely right now?"
+
+  # ── Template 6: Research Breakthrough ────────────────────
+  - id: RESEARCH_BREAKTHROUGH
+    name: "AI Research or Capability Milestone"
+    when_to_use:
+      - "A meaningful AI research paper or benchmark result was published"
+      - "An AI capability milestone was demonstrated (e.g. reasoning, multimodal, AGI-adjacent)"
+      - "A university, research lab, or AI company published something technically significant"
+      - "Matched categories include 'AI Research and Breakthroughs'"
+      - "Keywords: research, paper, benchmark, breakthrough, study, capability, reasoning, multimodal"
+    hook_patterns:
+      - "A new AI benchmark result just changed what we thought was possible in [category]."
+      - "Researchers just demonstrated something that was theoretical 18 months ago."
+      - "The [paper/result] from [institution/company] is worth reading — even if you skip the math."
+      - "Here's what the latest AI research tells us that most business coverage misses."
+      - "The capability gap that mattered most just got smaller."
+    structure_notes:
+      - "HOOK: Lead with the real-world implication of the research, not the technical result."
+      - "CONTEXT: What was the state of the art before this? Why does this move the needle?"
+      - "EVIDENCE: Translate the research into plain language. What can this AI now do that it couldn't before?"
+      - "YOUR TAKE: What does this capability mean for brands — now, or in 12 months?"
+      - "SO WHAT: Is this something to act on now, or monitor for later? Be specific."
+    tone_notes:
+      - "Translational — your job is to be the bridge between the research and what it means for non-researchers."
+      - "Honest about uncertainty. Research milestones don't always translate into products quickly."
+      - "Curious, not breathless. You're excited because of what it means, not just because it's new."
+    cta_patterns:
+      - "What's the AI capability you're most watching develop right now?"
+      - "Where do you think this capability goes in the next 12 months?"
+      - "What research result would genuinely change how you use AI?"
+
+  # ── Template 7: Video / YouTube Release ──────────────────
+  - id: VIDEO_RELEASE
+    name: "YouTube Video or Demo Release"
+    when_to_use:
+      - "An AI company or influencer released a YouTube video or product demo"
+      - "A significant AI demonstration was shared publicly as a video"
+      - "RSS feed from YouTube channels matched a relevant new upload"
+      - "Source name includes 'YouTube' or article title includes 'video', 'demo', 'watch'"
+    hook_patterns:
+      - "[Company] just dropped a video that shows something I hadn't seen before."
+      - "The [Company] demo released [time] is making rounds — here's what to actually look at."
+      - "I watched the new [Company] video so you don't have to. But honestly — you should."
+      - "A [N]-minute video from [Company] just showed what [capability] looks like in practice."
+      - "Most AI demos are polished ads. This one from [Company] is worth watching."
+    structure_notes:
+      - "HOOK: What moment in the video is most significant? Lead with that."
+      - "CONTEXT: Why does this video / demo matter beyond the content itself?"
+      - "EVIDENCE: Describe 2-3 specific things shown or said in the video. Accuracy matters — only reference what is in the supplied article."
+      - "YOUR TAKE: What does this demo signal about where the product or company is heading?"
+      - "SO WHAT: Should your audience watch it? What should they look for? One concrete recommendation."
+    tone_notes:
+      - "Specific over vague — 'they showed a model writing and running a Python script in real time' is better than 'they showed impressive capabilities'."
+      - "Acknowledge the marketing context — demos are curated. What are they showing and what are they not showing?"
+    cta_patterns:
+      - "What did you take away from the demo?"
+      - "Which AI demo has impressed you most this year — and why?"
+      - "What would you want to see in the next version of [product]?"

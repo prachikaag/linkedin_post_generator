@@ -1,7 +1,10 @@
 # ============================================================
-# BRAND KIT & TONE OF VOICE
-# Edit this file to match your personal brand and voice.
-# This drives how every LinkedIn post is written.
+# BRAND KIT — Author Identity & Brand Strategy
+# Edit this file to set who you are and how you show up.
+#
+# NOTE: Writing style, voice rules, and word limits live in
+#       config/tone_of_voice.yaml — edit that file separately.
+# NOTE: Post format templates live in config/post_templates.yaml.
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
