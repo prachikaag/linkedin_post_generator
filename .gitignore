@@ -12,5 +12,9 @@ env/
 # Generated posts (tracked individually when ready)
 # posts/*.md   ← uncomment this line to stop tracking generated posts
 
+# Personal experiment notes (keep template, ignore private notes)
+experiments/*.md
+!experiments/template.md
+
 # OS
 .DS_Store

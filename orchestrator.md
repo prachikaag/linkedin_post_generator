@@ -28,8 +28,11 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `EXPERIMENT_NOTE` — optional path to a file in `experiments/`. If provided, generate one post anchored to that experiment note (in addition to news-driven posts).
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+
+If `EXPERIMENT_NOTE` is set, before Step 3 read that file and confirm it exists. Then in Step 4, generate the first post using the experiment note as anchor (pass `"experiment_note": "<EXPERIMENT_NOTE>"` in the subagent task). Remaining posts follow the normal news cluster flow.
 
 ---
 

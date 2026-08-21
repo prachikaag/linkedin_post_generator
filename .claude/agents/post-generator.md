@@ -18,9 +18,12 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "experiment_note": "experiments/filename.md"  /* optional — path to a personal AI experiment note */
 }
 ```
+
+If `experiment_note` is provided, read that file first and use it as the **primary source** for the "YOUR TAKE" and "EVIDENCE" sections. The experiment note is a first-person account of the author trying an AI tool. Frame the post as a "I tried this — here's what actually happened" piece, weaving in the articles as supporting context and broader industry backdrop. The experiment note replaces article[0] as the anchor.
 
 ---
 

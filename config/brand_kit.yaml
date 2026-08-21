@@ -5,16 +5,22 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — replace the placeholders with your actual details.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                          # ← replace with your name
+  title: "Brand Strategist & AI Enthusiast"  # ← replace with your LinkedIn headline
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # ← replace with your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+  # What you're known for — woven into the 'YOUR TAKE' sections
+  expertise:
+    - "Human-in-the-loop AI workflows — experimenting in public so others don't have to"
+    - "Translating AI launches into practical brand and marketing implications"
+    - "Honest takes on what AI tools actually do vs. what they claim"
+    - "Watching the AI startup ecosystem as a lens on where marketing is heading"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
