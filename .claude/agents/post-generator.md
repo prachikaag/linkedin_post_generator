@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml, config/personal_experiments.yaml, and config/post_ideas.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -41,15 +41,38 @@ Read `config/brand_kit.yaml` and extract:
 
 ---
 
+## Step 1b — Find Matching Personal Experiments
+
+Read `config/personal_experiments.yaml`.
+
+Collect all entries where `active: true`. For each active experiment, check whether:
+- Any item in `related_companies` matches any company in the article cluster's `matched_companies`, **or**
+- Any item in `related_topics` matches any category in the article cluster's `matched_categories`
+
+Keep only the **best single matching experiment** (most fields overlapping). If none match, set `matched_experiment = null`.
+
+---
+
+## Step 1c — Find Matching Post Ideas
+
+Read `config/post_ideas.yaml`.
+
+Collect all entries where `active: true` and `status: idea`. Apply the same overlap check as Step 1b against the article cluster. Keep the **best single matching idea** (most fields overlapping). If none match, set `matched_idea = null`.
+
+---
+
 ## Step 2 — Write the LinkedIn Post
 
 Following the brand kit precisely, write a post that:
 
 ### Must follow this structure (in order):
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
+   - If `matched_idea` is not null and its `angle` is a stronger hook than the news itself, use that angle as your hook instead.
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
 3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
 4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated.
+   - If `matched_experiment` is not null, weave in a **single, brief first-person reference** to that experiment (1–2 sentences max). Use the `what_worked` and `honest_take` fields to keep it authentic and specific. Never pad — only include it if it genuinely strengthens the take.
+   - Example format: "I tried [tool] for [use case] recently — [what_worked in one sentence]. [honest_take in one sentence]."
 5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable.
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
@@ -131,6 +154,8 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+personal_experiment: "<matched_experiment.tool + ' — ' + matched_experiment.feature, or null>"
+post_idea_used: "<matched_idea.angle, or null>"
 status: "draft"
 ---
 ```

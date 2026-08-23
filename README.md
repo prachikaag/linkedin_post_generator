@@ -50,13 +50,15 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — every file is independently editable:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds and API sources to fetch from |
+| `config/brand_kit.yaml` | Author name, voice, tone, writing style, and hashtag rules |
+| `config/personal_experiments.yaml` | Log of your own AI experiments — weaved into posts as "I tried this" moments |
+| `config/post_ideas.yaml` | Content backlog — angles and hooks the post generator can use as direction |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -133,6 +135,22 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Logging Your Own AI Experiments
+
+Edit `config/personal_experiments.yaml` to record the AI tools and features you personally test. Set `active: true` on any experiment you're comfortable referencing in posts.
+
+When the pipeline runs, the post generator finds experiments whose `related_companies` or `related_topics` overlap with the current news cluster, and weaves a brief first-person reference into the YOUR TAKE section — turning a news summary into an authentic, experience-backed opinion.
+
+---
+
+## Adding Post Ideas to Your Backlog
+
+Edit `config/post_ideas.yaml` to log post angles and hooks as they come to you. Set `status: done` when a post is published.
+
+When an idea's `related_companies` or `related_topics` matches the current news cluster, the post generator uses that angle as a potential hook direction — connecting the news to a perspective you already wanted to explore.
 
 ---
 

@@ -1,0 +1,146 @@
+# ============================================================
+# POST IDEAS BACKLOG
+# A running list of angles, hooks, and topics you want to write about.
+#
+# When the pipeline generates posts, it checks this file for
+# ideas whose related_companies or related_topics overlap with
+# the incoming news cluster. Matching ideas are surfaced as
+# optional direction prompts for the post hook.
+#
+# HOW TO USE:
+#   - Add ideas as they come to you — a sentence or phrase is enough
+#   - Set status: idea until you're actively writing
+#   - Change to status: done once the post is published
+#   - Set active: false to hide an idea without deleting it
+#
+# STATUS OPTIONS:
+#   idea      — parked, not started
+#   drafting  — actively being written
+#   done      — published or archived
+# ============================================================
+
+post_ideas:
+
+  # ── Human-in-the-loop / Personal experiment posts ──────
+  - angle: "I gave an AI my entire brand strategy brief. Here's what it got right and wrong."
+    notes: >
+      Document a real test — feed a full brand brief into 2-3 tools and
+      compare outputs honestly. Authentic experiment post, not a press release.
+    status: idea
+    active: true
+    related_companies: []
+    related_topics:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+
+  - angle: "I replaced a full day of competitor research with AI. What I learned surprised me."
+    notes: >
+      Compare Perplexity, ChatGPT, and Claude for market research tasks.
+      Include what you had to verify manually and what you could trust.
+    status: idea
+    active: true
+    related_companies:
+      - "Perplexity"
+      - "OpenAI"
+      - "Anthropic"
+    related_topics:
+      - "AI Tools and Productivity"
+
+  # ── Brand + AI angles ───────────────────────────────────
+  - angle: "The brands winning with AI aren't the ones with the biggest budgets."
+    notes: >
+      Small teams using AI to punch above their weight in creative output.
+      Highlight real examples of lean teams doing more with less.
+    status: idea
+    active: true
+    related_companies: []
+    related_topics:
+      - "AI for Marketing and Brands"
+
+  - angle: "AI voice cloning is getting too good — what happens to brand voice consistency?"
+    notes: >
+      ElevenLabs angle: if anyone can clone a brand's spokesperson voice,
+      what does brand protection look like? Legal + creative dimensions.
+    status: idea
+    active: true
+    related_companies:
+      - "ElevenLabs"
+    related_topics:
+      - "AI for Marketing and Brands"
+      - "New AI Feature or Product Launch"
+
+  - angle: "Why the CMO who doesn't understand AI is the most expensive hire in the room."
+    notes: >
+      Provocation post on AI literacy at senior leadership level.
+      Tie to real examples of AI-literate vs AI-illiterate decision-making.
+    status: idea
+    active: true
+    related_companies: []
+    related_topics:
+      - "AI for Marketing and Brands"
+
+  - angle: "Most brands are still using AI like a search engine. Here's what they're missing."
+    notes: >
+      The gap between using AI to look things up vs using AI as a
+      creative collaborator. Use personal examples to make it concrete.
+    status: idea
+    active: true
+    related_companies: []
+    related_topics:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+
+  # ── Product/launch reaction posts ──────────────────────
+  - angle: "Midjourney v7 for brand visuals — honest test results."
+    notes: >
+      Run a real test with brand-style image generation.
+      Show what works, what breaks, what needs a human to fix.
+    status: idea
+    active: true
+    related_companies:
+      - "Midjourney"
+    related_topics:
+      - "New AI Feature or Product Launch"
+      - "AI for Marketing and Brands"
+
+  - angle: "Every major AI company just upgraded its model. What actually changed for users?"
+    notes: >
+      Cut through the noise on model launches — what do they mean
+      for everyday brand and marketing work, not for researchers?
+    status: idea
+    active: true
+    related_companies:
+      - "OpenAI"
+      - "Anthropic"
+      - "Google DeepMind"
+    related_topics:
+      - "New AI Feature or Product Launch"
+      - "AI for Marketing and Brands"
+
+  # ── Funding / ecosystem posts ───────────────────────────
+  - angle: "Another week, another $500M AI funding round. What the money is actually chasing."
+    notes: >
+      Pattern-read the latest funding rounds: what categories are getting
+      funded? What does that tell us about where AI is heading?
+    status: idea
+    active: true
+    related_companies: []
+    related_topics:
+      - "AI Startup Funding"
+
+  # ── Add your own ideas below this line ─────────────────
+  # - angle: "Your post hook or angle"
+  #   notes: >
+  #     Supporting context, what makes this interesting,
+  #     which sources or experiments to reference.
+  #   status: idea
+  #   active: true
+  #   related_companies:
+  #     - "Company Name"
+  #   related_topics:
+  #     - "New AI Feature or Product Launch"
+  #     - "AI Startup Funding"
+  #     - "AI for Marketing and Brands"
+  #     - "AI Research and Breakthroughs"
+  #     - "AI Regulation and Policy"
+  #     - "AI Tools and Productivity"

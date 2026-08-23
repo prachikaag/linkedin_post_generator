@@ -1,0 +1,118 @@
+# ============================================================
+# PERSONAL EXPERIMENTS LOG
+# Log your own hands-on AI experiments here.
+#
+# The post generator reads this file and weaves a brief
+# "I tried this" reference into relevant posts — adding
+# authenticity that pure news summaries can't offer.
+#
+# HOW TO USE:
+#   1. Add a new entry whenever you test a tool or feature
+#   2. Fill in what you did, what worked, and your honest take
+#   3. Set active: true when you're ready for it to appear in posts
+#   4. Set active: false to hide an entry without deleting it
+#
+# MATCHING: The post generator checks related_companies and
+# related_topics against incoming article clusters. When there's
+# overlap, your experiment is woven into the "YOUR TAKE" section.
+# ============================================================
+
+experiments:
+
+  - tool: "Claude"
+    feature: "Projects with long context"
+    date_tested: "2026-01"
+    what_i_did: >
+      Used Claude Projects to maintain a brand strategy brief and
+      iterate on campaign ideas across multiple sessions without
+      re-briefing each time.
+    what_worked: >
+      Consistent context across conversations massively reduced the
+      briefing overhead for iterative creative work. Once the brief
+      was set, I could jump straight into execution.
+    what_surprised: >
+      The brand voice stayed remarkably consistent even when I shifted
+      the creative direction mid-project — it remembered the constraints
+      without me having to repeat them.
+    honest_take: >
+      Not ideal for highly visual briefs but excellent for text-heavy
+      strategy and copywriting work. The context window is genuinely
+      useful, not just a spec-sheet number.
+    active: true
+    related_companies:
+      - "Anthropic"
+    related_topics:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+
+  - tool: "ChatGPT"
+    feature: "Custom GPTs for brand guidelines"
+    date_tested: "2025-12"
+    what_i_did: >
+      Built a Custom GPT trained on a brand guidelines PDF so junior
+      team members could self-serve answers on tone, colour, and
+      messaging without escalating to a senior strategist.
+    what_worked: >
+      Tone-of-voice questions were answered consistently and quickly.
+      Adoption was high because team members could ask "dumb" questions
+      without feeling judged.
+    what_surprised: >
+      It hallucinated brand colours twice in the first week. Fine for
+      qualitative guidance, unreliable for exact spec work.
+    honest_take: >
+      Useful for soft brand knowledge. Don't use it anywhere that needs
+      pixel-perfect accuracy. Always verify specific values against the
+      source document.
+    active: true
+    related_companies:
+      - "OpenAI"
+    related_topics:
+      - "AI for Marketing and Brands"
+      - "AI Tools and Productivity"
+
+  - tool: "Perplexity"
+    feature: "Research and citation sourcing"
+    date_tested: "2026-02"
+    what_i_did: >
+      Used Perplexity Pro to research competitor AI adoption stories
+      and pull cited sources for a client deck on AI readiness.
+    what_worked: >
+      Much faster than Google for finding cited, recent data. Cut
+      research time for one deck by about 60%.
+    what_surprised: >
+      Some cited sources were paywalled and the extracted summaries
+      were occasionally slightly off — always verify primary sources.
+    honest_take: >
+      My go-to for rapid research with citations. It doesn't replace
+      reading the source but it surfaces the right sources faster than
+      anything else I've tried.
+    active: true
+    related_companies:
+      - "Perplexity"
+    related_topics:
+      - "AI Tools and Productivity"
+
+  # ── Add your own experiments below this line ──────────────
+  # Copy and paste this template, fill it in, set active: true
+  #
+  # - tool: "Name of the AI tool"
+  #   feature: "The specific feature you tested"
+  #   date_tested: "YYYY-MM"
+  #   what_i_did: >
+  #     One to three sentences on what you actually did.
+  #   what_worked: >
+  #     What genuinely impressed you or saved you time.
+  #   what_surprised: >
+  #     Anything unexpected — good or bad. Be honest.
+  #   honest_take: >
+  #     Your real verdict. No hype. What would you tell a friend?
+  #   active: false   # Change to true when ready to reference in posts
+  #   related_companies:
+  #     - "Company Name"
+  #   related_topics:
+  #     - "New AI Feature or Product Launch"
+  #     - "AI for Marketing and Brands"
+  #     - "AI Tools and Productivity"
+  #     - "AI Startup Funding"
+  #     - "AI Research and Breakthroughs"
+  #     - "AI Regulation and Policy"
