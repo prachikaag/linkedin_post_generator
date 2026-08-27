@@ -1,0 +1,52 @@
+# ============================================================
+# PUBLISHED POST LOG
+# Tracks stories that have already been written about.
+# The deduplicator agent reads this to avoid re-covering
+# the same news in future runs.
+#
+# STATUS VALUES:
+#   draft      — generated, not yet reviewed or posted
+#   approved   — reviewed and approved, ready to post
+#   published  — posted to LinkedIn
+#   skipped    — intentionally not written about
+#
+# To mark a post as published, change status to "published".
+# To prevent a topic from being re-covered, add it as "skipped".
+# ============================================================
+
+published_posts: []
+
+# Example entries (uncomment and edit when you start posting):
+#
+# published_posts:
+#   - title: "Something shifted in enterprise AI this week"
+#     slug: "enterprise-ai-market-shift-real-data"
+#     date: "2026-05-14"
+#     status: "published"
+#     primary_url: "https://techcrunch.com/..."
+#     matched_companies:
+#       - "Anthropic"
+#       - "OpenAI"
+#       - "Microsoft"
+#
+#   - title: "Vertical AI: depth over horizontal scale"
+#     slug: "vertical-ai-depth-over-horizontal"
+#     date: "2026-05-14"
+#     status: "draft"
+#     primary_url: "https://venturebeat.com/..."
+#     matched_companies:
+#       - "Glean"
+#       - "Harvey AI"
+
+# ── Skipped Topics ─────────────────────────────────────────
+# Add URLs or keyword phrases here to prevent the pipeline
+# from writing about them in future runs.
+# The deduplicator agent checks this list before clustering.
+
+skipped_urls: []
+
+skipped_topic_phrases: []
+# Example:
+# skipped_topic_phrases:
+#   - "Cerebras IPO"     # already written about
+#   - "EU AI Act"        # not relevant to your audience right now
