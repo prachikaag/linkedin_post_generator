@@ -1,0 +1,47 @@
+# ============================================================
+# PUBLISHED LOG (Memory)
+# Auto-maintained by the post-generator agent.
+# Tracks every post generated so the pipeline avoids
+# re-covering the same company / topic within the cooldown window.
+#
+# DO NOT edit dates or story_ids by hand — use status only.
+# status options: draft | published | skipped
+# ============================================================
+
+# How many days to wait before covering the same company again.
+# Increase to reduce repetition; decrease for fast-moving news.
+company_cooldown_days: 7
+
+# How many days to wait before covering the same topic category.
+topic_cooldown_days: 3
+
+entries:
+  - story_id: "enterprise-ai-market-shift-real-data"
+    generated_at: "2026-05-14T22:55:00"
+    status: "draft"
+    filename: "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md"
+    companies_covered:
+      - "Anthropic"
+      - "OpenAI"
+      - "Microsoft"
+      - "Cerebras"
+    categories_covered:
+      - "AI Startup Funding"
+      - "New AI Feature or Product Launch"
+      - "AI Tools and Productivity"
+    pillar: "product_launch"
+    headline_summary: "Enterprise AI market shift — Ramp spend data, PwC trains 30k staff on Claude, Cerebras IPO"
+
+  - story_id: "vertical-ai-depth-over-horizontal"
+    generated_at: "2026-05-14T23:10:00"
+    status: "draft"
+    filename: "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md"
+    companies_covered:
+      - "Anthropic"
+      - "Harvey AI"
+      - "Writer"
+    categories_covered:
+      - "New AI Feature or Product Launch"
+      - "AI Tools and Productivity"
+    pillar: "big_tech_ai"
+    headline_summary: "Vertical AI depth — specialised AI beating horizontal tools in legal, finance, and content"

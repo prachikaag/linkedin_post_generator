@@ -18,13 +18,17 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
+  "pillar_id": "human_in_loop",
+  "opening_template": "I spent [timeframe] testing [tool/feature]. Here's the honest version.",
   "posts_dir": "posts/"
 }
 ```
 
+`pillar_id` and `opening_template` are optional hints from the orchestrator. Use them to frame the post angle — but the brand kit always governs tone and style.
+
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillar
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +42,13 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+If `pillar_id` was supplied in the input, read `config/content_pillars.yaml` and find the matching pillar. Extract its:
+- `description` — the angle to write from
+- `required_elements` — extra elements to include in the post body
+- `opening_template` (use the one already supplied in input, or the first template as fallback)
+
+Use the pillar to shape the post's angle and framing. The brand kit always governs tone, style, and structure — the pillar only adds focus.
 
 ---
 
@@ -116,6 +127,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+pillar: "<pillar_id from input, or 'product_launch' if not supplied>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:
@@ -153,7 +165,10 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "pillar_id": "<pillar_id used>",
+  "matched_companies": ["<deduplicated list from all articles>"],
+  "matched_categories": ["<deduplicated list from all articles>"]
 }
 ```
 

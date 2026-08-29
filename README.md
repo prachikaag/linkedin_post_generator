@@ -50,13 +50,15 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — each file is a standalone editable component:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/topics.yaml` | Companies and keywords to track (OpenAI, Claude, Perplexity, Midjourney, etc.) |
+| `config/sources.yaml` | RSS feeds, company blogs, YouTube channels, and optional APIs |
+| `config/brand_kit.yaml` | Your name, tone of voice, writing style, post structure, and hashtags |
+| `config/content_pillars.yaml` | Content angles: human-in-loop, product launch, startup funding, big tech, research, policy |
+| `posts/published_log.yaml` | Memory log — tracks covered topics to avoid repetition across runs |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -111,9 +113,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/content_pillars.yaml`
+- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, selects the right content pillar (human-in-loop, product launch, funding, big tech, research, policy), validates URLs, saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, pillar, and source metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
@@ -133,6 +135,33 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Content Pillars
+
+The pipeline matches each article cluster to a content angle before generating the post. Edit `config/content_pillars.yaml` to change the angle, opening templates, or required elements per pillar.
+
+| Pillar ID | When it fires | Your angle |
+|-----------|--------------|------------|
+| `human_in_loop` | New feature / tool you've personally tested | First-person experiment report |
+| `product_launch` | Major model or product release | What changed and what brands should do |
+| `startup_funding` | Funding round, acquisition, IPO | What the money signals about market direction |
+| `big_tech_ai` | Microsoft, Google, Apple, Meta, Nvidia move | Practical impact on brand and marketing teams |
+| `research_breakthrough` | Research paper, benchmark, capability jump | Translated for non-technical brand leaders |
+| `regulation_policy` | EU AI Act, copyright ruling, safety event | Rules for brands using AI |
+
+---
+
+## Memory (Avoiding Repetition)
+
+Every time a post is generated, the pipeline appends an entry to `posts/published_log.yaml`. On the next run, companies and topics covered recently are deprioritised so you don't write about the same thing twice.
+
+Adjust the cooldown windows in `published_log.yaml`:
+```yaml
+company_cooldown_days: 7   # days before covering the same company again
+topic_cooldown_days: 3     # days before covering the same topic category again
+```
 
 ---
 

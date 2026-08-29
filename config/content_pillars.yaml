@@ -1,0 +1,214 @@
+# ============================================================
+# CONTENT PILLARS
+# Defines the specific angles and post types that shape what
+# the Post Generator writes about. Each pillar has a trigger
+# pattern — when an article matches, the pillar's angle and
+# opening template are used to frame the post.
+#
+# Edit freely: add new pillars, adjust templates, change
+# keywords to match how YOU think about each topic.
+# ============================================================
+
+pillars:
+
+  # ── Pillar 1: Human in the Loop ──────────────────────────
+  # Your most personal angle. Posts where you personally tested
+  # an AI tool and share honest, specific results.
+  - id: "human_in_loop"
+    name: "Human in the Loop"
+    description: >
+      Personal experiments with AI tools. You tried it, you have
+      an opinion, and you're sharing honest results — what worked,
+      what didn't, what surprised you.
+    trigger_on:
+      - "new feature"
+      - "update"
+      - "release"
+      - "launched"
+      - "now available"
+      - "v2"
+      - "plugin"
+      - "tool"
+    priority: high
+    opening_templates:
+      - "I spent [timeframe] testing [tool/feature]. Here's the honest version."
+      - "Just ran [tool] through [use case]. Results were not what I expected."
+      - "[Tool] just [action]. So I tried it on [real task]. Here's what happened."
+    required_elements:
+      - "What you actually did with the tool (specific use case)"
+      - "What worked and what didn't (honest, no hype)"
+      - "What brands or marketers should know based on your test"
+      - "A question to invite others to share their experience"
+
+  # ── Pillar 2: AI Feature / Product Launch ────────────────
+  # When a company ships something meaningful — new model,
+  # major update, product launch — and you have a take on
+  # what it means for brands.
+  - id: "product_launch"
+    name: "AI Feature or Product Launch"
+    description: >
+      When OpenAI, Anthropic, Google, Perplexity, Midjourney,
+      ElevenLabs, or any major AI company launches something new.
+      Your job: explain what changed and why it matters for brands
+      and marketers — not just what it is.
+    trigger_on:
+      - "launch"
+      - "release"
+      - "announces"
+      - "introduces"
+      - "ships"
+      - "debuts"
+      - "unveils"
+      - "rolls out"
+      - "GPT"
+      - "Claude"
+      - "Gemini"
+      - "Perplexity"
+      - "Midjourney"
+      - "ElevenLabs"
+    priority: high
+    opening_templates:
+      - "[Company] just [launched/released] [product]. Here's what brands should actually care about."
+      - "The [feature] update from [company] is more interesting than the headline suggests."
+      - "[Company] shipped [thing]. The real story isn't what it can do — it's what changes for [audience]."
+    required_elements:
+      - "What was launched (short, clear, no jargon)"
+      - "One or two things brands can do with it today"
+      - "Your personal opinion on whether this matters"
+      - "Honest framing — no hype, no 'game-changer'"
+
+  # ── Pillar 3: AI Startup Funding ─────────────────────────
+  # When an AI startup raises money. Your angle: what this
+  # investment tells us about where the market is heading,
+  # and what brands should pay attention to.
+  - id: "startup_funding"
+    name: "AI Startup Funding"
+    description: >
+      Funding rounds, acquisitions, IPOs, and valuations in the AI space.
+      Not just the number — your read on what the investment signals about
+      market direction, brand opportunity, or the landscape shifting.
+    trigger_on:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "million"
+      - "billion"
+    priority: medium
+    opening_templates:
+      - "[Company] just raised [amount]. Here's why that number matters more than the headline."
+      - "Another AI [category] company raised [amount]. There's a pattern forming."
+      - "[Company] is now valued at [amount]. That tells you something about where brands are putting their money."
+    required_elements:
+      - "What the company does (one sentence, plain language)"
+      - "Why this specific funding round is notable"
+      - "What it signals about market direction"
+      - "What brands or marketers should watch as a result"
+
+  # ── Pillar 4: Big Tech AI Move ───────────────────────────
+  # When Microsoft, Google, Apple, Amazon, Meta, Nvidia, or
+  # Salesforce makes a significant AI move. Your angle: the
+  # practical implications for brands and marketing teams.
+  - id: "big_tech_ai"
+    name: "Big Tech AI Move"
+    description: >
+      When Microsoft, Google, Apple, Amazon, Meta, Nvidia, Adobe,
+      or Salesforce does something meaningful with AI. Focus on
+      the business implications — who it affects, what it changes
+      for brand teams, marketing orgs, or agencies.
+    trigger_on:
+      - "Microsoft"
+      - "Google"
+      - "Apple Intelligence"
+      - "Amazon"
+      - "Meta AI"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe Firefly"
+      - "Copilot"
+      - "Gemini"
+      - "Agentforce"
+    priority: medium
+    opening_templates:
+      - "[BigTech] just [did thing]. For brand and marketing teams, this changes [specific thing]."
+      - "This [BigTech] announcement is flying under the radar. It shouldn't."
+      - "[BigTech] built [feature] into [product]. [Number] million people will use this by default."
+    required_elements:
+      - "What the company did and which product it affects"
+      - "How many people / which teams are actually impacted"
+      - "Concrete change it creates for brand or marketing workflows"
+      - "Your honest assessment: signal or noise?"
+
+  # ── Pillar 5: AI Research Breakthrough ───────────────────
+  # When a meaningful research paper, benchmark result, or
+  # capability breakthrough changes what we know is possible.
+  - id: "research_breakthrough"
+    name: "AI Research Breakthrough"
+    description: >
+      Research papers, benchmark milestones, and capability jumps
+      that change what's possible. Translated out of jargon and into
+      what it means for brands, creative teams, and marketers.
+    trigger_on:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "breakthrough"
+      - "study"
+      - "capability"
+      - "reasoning"
+      - "multimodal"
+      - "AGI"
+    priority: low
+    opening_templates:
+      - "A new research result just changed what we know about [capability]. Here's what brands should take from it."
+      - "The [company/institution] paper on [topic] is worth reading. Here's the one-paragraph version for marketers."
+      - "New benchmark numbers are out. More than the score, here's what the capability jump means in practice."
+    required_elements:
+      - "What was found or demonstrated (plain language, one sentence)"
+      - "Why this matters beyond the technical community"
+      - "One concrete implication for brand or creative teams"
+      - "Your honest take on the timeline before this affects everyday tools"
+
+  # ── Pillar 6: AI Regulation and Policy ───────────────────
+  # When regulation, policy, or an AI safety event shapes the
+  # landscape brands operate in.
+  - id: "regulation_policy"
+    name: "AI Regulation and Policy"
+    description: >
+      EU AI Act enforcement, government policies, copyright cases,
+      and AI safety events that affect how brands can and can't use AI.
+    trigger_on:
+      - "regulation"
+      - "policy"
+      - "safety"
+      - "ethics"
+      - "EU AI Act"
+      - "ban"
+      - "law"
+      - "copyright"
+      - "lawsuit"
+    priority: low
+    opening_templates:
+      - "The [regulation/ruling] on AI just changed the rules for brands using [category]. Here's the plain-English version."
+      - "[Event] is the AI story brands can't afford to miss. Here's what it actually means for your team."
+    required_elements:
+      - "What happened (plain language, no legalese)"
+      - "Who it affects — specifically brand, marketing, or agency teams"
+      - "One thing brands should do or stop doing as a result"
+      - "Your take on whether this is a short-term friction or a long-term shift"
+
+# ── Pillar Selection Logic ─────────────────────────────────
+# When the Post Generator picks a pillar:
+# 1. Check the article's matched_categories and matched_keywords
+# 2. Find the pillar whose trigger_on list has the most matches
+# 3. If a tie: prefer higher priority
+# 4. If no match: fall back to 'product_launch'
+# The chosen pillar's opening_templates are offered as optional hooks.
+# The agent always uses brand_kit.yaml voice — pillars shape angle, not tone.

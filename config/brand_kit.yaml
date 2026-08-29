@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi Kaag"
+  title: "Brand & AI Strategist"
+  # Update your tagline below — it shapes how posts sign off and how your POV is framed
+  tagline: "Helping brands understand and use AI in the real world"
+  location: "Your City, Country"   # ← update with your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
