@@ -2,15 +2,31 @@
 __pycache__/
 *.py[cod]
 *.pyo
-.venv/
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
 venv/
+.venv/
 env/
 
-# Environment
+# Environment variables
 .env
 
-# Generated posts (tracked individually when ready)
-# posts/*.md   ← uncomment this line to stop tracking generated posts
+# Data cache
+data/
 
-# OS
+# macOS
 .DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test outputs
+*.log
