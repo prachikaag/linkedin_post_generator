@@ -1,2 +1,3 @@
 # One JSON object per line — each pipeline run appends a summary record.
 # Format: {"run_at":"ISO8601","posts_generated":N,"top_companies":[],"post_files":[]}
+{"run_at":"2026-09-01T10:05:00+00:00","posts_generated":2,"top_companies":["OpenAI","Anthropic","Apple","Google DeepMind"],"post_files":["2026-09-01_10-00-00_openai-buys-tens-of-thousands-of-apple-m.md","2026-09-01_10-05-00_john-ternus-becomes-apple-ceo-with-ai-as.md"]}

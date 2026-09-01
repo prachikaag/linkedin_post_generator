@@ -2,3 +2,13 @@
 # The news-gatherer skips any article whose URL appears here.
 # Lines starting with # are comments.
 # Populated automatically each pipeline run.
+# Run: 2026-09-01T10:05:00+00:00
+https://techbriefly.com/2026/08/31/openai-buys-apple-macs-for-ai-training/
+https://mlq.ai/news/openai-reportedly-bought-tens-of-thousands-of-macs-for-computer-use-training/
+https://www.theregister.com/ai-and-ml/2026/08/25/mckinsey-says-enterprise-ai-is-finally-on-the-road-to-roi/5292388
+https://www.axios.com/pro/all-deals/2026/08/31/clay-7-billion-pre-money-valuation
+https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/
+https://techjournal.org/claude-sonnet-5-pricing-now-permanent
+https://finance.yahoo.com/technology/ai/articles/john-ternus-lead-apple-age-010145522.html
+https://www.bloomberg.com/news/articles/2026-08-30/apple-s-new-ceo-john-ternus-takes-reins-from-tim-cook-focusing-on-ai
+https://www.bitsminds.com/news/openai-confidential-s1-september-ipo-2026
