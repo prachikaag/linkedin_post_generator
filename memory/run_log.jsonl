@@ -1,0 +1,2 @@
+# One JSON object per line — each pipeline run appends a summary record.
+# Format: {"run_at":"ISO8601","posts_generated":N,"top_companies":[],"post_files":[]}

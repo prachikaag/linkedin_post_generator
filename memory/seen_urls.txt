@@ -1,0 +1,4 @@
+# Seen article URLs — one per line.
+# The news-gatherer skips any article whose URL appears here.
+# Lines starting with # are comments.
+# Populated automatically each pipeline run.

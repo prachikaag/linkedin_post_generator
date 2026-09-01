@@ -128,7 +128,20 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 6 — Update Memory
+
+After all posts are generated, update `memory/seen_urls.txt`:
+- Append every article URL from **all clusters** (not just the anchor articles) — one URL per line
+- This prevents the same stories from being re-used in future pipeline runs
+
+Also append one JSON record to `memory/run_log.jsonl`:
+```json
+{"run_at":"<ISO8601 timestamp>","posts_generated":<N>,"top_companies":[<deduplicated company names across all clusters>],"post_files":[<list of generated filenames>]}
+```
+
+---
+
+## Step 7 — Final Summary
 
 Print a summary table:
 

@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"
+  title: "Brand Strategist & AI Practitioner"
+  # Tagline shown on LinkedIn profile — keep it to one sharp line
+  tagline: "Helping brands navigate and leverage AI in the real world — experiments first, opinions always"
+  location: "Global"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

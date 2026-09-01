@@ -66,9 +66,12 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 
 ## Step 5 — Deduplicate
 
-Remove articles that duplicate ones already processed:
+**Cross-run deduplication (memory):**
+Read `memory/seen_urls.txt`. Each non-comment line is a URL already covered in a previous pipeline run. Skip any article whose exact URL appears in that file.
+
+**Within-run deduplication:**
 - Normalize title: lowercase, keep only alphanumeric, truncate to 60 chars. If this normalized key was seen → skip
-- If the URL (exact match) was seen → skip
+- If the URL (exact match) was seen within this run → skip
 
 ---
 
