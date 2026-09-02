@@ -5,19 +5,29 @@ tools: Read, Write, Agent
 
 You are the **LinkedIn Post Generator Orchestrator**.
 
-Your job is to run the full pipeline end-to-end by delegating to four specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
+Your job is to run the full pipeline end-to-end by delegating to specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
 
 ---
 
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
-         ↓ (for each article cluster)
-[post-generator] → saved .md draft
-         ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+NEWS MODE (default):
+  [news-gatherer] → articles JSON
+  [trending-tracker] → keywords JSON
+           ↓ (for each article cluster)
+  [post-generator] → saved .md draft
+
+EXPERIMENT MODE:
+  [trending-tracker] → keywords JSON (optional context)
+           ↓ (for each experiment with status: needs_post)
+  [experiment-post-generator] → saved .md draft
+
+FULL MODE:
+  Both pipelines run in sequence.
+
+  ↓ (optional, if Notion is configured — all modes)
+  [notion-publisher] → published to Notion
 ```
 
 ---
@@ -25,7 +35,11 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `PIPELINE_MODE` — `"news"` (default), `"experiment"`, or `"full"`
+  - "experiment mode" → `PIPELINE_MODE = "experiment"`
+  - "full mode" → `PIPELINE_MODE = "full"`
+  - default → `PIPELINE_MODE = "news"`
+- `MAX_POSTS` — how many posts to generate (default: **2**, applies to news mode)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 
@@ -33,7 +47,9 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
-## Step 1 — Gather News
+## Step 1 — Gather News (news or full mode only)
+
+Skip this step if `PIPELINE_MODE` is `"experiment"`.
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
@@ -42,7 +58,7 @@ Task for the subagent:
 
 Receive the JSON array of articles. If the array is empty, print:
 > "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
-Then stop.
+Then skip to Step 4b.
 
 Print a summary line: `✓ {N} relevant articles fetched and scored.`
 
@@ -62,7 +78,9 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
-## Step 3 — Build Article Clusters
+## Step 3 — Build Article Clusters (news or full mode only)
+
+Skip this step if `PIPELINE_MODE` is `"experiment"`. In experiment mode, keep the trending keywords from Step 2 to pass to the experiment post generator.
 
 Divide the articles into clusters — one cluster per post to generate.
 
@@ -100,6 +118,42 @@ Post {i+1} — anchor: {cluster[0].title[:65]}
 ```
 
 Collect each result's JSON object.
+
+Skip Step 4 entirely if `PIPELINE_MODE` is `"experiment"`.
+
+---
+
+## Step 4b — Generate Experiment Posts (experiment or full mode only)
+
+Skip this step if `PIPELINE_MODE` is `"news"`.
+
+Read `config/experiments.yaml` and collect all experiments where `status: needs_post`.
+
+If there are no experiments with `status: needs_post`:
+- Print: `No experiments ready for posting. Add entries with status: needs_post to config/experiments.yaml.`
+- Skip this step.
+
+For each eligible experiment, spawn the **experiment-post-generator** subagent (defined in `.claude/agents/experiment-post-generator.md`).
+
+Task for the subagent (include the full experiment JSON data inline):
+```
+Generate a first-person "I tried X" LinkedIn post from this AI experiment and save it to posts/.
+
+Input:
+{
+  "experiment": {<experiment object as JSON>},
+  "trending_keywords": [<trending keywords as JSON, or empty array>],
+  "posts_dir": "posts/"
+}
+```
+
+Print progress per experiment post:
+```
+Experiment Post — tool: {experiment.tool} · use case: {experiment.use_case[:50]}
+  ✓ Saved → {result.filename}
+```
+
+Collect each result's JSON object alongside any news posts from Step 4.
 
 ---
 
@@ -139,12 +193,17 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {post_type: news|experiment}         ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```
 
 Then print each post's content in full so the author can review immediately.
+
+Remind the author:
+- Open `config/brand_kit.yaml` to personalise with your real name and title if not yet done.
+- Open `config/experiments.yaml` to add new experiments when ready.
+- Change `status: draft` → `status: published` in any post file once it goes live.
 
 ---
 

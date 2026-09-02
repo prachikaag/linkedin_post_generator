@@ -1,0 +1,84 @@
+# ============================================================
+# YOUR PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# Each experiment here becomes a "human in the loop" LinkedIn post.
+# These are first-person posts: "I tried X for Y — here's what happened."
+#
+# STATUS OPTIONS:
+#   needs_post   → ready to generate a LinkedIn post from this
+#   draft        → post has been generated, review it in posts/
+#   published    → live on LinkedIn
+#   skip         → don't generate a post for this one
+#
+# HOW TO USE:
+#   1. Fill in the fields below each time you experiment with an AI tool.
+#   2. Run: "Run the LinkedIn Post Generator pipeline in experiment mode."
+#   3. Review the generated post in posts/ before publishing.
+# ============================================================
+
+experiments:
+
+  # ── TEMPLATE — duplicate this block for each new experiment ──
+  #
+  # - id: "exp-001"
+  #   tool: "Claude"
+  #   company: "Anthropic"
+  #   version: "Claude 3.5 Sonnet"
+  #   use_case: "Writing first-draft brand strategy briefs"
+  #   context: |
+  #     I gave Claude a detailed client brief and asked it to produce a brand
+  #     positioning document. I then edited the output for tone and accuracy.
+  #   what_i_did: |
+  #     Pasted a 500-word client brief. Asked Claude to produce:
+  #     1. Three positioning options (one-liner each)
+  #     2. A target audience profile
+  #     3. Five key messages
+  #   what_surprised_me: |
+  #     The positioning options were genuinely differentiated — not just
+  #     corporate-sounding variations. One option I hadn't considered myself.
+  #   what_didnt_work: |
+  #     The key messages were too generic. Needed a second pass with
+  #     more specific instructions about the client's competitive landscape.
+  #   result: |
+  #     Saved about 90 minutes on first-draft work. The output needed editing
+  #     but it was a better starting point than a blank page.
+  #   my_verdict: |
+  #     Use it as a thinking partner, not a ghostwriter. The best output
+  #     came when I challenged its first attempt rather than accepting it.
+  #   would_i_recommend: true
+  #   date: "2026-09-01"
+  #   post_angle: "I tried using AI for brand strategy — here's what I actually got"
+  #   status: needs_post
+
+
+  # ── YOUR EXPERIMENTS ─────────────────────────────────────
+
+  - id: "exp-001"
+    tool: "Claude"
+    company: "Anthropic"
+    version: "Claude 3.7 Sonnet"
+    use_case: "Drafting LinkedIn posts from news articles"
+    context: |
+      Testing whether an AI agent can turn a cluster of news articles
+      into a well-structured, opinion-led LinkedIn post in my voice —
+      without me writing a single word from scratch.
+    what_i_did: |
+      Fed it 6 recent AI news articles and asked it to write a post
+      following my brand kit: short paragraphs, strong hook, clear opinion,
+      cited sources, 5 hashtags.
+    what_surprised_me: |
+      The hook was genuinely good — a line I would have been proud to write
+      myself. The source citations were accurate and formatted correctly.
+    what_didnt_work: |
+      The "Your Take" section defaulted to safe, balanced commentary.
+      I had to push back and ask for a more specific, contrarian view.
+    result: |
+      First draft took under 90 seconds. Editing took 10 minutes.
+      Would have taken me 45 minutes to research and write from scratch.
+    my_verdict: |
+      Human in the loop is the right frame. The AI handles the heavy lifting —
+      research, structure, citations. I add the genuine opinion and voice.
+    would_i_recommend: true
+    date: "2026-09-01"
+    post_angle: "I built an AI pipeline to write my LinkedIn posts — here's what I learned"
+    status: needs_post

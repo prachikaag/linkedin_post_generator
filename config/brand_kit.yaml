@@ -5,6 +5,7 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS: Fill in your real name, title, and location.
 author:
   name: "Your Name"
   title: "Your Professional Title"
@@ -95,11 +96,20 @@ brand:
 
   # Example angles you love to write about
   content_angles:
+    # Experiment / human-in-the-loop angles
     - "I tried [AI tool] for [use case] — here's what actually happened"
+    - "I've been using [AI tool] for [X weeks] — honest results"
+    - "My AI workflow for [task]: what I kept, what I cut"
+    - "I gave [AI tool] a [real work challenge] — here's the output side by side"
+    # News reaction angles
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    # Opinion / take angles
+    - "Everyone is talking about [AI news]. Here's what I think they're missing."
+    - "The uncomfortable truth about [AI development] for brands"
+    - "Why [AI trend] changes the game for [specific team or role]"
 
   # Hashtag strategy
   hashtags:
