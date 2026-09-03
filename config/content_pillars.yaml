@@ -1,0 +1,193 @@
+# ============================================================
+# CONTENT PILLARS
+# The four angles you write from. Each LinkedIn post should
+# map clearly to one of these pillars.
+#
+# Edit the descriptions, triggers, and example hooks to match
+# how you actually want to talk about each topic.
+# ============================================================
+
+pillars:
+
+  # ── PILLAR 1: New AI Feature or Product Launch ─────────────
+  - id: "product_launch"
+    name: "New AI Feature or Product Launch"
+    description: >
+      Any time a key AI company ships a new model, feature, product update,
+      or publishes a notable YouTube video. The goal is to be one of the
+      first voices translating the announcement into plain language for
+      brand and marketing leaders — and giving a clear opinion on what it
+      means for the way brands work.
+
+    # Companies you watch most closely for launches
+    watch_companies:
+      - "OpenAI / ChatGPT"
+      - "Anthropic / Claude"
+      - "Google / Gemini"
+      - "Perplexity"
+      - "ElevenLabs"
+      - "Midjourney"
+      - "Runway"
+      - "Pika Labs"
+      - "Suno"
+      - "Synthesia"
+      - "Adobe Firefly"
+
+    # What kinds of events trigger this pillar
+    trigger_signals:
+      - "New model or version release (GPT-5, Claude 4, Gemini 2, etc.)"
+      - "New consumer-facing feature (voice mode, deep research, canvas, etc.)"
+      - "A notable YouTube video demo from a key AI company"
+      - "A major product update to an existing tool"
+      - "A new API capability that changes what developers can build"
+
+    # Hooks and angles to use when writing this type of post
+    example_hooks:
+      - "[Company] just launched [feature]. Here's what brands should actually know."
+      - "I spent an hour with [AI tool]'s new [feature]. Here's my honest take."
+      - "[Tool] can now do [thing]. This changes one specific workflow for me."
+      - "This new [tool/feature] is genuinely useful for marketing teams. Here's why."
+      - "Most people missed the most interesting part of [Company]'s latest launch."
+
+    # Questions to answer in the post
+    must_answer:
+      - "What exactly launched, and what does it do?"
+      - "Who is this actually for? (brands, creatives, marketers, developers?)"
+      - "Have I tested it? If so, what was the honest result?"
+      - "What does this change for how brands or marketers work?"
+      - "Is this genuinely useful now, or is it a future promise?"
+
+
+  # ── PILLAR 2: Big Tech AI News ─────────────────────────────
+  - id: "big_tech_news"
+    name: "Big Tech AI News"
+    description: >
+      Significant strategic moves from Microsoft, Google, Apple, Amazon,
+      Meta, Nvidia, Salesforce, and Adobe — especially moves that signal
+      where enterprise AI is heading, how mainstream AI adoption is
+      accelerating, or what the biggest platforms are betting on.
+
+    watch_companies:
+      - "Microsoft / Copilot"
+      - "Google / Gemini / Search AI"
+      - "Apple / Apple Intelligence"
+      - "Amazon / Alexa / AWS AI"
+      - "Nvidia / Jensen Huang"
+      - "Meta AI / LLaMA"
+      - "Salesforce / Agentforce"
+      - "Adobe / Firefly"
+
+    trigger_signals:
+      - "A major platform change that affects how brands distribute or create content"
+      - "An enterprise AI partnership or integration that signals adoption at scale"
+      - "AI being embedded into a product millions of people already use"
+      - "A high-profile executive statement, keynote, or earnings call comment on AI"
+      - "A shift in how search, social, or ad platforms are using AI"
+
+    example_hooks:
+      - "Something important just changed about how [platform] works. Here's the part that matters for brands."
+      - "[Big Tech company] made a quiet move in AI this week. It's bigger than the headline."
+      - "If you use [platform] for marketing, this development is worth your attention."
+      - "The real story behind [company]'s AI announcement isn't the headline."
+      - "[Stat or move] tells you more about the direction of AI than any model launch."
+
+    must_answer:
+      - "What happened, specifically?"
+      - "Why does this matter beyond the headlines?"
+      - "How does this affect brands, marketers, or content creators practically?"
+      - "What should people be watching for next?"
+
+
+  # ── PILLAR 3: AI Startup Funding & Ecosystem Moves ─────────
+  - id: "startup_funding"
+    name: "AI Startup Funding & Ecosystem Moves"
+    description: >
+      Funding rounds, acquisitions, valuations, and ecosystem moves in the
+      AI startup world. The goal is to decode what money flowing into AI tells
+      us about where the market is heading — what problems are being solved,
+      what types of tools are getting traction, and what that means for
+      brands and marketers evaluating the AI vendor landscape.
+
+    trigger_signals:
+      - "A Series A, B, C, or seed round for an AI startup"
+      - "An AI startup reaching a significant valuation milestone or unicorn status"
+      - "An acquisition of an AI company by a larger player"
+      - "An AI company going public (IPO)"
+      - "A notable pivot, shutdown, or restructuring in the AI space"
+      - "Multiple rounds in a specific category (signals a hot sector)"
+
+    example_hooks:
+      - "[Startup] just raised $[X]M. Here's why that's worth paying attention to."
+      - "When a [category] AI startup raises this much money, it's a signal."
+      - "[Company] acquired [startup]. Here's what that means for how you use AI tools."
+      - "The [category] AI sector just had its biggest funding week. Here's the pattern."
+      - "This acquisition tells you more about AI's direction than most product launches."
+
+    must_answer:
+      - "What company, what round, what amount?"
+      - "What problem does this company solve?"
+      - "Why is this investor community backing this category right now?"
+      - "What does this tell us about where AI is heading for brands and marketing?"
+      - "Should brands or marketers be watching this company?"
+
+
+  # ── PILLAR 4: Human in the Loop ────────────────────────────
+  - id: "human_in_the_loop"
+    name: "Human in the Loop — My AI Experiments"
+    description: >
+      First-person accounts of using AI tools in real work. The author is
+      the human in the loop — directing, editing, testing, and sharing honest
+      results. This is NOT hype or press release writing. It's honest
+      reporting on what worked, what didn't, how long it took, and what it
+      changed. The goal is to give readers a practical, grounded view of what
+      AI actually looks like in day-to-day brand and marketing work.
+
+    experiment_types:
+      - "Testing a new AI tool for a specific task (copywriting, image gen, research, etc.)"
+      - "Comparing two AI tools head-to-head for the same task"
+      - "Using AI as a first drafter and editing the result"
+      - "Building an AI-assisted workflow and documenting the process"
+      - "Testing an AI tool with a real client brief or real project"
+      - "Documenting what surprised me — good or bad — about an AI tool"
+
+    example_hooks:
+      - "I spent [time] testing [AI tool] on [real task]. Here's the honest result."
+      - "[AI tool] helped me do something in [X minutes] that used to take [Y hours]."
+      - "I gave [AI tool] a real [brief/project]. Here's what it produced and what I changed."
+      - "Two AI tools. Same brief. Very different results."
+      - "AI wrote the first draft. I'll tell you what I changed and why."
+      - "I tried to [use case] with AI and hit a wall. Here's what I learned."
+
+    must_answer:
+      - "What specifically did I test or do?"
+      - "What was the AI's output? (Be honest — share the good, the bad, the weird)"
+      - "What did I change, improve, or reject from the AI's work?"
+      - "How long did it take with AI vs without?"
+      - "Would I use it again? Would I recommend it for others?"
+      - "What does this experiment teach brands or marketers?"
+
+    tone_notes:
+      - "Write in first person — 'I tested', 'I found', 'I changed'"
+      - "Share the actual output or result, not just a summary"
+      - "Be honest when AI disappointed you — that's more useful than hype"
+      - "Give a concrete recommendation at the end"
+      - "Keep it grounded — avoid over-claiming what AI can or can't do"
+
+
+# ── Pillar Weighting ───────────────────────────────────────
+# How often each pillar should appear in your post mix.
+# These are approximate ratios — adjust to match your strategy.
+posting_mix:
+  product_launch: 35       # % of posts — react fast to launches
+  human_in_the_loop: 30   # % of posts — your most original content
+  big_tech_news: 20        # % of posts — explain what big moves mean
+  startup_funding: 15      # % of posts — ecosystem signals
+
+
+# ── Post Frequency ──────────────────────────────────────────
+# How often you aim to post (for your own planning reference).
+target_frequency:
+  posts_per_week: 3
+  ideal_days: ["Tuesday", "Wednesday", "Thursday"]
+  best_times: "7:00–9:00 AM or 12:00–1:00 PM in your timezone"
+  avoid_days: ["Saturday", "Sunday"]

@@ -18,13 +18,16 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "pillar": "product_launch | big_tech_news | startup_funding | human_in_the_loop"
 }
 ```
 
+The `pillar` field tells you which content angle to write from. If not supplied, infer it from the article topics.
+
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillars
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +41,11 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_pillars.yaml` and find the pillar matching the `pillar` input field. Extract:
+- `example_hooks` — use one as the hook template for the post
+- `must_answer` — questions the post body must address
+- Any `tone_notes` specific to that pillar
 
 ---
 

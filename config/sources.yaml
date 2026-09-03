@@ -103,6 +103,31 @@ rss_feeds:
 
     - name: "ElevenLabs Blog"
       url: "https://elevenlabs.io/blog/rss"
+      priority: high
+      enabled: true
+
+    - name: "Midjourney Blog"
+      url: "https://www.midjourney.com/updates/rss"
+      priority: high
+      enabled: true
+
+    - name: "Runway Blog"
+      url: "https://runwayml.com/blog/rss"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity Blog"
+      url: "https://blog.perplexity.ai/rss"
+      priority: high
+      enabled: true
+
+    - name: "xAI / Grok Blog"
+      url: "https://x.ai/blog/rss"
+      priority: medium
+      enabled: true
+
+    - name: "Stability AI Blog"
+      url: "https://stability.ai/blog/rss"
       priority: medium
       enabled: true
 
@@ -124,20 +149,41 @@ rss_feeds:
       enabled: true
 
   # ── YouTube Channels (use RSS for channel updates) ──────
-  # YouTube video releases from key AI channels
+  # YouTube video releases from key AI companies and channels.
+  # When a company you follow ships a YouTube video, this is how you catch it.
   youtube_channels:
     - name: "Google DeepMind YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "OpenAI YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "Anthropic YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+      priority: high
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCaIVWKmGFMWLBvjIwQ0g7EQ"
+      priority: high
+      enabled: true
+
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UChCCp5SFKvvSSAhMZHgvQSg"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC0GJXGBVahfBJPiukRk9MaQ"
+      priority: medium
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCRqbkiUkWMBnrBrfGHYFJpA"
       priority: medium
       enabled: true
 
@@ -145,6 +191,11 @@ rss_feeds:
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
       priority: low
       enabled: true
+
+    - name: "Lex Fridman (AI interviews)"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA"
+      priority: low
+      enabled: false   # Enable if you want broader AI culture coverage
 
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.

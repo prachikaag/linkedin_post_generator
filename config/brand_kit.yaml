@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                          # Update: add your last name
+  title: "Brand & AI Strategist"          # Update: your actual title
+  # Your LinkedIn headline — shown under your name
+  tagline: "Helping brands understand and leverage AI in the real world | Human-in-the-loop AI experiments | Following what's next in AI so you don't have to"
+  location: "Update: Your City, Country"  # Update: your actual location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -85,21 +85,33 @@ tone_of_voice:
 brand:
 
   # The lenses you write through
+  # Edit these to match your actual areas of expertise
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Future of creative work with generative AI (images, video, voice, copy)"
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Experimenting with AI in your own work and sharing honest, specific results"
+    - "How big tech AI moves filter down to everyday brand and marketing work"
 
-  # Example angles you love to write about
+  # The four core content pillars (see config/content_pillars.yaml for full detail)
+  # Each post should map to one of these pillars
+  content_pillars:
+    - "New AI feature or product launch — what brands should know"
+    - "Big tech AI news — what it means for the rest of us"
+    - "AI startup funding — signals for where the market is heading"
+    - "Human in the loop — my experiments using AI in real work"
+
+  # Sentence templates for your headline or hook angles
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI tool] released a new [feature] — I tested it so you don't have to"
+    - "If you're a brand leader, this AI development is worth 5 minutes of your attention"
 
   # Hashtag strategy
   hashtags:
