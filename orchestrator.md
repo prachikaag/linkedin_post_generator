@@ -28,6 +28,14 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `CONTENT_TYPE` — filter posts to a specific content type from `brand.content_types` in brand_kit.yaml (optional). Valid values:
+  - `"AI Tool Launch"` — only articles about new model/product/feature releases
+  - `"Human-in-the-Loop Experiment"` — articles about real-world AI experimentation
+  - `"YouTube Video or Demo Release"` — articles/entries from YouTube channel RSS feeds
+  - `"AI Startup Funding"` — funding, acquisition, and IPO news
+  - `"Big Tech AI Move"` — news from Microsoft, Apple, Google, Meta, Amazon AI
+  - `"AI for Marketing"` — how brands and marketers are using AI
+  - Leave unset to include all content types (default)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -62,9 +70,13 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
-## Step 3 — Build Article Clusters
+## Step 3 — Filter and Build Article Clusters
 
-Divide the articles into clusters — one cluster per post to generate.
+**If `CONTENT_TYPE` is set**, filter `articles` first:
+- Keep articles where any element of `matched_categories` contains (case-insensitive) the `CONTENT_TYPE` string
+- If fewer than 2 articles pass the filter, relax and use all articles (print a notice: `ℹ️ CONTENT_TYPE filter returned fewer than 2 articles — using full article list`)
+
+Then divide the (filtered) articles into clusters — one cluster per post to generate.
 
 **Clustering algorithm:**
 - `n_posts = min(MAX_POSTS, len(articles))`
@@ -88,7 +100,8 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "content_type": "<CONTENT_TYPE if set, else omit this field>"
 }
 ```
 

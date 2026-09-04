@@ -5,11 +5,12 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS: Replace with your actual name, title, and location.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
+  name: "Prachi"
+  title: "Brand & AI Strategist"
+  # Replace this tagline with your LinkedIn headline
+  tagline: "Helping brands understand and leverage AI in the real world — through honest experiments, not hype"
   location: "Your City, Country"
   industries:
     - "Marketing & Brand Strategy"
@@ -100,6 +101,38 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "Human-in-the-loop: I used AI to [task] and edited the results — what I learned"
+    - "I watched [AI company]'s new video — here's the one thing brands should act on"
+    - "The gap between what AI can do and what most brands are actually doing"
+
+  # Content types you write regularly — these map directly to your post ideas
+  # Edit this list to add or remove the types of posts you want to write.
+  content_types:
+
+    - type: "AI Tool Launch"
+      description: "A model, product, or feature released by an AI company"
+      angle: "What it does, what brands should try first, and one honest limitation"
+
+    - type: "Human-in-the-Loop Experiment"
+      description: "You personally tested an AI tool on a real task and share the unfiltered result"
+      angle: "What you prompted, what came back, what you changed, what you kept — honest results"
+      hook_style: "Lead with what surprised you, not what you tried"
+
+    - type: "YouTube Video / Demo"
+      description: "A notable AI company demo or announcement video"
+      angle: "What the demo shows vs. what it means for brands — your interpretation, not a transcript"
+
+    - type: "AI Startup Funding"
+      description: "Investment round, acquisition, or IPO in the AI space"
+      angle: "Why the sector it targets matters for brands — what the capital flow signals"
+
+    - type: "Big Tech AI Move"
+      description: "Microsoft, Apple, Google, Meta, or Amazon shipping an AI product or policy"
+      angle: "How this affects the tools brands already pay for — practical, not abstract"
+
+    - type: "AI for Marketing"
+      description: "How brands, agencies, or CMOs are using AI in campaigns, creative, or strategy"
+      angle: "The specific use case, the result, and what other brands can steal from it"
 
   # Hashtag strategy
   hashtags:

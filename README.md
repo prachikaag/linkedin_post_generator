@@ -46,6 +46,29 @@ Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per c
 Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
 ```
 
+```
+Run the LinkedIn Post Generator pipeline with CONTENT_TYPE "AI Tool Launch".
+```
+
+```
+Run the LinkedIn Post Generator pipeline with CONTENT_TYPE "Human-in-the-Loop Experiment".
+```
+
+```
+Run the LinkedIn Post Generator pipeline with CONTENT_TYPE "YouTube Video or Demo Release".
+```
+
+### Available content types
+
+| Content Type | What it covers |
+|---|---|
+| `AI Tool Launch` | New model, product, or feature releases |
+| `Human-in-the-Loop Experiment` | Real-world AI testing — your experiments and results |
+| `YouTube Video or Demo Release` | AI company demo or keynote videos |
+| `AI Startup Funding` | Investment rounds, acquisitions, IPOs |
+| `Big Tech AI Move` | Microsoft / Apple / Google / Meta / Amazon AI news |
+| `AI for Marketing` | How brands and agencies are using AI |
+
 ---
 
 ## Configuration
@@ -54,9 +77,9 @@ All settings live in `config/`:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds and YouTube channels to monitor |
+| `config/topics.yaml` | Companies, keywords, content categories, and freshness settings |
+| `config/brand_kit.yaml` | Author voice, tone, writing style, content types, and hashtag rules |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -125,14 +148,23 @@ Change `status: draft` to `status: published` to track what's gone live.
 ## Customising Your Brand
 
 Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
+- Your name, title, and professional tagline (update the `author` section first)
 - Tone traits (curious, pragmatic, opinionated, etc.)
 - Writing style rules (paragraph length, hook style, etc.)
 - Post structure preferences
+- Content types — named post formats with their angle and hook style
 - Hashtag strategy
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+### First-time setup checklist
+
+1. Open `config/brand_kit.yaml` and update the `author` section with your real name, title, and tagline
+2. Review `brand.content_types` and edit the `angle` descriptions to match how you personally write
+3. Add or remove companies in `config/topics.yaml` → `companies_to_track`
+4. Copy `.env.example` to `.env` and add your `NOTION_PAGE_ID` if you use Notion
+5. Run the pipeline and review the draft in `posts/`
 
 ---
 

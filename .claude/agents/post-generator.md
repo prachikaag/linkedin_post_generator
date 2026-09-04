@@ -18,7 +18,8 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "content_type": "optional — one of the named content_types from brand_kit.yaml"
 }
 ```
 
@@ -34,10 +35,13 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.content_types` — named types with their angle and hook_style
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+**If `content_type` is provided in the input**, find the matching entry in `brand.content_types` and use its `angle` to focus the post's YOUR TAKE and SO WHAT sections, and use its `hook_style` (if present) to guide the HOOK.
 
 ---
 
