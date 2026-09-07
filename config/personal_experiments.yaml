@@ -1,0 +1,106 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS
+# Log your hands-on experiments here so the pipeline can
+# reference them when generating "human in the loop" posts.
+#
+# HOW TO USE:
+#   1. Add an entry every time you try a new AI tool or workflow
+#   2. Run the pipeline — the experiments-post-generator agent
+#      reads this file and weaves your experience into posts
+#   3. Set published: true once you've posted about it
+# ============================================================
+
+experiments:
+
+  # ── Template — copy and fill in for each experiment ───────
+  # - tool: "Tool Name"
+  #   date: "YYYY-MM-DD"
+  #   use_case: "What you used it for (1 line)"
+  #   what_i_tried: "Briefly describe what you did"
+  #   what_worked: "What surprised you or worked better than expected"
+  #   what_didnt: "What fell short or needed human editing"
+  #   verdict: "Your honest, 1-sentence take a brand leader would care about"
+  #   relevant_companies: []     # e.g. ["OpenAI", "Anthropic"]
+  #   relevant_topics: []        # e.g. ["content creation", "AI for marketing"]
+  #   published: false
+
+  # ── Your experiments ──────────────────────────────────────
+
+  - tool: "Claude"
+    date: "2026-09-07"
+    use_case: "Drafting LinkedIn posts from RSS article clusters"
+    what_i_tried: "Fed a set of AI news articles and brand guidelines into Claude to generate a first-draft LinkedIn post, then edited tone and cut it to the platform character limit"
+    what_worked: "The structure came out solid — hook, evidence, takeaway. Saved roughly 45 minutes of drafting per post. The sourcing was accurate when given real URLs."
+    what_didnt: "First drafts were 20-30% too long and occasionally over-formatted. Still needed a human pass for the personal opinion section to feel genuinely mine."
+    verdict: "Great first-draft engine — but the opinion and authenticity layer is still all human."
+    relevant_companies: ["Anthropic"]
+    relevant_topics: ["content creation", "human in the loop", "AI for marketing"]
+    published: false
+
+  - tool: "Perplexity"
+    date: ""           # ← fill in when you try it
+    use_case: ""
+    what_i_tried: ""
+    what_worked: ""
+    what_didnt: ""
+    verdict: ""
+    relevant_companies: ["Perplexity"]
+    relevant_topics: []
+    published: false
+
+  - tool: "ChatGPT (GPT-4o)"
+    date: ""
+    use_case: ""
+    what_i_tried: ""
+    what_worked: ""
+    what_didnt: ""
+    verdict: ""
+    relevant_companies: ["OpenAI"]
+    relevant_topics: []
+    published: false
+
+  - tool: "Midjourney"
+    date: ""
+    use_case: ""
+    what_i_tried: ""
+    what_worked: ""
+    what_didnt: ""
+    verdict: ""
+    relevant_companies: ["Midjourney"]
+    relevant_topics: ["creative AI", "brand visuals"]
+    published: false
+
+  - tool: "ElevenLabs"
+    date: ""
+    use_case: ""
+    what_i_tried: ""
+    what_worked: ""
+    what_didnt: ""
+    verdict: ""
+    relevant_companies: ["ElevenLabs"]
+    relevant_topics: ["voice AI", "brand audio"]
+    published: false
+
+# ── Recurring workflows to post about ─────────────────────
+# These are ongoing habits — not one-off experiments.
+# The agent can draw on these when there isn't a news peg.
+
+recurring_workflows:
+
+  - name: "AI-assisted content research"
+    description: "Using AI tools to surface news, summarise articles, and identify angles before writing LinkedIn posts"
+    tools_used: ["Perplexity", "Claude"]
+    frequency: "weekly"
+    current_status: "active"
+
+  - name: "AI image generation for brand mockups"
+    description: "Testing generative image tools to create quick visual concepts for brand strategy presentations"
+    tools_used: ["Midjourney", "Adobe Firefly"]
+    frequency: "ad hoc"
+    current_status: "exploring"
+
+  - name: "AI for client brief analysis"
+    description: "Pasting client briefs into AI tools to identify gaps, spot unstated assumptions, and generate initial strategic frameworks"
+    tools_used: ["Claude", "ChatGPT"]
+    frequency: "project basis"
+    current_status: "active"
