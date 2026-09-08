@@ -146,6 +146,26 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "Perplexity YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCNcbGXdlCHXWEzUWWuSMrhA"
+      priority: medium
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC9PgsJg4YFVMm_22LGbPTKA"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC3VDjOe7R3kMJyIhIeKBN3Q"
+      priority: medium
+      enabled: true
+
+    - name: "xAI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCRiqWMm9YCIJWL6BGZLM6UA"
+      priority: low
+      enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:

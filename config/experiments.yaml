@@ -1,0 +1,148 @@
+# ============================================================
+# AI EXPERIMENTS LOG
+# Add your own AI experiments here. Each entry becomes a
+# LinkedIn post in the "I tried X — here's what happened" style.
+#
+# The experiment-post-generator agent reads this file and
+# turns each unprocessed experiment into a draft post.
+#
+# How to add a new experiment:
+#   1. Copy the template below into the `experiments` list
+#   2. Fill in each field with your honest observations
+#   3. Set `status: ready` when you want a post generated
+#   4. After the post is generated, status becomes `published`
+# ============================================================
+
+# ── Example Experiment (rename status to 'ready' to generate a post) ─
+experiments:
+
+  - id: "exp-001"
+    status: "example"   # Change to "ready" to generate a post from this
+    tool: "Claude"
+    use_case: "Writing a full creative brief from a 5-minute voice note"
+    date_tested: "2026-05-01"
+    time_spent: "20 minutes"
+
+    # What you actually did — be specific
+    what_i_did: >
+      Recorded a 5-minute brain dump about a new brand campaign.
+      Uploaded the transcript to Claude and asked it to write a structured
+      creative brief with objectives, audience, tone, and key messages.
+
+    # What worked well
+    what_worked:
+      - "The structure was solid — better than my first-draft briefs"
+      - "It surfaced audience insights I hadn't named explicitly"
+      - "Saved roughly 2 hours of doc writing"
+
+    # What surprised you (positive or negative)
+    what_surprised:
+      - "It wrote a better CTA than I would have"
+      - "First draft was too formal — had to prompt for a more conversational tone"
+
+    # What failed or didn't work
+    what_failed:
+      - "Hallucinated a brand colour code I never mentioned"
+      - "Needed 3 rounds of prompting to get the right reading level"
+
+    # The headline takeaway for brands
+    key_takeaway: >
+      Voice-to-brief is genuinely viable for brand teams right now.
+      The trick is treating the AI output as a v1 draft, not a finished doc.
+      Your job shifts from writer to editor — and that's actually faster.
+
+    # What should brands/marketers do with this?
+    so_what_for_brands: >
+      If your team spends time writing briefs, try this workflow:
+      voice note → transcript → Claude brief → human edit.
+      You'll cut the writing time by 60% and spend more time on strategy.
+
+    # Tools and links you want cited (optional)
+    tools_used:
+      - name: "Claude"
+        url: "https://claude.ai"
+      - name: "Whisper (for transcription)"
+        url: "https://openai.com/research/whisper"
+
+    # Optional: related news article to tie this to
+    related_news_url: ""
+
+
+  - id: "exp-002"
+    status: "example"   # Change to "ready" to generate a post from this
+    tool: "Midjourney v7"
+    use_case: "Generating brand campaign concepts for a client pitch"
+    date_tested: "2026-05-10"
+    time_spent: "45 minutes"
+
+    what_i_did: >
+      Used Midjourney v7 to generate 20 concept images for a retail brand pitch.
+      Tested both detailed prompts and simple natural language prompts.
+
+    what_worked:
+      - "v7 natural language prompting is dramatically better than v6"
+      - "Could generate a full mood board in 15 minutes"
+      - "Client loved having visual concepts in the first meeting"
+
+    what_surprised:
+      - "v7 understood brand adjectives like 'premium but approachable' without extra prompting"
+      - "Consistency across image sets was much improved vs v6"
+
+    what_failed:
+      - "Still struggles with exact text on-image — had to remove all text prompts"
+      - "Logo placement is unpredictable — always needs Photoshop cleanup"
+
+    key_takeaway: >
+      Midjourney v7 changes what's possible in a pitch environment.
+      The quality gap between AI concepts and traditional mood boards
+      is closing faster than most creative directors expect.
+
+    so_what_for_brands: >
+      Agencies should be integrating Midjourney into their pitch workflow now.
+      Not to replace designers — to give them a faster starting point
+      and give clients more visual options to react to earlier.
+
+    tools_used:
+      - name: "Midjourney"
+        url: "https://www.midjourney.com"
+
+    related_news_url: ""
+
+
+# ── Add Your Own Experiments Below ───────────────────────
+# Copy this template and fill it in:
+#
+# - id: "exp-003"
+#   status: "ready"     # "ready" → post will be generated on next run
+#   tool: "Tool Name"
+#   use_case: "What you used it for"
+#   date_tested: "YYYY-MM-DD"
+#   time_spent: "X hours / minutes"
+#
+#   what_i_did: >
+#     Step-by-step description of the experiment.
+#     Be specific — what did you input, what did you do?
+#
+#   what_worked:
+#     - "Specific thing that went well"
+#     - "Another win"
+#
+#   what_surprised:
+#     - "Something unexpected (good or bad)"
+#
+#   what_failed:
+#     - "What didn't work — be honest"
+#
+#   key_takeaway: >
+#     The single most important thing someone should know.
+#     One or two sentences, plain language.
+#
+#   so_what_for_brands: >
+#     Concrete advice for a brand or marketing team
+#     who wants to try this themselves.
+#
+#   tools_used:
+#     - name: "Tool Name"
+#       url: "https://tool-url.com"
+#
+#   related_news_url: ""   # Optional URL to tie to a news story

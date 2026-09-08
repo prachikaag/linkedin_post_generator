@@ -335,6 +335,33 @@ topic_categories:
       - "AI assistant"
       - "copilot"
 
+  - name: "YouTube Video or Demo Launch"
+    description: "New YouTube videos, demos, and tutorials from AI companies"
+    keywords:
+      - "youtube"
+      - "video"
+      - "demo"
+      - "tutorial"
+      - "hands-on"
+      - "deep dive"
+      - "explained"
+      - "watch"
+      - "new video"
+
+  - name: "Human in the Loop AI"
+    description: "AI workflows where humans direct and AI executes — practical use cases"
+    keywords:
+      - "human in the loop"
+      - "AI workflow"
+      - "prompt engineering"
+      - "AI experiment"
+      - "tested"
+      - "tried"
+      - "hands-on AI"
+      - "practical AI"
+      - "real-world AI"
+      - "AI for teams"
+
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
   # Seed terms used to find related trending queries on Google Trends

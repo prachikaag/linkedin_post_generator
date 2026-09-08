@@ -6,10 +6,13 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
+  # Fill in your actual name and title
   name: "Your Name"
   title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
+  # Example taglines:
+  #   "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  #   "Marketing Leader exploring AI so brands don't have to figure it out alone"
   location: "Your City, Country"
   industries:
     - "Marketing & Brand Strategy"
@@ -21,12 +24,13 @@ tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
+    - "Curious and experimental — you try AI tools yourself and share honest, specific results"
+    - "Pragmatic and brand-focused — you connect AI news to real outcomes for marketers and CMOs"
     - "Accessible, not overly technical — you translate complexity into plain language"
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
     - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Human — you write like a person who experiments with AI daily, not a press release"
+    - "An insider who makes the outside world legible — you're deep in this space so your audience doesn't have to be"
 
   # Rules for how you write every post
   writing_style:
@@ -48,7 +52,7 @@ tone_of_voice:
     - "Only use numbers when they are the single most powerful way to make the point. Otherwise describe the impact in human terms."
     - "Never reference past news as current. Before writing 'this week', 'today', or 'yesterday', verify the event date against today's actual date. If it happened more than 7 days ago, say 'recently' or give the context without a time reference."
 
-  # The blueprint for every post
+  # The blueprint for every news-driven post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
     - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
@@ -67,8 +71,10 @@ tone_of_voice:
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your brand/marketing lens — creativity, strategy, customer experience"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Connect tool launches and AI news back to what it means for brands right now"
+    - "Show you are hands-on — you test tools, you run experiments, you share results"
 
   # What undermines your credibility
   donts:
@@ -80,6 +86,7 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't speculate about capabilities unless you have tested them yourself"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
@@ -92,14 +99,53 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "How CMOs and brand teams can start using AI today, practically"
 
-  # Example angles you love to write about
+  # Your core point of view that underlies every post
+  point_of_view: >
+    AI is not replacing creativity — it's raising the floor for everyone.
+    Brands that learn to direct AI tools will outpace those who just watch.
+    The most powerful position is human-in-the-loop: you set the strategy,
+    the brand voice, and the judgment calls. AI handles the scale.
+    You're proving this in your own work, one experiment at a time.
+
+  # Post types you regularly write
+  post_types:
+
+    news_reaction:
+      description: "Reacting to a new AI feature, model launch, or YouTube video from a major AI company"
+      hook_formula: "[Company] just [did X]. Here's what brands should actually care about."
+      angle: "Cut through the hype. What does this feature/release mean for a marketer or brand team right now?"
+
+    funding_news:
+      description: "An AI startup has raised funding or been acquired"
+      hook_formula: "[$Xm raised] for [Company]. This one's worth paying attention to."
+      angle: "What gap in the market does this signal? Why should brands be watching this company?"
+
+    experiment_post:
+      description: "Human-in-the-loop: you tested an AI tool and are sharing honest results"
+      hook_formula: "I spent [time] using [Tool] to [task]. Here's what actually happened."
+      angle: "What worked, what surprised you, what failed, and what it means for brands who want to do the same."
+
+    trend_synthesis:
+      description: "Multiple developments across the AI space point to a single pattern"
+      hook_formula: "Three things happened in AI this week. Together, they're telling a story."
+      angle: "The meta-pattern across news — what the industry is shifting toward."
+
+    opinion_take:
+      description: "A hot take or contrarian view on something happening in AI"
+      hook_formula: "Everyone's excited about [X]. I'm not sure they're looking at the right thing."
+      angle: "What's being missed. What the mainstream narrative is getting wrong."
+
+  # Example content angles you love to write about
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I ran [experiment] using [two AI tools] and the difference surprised me"
+    - "Most brands are sleeping on [feature/tool]. Here's how to use it today."
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +170,8 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#MarketingStrategy"
 
   max_hashtags: 5
 
@@ -133,15 +181,16 @@ brand:
   max_characters: 1457
   max_words: 251
 
-  # Optional: words or phrases that are distinctly yours
+  # Phrases that are distinctly yours
   signature_phrases:
     - "Here's what I think brands are missing..."
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I tested this. Here's what I found."
+    - "The pattern here is..."
 
 # ── Research & Citation Standards ─────────────────────────
-# These rules are injected directly into the AI prompt as hard requirements.
 research_standards:
   # Minimum number of distinct sources that must be cited in every post
   min_sources: 4
