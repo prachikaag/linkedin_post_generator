@@ -20,6 +20,8 @@ companies_to_track:
         - "Sora"
         - "Operator"
         - "Deep Research"
+        - "ChatGPT Plus"
+        - "OpenAI API"
 
     - name: "Anthropic"
       keywords:
@@ -32,6 +34,8 @@ companies_to_track:
         - "claude haiku"
         - "Model Context Protocol"
         - "MCP"
+        - "Claude.ai"
+        - "Claude Code"
 
     - name: "Google DeepMind"
       keywords:
@@ -45,12 +49,17 @@ companies_to_track:
         - "Veo"
         - "Imagen"
         - "Google Search AI"
+        - "Google AI Overviews"
+        - "Gemini 2.0"
+        - "AlphaEvolve"
 
     - name: "Perplexity"
       keywords:
         - "Perplexity"
         - "Perplexity AI"
         - "Perplexity Pro"
+        - "Perplexity Deep Research"
+        - "Perplexity Comet"
 
     - name: "ElevenLabs"
       keywords:
@@ -59,13 +68,17 @@ companies_to_track:
         - "voice AI"
         - "AI voice cloning"
         - "text to speech AI"
+        - "ElevenLabs API"
+        - "AI dubbing"
 
     - name: "Midjourney"
       keywords:
         - "Midjourney"
         - "Mid-journey"
-        - "AI image generation"
         - "Midjourney v7"
+        - "Midjourney v6"
+        - "AI image generation"
+        - "Midjourney web"
 
     - name: "Stability AI"
       keywords:
@@ -73,12 +86,15 @@ companies_to_track:
         - "Stable Diffusion"
         - "SDXL"
         - "Stable Video"
+        - "Stable Audio"
 
     - name: "xAI"
       keywords:
         - "Grok"
         - "xAI"
         - "Grok-3"
+        - "Grok-4"
+        - "xAI Colossus"
 
     - name: "Meta AI"
       keywords:
@@ -87,47 +103,76 @@ companies_to_track:
         - "Llama 3"
         - "Llama 4"
         - "Meta Orion"
+        - "Meta Ray-Ban"
+        - "Meta AI assistant"
 
     - name: "Mistral"
       keywords:
         - "Mistral"
         - "Mixtral"
         - "Le Chat"
+        - "Mistral Large"
 
     - name: "Runway"
       keywords:
         - "Runway"
         - "RunwayML"
-        - "Gen-2"
         - "Gen-3"
+        - "Gen-4"
         - "AI video generation"
+        - "Runway Act-One"
 
     - name: "Pika Labs"
       keywords:
         - "Pika"
         - "Pika Labs"
         - "Pika AI"
+        - "Pika 2.0"
 
     - name: "Cohere"
       keywords:
         - "Cohere"
         - "Command R"
-
-    - name: "Inflection AI"
-      keywords:
-        - "Inflection AI"
-        - "Pi AI"
-
-    - name: "Character AI"
-      keywords:
-        - "Character.AI"
-        - "Character AI"
+        - "Command A"
 
     - name: "HuggingFace"
       keywords:
         - "Hugging Face"
         - "HuggingFace"
         - "open source AI model"
+        - "HuggingFace Spaces"
+
+    - name: "Suno"
+      keywords:
+        - "Suno"
+        - "Suno AI"
+        - "AI music generation"
+        - "Suno v4"
+
+    - name: "Udio"
+      keywords:
+        - "Udio"
+        - "Udio AI"
+        - "AI music"
+
+    - name: "Synthesia"
+      keywords:
+        - "Synthesia"
+        - "AI video avatar"
+        - "Synthesia 2.0"
+
+    - name: "Luma AI"
+      keywords:
+        - "Luma AI"
+        - "LumaLabs"
+        - "Dream Machine"
+        - "Genie 2"
+
+    - name: "Kling AI"
+      keywords:
+        - "Kling"
+        - "Kling AI"
+        - "Kuaishou AI"
 
   ai_builders:
     - name: "Cerebras"
@@ -135,6 +180,7 @@ companies_to_track:
         - "Cerebras"
         - "Cerebras Systems"
         - "Cerebras IPO"
+        - "Cerebras inference"
 
     - name: "Groq"
       keywords:
@@ -152,11 +198,6 @@ companies_to_track:
         - "Cognition AI"
         - "Devin AI"
         - "Devin agent"
-
-    - name: "Together AI"
-      keywords:
-        - "Together AI"
-        - "TogetherAI"
 
     - name: "Scale AI"
       keywords:
@@ -181,24 +222,58 @@ companies_to_track:
         - "Cursor"
         - "Cursor AI"
         - "Cursor editor"
+        - "Cursor IDE"
 
-    - name: "Perplexity"
+    - name: "Windsurf"
       keywords:
-        - "Perplexity"
-        - "Perplexity AI"
-        - "Perplexity Pro"
-        - "Perplexity Deep Research"
+        - "Windsurf"
+        - "Codeium"
+        - "Windsurf IDE"
 
-    - name: "Suno"
+    - name: "Replit"
       keywords:
-        - "Suno"
-        - "Suno AI"
-        - "AI music generation"
+        - "Replit"
+        - "Replit Agent"
+        - "Replit AI"
 
-    - name: "Synthesia"
+    - name: "Character AI"
       keywords:
-        - "Synthesia"
-        - "AI video avatar"
+        - "Character.AI"
+        - "Character AI"
+
+    - name: "Inflection AI"
+      keywords:
+        - "Inflection AI"
+        - "Pi AI"
+
+    - name: "Gamma"
+      keywords:
+        - "Gamma AI"
+        - "Gamma app"
+        - "AI presentations"
+
+    - name: "Descript"
+      keywords:
+        - "Descript"
+        - "Descript AI"
+        - "AI video editing"
+
+    - name: "Heygen"
+      keywords:
+        - "Heygen"
+        - "HeyGen AI"
+        - "AI avatar video"
+
+    - name: "Ideogram"
+      keywords:
+        - "Ideogram"
+        - "Ideogram AI"
+        - "AI typography"
+
+    - name: "Together AI"
+      keywords:
+        - "Together AI"
+        - "TogetherAI"
 
   big_tech:
     - name: "Microsoft"
@@ -208,6 +283,8 @@ companies_to_track:
         - "Microsoft AI"
         - "Bing AI"
         - "Microsoft 365 Copilot"
+        - "Copilot Studio"
+        - "Microsoft Fabric"
 
     - name: "Apple"
       keywords:
@@ -215,6 +292,7 @@ companies_to_track:
         - "Apple AI"
         - "Siri AI"
         - "Apple Vision Pro AI"
+        - "iOS AI"
 
     - name: "Amazon"
       keywords:
@@ -224,6 +302,7 @@ companies_to_track:
         - "Amazon Q"
         - "Alexa AI"
         - "Alexa+"
+        - "Nova models"
 
     - name: "Nvidia"
       keywords:
@@ -232,12 +311,14 @@ companies_to_track:
         - "Nvidia Blackwell"
         - "CUDA AI"
         - "Nvidia NIM"
+        - "Nvidia ACE"
 
     - name: "Salesforce"
       keywords:
         - "Salesforce AI"
         - "Einstein AI"
         - "Agentforce"
+        - "Salesforce Copilot"
 
     - name: "Adobe"
       keywords:
@@ -245,13 +326,25 @@ companies_to_track:
         - "Adobe AI"
         - "Adobe Sensei"
         - "Generative Fill"
+        - "Adobe Express AI"
+
+    - name: "Notion"
+      keywords:
+        - "Notion AI"
+        - "Notion AI writer"
+
+    - name: "Canva"
+      keywords:
+        - "Canva AI"
+        - "Magic Studio"
+        - "Canva Magic"
 
 # ── Topic Categories ───────────────────────────────────────
 # These categories help score and label articles.
 topic_categories:
 
   - name: "New AI Feature or Product Launch"
-    description: "New product launches, model releases, feature updates"
+    description: "New product launches, model releases, feature updates from any AI company"
     keywords:
       - "launch"
       - "release"
@@ -264,9 +357,28 @@ topic_categories:
       - "unveils"
       - "rolls out"
       - "debuts"
+      - "preview"
+      - "beta"
+      - "generally available"
+      - "GA release"
+
+  - name: "YouTube Video or Demo Launch"
+    description: "AI companies shipping a YouTube demo, keynote, or product video"
+    keywords:
+      - "YouTube"
+      - "video demo"
+      - "live demo"
+      - "demo video"
+      - "keynote"
+      - "walkthrough"
+      - "showcase video"
+      - "product video"
+      - "announcement video"
+      - "watch"
+      - "new video"
 
   - name: "AI Startup Funding"
-    description: "Investment rounds, acquisitions, and valuations"
+    description: "Investment rounds, acquisitions, and valuations in the AI startup space"
     keywords:
       - "funding"
       - "raises"
@@ -283,6 +395,9 @@ topic_categories:
       - "billion"
       - "IPO"
       - "unicorn"
+      - "pre-seed"
+      - "investors"
+      - "backed by"
 
   - name: "AI for Marketing and Brands"
     description: "How brands use AI in marketing, creative, and strategy"
@@ -296,6 +411,27 @@ topic_categories:
       - "advertising"
       - "content creation"
       - "social media AI"
+      - "AI content"
+      - "brand strategy"
+
+  - name: "Human in the Loop / AI Experimentation"
+    description: "Real-world AI use cases, workflows, and firsthand experiments"
+    keywords:
+      - "tried"
+      - "tested"
+      - "experiment"
+      - "in practice"
+      - "real workflow"
+      - "I used"
+      - "hands on"
+      - "hands-on"
+      - "how I"
+      - "workflow"
+      - "productivity"
+      - "in production"
+      - "actual results"
+      - "use case"
+      - "human in the loop"
 
   - name: "AI Research and Breakthroughs"
     description: "Research papers, benchmarks, and capability milestones"
@@ -309,6 +445,8 @@ topic_categories:
       - "AGI"
       - "reasoning"
       - "multimodal"
+      - "state of the art"
+      - "evaluation"
 
   - name: "AI Regulation and Policy"
     description: "Government regulation, AI safety, and ethics"
@@ -322,9 +460,11 @@ topic_categories:
       - "law"
       - "copyright"
       - "bias"
+      - "governance"
+      - "executive order"
 
   - name: "AI Tools and Productivity"
-    description: "AI tools for workflows, coding, and productivity"
+    description: "AI tools for workflows, coding, writing, design, and productivity"
     keywords:
       - "AI agent"
       - "agentic"
@@ -334,10 +474,13 @@ topic_categories:
       - "coding AI"
       - "AI assistant"
       - "copilot"
+      - "AI writing"
+      - "AI design"
+      - "AI editor"
 
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
-  # Seed terms used to find related trending queries on Google Trends
+  # Seed terms used to find related trending queries
   seed_terms:
     - "artificial intelligence"
     - "ChatGPT"
@@ -347,11 +490,16 @@ trending_keywords:
     - "AI agent"
     - "Claude AI"
     - "Gemini AI"
-  geo: "US"           # Google Trends geography code (US, GB, AU, etc.)
+    - "Midjourney"
+    - "ElevenLabs"
+    - "Perplexity AI"
+    - "AI startup"
+    - "AI funding"
+  geo: "US"           # Google Trends geography code (US, GB, AU, CA, etc.)
   timeframe: "now 7-d" # last 7 days (options: now 1-d, now 7-d, now 1-m)
 
 # ── Freshness Settings ─────────────────────────────────────
 freshness:
-  max_article_age_hours: 48   # Only articles published in the last N hours
+  max_article_age_hours: 72   # Only articles published in the last N hours (3 days gives good coverage)
   min_relevance_score: 2      # Minimum relevance score to include an article
-  max_articles_per_run: 25    # Cap how many articles are scored per run
+  max_articles_per_run: 30    # Cap how many articles are scored per run

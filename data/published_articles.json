@@ -1,0 +1,7 @@
+{
+  "_comment": "Tracks articles already used in published or draft posts. The pipeline checks this before generating new posts to avoid duplicates.",
+  "last_updated": "",
+  "published_urls": [],
+  "published_topics": [],
+  "post_history": []
+}

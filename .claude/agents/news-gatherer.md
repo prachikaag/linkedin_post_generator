@@ -36,10 +36,17 @@ Parse the XML for articles — look for `<item>` (RSS 2.0) or `<entry>` (Atom) e
 | Field | Source |
 |-------|--------|
 | `title` | `<title>` tag — strip all HTML |
-| `url` | `<link>` or `<guid isPermaLink="true">` — must be the article permalink, **not** the feed URL |
-| `summary` | `<description>` or `<content:encoded>` — strip HTML, max 800 characters |
+| `url` | `<link>` or `<guid isPermaLink="true">` — must be the article permalink, **not** the feed URL. For YouTube feeds: use the `<link rel="alternate">` href attribute or `<yt:videoId>` to construct `https://youtube.com/watch?v=<id>` |
+| `summary` | `<description>` or `<content:encoded>` or `<media:description>` — strip HTML, max 800 characters. For YouTube feeds: use the video description from `<media:group><media:description>` |
 | `published` | `<pubDate>` (RSS) or `<published>`/`<updated>` (Atom) — convert to ISO 8601 |
 | `source_name` | The feed's `name` from sources.yaml |
+| `is_video` | `true` if the feed is a YouTube channel feed (sources.yaml `youtube_channels`), otherwise omit |
+
+**YouTube-specific notes:**
+- YouTube feeds are Atom format with `yt:` namespace elements
+- The URL should be `https://www.youtube.com/watch?v=<yt:videoId>`
+- Add "YouTube video" and "video demo" to the article's summary text so it scores on the "YouTube Video or Demo Launch" category
+- Video title often carries more signal than description — weight the title more
 
 If a feed errors or cannot be parsed, skip it silently and continue.
 

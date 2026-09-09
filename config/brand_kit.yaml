@@ -6,14 +6,15 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  # ↓ Fill in your details here
+  name: "Prachi"                                         # Your first name (or full name)
+  title: "Brand Strategist & Creative Consultant"        # Your LinkedIn title
+  tagline: "Helping brands understand and leverage AI — through real experiments, not theory"
+  location: "Toronto, Canada"                            # Update to your city
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
+    - "Creative & Content"
     - "Digital Innovation"
 
 # ── Your Voice ────────────────────────────────────────────
@@ -21,16 +22,17 @@ tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
+    - "Curious and experimental — you try AI tools yourself and share honest, unfiltered results"
+    - "Pragmatic and brand-focused — you connect AI news to real outcomes for marketing teams and brands"
+    - "Accessible, not overly technical — you translate model releases and funding news into plain language"
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
     - "Opinionated — you have a clear point of view, not just a neutral summary"
+    - "Human in the loop — you are always the editor. AI is the drafter. You share that lens on every post."
     - "Human — you write like a person, not a press release"
 
   # Rules for how you write every post
   writing_style:
-    - "Write in first person. Share personal experiments and real observations."
+    - "Write in first person. Share personal experiments, honest reactions, and real observations."
     - "Short paragraphs only — 1 to 3 sentences max per paragraph."
     - "Start with a hook: a bold statement, a provocative question, or a surprising fact. Never start with 'I'."
     - "Use generous line breaks — LinkedIn rewards whitespace."
@@ -51,9 +53,9 @@ tone_of_voice:
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the AI space, not just one article. Reference multiple developments."
     - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean for brands? Be specific and opinionated."
     - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
     - "CTA (1 line): A question that invites genuine discussion in the comments."
     - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
@@ -67,8 +69,10 @@ tone_of_voice:
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "When writing about a YouTube video or demo: describe what you saw, what surprised you, and what it means for the audience"
+    - "When writing about funding: explain what the company does in plain terms, why the round signals something bigger"
 
   # What undermines your credibility
   donts:
@@ -86,12 +90,55 @@ brand:
 
   # The lenses you write through
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Practical AI tools for marketing and brand building — tested by you, not just reported"
+    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter, always"
+    - "New feature launches and product updates from major AI companies (ChatGPT, Claude, Gemini, Perplexity, Midjourney, ElevenLabs, Runway, and more)"
+    - "YouTube video and demo reactions — when AI companies ship a video, you watch it and share what matters"
+    - "AI startup funding rounds — why the money moved, what the company does, what it signals"
+    - "Big tech AI moves from Microsoft, Google, Apple, Amazon, Meta, Salesforce, Nvidia, and Adobe"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "The future of creative work with generative AI"
+    - "Experimenting with AI in your own work and sharing honest, unfiltered results"
+
+  # ── Post Types ─────────────────────────────────────────
+  # The post generator should identify which type fits best and write accordingly.
+  post_types:
+
+    feature_launch:
+      label: "New Feature or Product Launch"
+      trigger: "An AI company ships a new model, feature, or tool"
+      angle: "What does this do, who is it for, and what does it mean for brands and marketers right now?"
+      example_hook: "[Company] just released something that changes how brands can [do X]."
+
+    youtube_reaction:
+      label: "YouTube / Demo Watch"
+      trigger: "An AI company releases a YouTube video, live demo, or announcement stream"
+      angle: "I watched the video so you don't have to — here's what actually matters for your work."
+      example_hook: "[Company] dropped a new video. Here's what I noticed that most people are missing."
+
+    funding_decoded:
+      label: "AI Startup Funding Round"
+      trigger: "A startup announces a funding round, acquisition, or IPO"
+      angle: "Translate the announcement into plain language — what does this company do, why are investors betting on it, what does the funding signal about where the market is heading?"
+      example_hook: "[Company] just raised [X]. Here's why that matters beyond the headline number."
+
+    human_in_the_loop:
+      label: "I Tried It (Human in the Loop)"
+      trigger: "You test an AI tool yourself, or an article describes a real-world AI workflow"
+      angle: "Share what you tested, your honest reaction, what worked and what didn't, and what brands should know about actually using this in the real world."
+      example_hook: "I spent [time] testing [AI tool] for [use case]. Here's what actually happened."
+
+    bigtech_ai_move:
+      label: "Big Tech AI Move"
+      trigger: "Microsoft, Google, Apple, Amazon, Meta, Salesforce, Nvidia, or Adobe makes an AI announcement"
+      angle: "What does this mean for teams already using these platforms? What's the practical impact on brands and marketing workflows?"
+      example_hook: "[Company] just [did X] — and this affects every team already using [product]."
+
+    ai_experiment:
+      label: "AI in Practice"
+      trigger: "News about how real companies or professionals are using AI in their workflows"
+      angle: "What does this real-world example teach us? What can brands take from this and apply today?"
+      example_hook: "Here's how [company/person] is actually using AI — not in a demo, in production."
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +147,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I watched [AI company]'s new video — here's what most people missed"
+    - "Why [BigTech company] doing [X] matters more than the headlines suggest"
+    - "Brands are sleeping on [AI tool] — and here's why that's changing"
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +174,9 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#AIExperiments"
+      - "#BrandMarketing"
 
   max_hashtags: 5
 
@@ -139,9 +192,10 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I tried it. Here's what actually happened."
+    - "Not theory. This is happening right now."
 
 # ── Research & Citation Standards ─────────────────────────
-# These rules are injected directly into the AI prompt as hard requirements.
 research_standards:
   # Minimum number of distinct sources that must be cited in every post
   min_sources: 4
