@@ -12,12 +12,14 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[memory check]          → skip recently covered companies/URLs
+[news-gatherer]         → articles JSON
+[trending-tracker]      → keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]        → saved .md draft
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]      → published to Notion
+[memory update]         → write new entries to config/memory.yaml
 ```
 
 ---
@@ -33,6 +35,20 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Memory
+
+Read `config/memory.yaml` and extract:
+- `dedup_window_days` — how many days to avoid re-covering a company (default: 7)
+- `url_dedup_window_days` — how many days to avoid reusing a source URL (default: 14)
+- `published_posts` — list of past post entries
+
+Build a **blocked companies set**: companies covered in the last `dedup_window_days` days.
+Build a **blocked URLs set**: source URLs used in the last `url_dedup_window_days` days.
+
+Print: `✓ Memory loaded. Blocking {N} companies and {M} URLs from recent runs.`
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
@@ -40,11 +56,18 @@ Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.m
 Task for the subagent:
 > "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
 
-Receive the JSON array of articles. If the array is empty, print:
-> "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
+Receive the JSON array of articles.
+
+**Apply memory filter:**
+- Remove articles where `url` is in the blocked URLs set
+- Remove articles where ALL `matched_companies` are in the blocked companies set
+  (keep articles that introduce at least one company not recently covered)
+
+If the filtered array is empty, print:
+> "No new articles found after memory filter. Either wait a few days for new developments, or reduce dedup_window_days in config/memory.yaml."
 Then stop.
 
-Print a summary line: `✓ {N} relevant articles fetched and scored.`
+Print a summary line: `✓ {N} relevant articles fetched and scored ({removed} filtered by memory).`
 
 If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
 
@@ -128,7 +151,33 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 6 — Update Memory
+
+After all posts are generated, update `config/memory.yaml` to record this run.
+
+Read the current contents of `config/memory.yaml`.
+
+For each successfully generated post, append a new entry to `published_posts`:
+
+```yaml
+- date: "<today's date YYYY-MM-DD>"
+  filename: "<result.filename>"
+  companies: [<all matched_companies across the cluster, deduplicated>]
+  categories: [<all matched_categories, deduplicated>]
+  topic_summary: "<one sentence summary of what the post covers>"
+  post_angle: "<result.post_angle from frontmatter if available>"
+  source_urls:
+    - "<each article URL in the cluster>"
+  status: "draft"
+```
+
+Write the updated `config/memory.yaml` back to disk.
+
+Print: `✓ Memory updated — {N} new entries added.`
+
+---
+
+## Step 7 — Final Summary
 
 Print a summary table:
 
@@ -153,3 +202,4 @@ Then print each post's content in full so the author can review immediately.
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
 - Never stop the entire pipeline because of a single subagent failure
+- If memory update fails (write error), log a warning but do not fail the run

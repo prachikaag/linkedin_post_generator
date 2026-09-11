@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/content_angles.yaml, selects the right post angle, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Angles
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -34,10 +34,20 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.editorial_stance` — the human-in-the-loop positioning
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_angles.yaml` and:
+1. Look at the `post_types` list and their `triggers` keywords
+2. Match the anchor article's title and summary against each angle's `triggers`
+3. Select the best-matching `post_type` — use `angle_selection` guide if unsure
+4. Extract the selected angle's `hook_examples` and `structure_notes` for guidance
+5. Also read `human_in_the_loop.cues_to_weave_in` — incorporate 1-2 naturally in the post
+
+The selected angle should shape the hook style and framing of the post.
 
 ---
 
@@ -118,6 +128,7 @@ title: "<primary article title>"
 date: "YYYY-MM-DD"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
+post_angle: "<selected post_type from content_angles.yaml>"
 all_sources:
   - title: "<article title>"
     url: "<article url>"

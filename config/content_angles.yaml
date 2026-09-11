@@ -1,0 +1,208 @@
+# ============================================================
+# CONTENT ANGLES — LinkedIn Post Templates
+# These are the specific post formats and story types you write.
+# The post-generator agent reads this file to frame each post.
+# Add, remove, or reorder angles to match your evolving style.
+# ============================================================
+
+# ── Post Type Templates ────────────────────────────────────
+post_types:
+
+  - type: "tool_experiment"
+    name: "I Tried [AI Tool] — Here's What Actually Happened"
+    description: >
+      Human-in-the-loop experiment: you test a new AI tool, feature, or model
+      and share honest, specific results. You are the editor. AI is your assistant.
+    hook_formula: "Start with the experiment outcome — not the announcement"
+    hook_examples:
+      - "I spent [X hours] testing [tool] for [use case]. The result surprised me."
+      - "[Tool] just dropped [feature]. I ran it on a real brief. Here's what happened."
+      - "Everyone's talking about [feature]. I actually used it. Here's the honest version."
+    structure_notes:
+      - "Name the exact task you used it for — be specific"
+      - "Share what worked, what didn't, what surprised you"
+      - "Connect to a brand or marketing use case"
+      - "End with: what you'll keep doing differently because of it"
+    priority: 1
+    triggers:
+      - "new feature"
+      - "product update"
+      - "model release"
+      - "tool launch"
+
+  - type: "feature_launch"
+    name: "[Company] Just Launched [Feature] — What Brands Should Know"
+    description: >
+      Break down a new AI feature or product through the lens of brand impact.
+      Translate the technical into the practical. What changes for marketers TODAY?
+    hook_formula: "Lead with the implication for brands, not the feature description"
+    hook_examples:
+      - "[Company]'s new [feature] quietly changes something big for brands doing [X]."
+      - "If you use AI for [marketing task], this update matters."
+      - "[Feature] just landed. Here's the one thing brands should actually pay attention to."
+    structure_notes:
+      - "One sentence on what the feature is"
+      - "Three or more sentences on what it means for brands, not just what it does"
+      - "Give one concrete example of how a marketer could use it today"
+    priority: 1
+    triggers:
+      - "launch"
+      - "release"
+      - "announced"
+      - "ships"
+      - "now available"
+      - "debuts"
+      - "YouTube video from AI company"
+
+  - type: "funding_news"
+    name: "What [AI Startup] Raising [Amount] Tells Us About Where AI Is Going"
+    description: >
+      Connect funding news to bigger market trends and what brands should be watching.
+      The funding is not the story — the problem being solved is.
+    hook_formula: "The gap in the market the startup is filling is more interesting than the number"
+    hook_examples:
+      - "[Startup] raised $[X]M. The problem they're solving tells a bigger story."
+      - "Another AI funding round. But this one reveals something brands should track."
+      - "[Startup] is now valued at $[X]B. That valuation only makes sense if you understand [trend]."
+    structure_notes:
+      - "Name the startup and amount — one line"
+      - "Explain what problem they're solving"
+      - "Connect it to a broader trend or market shift"
+      - "What does this mean for brands evaluating their AI stack?"
+    priority: 2
+    triggers:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+      - "acquired"
+
+  - type: "big_tech_move"
+    name: "Why [Big Tech Company]'s AI Move Matters More Than It Looks"
+    description: >
+      Contextualise a big tech AI announcement beyond the headline.
+      Surface the strategic implication that most people are missing.
+    hook_formula: "The obvious interpretation vs. the real implication"
+    hook_examples:
+      - "Everyone's talking about [announcement]. But the real story is [X]."
+      - "[Company]'s [move] looks incremental on the surface. It isn't."
+      - "The [announcement] isn't about [feature]. It's about [deeper shift]."
+    structure_notes:
+      - "Acknowledge the announcement briefly"
+      - "Then pivot: here's what this actually signals"
+      - "What changes for the tools brands use day-to-day?"
+    priority: 2
+    triggers:
+      - "Microsoft Copilot"
+      - "Apple Intelligence"
+      - "Google AI"
+      - "Meta AI"
+      - "Amazon Bedrock"
+      - "Adobe Firefly"
+      - "Salesforce AI"
+
+  - type: "youtube_reaction"
+    name: "I Watched [AI Company]'s New Video — Here's the Signal Brands Should Catch"
+    description: >
+      React to a new YouTube demo, keynote, or product video from an AI company.
+      Pull the insight that matters for marketers — not just a summary.
+    hook_formula: "What's the one thing in this video that changes how you'd think about your work?"
+    hook_examples:
+      - "[AI company] dropped a new video on [topic]. One moment stopped me."
+      - "Watched the [company] [product/keynote] video. Here's the part most people will miss."
+      - "The [company] demo was impressive. But the interesting thing wasn't the demo itself."
+    structure_notes:
+      - "Link to the video in sources"
+      - "Name the one key insight, not a full summary"
+      - "Why does it matter specifically for brands or marketers?"
+    priority: 1
+    triggers:
+      - "YouTube video"
+      - "demo video"
+      - "keynote"
+      - "product video"
+      - "launch video"
+
+  - type: "pattern_recognition"
+    name: "Three Things Happened in AI This Week. Together They Tell a Story."
+    description: >
+      Connect the dots across multiple news items to surface a bigger trend.
+      Anyone can share news. You connect it to meaning.
+    hook_formula: "State the pattern first. Then prove it with the evidence."
+    hook_examples:
+      - "Three things happened in AI this week. Together, they tell a story."
+      - "There's a pattern in recent AI news that matters for brands. Nobody's naming it yet."
+      - "[Trend] is becoming impossible to ignore. Here are three signals."
+    structure_notes:
+      - "Name the pattern in the hook"
+      - "Reference 3+ developments as evidence"
+      - "Your synthesis: what does the pattern mean?"
+      - "What should brands do with this insight?"
+    priority: 2
+    triggers:
+      - "multiple related stories"
+      - "emerging trend"
+      - "industry shift"
+
+  - type: "contrarian_take"
+    name: "Hot Take: [Popular AI Claim] Is Missing Something Important"
+    description: >
+      Challenge the mainstream narrative around an AI development.
+      Your audience follows you for honest takes, not press release rewrites.
+    hook_formula: "State the contrarian view in line one. Back it up with specifics."
+    hook_examples:
+      - "Everyone says [AI development] is [mainstream claim]. I see it differently."
+      - "The [AI trend] narrative is missing something important. Let me explain."
+      - "Hot take: [claim]. Here's why I think the conversation is incomplete."
+    structure_notes:
+      - "Acknowledge the mainstream view fairly"
+      - "State your counter-view clearly"
+      - "Offer specific evidence or reasoning"
+      - "Invite pushback in the CTA"
+    priority: 3
+    triggers:
+      - "widely hyped topic"
+      - "mainstream AI claim"
+      - "consensus narrative"
+
+# ── The Human-in-the-Loop Principle ───────────────────────
+# This is the editorial stance that runs through every post.
+# Reference this to ensure the right framing.
+
+human_in_the_loop:
+  tagline: "Human curator. AI-assisted. Always honest."
+  principle: >
+    Every post positions you as actively working WITH AI — testing it, editing it,
+    judging its outputs — not just reporting on it from the sidelines.
+    The goal is not 'AI is amazing' or 'AI is overhyped.'
+    It's: 'I'm in the arena, here's what I'm actually finding.'
+  cues_to_weave_in:
+    - "I tested this myself"
+    - "Here's what actually happened when I tried it"
+    - "My experiment with [tool] surprised me in [specific way]"
+    - "I use AI in my workflow for [specific task] and here's the honest report"
+    - "I asked [AI tool] to do [task] — here's what it got right, and where I had to intervene"
+    - "The output was [good/mediocre/surprising] — and here's why that matters"
+  what_to_avoid:
+    - "Generic 'AI is transforming X' claims without personal experience"
+    - "Summarising press releases without adding a point of view"
+    - "Claiming you experimented when you didn't"
+
+# ── Post Angle Selection Guide ─────────────────────────────
+# How to pick the right angle for an article cluster
+
+angle_selection:
+  - "If the primary article is about a YouTube video or demo → youtube_reaction"
+  - "If the primary article is about funding, acquisition, or valuation → funding_news"
+  - "If the primary article is about a new feature or model release → feature_launch or tool_experiment"
+  - "If multiple articles share a common theme → pattern_recognition"
+  - "If the story contradicts the mainstream narrative → contrarian_take"
+  - "If the story is about Microsoft, Apple, Google, Meta, Amazon, Adobe → big_tech_move"
+  - "Default for most single articles → feature_launch or tool_experiment"

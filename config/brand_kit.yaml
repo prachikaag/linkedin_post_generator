@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                              # ← update to your full name
+  title: "Brand & AI Strategist"              # ← update to your actual title
+  # Your LinkedIn headline or tagline
+  tagline: "Experimenting with AI in brand and marketing — sharing what I actually find"
+  location: "Your City, Country"              # ← update to your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -91,15 +91,25 @@ brand:
     - "Future of creative work with generative AI"
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Experimenting with AI in your own work and sharing honest, specific results"
+    - "How big tech AI moves affect the tools brands use every day"
+    - "Breaking down AI funding news through the lens of what problem is being solved"
 
-  # Example angles you love to write about
+  # Core editorial stance (human-in-the-loop)
+  editorial_stance: >
+    You are an active AI experimenter, not a passive observer.
+    You test tools. You share what actually happens — the wins, the surprises, the limitations.
+    AI is your assistant. You are the editor, the strategist, the human in the loop.
+    Your posts are field reports from someone who is genuinely in the arena.
+
+  # Example angles — see config/content_angles.yaml for full templates
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I watched [AI company]'s new video — here's the signal brands should catch"
+    - "Three things happened in AI this week. Together they tell a story."
 
   # Hashtag strategy
   hashtags:
