@@ -18,9 +18,24 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "content_angle": {
+    "id": "ai_feature_launch",
+    "label": "AI Feature or Product Launch",
+    "prompt_addon": "/* the full angle-specific framing instructions */"
+  }
 }
 ```
+
+The `content_angle` field tells you which of the four content types this post is:
+- `ai_feature_launch` — a new model, feature, or demo video from an AI company
+- `startup_funding` — an AI startup funding round or acquisition
+- `bigtech_ai` — a major AI move from Microsoft, Google, Apple, Amazon, Meta, Nvidia, Adobe, or Salesforce
+- `my_experiment` — Prachi's personal human-in-the-loop AI experiment (first-person)
+- `general_ai` — general AI news (fallback)
+
+The `prompt_addon` contains the specific framing, lens, and CTA examples for this angle.
+You must apply it on top of the brand kit rules — it is the angle-specific layer.
 
 ---
 
@@ -41,9 +56,23 @@ Read `config/brand_kit.yaml` and extract:
 
 ---
 
+## Step 1b — Apply the Content Angle
+
+Extract `content_angle.prompt_addon` from the input. This is the angle-specific framing layer.
+
+You must apply it as additional constraints on top of the brand kit. Specifically:
+- Use the angle's **narrative frame** (the "Your angle:" sentence) as the post's interpretive lens
+- Use the angle's **framing questions** to decide which evidence to emphasise
+- Use the angle's **CTA examples** as inspiration for the closing question (adapt to the specific topic, do not copy verbatim)
+- If this is a `my_experiment` post, use the **Structure shift** from the angle instead of the standard HOOK → CONTEXT → EVIDENCE → YOUR TAKE → SO WHAT structure
+
+If `content_angle` is absent or has no `prompt_addon`, proceed with the standard structure.
+
+---
+
 ## Step 2 — Write the LinkedIn Post
 
-Following the brand kit precisely, write a post that:
+Following the brand kit and content angle precisely, write a post that:
 
 ### Must follow this structure (in order):
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
@@ -116,6 +145,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+content_angle: "<content_angle.id>"       # ai_feature_launch | startup_funding | bigtech_ai | my_experiment | general_ai
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

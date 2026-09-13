@@ -124,27 +124,63 @@ rss_feeds:
       enabled: true
 
   # ── YouTube Channels (use RSS for channel updates) ──────
-  # YouTube video releases from key AI channels
+  # YouTube video releases from key AI channels.
+  # Format: https://www.youtube.com/feeds/videos.xml?channel_id=<CHANNEL_ID>
+  # Find a channel's ID at: https://www.youtube.com/@ChannelName/about → view-source
   youtube_channels:
+
+    # ── Core AI labs ─────────────────────────────────────
     - name: "Google DeepMind YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "OpenAI YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A"
-      priority: medium
+      priority: high
       enabled: true
 
     - name: "Anthropic YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+      priority: high
+      enabled: true
+
+    - name: "Meta AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCuXy5tCgEsiZe4H-nfkLGyA"
       priority: medium
       enabled: true
 
+    - name: "Microsoft YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCFtEEv80fQVKkD4h1PF-Xqw"
+      priority: medium
+      enabled: true
+
+    # ── AI commentary & research ──────────────────────────
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: medium
+      enabled: true
+
+    - name: "Lex Fridman"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA"
       priority: low
       enabled: true
+
+    - name: "Andrej Karpathy"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MFQKMBXB1MFR9Yw"
+      priority: medium
+      enabled: true
+
+    - name: "AI Explained"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw"
+      priority: medium
+      enabled: true
+
+    # ── Add your own YouTube channels below ──────────────
+    # - name: "Channel Name"
+    #   url: "https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID_HERE"
+    #   priority: medium
+    #   enabled: true
 
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.

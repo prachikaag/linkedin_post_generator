@@ -1,0 +1,199 @@
+# ============================================================
+# CONTENT ANGLES
+# Four content types you regularly write about.
+# Each angle has a prompt blueprint the post-generator follows.
+# Edit the framing, lens, and CTA examples to match your voice.
+# ============================================================
+
+# ── How the post-generator uses this file ─────────────────
+# The orchestrator classifies each article cluster into one
+# of the four angles below (or "general_ai" as a fallback),
+# then injects the matching angle.prompt_addon into the
+# post-generator's system prompt so every post sounds like
+# you and hits the right narrative frame.
+# ─────────────────────────────────────────────────────────
+
+angles:
+
+  # ── 1. AI Feature or Product Launch ───────────────────────
+  # Triggered when: a company ships a new model, feature, or tool
+  # Trigger keywords: launch, release, new feature, update, ships,
+  #   available now, introduces, unveils, rolls out, debuts, v2, v3
+  - id: "ai_feature_launch"
+    label: "AI Feature or Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "ships"
+      - "available now"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+      - "v2"
+      - "v3"
+      - "model update"
+      - "API update"
+      - "YouTube video"      # AI companies dropping explainer / demo videos counts
+    prompt_addon: |
+      This is an AI FEATURE LAUNCH post.
+
+      Your angle: "Here's what this new capability actually means for brands — not the tech hype, the practical outcome."
+
+      Frame the post through this lens:
+      - What can brands, marketers, or creative teams DO with this that they couldn't do before?
+      - Who benefits most? (content teams, performance marketers, brand builders, agencies?)
+      - Is it genuinely new or an incremental step? Be honest.
+      - What's the catch — cost, quality, reliability, learning curve?
+
+      Signature move: include one concrete use case a brand could run THIS WEEK.
+
+      CTA examples (pick one or riff on these):
+      - "Have you tried [feature] in your workflow yet? What surprised you?"
+      - "Which brand do you think will use this best — and why?"
+      - "What's the use case you'd tackle first with this?"
+
+  # ── 2. AI Startup Funding ──────────────────────────────────
+  # Triggered when: a startup raises a round, gets acquired, hits a valuation milestone
+  # Trigger keywords: funding, raises, Series, seed round, valuation,
+  #   acquired, acquisition, investment, million, billion, IPO, unicorn
+  - id: "startup_funding"
+    label: "AI Startup Funding News"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+      - "backed"
+      - "venture"
+    prompt_addon: |
+      This is an AI STARTUP FUNDING post.
+
+      Your angle: "Follow the money — funding rounds reveal which AI problems the market believes are worth solving, and that tells you where brands should be paying attention next."
+
+      Frame the post through this lens:
+      - What problem is this company solving? Why is it attracting capital now?
+      - What does this funding signal about the direction of AI for marketing, brands, or creative work?
+      - Which existing tools or workflows could this displace?
+      - Is this a company to watch, or a sector trend worth noting?
+
+      Signature move: zoom out from the single raise to a pattern — are multiple companies raising in the same space? That's the real story.
+
+      CTA examples:
+      - "Is this a tool category you're already using — or one you're watching?"
+      - "What would you do differently if this company's product was in your stack today?"
+      - "Which AI category do you think is most underfunded right now?"
+
+  # ── 3. Big Tech AI Move ────────────────────────────────────
+  # Triggered when: Microsoft, Google, Apple, Amazon, Meta, Nvidia, Adobe, Salesforce
+  #   make a significant AI announcement or integration
+  # Trigger keywords: (handled via companies_to_track → big_tech in topics.yaml)
+  - id: "bigtech_ai"
+    label: "Big Tech AI Move"
+    trigger_keywords:
+      - "Microsoft Copilot"
+      - "Google AI"
+      - "Apple Intelligence"
+      - "Amazon AI"
+      - "Meta AI"
+      - "Nvidia AI"
+      - "Adobe Firefly"
+      - "Salesforce AI"
+      - "Azure AI"
+      - "AWS AI"
+      - "Agentforce"
+    prompt_addon: |
+      This is a BIG TECH AI MOVE post.
+
+      Your angle: "When the platforms brands already pay for add AI, the real question isn't 'is it impressive?' — it's 'does it change how teams work tomorrow?'"
+
+      Frame the post through this lens:
+      - This isn't a startup — this is infrastructure millions of brands already use.
+        What changes for everyday users, marketing teams, or brand managers?
+      - Is this a genuine workflow shift, or AI sprinkled onto an existing product?
+      - How does this compare to the AI-native alternatives? (e.g. Copilot vs. Claude, Firefly vs. Midjourney)
+      - What should brands do: adopt now, wait, or test in parallel?
+
+      Signature move: be honest about what big tech does well (distribution, integration, trust) vs. what the startups do better (speed, quality, specialisation).
+
+      CTA examples:
+      - "Is your team using [product] — has the AI actually changed anything for you?"
+      - "Big platform AI vs. purpose-built tool — which is winning in your stack?"
+      - "What's the one Microsoft / Google / Adobe AI feature you've actually used this month?"
+
+  # ── 4. Human-in-the-Loop Experiment ───────────────────────
+  # Triggered manually: Prachi logs an experiment in experiments/ideas_log.md
+  #   and runs the pipeline with --angle experiment
+  # These are first-person "I tried X" posts — not driven by RSS news
+  - id: "my_experiment"
+    label: "Human-in-the-Loop Experiment"
+    trigger_keywords: []     # Not auto-triggered — launched manually
+    prompt_addon: |
+      This is a PERSONAL AI EXPERIMENT post.
+
+      Your angle: "I'm a human-in-the-loop — I direct, AI drafts, I edit, I publish. This post is about what happened when I actually tested this."
+
+      Frame the post through this lens:
+      - What did you set out to test? (one clear goal)
+      - What tools did you use? (be specific: model, version, platform, prompts if interesting)
+      - What surprised you — good or bad? Lead with the surprise.
+      - What did NOT work? Honest > polished.
+      - What did you change about your workflow as a result?
+
+      Signature move: give a specific before/after. "Before this, I was doing X in 2 hours.
+      After: 20 minutes, with me as editor." Concrete numbers beat vague claims.
+
+      Structure shift for experiments (adjust the standard blueprint):
+      - HOOK: The surprising result or the question that made you test it
+      - THE EXPERIMENT: What you did, exactly (tool + task + goal)
+      - WHAT WORKED: Honest highlights
+      - WHAT DIDN'T: The friction, failure modes, or surprises
+      - YOUR TAKE: What this tells you about AI's current capabilities for brands
+      - SO WHAT: One concrete recommendation for your audience
+      - CTA: A question that opens a discussion, e.g. "What have you been testing lately?"
+
+      CTA examples:
+      - "What AI tool or workflow have you been experimenting with — and what surprised you?"
+      - "Would you try this in your own content process? What would you change?"
+      - "What's the most useful AI experiment you've run this month?"
+
+  # ── 5. General AI / Research & Policy (fallback) ──────────
+  - id: "general_ai"
+    label: "General AI News (fallback)"
+    trigger_keywords:
+      - "research"
+      - "paper"
+      - "benchmark"
+      - "regulation"
+      - "policy"
+      - "safety"
+      - "ethics"
+      - "EU AI Act"
+      - "AGI"
+    prompt_addon: |
+      This is a GENERAL AI NEWS post.
+
+      Your angle: "You're the interpreter — translating AI news into what it means for brands, marketers, and business leaders who don't live on ArXiv."
+
+      Frame the post through this lens:
+      - What is the signal in this news for people who run marketing and brand teams?
+      - Is this hype, genuine progress, or a warning sign?
+      - What should brands watch, test, or stay cautious about?
+
+      Signature move: pick one concrete implication and go deep on it rather than listing five vague "takeaways".
+
+      CTA examples:
+      - "How is your team thinking about [topic]? Would love to hear different perspectives."
+      - "Does your company have a policy on this yet — or are you winging it like most?"
