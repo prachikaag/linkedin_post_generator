@@ -1,0 +1,180 @@
+# ============================================================
+# CONTENT PILLARS & STRATEGY
+# This file defines your specific content angles and themes.
+# The post-generator agent reads this to choose the right lens
+# and angle for every post. Edit freely.
+# ============================================================
+
+# ── Your Core Message ─────────────────────────────────────
+positioning:
+  one_liner: "I help brands understand how to actually use AI — not just what it can do."
+  audience:
+    - "Marketing leaders and CMOs"
+    - "Brand strategists and creative directors"
+    - "Agency leaders and consultants"
+    - "Business owners exploring AI for their teams"
+  reader_pain_point: "AI is moving fast and brands don't know where to start, what to trust, or how to cut through the noise."
+  your_value: "You do the experimenting so they don't have to. You translate AI news into brand-ready insight."
+
+# ── The 5 Content Pillars ─────────────────────────────────
+# Each post should map clearly to one of these pillars.
+# The post-generator will pick the best fit based on the article cluster.
+pillars:
+
+  - id: "human_in_loop"
+    name: "Human in the Loop"
+    description: >
+      You experimented with an AI tool. Here is exactly what happened —
+      what surprised you, what broke, what you would actually use.
+      These are first-person honest experiments, not reviews.
+    trigger_keywords:
+      - "I tried"
+      - "I tested"
+      - "here's what happened"
+      - "what brands should know"
+    example_angles:
+      - "I used [AI tool] to [task] — here's the real output vs what I expected"
+      - "[Tool] just added [feature] — I ran it on a real brand brief. Here's the result."
+      - "Everyone's talking about [tool]. I spent an hour with it. My actual take:"
+      - "I asked [AI tool] to do [brand task]. The output was [honest result]. Here's what it means for teams."
+    best_for:
+      - "New AI features or product launches"
+      - "Tool updates from ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney"
+      - "Any YouTube video release from an AI company"
+
+  - id: "ai_for_brands"
+    name: "AI for Brands"
+    description: >
+      How brands, marketing teams, and agencies can leverage a specific AI development
+      in their work today. Concrete, actionable, no hype.
+    trigger_keywords:
+      - "what brands can do"
+      - "marketing teams"
+      - "agency"
+      - "brand strategy"
+      - "creative"
+    example_angles:
+      - "[Company] launched [feature] — here's how a brand could use it in a real campaign"
+      - "What [AI development] means for your content team"
+      - "Big Tech's AI race is reshaping how brands create. Here's the part nobody's talking about."
+      - "[Tool update] changes how brands can [specific workflow]. Here's how."
+    best_for:
+      - "AI for marketing, creative, or content creation"
+      - "Big Tech AI announcements (Microsoft Copilot, Google AI, Apple Intelligence)"
+      - "New multimodal or creative AI tools"
+
+  - id: "startup_radar"
+    name: "Startup Radar"
+    description: >
+      A new AI startup has raised funding or launched. What do they do,
+      who is backing them, and what does their traction signal about
+      where the industry is heading?
+    trigger_keywords:
+      - "raises"
+      - "funding"
+      - "Series"
+      - "valuation"
+      - "backed by"
+      - "acquired"
+    example_angles:
+      - "[Startup] raised [$X]. Here's why that matters beyond the headline."
+      - "Three AI startups got funded this week. The pattern tells you something."
+      - "Why investors are betting on [category]. What it means for brands."
+      - "The funding behind [startup] signals a shift in how brands will [outcome]."
+    best_for:
+      - "AI startup funding rounds"
+      - "Acquisitions of AI companies by big tech"
+      - "New AI unicorns"
+      - "IPO announcements from AI companies"
+
+  - id: "big_picture"
+    name: "The Big Picture"
+    description: >
+      Stepping back from one news story to explain what a trend,
+      a pattern across multiple companies, or a broader shift means
+      for the industry and for brands. Synthesis over summary.
+    trigger_keywords:
+      - "what this means"
+      - "the pattern"
+      - "across the industry"
+      - "every major AI company"
+    example_angles:
+      - "Every major AI company announced [development] this month. Here's what the convergence tells us."
+      - "[Trend] is the story everyone's writing about. The story behind the story is [insight]."
+      - "The AI race just shifted. Here's what changed and why brands should care."
+      - "Three separate announcements this week all point to the same thing: [insight]."
+    best_for:
+      - "Multiple related AI announcements in the same week"
+      - "Industry-wide patterns (model price drops, context window wars, agent race)"
+      - "Regulatory or policy developments"
+
+  - id: "honest_skeptic"
+    name: "The Honest Skeptic"
+    description: >
+      A popular AI narrative or hype cycle doesn't match what you are
+      actually seeing in practice. You push back — respectfully but clearly —
+      with evidence and your own take.
+    trigger_keywords:
+      - "actually"
+      - "but here's the problem"
+      - "not quite"
+      - "the hype vs reality"
+    example_angles:
+      - "[Popular claim] sounds impressive. Here's what it looks like in practice."
+      - "Everyone's excited about [AI development]. I have questions."
+      - "The headline says [claim]. The fine print says something different."
+      - "I'm a fan of [company/tool]. But this announcement deserves more scrutiny."
+    best_for:
+      - "Overhyped product launches"
+      - "Benchmark claims that need context"
+      - "When a big company makes a claim that needs unpacking"
+      - "AI safety and policy developments"
+
+# ── Recurring Content Formats ─────────────────────────────
+# These are repeatable post formats that build audience recognition.
+recurring_formats:
+
+  - name: "The Quick Take"
+    description: "Fast reaction to a single piece of news. 300-500 chars. One strong opinion."
+    trigger: "Single high-relevance article. Score 9+. Breaking news same day."
+    hook_style: "Bold statement or surprising fact."
+
+  - name: "The Experiment"
+    description: "Step-by-step account of testing an AI tool on a real task."
+    trigger: "New feature launch from major AI tool. Must be something the author could plausibly test."
+    hook_style: "Start with the result or the surprise, then work backward."
+
+  - name: "The Funding Brief"
+    description: "What just got funded, by who, and what it signals."
+    trigger: "AI startup raises $5M+ or gets acquired by a named company."
+    hook_style: "Lead with the signal (why this matters), not the dollar amount."
+
+  - name: "The Weekly Roundup"
+    description: "3-4 developments across the past week, woven into one narrative arc."
+    trigger: "Multiple related articles from the same week. Use when no single article dominates."
+    hook_style: "The pattern across the week — not 'here's what happened' but 'here's what it means'."
+
+# ── What to Always Reference ──────────────────────────────
+# Ground every post in these areas — the author's professional lens
+brand_lenses:
+  - "What does this mean for brand and marketing teams?"
+  - "How could an agency or consultant use this in a client brief today?"
+  - "Is this worth a brand's time to explore, or is it still early?"
+  - "What does this change about how content gets made?"
+  - "What does a curious non-technical marketing leader need to know?"
+
+# ── Tone Calibration ──────────────────────────────────────
+# Specific calibration notes on top of brand_kit.yaml
+tone_calibration:
+  avoid_at_all_costs:
+    - "Sounding like a press release"
+    - "Restating the headline without adding a take"
+    - "Using AI jargon without explaining it"
+    - "Listing features without saying why they matter"
+    - "Vague optimism: 'AI will change everything'"
+  lean_into:
+    - "Specific, named experiments you could do or have done"
+    - "Naming the thing that surprised you"
+    - "Honest uncertainty — 'I'm not sure this is ready yet, but...'"
+    - "The human angle: what does a real person on a real team do differently because of this?"
+    - "Patterns across multiple announcements, not just one"

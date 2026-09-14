@@ -12,10 +12,11 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
+[news-gatherer]    → articles JSON
 [trending-tracker] → keywords JSON
+[post-deduplicator] → filtered articles (removes already-covered stories)
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]   → saved .md draft
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```
@@ -62,7 +63,35 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
-## Step 3 — Build Article Clusters
+## Step 3 — Deduplicate Against Existing Posts
+
+Spawn the **post-deduplicator** subagent (defined in `.claude/agents/post-deduplicator.md`).
+
+Task for the subagent (include the full articles JSON inline):
+```
+Filter this article list to remove stories already covered in posts/.
+
+Input:
+{
+  "articles": [<full articles array as JSON>]
+}
+```
+
+Receive the JSON result. Update `articles` to `result.articles` (the filtered list).
+
+If `result.excluded_count > 0`, print:
+```
+✓ Deduplication: {result.excluded_count} already-covered story/stories removed.
+  Skipped: {result.excluded_titles joined by ", "}
+```
+
+If the filtered list is empty after deduplication, print:
+> "All top articles were already covered in recent posts. Try running again tomorrow, or lower min_relevance_score in config/topics.yaml to surface more articles."
+Then stop.
+
+---
+
+## Step 4 — Build Article Clusters
 
 Divide the articles into clusters — one cluster per post to generate.
 
@@ -76,7 +105,7 @@ Divide the articles into clusters — one cluster per post to generate.
 
 ---
 
-## Step 4 — Generate Posts
+## Step 5 — Generate Posts
 
 For each cluster, spawn the **post-generator** subagent (defined in `.claude/agents/post-generator.md`).
 
@@ -103,7 +132,7 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +157,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 

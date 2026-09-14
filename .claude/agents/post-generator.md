@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillars
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,27 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_pillars.yaml` and extract:
+
+- `pillars` — the five content pillars, each with a `name`, `description`, `trigger_keywords`, and `example_angles`
+- `recurring_formats` — repeatable post formats with triggers
+- `brand_lenses` — the questions to ground every post in
+- `tone_calibration.avoid_at_all_costs` — never do these things
+- `tone_calibration.lean_into` — always do these things
+
+**Choose the right pillar**: Based on the article cluster, select the most fitting pillar from `pillars`. Match by:
+1. Check article `matched_categories` against each pillar's `trigger_keywords`
+2. Check if any article title or summary matches a pillar's trigger keywords
+3. Default to `human_in_loop` if articles are about a feature launch or YouTube video, `startup_radar` if about funding, `ai_for_brands` otherwise
+
+Note the selected pillar's `example_angles` — use one as the structural backbone for your hook and CTA.
+
+**Choose the right format**: Based on the article count and cluster type, pick a `recurring_format`:
+- Single dominant article, score 9+ → "The Quick Take"
+- Feature launch from a major AI tool → "The Experiment" (frame it as if the author tested it)
+- Funding round → "The Funding Brief"
+- Multiple related articles same week → "The Weekly Roundup"
 
 ---
 

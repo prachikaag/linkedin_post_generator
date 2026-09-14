@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN YOUR DETAILS — replace YOUR_NAME, YOUR_TITLE, YOUR_LOCATION
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "YOUR_NAME"
+  title: "YOUR_TITLE"
+  # Example: "Brand Strategist | AI for Marketing | Helping teams use AI without losing their voice"
+  tagline: "Helping brands understand and actually use AI — not just what it can do, but how."
+  location: "YOUR_CITY, YOUR_COUNTRY"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -86,12 +87,14 @@ brand:
 
   # The lenses you write through
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Human-in-the-loop AI — you as the editor and experimenter, AI as the drafter"
+    - "Practical AI tools for marketing and brand building — what actually works today"
+    - "AI feature launches from ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney"
+    - "Big Tech AI announcements and what they mean for brand and marketing teams"
+    - "AI startup funding — what gets backed signals where the market is heading"
+    - "YouTube launches from AI companies — new demos, features, and research revealed on camera"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Honest results from real experiments — not what AI promises, what it actually delivers"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +103,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I asked [AI tool] to do [brand task]. Here's the honest result."
+    - "[Tool] released a YouTube video about [feature]. I watched it. Here's what caught my attention."
+    - "Three AI announcements this week. One pattern. Here's what I think it means for brands."
 
   # Hashtag strategy
   hashtags:
