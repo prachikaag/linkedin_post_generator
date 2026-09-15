@@ -128,7 +128,28 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 6 — Update Article Memory
+
+After all posts are generated, update `data/seen_articles.json` to mark all used articles as seen.
+
+1. Read the current contents of `data/seen_articles.json`
+2. Collect every `url` field from every article across all generated post results
+3. Merge those URLs into the existing `seen_article_urls` array (deduplicate)
+4. Write back to `data/seen_articles.json`:
+```json
+{
+  "seen_article_urls": ["https://...", ...all existing + new urls...],
+  "last_updated": "<current datetime in ISO 8601>"
+}
+```
+
+This ensures the next pipeline run does not re-cover the same articles.
+
+Print: `✓ Article memory updated — {N} URLs now tracked.`
+
+---
+
+## Step 7 — Final Summary
 
 Print a summary table:
 
