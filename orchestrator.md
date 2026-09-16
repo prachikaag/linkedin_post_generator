@@ -25,7 +25,7 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many posts to generate (default: **3**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
 

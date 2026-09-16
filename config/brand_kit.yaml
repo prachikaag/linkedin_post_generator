@@ -6,11 +6,10 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi Kaag"
+  title: "Brand Strategist & AI Enthusiast"
+  tagline: "Helping brands understand and leverage AI in the real world — with a human always in the loop"
+  location: "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -87,11 +86,13 @@ brand:
   # The lenses you write through
   focus_areas:
     - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
+    - "Human-in-the-loop AI workflows — Prachi as the editor, AI as the drafter"
     - "Future of creative work with generative AI"
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Experimenting with AI in real work and sharing honest, unfiltered results"
+    - "How to think about AI feature releases as a brand practitioner, not an engineer"
+    - "Separating AI hype from tools that are genuinely useful for brand and creative teams today"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +101,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI tool] dropped a new YouTube deep-dive — and one thing stood out for brand teams"
+    - "I've been experimenting with [tool] for [weeks/days] — honest take"
+    - "Most brands are sleeping on [AI capability]. Here's a concrete starting point."
 
   # Hashtag strategy
   hashtags:

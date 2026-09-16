@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Experiment Log
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,8 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/experiment_log.md`. Look for any experiment entry whose **Tool** or **Use case** is directly relevant to the articles in this cluster. If a relevant entry exists, you may weave one concrete detail from it into the YOUR TAKE or SO WHAT section as a first-person observation (e.g. "I tested this myself last week — here's what I found..."). Only include it if it genuinely adds insight; never force it.
 
 ---
 

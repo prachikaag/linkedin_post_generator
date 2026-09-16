@@ -50,13 +50,14 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — each file is a standalone component you can edit without touching anything else:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds, company blogs, YouTube channels, and API sources to fetch from |
+| `config/topics.yaml` | Companies, keywords, topic categories, and freshness settings |
+| `config/brand_kit.yaml` | Author identity, tone of voice, writing style, post structure, and hashtag rules |
+| `config/experiment_log.md` | Your personal AI experiment journal — the post-generator references this to add human-in-the-loop first-person context |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -133,6 +134,12 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+## Logging Your AI Experiments
+
+Edit `config/experiment_log.md` to log any AI tools you've personally tested. Add entries at the top in the format shown. When you run the pipeline, the post-generator checks this log for experiments relevant to the current articles and weaves one concrete personal observation into the YOUR TAKE section — giving posts that authentic "human in the loop" voice.
+
+This is the key differentiator: not just news summaries, but posts grounded in your actual experiments.
 
 ---
 

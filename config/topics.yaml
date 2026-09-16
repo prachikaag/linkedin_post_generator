@@ -352,6 +352,6 @@ trending_keywords:
 
 # ── Freshness Settings ─────────────────────────────────────
 freshness:
-  max_article_age_hours: 48   # Only articles published in the last N hours
+  max_article_age_hours: 72   # Only articles published in the last N hours (72 = 3 days, good for scheduled runs)
   min_relevance_score: 2      # Minimum relevance score to include an article
-  max_articles_per_run: 25    # Cap how many articles are scored per run
+  max_articles_per_run: 30    # Cap how many articles are scored per run

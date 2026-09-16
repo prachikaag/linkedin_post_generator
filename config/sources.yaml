@@ -146,6 +146,36 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC89aNRK7UPGn0EFj0nGQGxA"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCa0K3GBm5Z8j_9SXPH9mzJg"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCjAqzjpE-HRR-k_lOi0H1xA"
+      priority: medium
+      enabled: true
+
+    - name: "AI Explained YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw"
+      priority: low
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCFBi5hFbH_X5Q5q9o7bI9uA"
+      priority: medium
+      enabled: true
+
+    - name: "MattVidPro AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCJNDIFjDfZMF_-8oEN1m1fA"
+      priority: low
+      enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:
