@@ -41,6 +41,12 @@ Parse the XML for articles — look for `<item>` (RSS 2.0) or `<entry>` (Atom) e
 | `published` | `<pubDate>` (RSS) or `<published>`/`<updated>` (Atom) — convert to ISO 8601 |
 | `source_name` | The feed's `name` from sources.yaml |
 
+**YouTube feeds** (URLs containing `youtube.com/feeds/videos.xml`) use Atom format:
+- `title` comes from `<title>` inside `<entry>`
+- `url` comes from `<link rel="alternate">` — this will be a `youtube.com/watch?v=` URL
+- `summary` comes from `<media:description>` or `<content>` — use first 800 characters
+- Mark these with `source_type: "youtube"` for scoring
+
 If a feed errors or cannot be parsed, skip it silently and continue.
 
 ---
@@ -61,6 +67,8 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 
 **Category keywords** (from `topic_categories` → each category's `keywords` list):
 - If a keyword appears in the text → `relevance_score += 1`, append category name to `matched_categories`
+
+**YouTube bonus**: if `source_type` is `"youtube"`, add `+2` to `relevance_score` and append `"YouTube Video"` to `matched_categories`. These are high-value signals — the author specifically wants to react to AI company video releases.
 
 ---
 
@@ -94,9 +102,12 @@ Each element must have exactly these fields:
   "summary": "First 800 characters of article description, HTML stripped",
   "published": "2024-01-15T10:30:00+00:00",
   "source_name": "TechCrunch AI",
+  "source_type": "article",
   "relevance_score": 9,
   "matched_companies": ["OpenAI", "Anthropic"],
   "matched_categories": ["New AI Feature or Product Launch"],
   "matched_keywords": ["ChatGPT", "Claude", "launch"]
 }
 ```
+
+`source_type` is `"youtube"` for YouTube feed entries, `"article"` for everything else.

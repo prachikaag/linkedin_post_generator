@@ -108,6 +108,41 @@ companies_to_track:
         - "Pika Labs"
         - "Pika AI"
 
+    - name: "Kling AI"
+      keywords:
+        - "Kling"
+        - "Kling AI"
+        - "Kuaishou AI"
+
+    - name: "Hailuo AI"
+      keywords:
+        - "Hailuo"
+        - "Hailuo AI"
+        - "MiniMax video"
+
+    - name: "Luma AI"
+      keywords:
+        - "Luma AI"
+        - "Dream Machine"
+        - "Luma Dream Machine"
+
+    - name: "Ideogram"
+      keywords:
+        - "Ideogram"
+        - "Ideogram AI"
+
+    - name: "Perplexity"
+      keywords:
+        - "Perplexity"
+        - "Perplexity AI"
+        - "Perplexity Pro"
+        - "Perplexity search"
+
+    - name: "NotebookLM"
+      keywords:
+        - "NotebookLM"
+        - "NotebookLM Plus"
+
     - name: "Cohere"
       keywords:
         - "Cohere"
@@ -251,7 +286,7 @@ companies_to_track:
 topic_categories:
 
   - name: "New AI Feature or Product Launch"
-    description: "New product launches, model releases, feature updates"
+    description: "New product launches, model releases, feature updates, YouTube reveals and demos"
     keywords:
       - "launch"
       - "release"
@@ -264,6 +299,14 @@ topic_categories:
       - "unveils"
       - "rolls out"
       - "debuts"
+      - "youtube"
+      - "video demo"
+      - "demo video"
+      - "walkthrough"
+      - "shows off"
+      - "new video"
+      - "just posted"
+      - "live demo"
 
   - name: "AI Startup Funding"
     description: "Investment rounds, acquisitions, and valuations"
@@ -334,6 +377,40 @@ topic_categories:
       - "coding AI"
       - "AI assistant"
       - "copilot"
+
+  - name: "AI Experimentation & Human-in-the-Loop"
+    description: "Real-world experiments with AI tools, human-AI collaboration workflows, honest product reviews"
+    keywords:
+      - "I tested"
+      - "experiment"
+      - "human in the loop"
+      - "AI-assisted"
+      - "prompting"
+      - "prompt engineering"
+      - "AI workflow"
+      - "real results"
+      - "tried"
+      - "hands-on"
+      - "review"
+      - "honest take"
+      - "in practice"
+
+  - name: "AI for Creative & Marketing"
+    description: "Generative AI applied to brand, marketing, creative, and advertising work"
+    keywords:
+      - "creative AI"
+      - "brand AI"
+      - "AI marketing"
+      - "generative content"
+      - "AI advertising"
+      - "AI copywriting"
+      - "AI design"
+      - "marketing automation"
+      - "content generation"
+      - "AI creative director"
+      - "brand strategy"
+      - "CMO"
+      - "agency AI"
 
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:

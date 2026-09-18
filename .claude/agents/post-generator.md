@@ -75,6 +75,11 @@ Following the brand kit precisely, write a post that:
 - Always use the actual company name when it appears in the source article — never anonymise as "a consulting firm", "a legal tech company", "a major player", etc.
 - If the article names the company, the post names the company.
 
+### YouTube sources:
+- If any article has `source_type: "youtube"`, treat it as a product demo or reveal.
+- In the post, reference it naturally: "[Company] just posted a video showing..." or "[Company]'s latest demo reveals..."
+- The YouTube URL is a valid cite — include it in the sources list like any article URL.
+
 ### Tone and style rules:
 - Write as a third-party observer — never frame the post as one company winning or losing
 - Tone must be engaging and upbeat — curious, alive, not a dry news summary

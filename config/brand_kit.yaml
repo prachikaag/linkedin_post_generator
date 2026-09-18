@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Edit this section to reflect your own name, title, and positioning.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"
+  title: "Brand Strategist & AI Practitioner"
+  # Your LinkedIn headline — shown in every post context prompt
+  tagline: "Helping brands understand and leverage AI in the real world — through real experiments, honest takes, and tools that actually work"
+  location: ""
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -92,6 +93,8 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "Reacting to new AI product launches, demos, and YouTube reveals in real time"
+    - "Watching what big-tech and AI-native companies are building — and why it matters for brand strategy"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +103,11 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI company] just dropped a video showing [capability] — here's why brands should pay attention"
+    - "I've been experimenting with [AI tool] in my own workflow — honest results, warts and all"
+    - "The gap between what AI promises and what brands actually need right now"
+    - "What this AI startup funding round tells us about where the market is going"
+    - "Human in the loop: how I'm using [AI tool] without losing my voice"
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +132,11 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#AIExperiments"
+      - "#AIForMarketing"
+      - "#PromptEngineering"
+      - "#AIProductivity"
 
   max_hashtags: 5
 

@@ -54,6 +54,21 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "404 Media"
+      url: "https://www.404media.co/rss/"
+      priority: low
+      enabled: true
+
+    - name: "The Batch (deeplearning.ai)"
+      url: "https://www.deeplearning.ai/the-batch/rss/"
+      priority: medium
+      enabled: true
+
+    - name: "Marketing AI Institute"
+      url: "https://www.marketingaiinstitute.com/blog/rss.xml"
+      priority: medium
+      enabled: true
+
   # ── AI Company Blogs ────────────────────────────────────
   company_blogs:
     - name: "OpenAI Blog"
@@ -106,6 +121,26 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Runway Blog"
+      url: "https://runwayml.com/blog/rss"
+      priority: medium
+      enabled: true
+
+    - name: "Cohere Blog"
+      url: "https://cohere.com/blog/rss"
+      priority: low
+      enabled: true
+
+    - name: "Together AI Blog"
+      url: "https://www.together.ai/blog/rss"
+      priority: low
+      enabled: true
+
+    - name: "Luma AI Blog"
+      url: "https://lumalabs.ai/blog/rss"
+      priority: low
+      enabled: true
+
   # ── Startup & Funding News ──────────────────────────────
   funding_news:
     - name: "TechCrunch Startups"
@@ -124,7 +159,9 @@ rss_feeds:
       enabled: true
 
   # ── YouTube Channels (use RSS for channel updates) ──────
-  # YouTube video releases from key AI channels
+  # YouTube video releases from key AI channels.
+  # To add a new channel: find the channel_id in the YouTube URL or page source,
+  # then use: https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID
   youtube_channels:
     - name: "Google DeepMind YouTube"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A"
@@ -141,10 +178,53 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Microsoft YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCFtEEv80fQVKkD4h1PF-Xqw"
+      priority: medium
+      enabled: true
+
+    - name: "Meta AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCkiHnPnx46-PBWWISbJDbOA"
+      priority: medium
+      enabled: true
+
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
-      priority: low
+      priority: medium
       enabled: true
+
+    - name: "Lex Fridman"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA"
+      priority: medium
+      enabled: true
+
+    - name: "Andrej Karpathy"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MZQRRIQVPQ7m1nA"
+      priority: medium
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCjCJz7JK11YMOaVXzBpT9TA"
+      priority: medium
+      enabled: true
+
+    # ── Add more channels below ───────────────────────────
+    # Find a channel's ID by viewing page source on their YouTube page
+    # and searching for "channelId" or "externalId".
+    # - name: "ElevenLabs YouTube"
+    #   url: "https://www.youtube.com/feeds/videos.xml?channel_id=<CHANNEL_ID>"
+    #   priority: medium
+    #   enabled: false
+    #
+    # - name: "Perplexity YouTube"
+    #   url: "https://www.youtube.com/feeds/videos.xml?channel_id=<CHANNEL_ID>"
+    #   priority: medium
+    #   enabled: false
+    #
+    # - name: "Midjourney YouTube"
+    #   url: "https://www.youtube.com/feeds/videos.xml?channel_id=<CHANNEL_ID>"
+    #   priority: medium
+    #   enabled: false
 
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.

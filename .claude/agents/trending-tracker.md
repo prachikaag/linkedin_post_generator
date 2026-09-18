@@ -18,13 +18,15 @@ Read `config/topics.yaml` and extract `trending_keywords.seed_terms` — the lis
 
 ## Step 2 — Search for What's Trending
 
-Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 2–3 targeted searches across these angles:
+Use **WebSearch** to find the hottest AI stories from the last 7 days. Run 3–4 targeted searches across these angles:
 
-1. **New model releases & launches** — e.g. `latest AI model release this week`
+1. **New model releases & launches** — e.g. `latest AI model release feature launch this week`
 2. **Funding & startup news** — e.g. `AI startup funding announcement this week`
-3. **Research breakthroughs & product launches** — e.g. `AI research breakthrough product launch`
+3. **YouTube demos & video releases** — e.g. `ChatGPT Claude Gemini new YouTube video demo this week site:youtube.com OR site:techcrunch.com OR site:theverge.com`
+4. **Research breakthroughs & big-tech AI** — e.g. `AI research breakthrough big tech announcement this week`
 
 Prioritise stories about the companies and topics named in the seed terms.
+Give extra weight to any news of AI companies publishing YouTube demos, product walkthroughs, or feature reveal videos — the author specifically wants to react to these.
 
 ---
 
@@ -38,9 +40,14 @@ From your search results, extract **15–20 short keyword phrases** (2–5 words
 Good examples:
 - "GPT-5 reasoning capabilities"
 - "Anthropic Claude 4 release"
-- "AI agent frameworks 2024"
+- "AI agent frameworks 2025"
 - "EU AI Act enforcement"
 - "multimodal model benchmark"
+- "ElevenLabs voice cloning demo"
+- "Midjourney v7 new features"
+- "AI video generation Runway Kling"
+- "ChatGPT YouTube product video"
+- "AI startup Series B funding"
 
 ---
 
