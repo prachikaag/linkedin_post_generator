@@ -1,20 +1,20 @@
 # ============================================================
 # BRAND KIT & TONE OF VOICE
-# Edit this file to match your personal brand and voice.
-# This drives how every LinkedIn post is written.
+# Edit this file to personalise your LinkedIn posts.
+# Every field here drives how the AI writes on your behalf.
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi Kaag"
+  title: "Brand Strategist | AI Practitioner"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "New York, US"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -26,7 +26,7 @@ tone_of_voice:
     - "Accessible, not overly technical — you translate complexity into plain language"
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
     - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Human — you write like a person who experiments in public, not a press release"
 
   # Rules for how you write every post
   writing_style:
@@ -69,6 +69,7 @@ tone_of_voice:
     - "Acknowledge uncertainty when you genuinely don't know something"
     - "React to news within your own professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Highlight the human-in-the-loop angle — how you + AI = better output than either alone"
 
   # What undermines your credibility
   donts:
@@ -80,6 +81,7 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't position yourself as an AI evangelist — position yourself as a thoughtful practitioner"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
@@ -87,11 +89,12 @@ brand:
   # The lenses you write through
   focus_areas:
     - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
+    - "Human-in-the-loop AI workflows — you as the editor and strategist, AI as the drafter"
     - "Future of creative work with generative AI"
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "How brands can leverage AI without losing their voice or authenticity"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +103,8 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I've been experimenting with [AI tool] for [X weeks] — my honest take"
+    - "Why I think [AI development] is being misread by most marketers"
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +129,7 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
 
   max_hashtags: 5
 
@@ -139,6 +145,8 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I've been watching this space closely and..."
+    - "This is the part marketers keep skipping."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.

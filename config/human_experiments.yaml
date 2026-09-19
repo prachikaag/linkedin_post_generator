@@ -1,0 +1,138 @@
+# ============================================================
+# HUMAN-IN-THE-LOOP EXPERIMENTS LOG
+# ============================================================
+# Track your personal AI experiments here. The pipeline can
+# reference this to write "I tried X" style posts about your
+# own hands-on experience with AI tools.
+#
+# Each entry becomes a potential post angle. Fill in the
+# details as you experiment and the post-generator will weave
+# your real experience into the post.
+# ============================================================
+
+# ── Active Experiments ─────────────────────────────────────
+# Tools you are currently testing or have tested recently.
+# Set status to: "in_progress" | "completed" | "abandoned"
+
+active_experiments:
+
+  - tool: "Claude"
+    vendor: "Anthropic"
+    use_case: "Brand strategy briefs and positioning documents"
+    duration: "Ongoing"
+    status: "in_progress"
+    honest_verdict: "Best for long-form strategic thinking and nuanced reasoning. Writes like a strategist, not a content mill."
+    best_for: "Strategy docs, briefing frameworks, positioning statements"
+    limitations: "Less snappy for short punchy copy without tight prompting"
+    would_recommend_to: "Brand strategists, consultants, senior marketers"
+    post_angles:
+      - "How I use Claude to write brand strategy briefs in 30 minutes"
+      - "Why I prefer Claude over ChatGPT for strategic work"
+
+  - tool: "ChatGPT"
+    vendor: "OpenAI"
+    use_case: "Social media copy and ideation"
+    duration: "18+ months"
+    status: "in_progress"
+    honest_verdict: "Still the most versatile tool. Fast, reliable, great for iteration. Not the deepest thinker."
+    best_for: "Social copy, emails, brainstorming, quick rewrites"
+    limitations: "Can be generic at scale — needs tight prompting to stay on-brand"
+    would_recommend_to: "Any marketer starting with AI"
+    post_angles:
+      - "18 months of ChatGPT for marketing — what I've actually learned"
+      - "The 3 prompts I use every week in ChatGPT"
+
+  - tool: "Perplexity"
+    vendor: "Perplexity AI"
+    use_case: "Real-time research and fact-checking"
+    duration: "6 months"
+    status: "in_progress"
+    honest_verdict: "Replaced Google for most research tasks. The cited sources save hours."
+    best_for: "Market research, competitor analysis, fact verification"
+    limitations: "Hallucination risk still exists — always verify key stats"
+    would_recommend_to: "Strategists, researchers, journalists"
+    post_angles:
+      - "I stopped Googling — here's what I use instead"
+      - "Perplexity vs Google for marketing research"
+
+  - tool: "ElevenLabs"
+    vendor: "ElevenLabs"
+    use_case: "AI voiceover for video content"
+    duration: "3 months"
+    status: "in_progress"
+    honest_verdict: "The quality is genuinely impressive. Hard to tell from human voice. Changes video production economics entirely."
+    best_for: "Explainer videos, podcast intros, brand voiceovers"
+    limitations: "Still needs careful script writing — voice quality hides bad copy"
+    would_recommend_to: "Content creators, brand teams producing video at scale"
+    post_angles:
+      - "I made a brand video for $0 in voice talent costs"
+      - "ElevenLabs changed how I think about video production"
+
+  - tool: "Midjourney"
+    vendor: "Midjourney"
+    use_case: "Brand visual concepts and mood boards"
+    duration: "12 months"
+    status: "in_progress"
+    honest_verdict: "Incredible for concepting and mood boards. Not there yet for pixel-perfect brand executions."
+    best_for: "Creative concepting, moodboarding, campaign ideation visuals"
+    limitations: "Text rendering still unreliable. Struggles with brand consistency at scale."
+    would_recommend_to: "Creative directors, brand designers, marketing teams"
+    post_angles:
+      - "I use Midjourney for brand concepting — here's my workflow"
+      - "What Midjourney is actually good for (and what it's not)"
+
+  - tool: "Gemini"
+    vendor: "Google DeepMind"
+    use_case: "Multimodal content analysis and Google Workspace integration"
+    duration: "4 months"
+    status: "in_progress"
+    honest_verdict: "Strongest when integrated with Google Docs/Sheets. Multimodal capabilities are genuinely useful for analysing visual content."
+    best_for: "Analysing PDFs, images, presentations. Anything in the Google ecosystem."
+    limitations: "Less natural writing voice than Claude or ChatGPT in standalone use"
+    would_recommend_to: "Teams already living in Google Workspace"
+    post_angles:
+      - "I tested Gemini against Claude for marketing tasks — the verdict"
+      - "Gemini's secret weapon for brand teams: what the Google integration actually unlocks"
+
+# ── Upcoming Experiments ───────────────────────────────────
+# Tools you plan to test next. When you start testing, move
+# them to active_experiments above.
+
+upcoming_experiments:
+  - tool: "Sora"
+    vendor: "OpenAI"
+    use_case: "AI video generation for brand storytelling"
+    priority: "high"
+    reason_to_watch: "If video quality matches demos, changes brand video production entirely"
+
+  - tool: "Claude for Computer Use"
+    vendor: "Anthropic"
+    use_case: "Automated research and workflow tasks"
+    priority: "high"
+    reason_to_watch: "Potential to automate repetitive brand research workflows"
+
+  - tool: "Runway Gen-3"
+    vendor: "Runway"
+    use_case: "Short-form brand video clips"
+    priority: "medium"
+    reason_to_watch: "Strong for short social video — could replace motion graphics budget"
+
+  - tool: "Adobe Firefly"
+    vendor: "Adobe"
+    use_case: "Brand-safe image generation"
+    duration_planned: "1 month trial"
+    priority: "medium"
+    reason_to_watch: "Trained on licensed content — safer for commercial brand use than Midjourney"
+
+# ── Completed Experiments ──────────────────────────────────
+# Tools you've tested and formed a definitive view on.
+completed_experiments: []
+
+# ── Post Trigger Rules ─────────────────────────────────────
+# When should an experiment become a post?
+post_triggers:
+  - "When you complete 2+ weeks of regular use with a tool"
+  - "When a new version or feature launches for a tool you use"
+  - "When you find an unexpected workflow that saves significant time"
+  - "When a tool disappoints you and you have a specific, useful critique"
+  - "When a tool genuinely surprises you with something you didn't expect"
