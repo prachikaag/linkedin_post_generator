@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Experiments
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,13 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/experiments.yaml` if it exists:
+- `experiments` — list of personal AI tool experiments (tool, task, result, surprising)
+- `author_context` — the author's role, goal, and audience
+
+If the input includes `"post_type": "human_in_loop"`, anchor the post around one experiment from this list
+and use the news articles as supporting context. Otherwise, ignore experiments.yaml.
 
 ---
 

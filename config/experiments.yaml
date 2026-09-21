@@ -1,0 +1,43 @@
+# ============================================================
+# YOUR AI EXPERIMENTS LOG
+# Add your personal AI tool experiments here.
+# The post-generator agent reads this when writing
+# "human-in-the-loop" style posts.
+# ============================================================
+#
+# Each experiment becomes a potential post angle:
+# "I tried [tool] for [task] — here's what actually happened"
+#
+# Keep entries honest — what worked, what failed, what surprised you.
+# ============================================================
+
+experiments:
+
+  # ── Add your experiments below ──────────────────────────
+  # Format:
+  #   - tool: "Name of the AI tool"
+  #     task: "What you used it for"
+  #     result: "What actually happened — be honest"
+  #     surprising: "The thing that surprised you most"
+  #     would_recommend: true/false
+  #     date: "YYYY-MM-DD"
+  #     status: "ongoing" | "completed" | "abandoned"
+
+  - tool: "TODO: Fill in your first experiment"
+    task: "TODO: What did you use it for?"
+    result: "TODO: What actually happened?"
+    surprising: "TODO: What surprised you?"
+    would_recommend: true
+    date: "2026-09-21"
+    status: "ongoing"
+
+# ── Context for the post generator ───────────────────────
+# The post generator uses this to write authentic first-person posts.
+# When this file has at least one completed experiment, the pipeline
+# can generate "I tried X" posts alongside news-based posts.
+
+author_context:
+  role_in_ai: "Experimenter — trying AI tools in real brand and marketing workflows"
+  goal: "To show I'm following news in AI and have an opinion on how brands can leverage it today"
+  audience: "Brand leaders, marketers, and creative directors navigating the AI era"
+  primary_message: "AI is a tool, not magic — here's what it actually does for brands right now"

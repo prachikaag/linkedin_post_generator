@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# TODO: Fill in your details below — this is the only section that needs personalising.
+# Everything else (voice, structure, hashtags) is ready to use as-is.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "TODO: Your Full Name"          # e.g. "Prachi Kaag"
+  title: "TODO: Your LinkedIn Headline" # e.g. "Brand Strategist | AI Content Creator"
+  # One-line pitch displayed below your name on LinkedIn
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "TODO: Your City, Country"  # e.g. "New York, USA"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
