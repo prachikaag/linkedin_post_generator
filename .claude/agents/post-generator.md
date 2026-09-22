@@ -34,6 +34,7 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.content_angles` — specific framing styles (e.g. "I tried X for Y — here's what happened", "Company just launched X — here's what brands should know")
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
@@ -54,6 +55,14 @@ Following the brand kit precisely, write a post that:
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
+
+### Framing angle — pick one from brand.content_angles that best fits the articles:
+- "I tried [AI tool] for [use case] — here's what actually happened" → for hands-on experiment stories
+- "[Company] just launched [feature] — here's what brands should know" → for product/feature launches
+- "The real reason [AI development] matters for marketers" → for broader implications
+- "[Trending topic] explained without the hype" → for translating complex tech for a brand audience
+- "What [funding/acquisition] tells us about where AI is heading" → for funding/M&A news
+Choose the angle that best matches the anchor article. Adapt the structure and voice to match.
 
 ### Content rules:
 - Synthesise **all** provided articles — do not just summarise article 1
@@ -131,7 +140,9 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
-status: "draft"
+post_type: "<one of: feature_launch | funding_news | bigtech_news | ai_experiment | youtube_video | research_breakthrough | regulation_policy>"
+content_angle: "<the framing angle you chose from brand.content_angles>"
+status: "draft"  # Change to "published" once you post it on LinkedIn
 ---
 ```
 

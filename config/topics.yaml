@@ -335,6 +335,39 @@ topic_categories:
       - "AI assistant"
       - "copilot"
 
+  - name: "Human in the Loop AI Experiments"
+    description: "Personal AI experiments, hands-on testing, human+AI workflows and real-world brand use cases"
+    keywords:
+      - "I tried"
+      - "tested"
+      - "experiment"
+      - "hands-on"
+      - "real-world"
+      - "human in the loop"
+      - "human-in-the-loop"
+      - "practical AI"
+      - "AI workflow"
+      - "AI for brands"
+      - "marketing with AI"
+      - "AI content creation"
+      - "AI experiment"
+      - "brand AI"
+      - "AI use case"
+
+  - name: "AI YouTube and Video"
+    description: "New YouTube videos, demos, and tutorials from major AI companies and channels"
+    keywords:
+      - "video"
+      - "demo"
+      - "tutorial"
+      - "youtube"
+      - "watch"
+      - "shows"
+      - "walkthrough"
+      - "preview"
+      - "sneak peek"
+      - "behind the scenes"
+
 # ── Trending Keywords Configuration ───────────────────────
 trending_keywords:
   # Seed terms used to find related trending queries on Google Trends

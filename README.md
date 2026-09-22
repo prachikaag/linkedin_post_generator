@@ -88,10 +88,12 @@ posts/
 ```
 
 Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
+- **YAML frontmatter**: source metadata, companies, categories, trending keywords, post_type, content_angle, status
 - **Post body**: the full LinkedIn draft, ready to review and publish
 
 Change `status: draft` to `status: published` to track what's gone live.
+
+`post_type` values: `feature_launch` · `funding_news` · `bigtech_news` · `ai_experiment` · `youtube_video` · `research_breakthrough` · `regulation_policy`
 
 ---
 
@@ -128,11 +130,29 @@ Edit `config/brand_kit.yaml` to set:
 - Your name, title, and professional tagline
 - Tone traits (curious, pragmatic, opinionated, etc.)
 - Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
+- Post structure preferences — including specific content angles like "I tried X for Y" or "Here's what brands should know"
 - Hashtag strategy
 - Minimum sources per post
 
-The post-generator agent reads this file on every run — no restarts needed.
+The post-generator reads this file on every run — no restarts needed.
+
+---
+
+## Post Types Covered
+
+The pipeline watches for and writes about:
+
+| Type | What triggers it | `post_type` |
+|------|-----------------|-------------|
+| **Feature launch** | New AI model, tool, or product released | `feature_launch` |
+| **Funding news** | AI startup raises / acquires / IPOs | `funding_news` |
+| **Big Tech AI move** | Microsoft, Google, Apple, Nvidia, Amazon AI news | `bigtech_news` |
+| **YouTube video** | Major AI company publishes a demo or walkthrough video | `youtube_video` |
+| **AI experiment** | Hands-on test of a tool — human-in-the-loop perspective | `ai_experiment` |
+| **Research breakthrough** | Paper, benchmark, or capability milestone | `research_breakthrough` |
+| **Regulation & policy** | EU AI Act, government moves, copyright, safety | `regulation_policy` |
+
+Each generated draft is tagged with a `post_type` so you can filter and prioritise your review queue.
 
 ---
 
