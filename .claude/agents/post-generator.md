@@ -34,26 +34,47 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.content_types` — specific post formats for different news types
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
+## Step 1b — Detect Content Type
+
+Before writing, scan the articles for signals that indicate which content type this cluster maps to (from `brand.content_types`):
+
+| Signal | Content Type |
+|--------|-------------|
+| Article titles/summaries mention "YouTube", "video", "demo", "watch", "keynote" | `youtube_launch` |
+| Article titles mention "raises", "funding", "Series", "valuation", "acquired", "IPO" | `startup_funding` |
+| Article source is a company blog (OpenAI, Anthropic, Google, Meta, etc.) announcing a new model/feature | `product_feature_launch` |
+| Articles are from Microsoft, Google, Apple, Amazon, Meta, Nvidia about AI moves | `bigtech_ai_news` |
+| Default if no specific signal matches | `product_feature_launch` |
+
+Note the detected content type — it will shape the post angle (see `brand.content_types[type].post_angle`).
+
 ---
 
 ## Step 2 — Write the LinkedIn Post
 
-Following the brand kit precisely, write a post that:
+Following the brand kit precisely, write a post using the detected content type's angle from `brand.content_types[type].post_angle`.
 
 ### Must follow this structure (in order):
-1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
+1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I". If content type is `youtube_launch`, open with what the video reveals that the press release doesn't.
 2. **CONTEXT** (2–3 lines): What is happening across the AI space broadly — not just one article. Reference multiple developments.
 3. **EVIDENCE** (4–6 lines): Data points, developments, and quotes from multiple sources. Cite inline. For any direct verbatim quote: `"[exact quote]" — Full Name, Title, Company`. If you cannot confirm a quote is exact, paraphrase without quote marks.
-4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated.
-5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Concrete and actionable.
+4. **YOUR TAKE** (3–5 lines): Your synthesis and personal opinion across everything. What is the pattern? What does it mean? Be specific and opinionated. Write through the lens of: "What does this mean for brands and marketers?"
+5. **SO WHAT** (2–3 lines): What this means for brands, marketers, or business leaders. Give one concrete, actionable thing they should do or test.
 6. **CTA** (1 line): A question that invites genuine discussion in the comments.
 7. **SOURCES**: Numbered list of all cited sources — minimum `min_sources`. Format: `[N]. [Short title] → [full URL]`
 8. **HASHTAGS**: Always-include hashtags + rotation picks, totalling `max_hashtags`. Place on the very last line.
+
+### Content-type-specific hooks:
+- **youtube_launch**: "I just watched [Company]'s new demo. Here's what stood out..." / "The gap between the press release and the actual demo is always where the real story is."
+- **startup_funding**: "Another [amount] just went into AI. But this one is different." / "When investors bet [amount] on [space], it tells you something about where the next wave is going."
+- **product_feature_launch**: "Something shifted with [feature]. It's not just an upgrade — it's a signal." / "[Company] just changed what [use case] looks like for teams."
+- **bigtech_ai_news**: "Big tech is moving again — and this time it's about [topic]." / "The real story behind [company]'s AI announcement isn't the feature. It's the strategy."
 
 ### Content rules:
 - Synthesise **all** provided articles — do not just summarise article 1
@@ -116,6 +137,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+content_type: "<detected content type: youtube_launch | startup_funding | product_feature_launch | bigtech_ai_news>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:
@@ -153,7 +175,8 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "content_type": "<detected content type>"
 }
 ```
 

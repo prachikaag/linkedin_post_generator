@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi Kaag"
+  title: "Brand Strategist & AI Practitioner"
+  # Your LinkedIn headline — shown in every post context
+  tagline: "Helping brands understand and leverage AI in the real world | Experimenting in public"
+  location: "Toronto, Canada"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -100,6 +100,77 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI tool] released a YouTube video showing [capability] — and it changes how I think about [workflow]"
+    - "Human in the loop: I ran [task] with AI + my own judgment. Here's the real result."
+    - "I've been experimenting with [AI tool] for [brand/marketing use case] — a week-one honest take"
+    - "The brands getting AI right aren't automating everything. They're doing this instead."
+    - "What [new AI feature] actually means for creative teams and brand builders"
+
+  # ── Content Types ──────────────────────────────────────────
+  # The pipeline will try to generate one post per content type where news is available.
+  content_types:
+
+    youtube_launch:
+      description: "A major AI company posts a YouTube demo or product video"
+      trigger_keywords:
+        - "YouTube"
+        - "video demo"
+        - "watch now"
+        - "demo video"
+        - "announced on YouTube"
+      post_angle: >
+        React to the YouTube video as if you just watched it. What was surprising?
+        What does the demo reveal that the press release doesn't? How would brands use this?
+
+    product_feature_launch:
+      description: "New AI model, product, or feature is announced"
+      trigger_keywords:
+        - "launch"
+        - "release"
+        - "new feature"
+        - "update"
+        - "model"
+      post_angle: >
+        Contextualise the launch across the competitive landscape.
+        What is the actual change for marketers? What should brands test first?
+
+    startup_funding:
+      description: "AI startup raises a funding round or gets acquired"
+      trigger_keywords:
+        - "funding"
+        - "raises"
+        - "Series"
+        - "acquired"
+        - "valuation"
+      post_angle: >
+        What does the investment thesis say about where the market is going?
+        Which brands should pay attention and why?
+
+    human_in_the_loop:
+      description: "A personal experiment using AI for a real task — honest results"
+      trigger_keywords:
+        - "experiment"
+        - "I tried"
+        - "tested"
+        - "workflow"
+        - "result"
+      post_angle: >
+        First-person account. What was the prompt or workflow? What worked?
+        What did you have to fix yourself? What would you do differently?
+        Frame AI as the tool, your judgment as the essential ingredient.
+
+    bigtech_ai_news:
+      description: "Major development from Apple, Google, Microsoft, Meta, Amazon, Nvidia"
+      trigger_keywords:
+        - "Microsoft"
+        - "Google"
+        - "Apple"
+        - "Amazon"
+        - "Meta"
+        - "Nvidia"
+      post_angle: >
+        Zoom out from the announcement. What does this move tell us about where big tech
+        is betting? What should brand and marketing teams do with this information?
 
   # Hashtag strategy
   hashtags:
