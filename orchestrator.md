@@ -12,10 +12,13 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
+[read history]  → covered_urls list
+[news-gatherer] → articles JSON (filtered against covered_urls)
 [trending-tracker] → keywords JSON
          ↓ (for each article cluster)
 [post-generator] → saved .md draft
+         ↓
+[update history] → config/post_history.yaml updated
          ↓ (optional, if Notion is configured)
 [notion-publisher] → published to Notion
 ```
@@ -33,20 +36,32 @@ Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
 ---
 
+## Step 0 — Load Post History
+
+Read `config/post_history.yaml` and extract:
+- `covered_urls` — list of article URLs already used in a generated post
+- `covered_slugs` — list of post slugs already generated
+
+Print: `✓ Post history loaded: {N} URLs already covered.`
+
+Also read `config/interests.md` to understand the author's current focus areas and what types of stories to prioritise. Use this to inform how you brief subagents.
+
+---
+
 ## Step 1 — Gather News
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 
-Task for the subagent:
-> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array."
+Task for the subagent (include the covered URLs inline):
+> "Fetch AI news articles from the RSS feeds and topics config and return a scored JSON array. Skip any article whose URL appears in this covered list: {covered_urls}"
 
 Receive the JSON array of articles. If the array is empty, print:
 > "No relevant articles found. Try increasing max_article_age_hours or lowering min_relevance_score in config/topics.yaml."
 Then stop.
 
-Print a summary line: `✓ {N} relevant articles fetched and scored.`
+Print a summary line: `✓ {N} relevant articles fetched and scored (after history filter).`
 
-If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
+If `DRY_RUN` is true, print the top 12 articles (title, score, source, type) and stop here.
 
 ---
 
@@ -74,6 +89,8 @@ Divide the articles into clusters — one cluster per post to generate.
   - Move `articles[i]` to position 0 of the cluster (it becomes the anchor article)
 - Result: `n_posts` clusters, each with up to `SOURCE_POOL_SIZE` articles, each with a distinct anchor
 
+**Prioritisation rule**: If any cluster contains articles with `type: "youtube_video"`, move that cluster to the front. YouTube video posts are high priority — the author specifically watches for these.
+
 ---
 
 ## Step 4 — Generate Posts
@@ -95,6 +112,7 @@ Input:
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
+  Type: {cluster[0].type or "news"}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -103,7 +121,28 @@ Collect each result's JSON object.
 
 ---
 
-## Step 5 — Publish to Notion (optional)
+## Step 5 — Update Post History
+
+After all posts are generated, update `config/post_history.yaml`:
+
+1. Read the current file
+2. For each generated post result:
+   - Append `result.source_url` to `covered_urls` (and all other article URLs in the cluster)
+   - Append the slug extracted from `result.filename` to `covered_slugs`
+   - Append an entry to `post_log`:
+     ```yaml
+     - date: "YYYY-MM-DD"
+       filename: "<result.filename>"
+       primary_url: "<result.source_url>"
+       article_title: "<result.article_title>"
+     ```
+3. Write the updated YAML back to `config/post_history.yaml`
+
+Print: `✓ Post history updated: {N} new URLs logged.`
+
+---
+
+## Step 6 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
 
@@ -128,7 +167,7 @@ If `NOTION_PAGE_ID` is not set, print: `Notion not configured — set NOTION_PAG
 
 ---
 
-## Step 6 — Final Summary
+## Step 7 — Final Summary
 
 Print a summary table:
 
@@ -138,8 +177,9 @@ Print a summary table:
 ╠══════════════════════════════════════════════════════╣
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
+║  History updated : {N} URLs now covered              ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {source_count} sources  ·  {type}   ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```
@@ -152,4 +192,5 @@ Then print each post's content in full so the author can review immediately.
 
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
+- If the post history file cannot be read, proceed with an empty covered list and log a warning
 - Never stop the entire pipeline because of a single subagent failure

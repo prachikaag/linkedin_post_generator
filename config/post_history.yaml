@@ -1,0 +1,25 @@
+# ============================================================
+# POST HISTORY — MEMORY ACROSS RUNS
+# ============================================================
+# This file tracks articles that have already been turned into
+# LinkedIn posts. The pipeline reads it on every run to avoid
+# generating a post about the same story twice.
+#
+# The orchestrator appends entries here automatically after
+# each successful post generation.
+#
+# To manually clear history and allow re-coverage of old topics,
+# delete all entries under "covered_urls" and "covered_slugs".
+# ============================================================
+
+# Article URLs already used in a generated post.
+# The news-gatherer skips any article whose URL appears here.
+covered_urls: []
+
+# Post slugs already generated (from the posts/ filenames).
+# Used to detect duplicate topics even when URLs differ.
+covered_slugs: []
+
+# Log of all generated posts for reference.
+# Format: { date, filename, primary_url, article_title }
+post_log: []
