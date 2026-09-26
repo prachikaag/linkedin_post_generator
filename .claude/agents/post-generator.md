@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/tone_of_voice.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,26 +24,46 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Tone of Voice
 
 Read `config/brand_kit.yaml` and extract:
 
 - `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
-- `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
+Read `config/tone_of_voice.yaml` and extract:
+
+- `primary_traits` — how the author comes across
+- `writing_style` — rules for every post
+- `post_structure` — the ordered blueprint to follow
+- `dos` and `donts` — what to do and avoid
+- `content_angles` — story type templates (use these to identify which angle fits the articles best)
+- `banned_words` — words never to use
+- `signature_phrases` — natural opinion framing (use sparingly)
+
 ---
 
-## Step 2 — Write the LinkedIn Post
+## Step 2 — Identify the Content Angle
 
-Following the brand kit precisely, write a post that:
+Look at `content_angles` from `tone_of_voice.yaml`. Based on the articles provided, determine which angle best fits:
+
+- `new_feature_launch` — a major AI company shipped something new
+- `youtube_video_release` — a notable demo or video was published
+- `bigtech_ai_news` — Microsoft, Apple, Google, Amazon, Adobe, Meta, or Nvidia announced something
+- `startup_funding` — an AI startup raised money or was acquired
+- `human_in_the_loop` — a personal experiment or workflow story
+
+Use this angle's `hook_template` and `angle` guidance to frame the post.
+
+---
+
+## Step 3 — Write the LinkedIn Post
+
+Following both config files precisely, write a post that:
 
 ### Must follow this structure (in order):
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
@@ -61,7 +81,7 @@ Following the brand kit precisely, write a post that:
 - Short paragraphs only — 1 to 3 sentences max
 - Generous line breaks between every paragraph
 - Numbers and specifics beat vague claims
-- No buzzwords: "game-changer", "revolutionary", "disruptive" without specifics
+- No words from the `banned_words` list
 - No walls of text; no corporate jargon
 - Write as `author.name` in first person
 
@@ -88,15 +108,9 @@ Following the brand kit precisely, write a post that:
 - Every sentence must be **15 words or fewer**
 - Count both. If either limit is exceeded, cut — prioritise impact over completeness.
 
-### Words never to use:
-- "shipped" — say "launched", "released", "put out", or "announced"
-- "AI lab" — say the company name directly, or "AI company", "AI maker"
-- "programmed", "deployed" (except in a genuinely technical context)
-- Corporate jargon: "leveraged", "utilised", "synergy", "thought leader"
-
 ---
 
-## Step 3 — Save the Post
+## Step 4 — Save the Post
 
 ### Filename
 Format: `YYYY-MM-DD_HH-MM-SS_slug.md`
@@ -131,6 +145,7 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+content_angle: "<which angle was used: new_feature_launch | youtube_video_release | bigtech_ai_news | startup_funding | human_in_the_loop>"
 status: "draft"
 ---
 ```
@@ -153,7 +168,8 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "content_angle": "<angle used>"
 }
 ```
 
