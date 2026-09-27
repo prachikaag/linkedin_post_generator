@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Post Types
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,13 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/post_types.yaml`. Identify which post type best matches the anchor article (articles[0]) by checking its `matched_categories` and `matched_keywords` against each post type's `trigger_keywords`. Select the best match and load its:
+- `hook_templates` — use as inspiration for the hook (adapt, don't copy verbatim)
+- `angle` — the lens to write the post through
+- `hashtags_extra` — additional hashtags relevant to this post type
+
+If no type matches clearly, default to `new_feature`.
 
 ---
 

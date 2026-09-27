@@ -1,0 +1,128 @@
+# ============================================================
+# AI EXPERIMENTS LOG
+# Track every AI tool you've tested and experiment you've run.
+# Each entry can become a LinkedIn post.
+# Run: "Write a LinkedIn post from my latest AI experiment"
+# ============================================================
+
+# ── How to add a new experiment ───────────────────────────────
+# Copy the template below and fill in your details.
+# post_status options:
+#   idea       → you have notes but haven't written anything
+#   draft      → saved to posts/ but not published
+#   published  → live on LinkedIn
+# ─────────────────────────────────────────────────────────────
+
+experiments:
+
+  # ── TEMPLATE — copy this block to log a new experiment ────
+  # - tool: "Tool name (e.g. Claude Sonnet, Midjourney v6, Perplexity)"
+  #   use_case: "What you used it for (e.g. brand brief writing)"
+  #   date: "YYYY-MM-DD"
+  #   time_spent: "e.g. 30 mins, 2 hours"
+  #   prompt_or_brief: >
+  #     The actual prompt or brief you gave the tool (paste it here)
+  #   what_happened: >
+  #     What the tool produced — be specific, include quotes or results
+  #   what_worked: >
+  #     The parts that genuinely impressed you or saved real time
+  #   what_didnt_work: >
+  #     The parts that fell flat, needed heavy editing, or missed the mark
+  #   surprising_finding: >
+  #     The one thing you didn't expect — positive or negative
+  #   verdict: >
+  #     Your honest one-sentence verdict. Would you use it again? For what?
+  #   brand_takeaway: >
+  #     The one thing another marketer or brand team should know from this
+  #   post_status: "idea"
+  #   notes: ""
+
+  # ── Example experiment entries ────────────────────────────
+
+  - tool: "Claude Sonnet"
+    use_case: "Writing a brand tone of voice brief"
+    date: "2026-05-01"
+    time_spent: "45 mins"
+    prompt_or_brief: >
+      Asked Claude to write a brand tone of voice guide for a hypothetical DTC brand
+      targeting millennial women. Provided three example brand voice references and
+      asked it to synthesise a distinct voice.
+    what_happened: >
+      Produced a 1,200-word brief with personality traits, writing dos/don'ts, and
+      example copy in under 2 minutes. First draft was 80% there — needed adjustment
+      on emotional register and it was slightly generic.
+    what_worked: >
+      Structure was excellent. Saved at least 3 hours of first-draft time.
+      The example copy sections were genuinely usable with light edits.
+    what_didnt_work: >
+      The tone traits were technically correct but felt a bit textbook.
+      Needed two rounds of prompting to dial in the specific emotional register.
+    surprising_finding: >
+      When I gave it three competitor tone of voice docs and asked what was missing,
+      the gap analysis was better than I expected. That's actually more useful than the draft itself.
+    verdict: >
+      Yes, I'd use it again — specifically for the gap analysis and structure.
+      Not as a final output. As a starting point that I edit hard.
+    brand_takeaway: >
+      AI is best at structure and speed on brand briefs. The human's job shifts from
+      first draft to creative direction. That's not less work — it's different work.
+    post_status: "idea"
+    notes: "Good post angle: the gap analysis trick"
+
+  - tool: "Midjourney v6"
+    use_case: "Generating hero imagery for a client mood board"
+    date: "2026-05-08"
+    time_spent: "1 hour"
+    prompt_or_brief: >
+      Built a series of prompts to generate lifestyle imagery for a premium food brand.
+      Used reference images from their existing visual identity as style anchors.
+    what_happened: >
+      Generated 40+ variations in under an hour. 8 were genuinely usable for a mood board.
+      The rest needed too much correction or missed the brand's aesthetic.
+    what_worked: >
+      Lighting and composition were strong. Speed was remarkable — this would have taken
+      a stock photography session or a full shoot.
+    what_didnt_work: >
+      Brand colour consistency was difficult to maintain across variations.
+      Text in images was, predictably, broken.
+    surprising_finding: >
+      The client preferred the AI mood board over stock because it felt more specific
+      to their vision — even though we described it as AI-generated from the start.
+    verdict: >
+      Valuable for early-stage creative concepting and client alignment.
+      Not a replacement for a shoot, but it changes when you need the shoot.
+    brand_takeaway: >
+      AI image generation earns its place in ideation and pre-production.
+      It changes the economics of showing clients what you mean before committing budget.
+    post_status: "idea"
+    notes: "Angle: the point at which AI visual work enters the real workflow"
+
+  - tool: "Perplexity Pro"
+    use_case: "AI trend research for a client strategy deck"
+    date: "2026-05-12"
+    time_spent: "2 hours"
+    prompt_or_brief: >
+      Used Perplexity's Deep Research to map the AI competitive landscape for a
+      marketing technology client who needed a quick-turnaround market overview.
+    what_happened: >
+      Generated a 2,400-word competitive overview with cited sources in 8 minutes.
+      Covered market sizing, key players, and use case categories. Sources were
+      mostly solid — a few were dated.
+    what_worked: >
+      The speed-to-cited-research ratio is genuinely impressive for a first pass.
+      Pulled sources I wouldn't have found with a standard Google search.
+    what_didnt_work: >
+      A few citations linked to accurate-sounding but hard-to-verify claims.
+      I had to manually check every statistic before putting it in a client deck.
+    surprising_finding: >
+      The source breadth was better than expected. It found industry reports I hadn't
+      come across. But the confidence level in the output is misleading — it presents
+      uncertain things with the same tone as certain things.
+    verdict: >
+      Yes, for first-pass research. Never without a human verification step.
+      It changes how long research takes, not whether you need to think.
+    brand_takeaway: >
+      AI research tools are excellent at surfacing what exists.
+      They are not yet reliable at telling you what's true. That gap matters.
+    post_status: "idea"
+    notes: "Angle: the confidence problem in AI research outputs"

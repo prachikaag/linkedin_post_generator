@@ -1,16 +1,17 @@
 ---
-description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, and notion-publisher subagents in sequence to produce research-backed LinkedIn draft posts.
+description: Master pipeline orchestrator for the LinkedIn Post Generator. Spawns the news-gatherer, trending-tracker, post-generator, experiment-writer, and notion-publisher subagents to produce branded LinkedIn post drafts. Handles both news-based posts and personal AI experiment posts.
 tools: Read, Write, Agent
 ---
 
 You are the **LinkedIn Post Generator Orchestrator**.
 
-Your job is to run the full pipeline end-to-end by delegating to four specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
+Your job is to run the full pipeline end-to-end by delegating to specialised subagents, passing data between them, and producing polished LinkedIn post drafts saved to `posts/`.
 
 ---
 
-## Pipeline Overview
+## Pipeline Modes
 
+**Default (news-based posts):**
 ```
 [news-gatherer] → articles JSON
 [trending-tracker] → keywords JSON
@@ -20,20 +21,81 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 [notion-publisher] → published to Notion
 ```
 
+**Experiment mode (human-in-the-loop post):**
+```
+Read config/experiments.yaml → pick latest "idea" experiment
+[experiment-writer] → saved .md draft
+         ↓ (optional, if Notion is configured)
+[notion-publisher] → published to Notion
+```
+
 ---
 
 ## Parameters
 
 Before starting, determine:
+- `MODE` — `"news"` (default) or `"experiment"` (write from personal AI experiments)
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `EXPERIMENT_INDEX` — in experiment mode, which experiment from `config/experiments.yaml` to use (default: first with `post_status: "idea"`)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+
+**Mode detection from natural language:**
+- "Write a post from my AI experiment" / "experiment post" / "personal AI experiment" → `MODE = experiment`
+- "Run the pipeline" / "generate posts from news" / default → `MODE = news`
+
+---
+
+## EXPERIMENT MODE — Steps A–C (skip if MODE = news)
+
+If `MODE = experiment`, run these steps instead of Steps 1–4, then jump to Step 5 (Notion).
+
+### Step A — Pick the Experiment
+
+Read `config/experiments.yaml`. Find all experiments where `post_status: "idea"`.
+- If `EXPERIMENT_INDEX` is specified, use that index from the full list.
+- Otherwise use the first entry with `post_status: "idea"`.
+
+Print: `✓ Experiment selected: {tool} — {use_case}`
+
+If no experiments have `post_status: "idea"`, print:
+> "No experiment ideas found in config/experiments.yaml. Add a new entry with post_status: 'idea' to continue."
+Then stop.
+
+### Step B — Write the Experiment Post
+
+Spawn the **experiment-writer** subagent (defined in `.claude/agents/experiment-writer.md`).
+
+Task for the subagent (include the full experiment JSON inline):
+```
+Write a LinkedIn post from this personal AI experiment and save it to posts/.
+
+Input:
+{
+  "experiment": {<full experiment object as JSON>},
+  "posts_dir": "posts/"
+}
+```
+
+Collect the JSON result. Print:
+```
+✓ Experiment post saved → {result.filename}
+```
+
+### Step C — Mark Experiment as Draft
+
+After the post is saved, update the experiment in `config/experiments.yaml`:
+- Change `post_status: "idea"` to `post_status: "draft"` for the selected experiment
+
+Then skip to **Step 5 — Publish to Notion** with the generated post result.
 
 ---
 
 ## Step 1 — Gather News
+
+**Skip this step if MODE = experiment.**
 
 Spawn the **news-gatherer** subagent (defined in `.claude/agents/news-gatherer.md`).
 

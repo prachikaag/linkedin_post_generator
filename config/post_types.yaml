@@ -1,0 +1,184 @@
+# ============================================================
+# POST TYPES
+# Edit this file to define the types of posts you want to write.
+# Each type has its own hooks, angles, hashtags, and rules.
+# The post-generator agent reads this to match tone to context.
+# ============================================================
+
+post_types:
+
+  # ── 1. New AI Feature / Product Launch ─────────────────────
+  new_feature:
+    name: "New AI Feature or Product Launch"
+    description: >
+      When an AI tool, model, or product ships something new — a major release,
+      new capability, product update, or anything that changes how we work with AI.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "ships"
+      - "available now"
+      - "announces"
+      - "unveils"
+      - "rolls out"
+      - "model release"
+    hook_templates:
+      - "[Company] just changed something. Here's why it matters for brands."
+      - "A new AI capability dropped. Here's the part worth paying attention to."
+      - "[Company] released [feature]. The implications are bigger than the headline."
+      - "Something new landed in AI this week. Here's what I actually think of it."
+    angle: >
+      What does this feature change for marketers, brand teams, or business leaders today?
+      Not tomorrow — today. What can you do now that you couldn't do before?
+    example_angles:
+      - "I tried [feature] in my own workflow — here's what actually happened"
+      - "What [new capability] means for brand creative teams"
+      - "Why [Company]'s release changes the competitive bar for everyone"
+    hashtags_extra:
+      - "#GenerativeAI"
+      - "#AITools"
+      - "#AIInnovation"
+
+  # ── 2. Big Tech AI News ─────────────────────────────────────
+  big_tech:
+    name: "Big Tech AI Move"
+    description: >
+      When Google, Microsoft, Apple, Amazon, Meta, Nvidia, Salesforce, or Adobe
+      makes a significant AI announcement — new product, major partnership,
+      model release, or strategic shift.
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Amazon"
+      - "Meta"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+      - "Copilot"
+      - "Gemini"
+      - "Apple Intelligence"
+    hook_templates:
+      - "The big-tech AI race just moved again. Here's what actually changed."
+      - "What [Company]'s latest AI move means for the rest of us."
+      - "[Company] just made a call on AI. Here's why it matters."
+      - "Big tech is picking sides in AI. Here's what that signals."
+    angle: >
+      What does this move signal about where the industry is heading?
+      What should brands — especially non-tech brands — pay attention to?
+    example_angles:
+      - "What [Company]'s bet tells us about where AI investment is going"
+      - "The real winners of [Company]'s AI announcement"
+      - "[Company]'s move puts pressure on everyone in [category]"
+    hashtags_extra:
+      - "#TechNews"
+      - "#AIStrategy"
+      - "#FutureOfWork"
+
+  # ── 3. AI Startup Funding Round ────────────────────────────
+  startup_funding:
+    name: "AI Startup Funding Round"
+    description: >
+      When an AI startup raises a funding round, gets acquired, hits a milestone
+      valuation, files for IPO, or secures a major enterprise partnership.
+      The story is always what investor conviction reveals about the market.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+    hook_templates:
+      - "Investors just bet [$amount] on this AI use case. Here's what they're seeing."
+      - "Another AI funding round closed. The category it's in tells you everything."
+      - "[Company] just raised. The pitch that got funded reveals where enterprise AI is going."
+      - "VC money is moving fast in AI. Here's the pattern I'm watching."
+    angle: >
+      What does the investor conviction signal about which AI categories are winning?
+      What does this mean for brands that use — or compete with — this technology?
+    example_angles:
+      - "What [Company]'s funding round tells us about the future of [category]"
+      - "Why VCs are betting on [use case] right now"
+      - "What [acquisition] means for brands who use both products"
+    hashtags_extra:
+      - "#AIStartup"
+      - "#AIInvestment"
+      - "#VentureCapital"
+
+  # ── 4. YouTube / Video / Demo Reaction ─────────────────────
+  video_reaction:
+    name: "AI YouTube Video or Demo Reaction"
+    description: >
+      Reacting to a significant YouTube video, product demo, keynote, or
+      explainer released by an AI company or major tech channel.
+      These are often the first signal of what's coming before full launch.
+    trigger_keywords:
+      - "YouTube"
+      - "video"
+      - "demo"
+      - "keynote"
+      - "announcement video"
+      - "showed"
+      - "revealed in a video"
+    hook_templates:
+      - "I watched [Company]'s latest video so you don't have to. Here's my take."
+      - "[Company] dropped a demo this week. The thing nobody is talking about:"
+      - "I watched [channel]'s new video twice. Here's what I took away."
+      - "A [Company] video just showed something brands should know about."
+    angle: >
+      What does the demo or video reveal that the press release didn't?
+      What can viewers actually do with this, and what's still aspirational?
+    example_angles:
+      - "What the demo reveals about [Company]'s product direction"
+      - "My honest read of [Company]'s [feature] announcement video"
+      - "The 3 things from [Company]'s video that matter for brand teams"
+    hashtags_extra:
+      - "#AIDemo"
+      - "#AITools"
+      - "#GenerativeAI"
+
+  # ── 5. Human-in-the-Loop AI Experiment ─────────────────────
+  experiment:
+    name: "Personal AI Experiment"
+    description: >
+      Sharing results from your own hands-on AI experimentation — you as the human editor,
+      AI as the drafter. These posts are about what you actually tried, what worked,
+      what surprised you, and what other brands and marketers can take away.
+      This is your most authentic post type. Never skip the personal detail.
+    hook_templates:
+      - "I ran an experiment with AI this week. Here's what I actually found."
+      - "I gave [AI Tool] a real brief. Here's what came back — and what I changed."
+      - "I tested [AI Tool] for [task]. The results surprised me."
+      - "Honest result: I used AI for [task]. Here's what I'd tell a brand doing the same."
+      - "I spent [time] testing [AI Tool]. Here's what worked, what didn't, and what I'll keep doing."
+    angle: >
+      What did you learn that another marketer or brand leader could act on today?
+      What was surprising? What was disappointing? What's the honest verdict?
+    example_angles:
+      - "I tried [AI Tool] for [use case] — here's the full honest result"
+      - "What happened when I used AI to [task] for a real project"
+      - "The part nobody tells you about using [AI Tool] for [use case]"
+      - "I've been experimenting with [workflow] — here's what changed"
+    post_rules:
+      - "Always open with what you actually did, not a general observation"
+      - "Be specific: name the tool, name the task, share real output if possible"
+      - "Include what went wrong or what surprised you — that's where the value is"
+      - "End with a clear recommendation for other marketers"
+      - "Do NOT cite external news sources — this post is your experiment, your voice"
+    hashtags_extra:
+      - "#AIExperiments"
+      - "#HumanInTheLoop"
+      - "#AIMarketing"
+      - "#MarketingAI"
+    requires_personal_narrative: true

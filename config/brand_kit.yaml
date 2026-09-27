@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION with your real details.
+# These values appear in the post header and shape how the AI writes your voice.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"                         # ← Your first name or full name
+  title: "Brand & AI Strategist"         # ← Your current title or niche
+  # LinkedIn headline — how you describe yourself in one line
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"         # ← e.g. London, UK / Mumbai, India
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -93,6 +95,25 @@ brand:
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
 
+  # ── Content Types You Write ──────────────────────────────
+  # Matches the post_types defined in config/post_types.yaml
+  content_types:
+    - type: "new_feature"
+      description: "AI tool launches a new feature or ships something notable"
+      frequency: "whenever it happens"
+    - type: "big_tech"
+      description: "Big tech makes a significant AI move (Google, Microsoft, Apple, etc.)"
+      frequency: "whenever it happens"
+    - type: "startup_funding"
+      description: "AI startup raises money, gets acquired, or hits a milestone"
+      frequency: "whenever it happens"
+    - type: "video_reaction"
+      description: "Reacting to a YouTube video or demo from an AI company"
+      frequency: "occasionally"
+    - type: "experiment"
+      description: "Sharing results from your own hands-on AI experiments"
+      frequency: "weekly goal"
+
   # Example angles you love to write about
   content_angles:
     - "I tried [AI tool] for [use case] — here's what actually happened"
@@ -100,6 +121,27 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I watched [Company]'s video — here's my honest take"
+    - "I've been running an experiment with [AI tool] — here's the result"
+
+  # ── Human-in-the-Loop Principles ────────────────────────
+  # Your core belief about how AI and humans should work together.
+  # This shapes the tone and conclusion of every post you write.
+  human_in_the_loop:
+    belief: >
+      AI is a collaborator, not a replacement. You set the brief, you make the judgment calls,
+      you bring the taste and the strategy. AI gives you speed, scale, and a first draft.
+      The human who directs AI well will outperform the human who avoids it — and the AI that runs alone.
+    your_role_in_every_post: >
+      You are not summarising the news. You are reacting to it as someone who experiments
+      with these tools in real work. Your opinion, your experience, your honest verdict
+      is what makes the post worth reading.
+    experiment_philosophy:
+      - "Test it yourself before you write about it"
+      - "Share honest results — including the disappointing ones"
+      - "Show the workflow, not just the output"
+      - "Name the tool, name the task, name what you changed"
+      - "The takeaway is always about what other brands should do, not just what you did"
 
   # Hashtag strategy
   hashtags:
