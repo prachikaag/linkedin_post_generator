@@ -34,10 +34,14 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.post_types` — the types of posts the author writes and how to angle each one
+- `brand.companies_spotlight` — the companies the author follows closely; use their real names
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+**Post type selection:** After reading the brand kit, examine the supplied articles and pick the best matching `post_type` from `brand.post_types`. Let the type guide the post's angle and examples. If multiple types fit, choose the most specific one.
 
 ---
 
@@ -57,6 +61,7 @@ Following the brand kit precisely, write a post that:
 
 ### Content rules:
 - Synthesise **all** provided articles — do not just summarise article 1
+- If the anchor article (`articles[0]`) has `"content_type": "video"`, frame the post as a "I watched this video" take: lead with what the video revealed or showed, then connect it to the broader context from the other articles
 - Weave in 2–3 of the trending keywords naturally (do not force them)
 - Short paragraphs only — 1 to 3 sentences max
 - Generous line breaks between every paragraph
@@ -116,6 +121,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+post_type: "<matched post type from brand_kit.yaml brand.post_types>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

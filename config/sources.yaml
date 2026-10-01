@@ -141,8 +141,34 @@ rss_feeds:
       priority: medium
       enabled: true
 
+    - name: "Mistral AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbf_F71eWOZYqkSSsOVkRIA"
+      priority: medium
+      enabled: true
+
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC2-tpDMPv8DBbDMEEQBjPTg"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCUDKhbdXZa5B0lxqVdNimNg"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCJpBR71mJUXeOf71d1E8xPg"
+      priority: medium
+      enabled: true
+
     - name: "Two Minute Papers"
       url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+      priority: low
+      enabled: true
+
+    - name: "Lex Fridman"
+      # Long-form interviews with AI founders and researchers
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA"
       priority: low
       enabled: true
 

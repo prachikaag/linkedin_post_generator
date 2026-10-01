@@ -37,9 +37,11 @@ Parse the XML for articles — look for `<item>` (RSS 2.0) or `<entry>` (Atom) e
 |-------|--------|
 | `title` | `<title>` tag — strip all HTML |
 | `url` | `<link>` or `<guid isPermaLink="true">` — must be the article permalink, **not** the feed URL |
-| `summary` | `<description>` or `<content:encoded>` — strip HTML, max 800 characters |
+| `summary` | `<description>` or `<content:encoded>` or `<media:description>` — strip HTML, max 800 characters |
 | `published` | `<pubDate>` (RSS) or `<published>`/`<updated>` (Atom) — convert to ISO 8601 |
 | `source_name` | The feed's `name` from sources.yaml |
+
+**YouTube feeds** (Atom format from `youtube.com/feeds/videos.xml`): entries use `<yt:videoId>` and `<link rel="alternate" href="...">`. Extract the video URL from the `href` attribute of `<link rel="alternate">`. The `<media:group>` → `<media:description>` tag holds the video description. Mark YouTube entries with `"content_type": "video"` — the post generator will frame them as "I watched this video" takes.
 
 If a feed errors or cannot be parsed, skip it silently and continue.
 
@@ -94,9 +96,12 @@ Each element must have exactly these fields:
   "summary": "First 800 characters of article description, HTML stripped",
   "published": "2024-01-15T10:30:00+00:00",
   "source_name": "TechCrunch AI",
+  "content_type": "article",
   "relevance_score": 9,
   "matched_companies": ["OpenAI", "Anthropic"],
   "matched_categories": ["New AI Feature or Product Launch"],
   "matched_keywords": ["ChatGPT", "Claude", "launch"]
 }
 ```
+
+`content_type` must be `"video"` for YouTube entries, `"article"` for everything else.
