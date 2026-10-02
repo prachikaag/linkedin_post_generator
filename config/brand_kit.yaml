@@ -6,27 +6,28 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                        # Add your surname here
+  title: "AI Strategist & Brand Consultant"
+  # Your professional tagline — what you're known for
+  tagline: "Helping brands understand, experiment with, and leverage AI in the real world"
+  location: "Add your city"             # e.g. "London, UK" or "New York, NY"
   industries:
-    - "Marketing & Brand Strategy"
+    - "Brand Strategy"
     - "Artificial Intelligence"
-    - "Digital Innovation"
+    - "Marketing & Creative"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
+    - "Curious and experimental — you try AI tools firsthand and share honest results"
+    - "Pragmatic and business-focused — you connect AI news to real brand and marketing outcomes"
     - "Accessible, not overly technical — you translate complexity into plain language"
     - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Opinionated — you have a clear point of view, not just a neutral summary of news"
+    - "Human in the loop — you are always the editor, AI is always the drafter"
+    - "Direct and real — you write like a person, not a press release"
 
   # Rules for how you write every post
   writing_style:
@@ -67,8 +68,9 @@ tone_of_voice:
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your own professional lens — branding, marketing, creativity"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Write from the perspective of someone actively using AI in their work every day"
 
   # What undermines your credibility
   donts:
@@ -80,6 +82,7 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't position yourself as a spectator — you are in the arena experimenting"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
@@ -92,6 +95,41 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "How to stay relevant as a brand professional in an AI-first world"
+
+  # The specific types of posts you write
+  # Each type has a trigger (what news event prompts it) and a lens (your angle)
+  content_types:
+
+    - type: "New AI Feature or Product Launch"
+      trigger: "ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney, or any tracked company ships a new feature, model, or product"
+      lens: "What should brands and marketers actually do with this? What changes?"
+      example_hook: "[Feature] just launched. Here's what brands should actually know."
+
+    - type: "Big Tech AI News"
+      trigger: "Microsoft, Google, Amazon, Apple, or Nvidia makes a significant AI move"
+      lens: "What does this mean for the tools your marketing team already uses?"
+      example_hook: "Something shifted in [big tech] AI this week — and it matters for brand teams."
+
+    - type: "AI Startup Funding"
+      trigger: "An AI startup raises a notable round, gets acquired, or achieves a milestone valuation"
+      lens: "What does the money signal? What problem are investors betting on?"
+      example_hook: "[$X]M just went into [startup]. Here's why the investment thesis matters."
+
+    - type: "AI Research Breakthrough"
+      trigger: "A new benchmark, model capability, or research finding captures attention"
+      lens: "Translate the technical into the practical — what does this mean for real teams?"
+      example_hook: "New research just raised the bar on what AI can do. Here's the non-technical version."
+
+    - type: "Human in the Loop Experiment"
+      trigger: "You personally tested an AI tool, workflow, or feature and have honest results to share"
+      lens: "First-person account: what you tried, what worked, what surprised you, what you'd change"
+      example_hook: "I spent [time] with [AI tool] so you don't have to — here's the honest truth."
+
+    - type: "AI for Brands and Marketing"
+      trigger: "A development, trend, or case study shows how AI is changing brand-building or creative work"
+      lens: "Concrete and actionable — what should brand leaders and marketing teams do now?"
+      example_hook: "The way brands [do X] is changing. Here's what I'm seeing on the ground."
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +138,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "I spent [X hours] experimenting with [tool] — here's my honest take for brand teams"
+    - "If you're a brand leader, this AI development is worth your attention"
+    - "Everyone is talking about [X]. Here's what they're getting wrong."
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +165,9 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#AIExperiment"
+      - "#BrandMarketing"
 
   max_hashtags: 5
 
@@ -139,6 +183,8 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I've been experimenting with this — here's what I found."
+    - "The honest answer is..."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.
