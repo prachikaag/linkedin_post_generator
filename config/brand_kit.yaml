@@ -6,9 +6,9 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  # TODO: update with your full name, exact title, and location
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:
@@ -95,11 +95,16 @@ brand:
 
   # Example angles you love to write about
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
+    - "I tried [AI tool] for [marketing/branding use case] — here's what actually happened"
+    - "[Company] just launched [feature] — here's what brands should know right now"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "What [funding/acquisition] tells us about where AI is heading for brands"
+    - "[ChatGPT / Claude / Perplexity / Gemini / ElevenLabs / Midjourney] just [launched/updated] — I tested it"
+    - "Big tech's AI move this week and what it means for your brand strategy"
+    - "[AI startup] raised $[X]M — here's why that matters to marketers"
+    - "Human in the loop: how I used AI to [workflow] and what I learned"
+    - "Stop treating AI as a tool. Start treating it as a creative partner."
 
   # Hashtag strategy
   hashtags:
