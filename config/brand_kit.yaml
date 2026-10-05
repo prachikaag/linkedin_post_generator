@@ -5,16 +5,22 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# SETUP: Fill in your name, title, and tagline below.
+# These appear in post frontmatter and influence how posts are written.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                    # e.g. "Prachi Jain"
+  title: "Your Professional Title"     # e.g. "Brand Strategist & AI Practitioner"
+  # Your LinkedIn headline / one-liner that captures your positioning
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"       # e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+
+# ── Companion files (read by post-generator automatically) ──
+# config/tone_of_voice.md  → detailed style guide — edit freely, takes precedence
+# config/personal_experiments.md → your AI experiment log — add entries as you test tools
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:

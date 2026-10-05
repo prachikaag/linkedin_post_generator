@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml, config/tone_of_voice.md, and config/personal_experiments.md, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,10 +24,12 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Voice Guides
 
-Read `config/brand_kit.yaml` and extract:
+Read **all three** configuration files:
 
+### 1a. `config/brand_kit.yaml`
+Extract:
 - `author.name`, `author.title`, `author.tagline`
 - `tone_of_voice.primary_traits` — how the author comes across
 - `tone_of_voice.writing_style` — rules for every post
@@ -38,6 +40,27 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+### 1b. `config/tone_of_voice.md`
+Read this file in full. It is the author's detailed style guide and takes precedence over brand_kit.yaml on any writing rule. Extract:
+- Voice traits and personality
+- Writing rules and sentence rhythm
+- Post structure guidance
+- Banned words and phrases
+- Example phrasings to emulate
+
+### 1c. `config/personal_experiments.md` (if it exists)
+Read this file. It contains the author's first-hand AI experiments. Extract:
+- Tool names the author has tested
+- What worked and what didn't
+- Honest verdicts for each tool
+- Any notable observations
+
+**Use this data to add personal first-person content to the post when relevant:**
+- If one of the articles relates to a tool the author has personally tested, reference their experiment naturally — e.g. "I've been using [Tool] for [use case] — and [what they found]"
+- Only add personal experiment content when it genuinely fits the article cluster
+- Never fabricate experiments. Only reference what is documented in this file.
+- Personal experiment references go in the YOUR TAKE section as a first-person observation
 
 ---
 
