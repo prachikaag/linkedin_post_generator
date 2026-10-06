@@ -28,6 +28,7 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `EXPERIMENT_MODE` — if the user says "generate an experiment post" or "use my experiments log", skip Steps 1–4 and instead spawn the **experiment-post-generator** subagent (defined in `.claude/agents/experiment-post-generator.md`). Then proceed to Step 5 (Notion) with the result.
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 

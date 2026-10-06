@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
+  name: "Prachi"                          # ← Update to your full name
+  title: "Brand Strategist & AI Explorer" # ← Update to your actual title/role
   # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"          # ← Update to your city
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -100,6 +100,9 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI company] shipped a YouTube video — here's the one thing brands should take away"
+    - "I've been experimenting with [AI tool] for [brand use case] — honest results"
+    - "The AI tools running in the background of my workflow right now"
 
   # Hashtag strategy
   hashtags:

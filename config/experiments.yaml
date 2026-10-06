@@ -1,0 +1,96 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# This powers the "human in the loop" posts — your real
+# experiments with AI tools, written in first person.
+#
+# How to use:
+#   1. Add a new entry under `experiments:` each time you
+#      try an AI tool for a real work task.
+#   2. Run: "Generate an experiment post from config/experiments.yaml"
+#   3. The experiment-post-generator agent will turn it into a
+#      LinkedIn draft and save it to posts/.
+#   4. Set status: "posted" once you publish it on LinkedIn.
+# ============================================================
+
+# ── Experiment Entries ─────────────────────────────────────
+# Add your own below. The sample entry shows every field.
+
+experiments:
+
+  - id: "exp-001"
+    status: "draft"              # draft | posted | skipped
+
+    # What you used and what you tried to do
+    tool: "Claude"
+    tool_company: "Anthropic"
+    use_case: "Writing brand positioning documents for a client pitch"
+    date_tested: "2026-10-01"
+
+    # Your honest results — be specific, include surprises
+    what_worked: >
+      First draft was ready in under 3 minutes. The tone was right from
+      the first pass. Saved at least 2 hours of blank-page dread.
+
+    what_surprised: >
+      It asked me two clarifying questions before starting — that actually
+      made the final output much closer to what the client needed. I hadn't
+      expected it to push back.
+
+    what_didnt: >
+      Needed three revision rounds to get the brand voice exactly right.
+      It defaulted to generic agency language until I gave it a competitor
+      example to avoid.
+
+    my_verdict: >
+      Now part of my weekly workflow. I use it as a first-draft partner,
+      not a replacement — I still rewrite the final copy myself.
+
+    # Optional: link to the tool, video, or article that triggered the test
+    reference_url: "https://www.anthropic.com/claude"
+    reference_title: "Claude by Anthropic"
+
+    # Optional: one key takeaway you want brands to hear
+    brand_takeaway: >
+      The magic isn't in the output — it's in the conversation you have
+      to have with yourself to write a good brief. That's where the value is.
+
+  # ── Add your next experiment here ──────────────────────
+  # - id: "exp-002"
+  #   status: "draft"
+  #   tool: "Perplexity"
+  #   tool_company: "Perplexity AI"
+  #   use_case: "Competitive research before a client briefing"
+  #   date_tested: "2026-10-05"
+  #   what_worked: "..."
+  #   what_surprised: "..."
+  #   what_didnt: "..."
+  #   my_verdict: "..."
+  #   reference_url: "https://www.perplexity.ai"
+  #   reference_title: "Perplexity AI"
+  #   brand_takeaway: "..."
+
+
+# ── Suggested Experiments to Try ──────────────────────────
+# These are prompts for future experiments — delete once done.
+
+suggested_next:
+  - tool: "Perplexity"
+    idea: "Replace a full morning of news reading — time how long it takes vs. normal"
+
+  - tool: "Midjourney"
+    idea: "Generate a brand moodboard from a client brief — share before/after"
+
+  - tool: "ElevenLabs"
+    idea: "Clone your own voice and test it on a 60-second brand audio intro"
+
+  - tool: "ChatGPT (o1 reasoning)"
+    idea: "Stress-test a brand strategy with devil's advocate questions"
+
+  - tool: "Claude"
+    idea: "Use Projects to keep a client's brand context across 10 work sessions"
+
+  - tool: "Gemini"
+    idea: "Upload a brand document and ask it to write 5 social post angles"
+
+  - tool: "Runway / Sora"
+    idea: "Turn a product photo into a 5-second video loop — test brand safety"

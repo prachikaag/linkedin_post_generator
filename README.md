@@ -46,6 +46,16 @@ Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per c
 Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
 ```
 
+### Generate a "human in the loop" experiment post
+
+Add your experiment to `config/experiments.yaml`, then say:
+
+```
+Generate an experiment post from my experiments log.
+```
+
+Claude will read `config/experiments.yaml`, pick the first `status: draft` entry, and write a first-person "I tried this AI tool" post using your brand voice.
+
 ---
 
 ## Configuration
@@ -57,6 +67,7 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/experiments.yaml` | Personal AI experiment log — feeds "I tried this" posts |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -100,7 +111,7 @@ Change `status: draft` to `status: published` to track what's gone live.
 ### `news-gatherer`
 - **Tools**: Read, WebFetch
 - **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
+- **Does**: Fetches all enabled RSS feeds (including YouTube channels), scores articles by keyword relevance, deduplicates, returns top articles as JSON
 - **Output**: JSON array of scored article objects
 
 ### `trending-tracker`
@@ -114,6 +125,12 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Reads**: `config/brand_kit.yaml`
 - **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
+
+### `experiment-post-generator`
+- **Tools**: Read, Write
+- **Reads**: `config/experiments.yaml`, `config/brand_kit.yaml`
+- **Does**: Turns one personal AI experiment entry into a first-person "I tried this" LinkedIn draft
+- **Output**: JSON object with filename, filepath, content, and experiment metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
