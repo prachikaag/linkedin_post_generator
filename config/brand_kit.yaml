@@ -5,12 +5,15 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# IMPORTANT: Fill in your real name, title, and location here.
+# For your full personal story, experiments, and audience profile,
+# edit config/persona.md — the post-generator reads both files.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
+  name: "Your Name"                          # ← Replace with your actual name
+  title: "Your Professional Title"           # ← e.g. "Brand Strategist & AI Consultant"
   # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"             # ← e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"

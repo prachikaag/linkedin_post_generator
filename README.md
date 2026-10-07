@@ -57,8 +57,19 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/persona.md` | **Your personal story** — name, title, background, AI experiments |
+| `config/content_pillars.yaml` | **Your 4 content pillars** — AI tools, Big Tech, Startup Funding, Human-in-the-loop |
 
 Edit these files directly — changes take effect on the next run.
+
+### First-time setup
+
+Before your first run, open `config/persona.md` and fill in:
+- Your name and professional title
+- Your background and unique angle
+- 3–5 personal AI experiments you've run (these become source material for posts)
+
+Then open `config/brand_kit.yaml` and update the `author` section with your name and title.
 
 ### Environment Variables
 

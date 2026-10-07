@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillars
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,15 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/content_pillars.yaml` and identify the best-matching pillar for the supplied articles:
+- `tool_launches` — new AI models, features, products
+- `big_tech` — Microsoft, Google, Apple, Meta, Amazon, Nvidia, Salesforce moves
+- `startup_funding` — funding rounds, acquisitions, new AI companies
+- `human_in_loop` — personal AI experiments and workflow stories
+
+Use the matching pillar's `angle`, `signature_hooks`, and `goal` to frame the post's perspective.
+If `config/persona.md` exists, read it for the author's personal background and experiments — weave in any relevant personal context.
 
 ---
 
@@ -130,6 +139,7 @@ matched_companies:
   - "<all company names across all articles, deduplicated>"
 matched_categories:
   - "<all category names across all articles, deduplicated>"
+content_pillar: "<matched pillar id: tool_launches | big_tech | startup_funding | human_in_loop>"
 relevance_score: <articles[0].relevance_score>
 status: "draft"
 ---
@@ -153,7 +163,8 @@ After saving, return **only** a raw JSON object — no markdown fences, no extra
   "article_title": "<articles[0].title>",
   "source_url": "<articles[0].url>",
   "source_name": "<articles[0].source_name>",
-  "source_count": 6
+  "source_count": 6,
+  "content_pillar": "<matched pillar id>"
 }
 ```
 

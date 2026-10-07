@@ -1,0 +1,133 @@
+# ============================================================
+# CONTENT PILLARS
+# Your 4 content pillars — what you write about and why.
+# The post-generator uses this to frame your take on each story.
+# Edit angles, hooks, and focus areas to match your voice.
+# ============================================================
+
+pillars:
+
+  # ── Pillar 1: AI Tool Launches ──────────────────────────
+  - name: "AI Tool Launches & New Features"
+    id: "tool_launches"
+    description: >
+      When AI companies ship something new — a model, a feature, an integration,
+      a YouTube video, or a blog post — you write about what it means for brands
+      and marketers. You've often tested it yourself before the post goes out.
+    goal: "Show you're ahead of the curve and translate the launch into brand relevance"
+    triggers:
+      - "New model release (GPT-5, Claude 4, Gemini Ultra, Llama 4, etc.)"
+      - "New product feature or integration (ChatGPT memory, Claude Projects, Perplexity Pro)"
+      - "New AI tool for creative/marketing (Midjourney, Suno, Runway, Synthesia)"
+      - "YouTube video from a major AI company explaining a new capability"
+      - "ElevenLabs voice/audio feature"
+      - "Image generation breakthrough (Midjourney, Stable Diffusion, Adobe Firefly)"
+    angle: >
+      Don't just announce it. Tell your audience: how does this change what a brand
+      or marketing team can do? What's the practical implication today, not in 2 years?
+    signature_hooks:
+      - "[Company] just shipped [feature]. Here's what brands should actually do with it."
+      - "I tested [AI tool] for [use case]. Here's what I found."
+      - "The new [model/feature] isn't about [what media says] — it's about [what you actually see]."
+    companies_to_watch:
+      - OpenAI (ChatGPT, Sora, Operator)
+      - Anthropic (Claude)
+      - Google DeepMind (Gemini, NotebookLM, Veo)
+      - Perplexity
+      - ElevenLabs
+      - Midjourney
+      - Runway
+      - Pika Labs
+      - Suno
+      - Adobe (Firefly, Generative Fill)
+      - Synthesia
+
+  # ── Pillar 2: Big Tech AI News ───────────────────────────
+  - name: "Big Tech AI News"
+    id: "big_tech"
+    description: >
+      Microsoft, Google, Apple, Meta, Amazon, Nvidia, and Salesforce make AI moves
+      that shape how enterprises adopt AI. You write about what each move means for
+      how companies will use (and buy) AI tools in the next 12 months.
+    goal: "Establish you as someone who understands enterprise AI adoption and the corporate AI landscape"
+    triggers:
+      - "Microsoft Copilot update or Azure AI announcement"
+      - "Google Workspace AI feature"
+      - "Apple Intelligence update"
+      - "Amazon AWS / Bedrock / Q announcement"
+      - "Meta open-source AI release (Llama)"
+      - "Nvidia chip / NIM / Jensen Huang announcement"
+      - "Salesforce Agentforce or Einstein AI update"
+      - "Adobe AI feature release"
+    angle: >
+      Big tech AI news matters because it shapes the tools that millions of marketing
+      teams already pay for. When Microsoft ships a Copilot feature, 300 million Office
+      users get access. Frame stories through: who does this affect, how soon, and
+      what should marketers do differently starting now?
+    signature_hooks:
+      - "Every brand is about to have access to [capability]. The question is who uses it well."
+      - "[Company]'s AI update doesn't sound exciting. But here's why it actually matters."
+      - "The [product] update most marketers missed — and what to do before your competitors figure it out."
+
+  # ── Pillar 3: AI Startup Ecosystem ──────────────────────
+  - name: "AI Startup Ecosystem"
+    id: "startup_funding"
+    description: >
+      AI startup funding rounds, acquisitions, and new entrants signal where
+      enterprise value is being built. You connect the dots between who raised
+      what, why it matters, and what it tells us about where AI is heading.
+    goal: "Demonstrate you understand the business and investment side of AI, not just the technology"
+    triggers:
+      - "AI startup raises Series A / B / C (any amount > $10M)"
+      - "AI company unicorn valuation milestone"
+      - "Big tech acquires an AI startup"
+      - "AI company IPO or S-1 filing"
+      - "AI startup pivot or major product change"
+      - "New AI-native startup targeting marketing / brand / creative teams"
+    angle: >
+      Funding rounds are a signal, not the story. The story is: what problem is this
+      startup solving that the market is ready to pay for? How does this shift the
+      competitive landscape? Is this a category that will matter to marketers?
+    signature_hooks:
+      - "[Startup] just raised $[amount]. Here's the real story behind the number."
+      - "Another AI [category] company gets funded. This one is different — here's why."
+      - "What [acquisition] tells us about where enterprise AI money is actually going."
+
+  # ── Pillar 4: Human-in-the-Loop ─────────────────────────
+  - name: "Human-in-the-Loop Experiments"
+    id: "human_in_loop"
+    description: >
+      Your most personal pillar. You use AI in your actual work — for strategy,
+      writing, research, creative production — and you share honest accounts of
+      what worked, what surprised you, and what you'd do differently. These posts
+      show you're not just a commentator, you're a practitioner.
+    goal: "Build trust and relatability — you're figuring this out in real time, just like your audience"
+    triggers:
+      - "You finish a project where AI played a significant role"
+      - "You test a new AI tool for something you do regularly"
+      - "You find an AI workflow that genuinely saves time or improves quality"
+      - "You hit a limitation of an AI tool that teaches you something"
+      - "You notice a pattern across multiple AI experiments worth sharing"
+    angle: >
+      These posts follow a simple format: what you tried, what you expected,
+      what actually happened, what you'd tell a colleague to do.
+      Be specific. Name the tools, the use case, the outcome.
+      Be honest — the experiments that didn't work are as valuable as the ones that did.
+    signature_hooks:
+      - "I spent [time] testing [AI tool] for [use case]. Here's what I found."
+      - "I used to [old way]. I now [new AI way]. The difference surprised me."
+      - "Honest review: I built [thing] with AI. Here's what worked and what I'd never do again."
+    post_structure_note: >
+      These posts are more personal than the others. Lead with your own story.
+      Use "I" more. Be vulnerable about what you didn't know going in.
+      The takeaway should be concrete and practical — what can your reader
+      try in their own work based on what you learned?
+
+# ── Cross-Pillar Rules ──────────────────────────────────
+rules:
+  - "Every post must have a clear point of view — not just a news summary"
+  - "Every post must have at least one concrete, actionable takeaway for brands or marketers"
+  - "Always connect AI news back to brand, marketing, or creative work"
+  - "Cite at least 4 sources. Never invent or construct URLs."
+  - "Human-in-the-loop posts can have fewer sources (minimum 2) since they draw on personal experience"
+  - "Never write as a fan of any single AI company — maintain independence"
