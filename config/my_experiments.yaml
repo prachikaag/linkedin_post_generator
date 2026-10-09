@@ -1,0 +1,106 @@
+# ============================================================
+# MY AI EXPERIMENTS
+# Log your personal experiments with AI tools here.
+# The experiment-post-generator agent reads this file to
+# write "I tried X for Y — here's what actually happened" posts.
+#
+# HOW TO USE:
+#   1. Add an entry below after you run an experiment
+#   2. Fill in what you tested, what worked, what surprised you
+#   3. Say: "Write an experiment post about [title]"
+# ============================================================
+
+experiments:
+
+  # ── Template — copy this block to add a new experiment ────
+  # - title: "A short, memorable title for the experiment"
+  #   tool: "The AI tool or feature you tested"
+  #   use_case: "What you were trying to do with it"
+  #   duration: "How long you tested it (e.g. '1 week', '3 sessions')"
+  #   date: "YYYY-MM-DD"
+  #   status: draft  # draft | published | skip
+  #
+  #   # What you actually found — be specific and honest
+  #   findings:
+  #     - "Finding 1 (something that worked well or surprised you)"
+  #     - "Finding 2 (something that didn't work as expected)"
+  #     - "Finding 3 (a specific outcome or result)"
+  #
+  #   # Your honest verdict
+  #   verdict: "One sentence summary: would you recommend it for brands?"
+  #
+  #   # Anything specific you want in the post
+  #   post_angle: "The angle you want to take (optional)"
+  #
+  #   # Any relevant URLs to cite (official blog posts, YouTube videos, etc.)
+  #   sources:
+  #     - title: "Source title"
+  #       url: "https://..."
+
+  # ── Example Experiments ───────────────────────────────────
+
+  - title: "Claude for Brand Brief Writing"
+    tool: "Anthropic Claude (claude.ai)"
+    use_case: "Drafting brand positioning briefs for client pitches"
+    duration: "2 weeks"
+    date: "2026-04-01"
+    status: draft
+
+    findings:
+      - "The brief structure was solid — Claude understood the brief format on the first try"
+      - "Brand voice consistency improved when I pasted in existing brand guidelines upfront"
+      - "The initial output needed a human edit pass for tone — Claude writes professionally but not personally"
+      - "When I challenged its reasoning, it improved the output significantly — it's a collaborator, not a vending machine"
+
+    verdict: "Strong starting point for briefs — saves 60% of drafting time but needs a human edit pass for personality."
+
+    post_angle: "Position it as: AI does the structure, you bring the soul"
+
+    sources:
+      - title: "Anthropic — Claude for work"
+        url: "https://www.anthropic.com/claude-for-work"
+
+  - title: "Perplexity Pages for Client Research"
+    tool: "Perplexity Pages"
+    use_case: "Creating competitor landscape decks for new business pitches"
+    duration: "3 sessions"
+    date: "2026-04-15"
+    status: draft
+
+    findings:
+      - "Perplexity pulled together a coherent competitor overview in under 10 minutes"
+      - "Citation quality was mixed — some sources were solid, a few were outdated or paywalled"
+      - "The visual layout of Pages is impressive — looks like a real research doc, not a chatbot dump"
+      - "I still had to manually verify the numbers and positions — the AI is confident even when wrong"
+
+    verdict: "Excellent for first-draft research decks. Always fact-check the numbers before client delivery."
+
+    post_angle: "The hidden cost of AI research tools: time you save drafting, you spend verifying"
+
+    sources:
+      - title: "Perplexity Pages"
+        url: "https://www.perplexity.ai/hub/blog/perplexity-pages"
+
+  - title: "Midjourney v6 for Brand Concept Boards"
+    tool: "Midjourney v6"
+    use_case: "Generating concept board imagery for a brand refresh pitch"
+    duration: "1 week"
+    date: "2026-03-10"
+    status: draft
+
+    findings:
+      - "The visual quality jumped significantly from v5 — photorealistic outputs that passed a first glance"
+      - "Prompt-to-output for mood boards: 20 minutes vs a full day sourcing stock imagery"
+      - "Brand consistency across images is still a challenge — each prompt gives you a slightly different world"
+      - "Clients had mixed reactions: some loved the speed, some felt uncomfortable with AI imagery in a pitch"
+
+    verdict: "Transforms the concept board phase — but be upfront with clients about AI use."
+
+    post_angle: "The client reaction question: when do you tell them the imagery is AI-generated?"
+
+    sources:
+      - title: "Midjourney v6 — official docs"
+        url: "https://docs.midjourney.com/docs/models"
+
+  # ── Add your new experiments below this line ─────────────
+

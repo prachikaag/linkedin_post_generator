@@ -148,6 +148,29 @@ Then print each post's content in full so the author can review immediately.
 
 ---
 
+## Experiment Posts (Alternative Mode)
+
+If the user says "write an experiment post about [X]", bypass the news pipeline entirely.
+
+Spawn the **experiment-post-generator** subagent (defined in `.claude/agents/experiment-post-generator.md`).
+
+Task for the subagent:
+```
+Write an experiment post about: [X]
+```
+
+The subagent will read `config/my_experiments.yaml` and `config/brand_kit.yaml`, write the post, and save it to `posts/`.
+
+Print progress:
+```
+Writing experiment post: [X]
+  ✓ Saved → {result.filename} ({result.source_count} sources cited)
+```
+
+Then print the post in full for immediate review.
+
+---
+
 ## Error Handling
 
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps

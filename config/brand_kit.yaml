@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# FILL IN: Replace placeholder values with your real information.
+# These values are injected into every post as the author identity.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"              # e.g. "Prachi Kaag"
+  title: "Your Professional Title"  # e.g. "Brand Strategist & AI Consultant"
+  # Your LinkedIn headline — shows under your name on posts
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"   # e.g. "New York, USA" or "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
