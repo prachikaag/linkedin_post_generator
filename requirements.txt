@@ -1,0 +1,10 @@
+# LinkedIn Post Generator — Python dependencies
+#
+# Core (required):
+pyyaml>=6.0.1
+#
+# Optional but recommended:
+python-dotenv>=1.0.0   # auto-loads .env file; falls back to manual reader without it
+#
+# The pipeline uses only Python stdlib for HTTP and XML parsing.
+# No anthropic package, feedparser, or requests required.
