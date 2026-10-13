@@ -1,28 +1,74 @@
 # LinkedIn Post Generator
 
-An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and writes research-backed LinkedIn draft posts — entirely through Claude agents and subagents. No traditional code steps.
+An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and writes research-backed LinkedIn draft posts — tailored to your brand voice and the type of news you're covering.
+
+---
+
+## What it does
+
+1. **Reads your topics** — monitors companies like OpenAI, Claude, Perplexity, Gemini, ElevenLabs, Midjourney, plus all major big tech and AI startup news
+2. **Fetches fresh news** — pulls from curated RSS feeds every run
+3. **Tracks what's trending** — finds the most-discussed AI topics of the past 7 days
+4. **Detects the post type** — auto-classifies each story as a feature launch, funding news, big tech move, YouTube release, or experiment
+5. **Writes in your voice** — uses your brand kit and tone to draft posts with cited sources
+6. **Saves drafts** — each post lands in `posts/` as a markdown file, ready to review and publish
+
+---
+
+## Editable Components
+
+All the parts you'll want to customise live in `config/`. Edit any file and the next run picks up the changes — no restarts needed.
+
+| File | What you edit |
+|------|---------------|
+| `config/persona.yaml` | Your name, title, bio, audience, LinkedIn headline |
+| `config/brand_kit.yaml` | Writing style rules, post structure, hashtags, length |
+| `config/post_types.yaml` | Templates per post type — hooks, angles, CTAs, hashtags |
+| `config/topics.yaml` | Companies, AI tools, and keywords to track |
+| `config/sources.yaml` | RSS feeds and news sources |
+
+### `config/persona.yaml` — Start here
+Fill in your name, title, bio, and who your audience is. This drives how the author voice sounds in every post.
+
+### `config/brand_kit.yaml` — Tone and style
+Controls your writing style rules, post structure blueprint, hashtag strategy, and what not to say. Edit `tone_of_voice.writing_style` to adjust sentence length, paragraph count, emoji rules etc.
+
+### `config/post_types.yaml` — Five post formats
+Each post type has its own hook guidance, angle, CTA examples, and hashtags:
+
+| Type | Triggered by |
+|------|-------------|
+| `feature_launch` | OpenAI/Claude/Gemini/Perplexity etc. launches feature or model |
+| `startup_funding` | AI startup raises funding, gets acquired, or IPOs |
+| `big_tech_ai` | Microsoft/Google/Apple/Amazon/Nvidia makes AI move |
+| `youtube_release` | AI company ships a YouTube demo or announcement |
+| `personal_experiment` | You tried an AI tool and want to share honest results |
+
+### `config/topics.yaml` — What to track
+Add any company, product, or keyword. Articles that match get a higher relevance score and are more likely to be used for post generation.
+
+### `config/sources.yaml` — News feeds
+Add any RSS feed. Set `enabled: false` to skip without deleting. Priority (`high`, `medium`, `low`) controls fetch order.
 
 ---
 
 ## Architecture
 
-The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
-
 ```
 orchestrator.md
 ├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
 ├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
+├── .claude/agents/post-generator.md     → detects post type, writes & saves drafts
 └── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
 ```
 
-Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
+Each agent is a self-contained markdown file. The orchestrator passes data between them.
 
 ---
 
 ## How to Run
 
-### Inside Claude Code (the only way to run this)
+### Option 1 — Inside Claude Code (recommended)
 
 Open this project in Claude Code and say:
 
@@ -30,50 +76,58 @@ Open this project in Claude Code and say:
 Run the LinkedIn Post Generator pipeline.
 ```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
-1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
-2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
-4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
-
-### Custom parameters
-
+Or with options:
 ```
-Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per cluster.
+Run the LinkedIn Post Generator pipeline. Generate 3 posts.
+Run the pipeline in dry-run mode.
+Run the pipeline and force post type: startup_funding
 ```
 
-```
-Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
+### Option 2 — Python runner
+
+```bash
+# Basic run (2 posts, auto-detect type)
+python run_pipeline.py
+
+# Generate 3 posts
+python run_pipeline.py --posts 3
+
+# Dry run — fetch news only, no post generation
+python run_pipeline.py --dry-run
+
+# Force a specific post type for all posts
+python run_pipeline.py --post-type startup_funding
+python run_pipeline.py --post-type feature_launch
+python run_pipeline.py --post-type big_tech_ai
+python run_pipeline.py --post-type youtube_release
+python run_pipeline.py --post-type personal_experiment
+
+# Full options
+python run_pipeline.py --posts 3 --pool 8 --post-type feature_launch
 ```
 
 ---
 
-## Configuration
+## Setup
 
-All settings live in `config/`:
-
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
-
-Edit these files directly — changes take effect on the next run.
-
-### Environment Variables
-
-Copy `.env.example` to `.env` and fill in:
+1. Copy `.env.example` to `.env`
+2. Fill in your details:
 
 ```bash
-# Required for Notion publishing (optional feature)
-NOTION_PAGE_ID=your_32char_page_id_here
+# Required for standalone use (not needed inside Claude Code)
+ANTHROPIC_API_KEY=sk-ant-...
 
-# Optional: direct Notion REST API fallback
-NOTION_API_KEY=secret_xxx
+# Optional: publish drafts to Notion
+NOTION_PAGE_ID=your_32char_notion_page_id
+NOTION_API_KEY=secret_...
 
-# Optional: NewsAPI for additional sources
-NEWSAPI_KEY=your_key_here
+# Optional: additional news sources
+NEWSAPI_KEY=your_newsapi_key
 ```
+
+3. Edit `config/persona.yaml` with your real name, title, and bio
+4. Optionally adjust `config/brand_kit.yaml` for your exact writing style
+5. Run the pipeline
 
 ---
 
@@ -84,67 +138,58 @@ Generated posts are saved to `posts/` as markdown files with YAML frontmatter:
 ```
 posts/
   2024-01-15_10-30-00_openai-launches-gpt5.md
-  2024-01-15_10-30-00_anthropic-funding-round.md
+  2024-01-15_10-32-00_anthropic-funding-round.md
 ```
 
 Each file contains:
-- **YAML frontmatter**: source metadata, companies, categories, trending keywords, status
-- **Post body**: the full LinkedIn draft, ready to review and publish
+- **YAML frontmatter** — post type, source metadata, matched companies, categories, status
+- **Post body** — full LinkedIn draft, ready to review and publish
 
 Change `status: draft` to `status: published` to track what's gone live.
 
 ---
 
-## Agents Reference
+## Post Types Reference
 
-### `news-gatherer`
-- **Tools**: Read, WebFetch
-- **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
-- **Output**: JSON array of scored article objects
+### Feature Launch
+For when ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney etc. ship a new feature or model.
 
-### `trending-tracker`
-- **Tools**: Read, WebSearch
-- **Reads**: `config/topics.yaml`
-- **Does**: Searches the web for trending AI topics from the past 7 days
-- **Output**: JSON array of 15–20 keyword phrases
+**Default angle**: What does this mean for brand and marketing workflows?
 
-### `post-generator`
-- **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
-
-### `notion-publisher`
-- **Tools**: Read, Notion MCP
-- **Does**: Appends the post as a toggle block on a Notion page
-- **Output**: `success` or `failed`
+**Example hook**: "This week's AI releases change how brand teams approach [task]."
 
 ---
 
-## Customising Your Brand
+### Startup Funding
+For AI startup funding rounds, acquisitions, IPOs.
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+**Default angle**: What does the money tell us about where AI is heading?
 
-The post-generator agent reads this file on every run — no restarts needed.
+**Example hook**: "Investors just placed a $X bet on [category] — here's what that tells us."
 
 ---
 
-## Adding News Sources
+### Big Tech AI
+For Microsoft, Google, Apple, Amazon, Nvidia, Salesforce, Adobe AI news.
 
-Edit `config/sources.yaml` to add any RSS feed:
+**Default angle**: What does this mean for brands using that company's existing products?
 
-```yaml
-rss_feeds:
-  ai_news:
-    - name: "My Custom Source"
-      url: "https://example.com/feed.xml"
-      priority: high
-      enabled: true
-```
+**Example hook**: "If your team uses Microsoft 365, something changed this week."
+
+---
+
+### YouTube Release
+For when an AI company ships a YouTube video (demo, announcement, research explainer).
+
+**Default angle**: What does the demo actually show — and what are the brand implications?
+
+**Example hook**: "I just watched [company]'s new demo — one part changed how I think about [capability]."
+
+---
+
+### Personal Experiment
+For sharing honest results from your own AI testing. Most authentic to your brand.
+
+**Default angle**: What actually happened when you tried it for a real task?
+
+**Example hook**: "I gave an AI tool one of my most tedious brand research tasks — here's what happened."

@@ -1,0 +1,294 @@
+# ============================================================
+# POST TYPES — Templates for Different News Categories
+# ============================================================
+# Each post type defines:
+#   - When to use it (trigger keywords)
+#   - The specific angle and structure variation
+#   - Hook and CTA examples
+#   - Words/phrases that fit this type
+# ============================================================
+# The post-generator agent reads this file to pick the right
+# template based on the matched_categories in the article cluster.
+# ============================================================
+
+# ── 1. AI FEATURE OR PRODUCT LAUNCH ───────────────────────
+# Triggered when: a known AI company (ChatGPT, Claude, Gemini,
+# Perplexity, ElevenLabs, Midjourney, etc.) launches a new model,
+# feature, or product update.
+feature_launch:
+  name: "AI Feature or Product Launch"
+
+  # Keywords in articles that trigger this type
+  trigger_keywords:
+    - "launch"
+    - "release"
+    - "new feature"
+    - "update"
+    - "announces"
+    - "ships"
+    - "available now"
+    - "introduces"
+    - "unveils"
+    - "rolls out"
+    - "debuts"
+    - "new model"
+    - "now available"
+
+  # The core question this post answers for the reader
+  angle: |
+    What does this feature/launch actually mean for brands and marketing teams?
+    Not a feature rundown — an opinion on what changes for real creative and
+    business workflows, and what brands should be thinking about.
+
+  # Guidance on the hook for this post type
+  hook_guidance: |
+    Lead with the practical implication, not the announcement.
+    Bad: "[Company] just launched [feature]."
+    Good: "This week's AI releases change how brand teams work with [task/process]."
+    Or: "There's a new capability in [area] that most marketing teams aren't ready for."
+
+  # Angle variations — rotate to keep content fresh
+  angle_variations:
+    - "What does this mean for [specific marketing/brand task]?"
+    - "I tested [feature] — here's what actually works for brands"
+    - "Why [company's] approach to [area] is different from what others are doing"
+    - "The feature nobody is talking about in today's [company] release"
+
+  # CTA examples
+  cta_examples:
+    - "What's the first use case you'd try this for in your brand or team?"
+    - "Have you tested [feature]? What's your take?"
+    - "Which of these features are you most excited to use in your workflow?"
+    - "What's one thing you'd change about how AI tools handle [task] for brands?"
+
+  # Hashtags that fit this type (in addition to brand_kit always_include)
+  extra_hashtags:
+    - "#AITools"
+    - "#GenerativeAI"
+    - "#MarketingAI"
+    - "#AIInnovation"
+
+# ── 2. AI STARTUP FUNDING ─────────────────────────────────
+# Triggered when: an AI startup announces a funding round,
+# acquisition, IPO, or major valuation milestone.
+startup_funding:
+  name: "AI Startup Funding"
+
+  trigger_keywords:
+    - "funding"
+    - "raises"
+    - "Series A"
+    - "Series B"
+    - "Series C"
+    - "seed round"
+    - "valuation"
+    - "acquired"
+    - "acquisition"
+    - "investment"
+    - "venture capital"
+    - "million"
+    - "billion"
+    - "IPO"
+    - "unicorn"
+    - "backed"
+
+  angle: |
+    What does this funding tell us about where the AI market is heading?
+    Who is betting on what category? And what does it mean for brands — which
+    tools are getting the resources to become serious players?
+
+  hook_guidance: |
+    Lead with the signal the money sends, not the money itself.
+    Bad: "[Startup] just raised $X million."
+    Good: "Investors just placed a $X bet on [category] — here's what that tells us."
+    Or: "The AI funding round everyone missed this week says something important about [trend]."
+
+  angle_variations:
+    - "What this funding round tells us about where AI is actually heading"
+    - "Why investors are betting on [category] — and what brands should take from it"
+    - "The real story behind [company]'s [funding/acquisition]"
+    - "What [valuation/deal] says about the AI tool market right now"
+
+  cta_examples:
+    - "Which AI category do you think will see the most investment in the next 12 months?"
+    - "Are you already using [funded company]'s product? What's your verdict?"
+    - "What does this tell you about where the AI market is going?"
+    - "Would you recommend [company] to other brand teams? Why or why not?"
+
+  extra_hashtags:
+    - "#AIStartup"
+    - "#AIInvestment"
+    - "#TechNews"
+    - "#VentureCapital"
+
+# ── 3. BIG TECH AI NEWS ───────────────────────────────────
+# Triggered when: Microsoft, Google, Apple, Amazon, Nvidia,
+# Meta, Salesforce, Adobe etc. make a significant AI move —
+# product launch, partnership, earnings reveal, or strategy shift.
+big_tech_ai:
+  name: "Big Tech AI News"
+
+  trigger_keywords:
+    - "Microsoft"
+    - "Google"
+    - "Apple Intelligence"
+    - "Amazon"
+    - "Nvidia"
+    - "Salesforce"
+    - "Adobe"
+    - "Meta AI"
+    - "Copilot"
+    - "Azure"
+    - "Gemini"
+    - "enterprise AI"
+    - "partnership"
+    - "integration"
+    - "earnings"
+
+  angle: |
+    Big tech moves affect every brand team and agency — whether through the tools
+    they pay for (Office, Adobe, Salesforce) or through the competitive pressure
+    they put on specialist AI startups. What does this move mean for the tools
+    brands already use, and does it change their AI stack strategy?
+
+  hook_guidance: |
+    Connect the big tech move to the brand teams or marketers in your audience
+    who already use that company's products.
+    Bad: "Microsoft announced a major Copilot update today."
+    Good: "If your team uses Microsoft 365, something changed this week — and most teams haven't noticed yet."
+    Or: "Big tech just did something in AI that every brand with an Adobe/Salesforce/Google contract should pay attention to."
+
+  angle_variations:
+    - "What [big tech move] means for brands that already use [platform]"
+    - "The enterprise AI shift your team's current tools are quietly making"
+    - "Why [big tech company]'s AI strategy is the most underrated story in [area]"
+    - "[Big tech] vs the specialists — who's winning for brand teams right now?"
+
+  cta_examples:
+    - "Is your team seeing AI features show up inside your existing tools? What's working?"
+    - "Are you sticking with big tech AI or going specialist? What's driving that choice?"
+    - "What's the most valuable AI feature inside a tool your team already pays for?"
+    - "How much of your AI stack is big tech platforms vs specialist tools?"
+
+  extra_hashtags:
+    - "#TechNews"
+    - "#AIForBusiness"
+    - "#EnterpriseAI"
+    - "#FutureOfWork"
+
+# ── 4. YOUTUBE VIDEO FROM AI COMPANY ──────────────────────
+# Triggered when: a tracked AI company (OpenAI, Anthropic, Google
+# DeepMind, Midjourney, ElevenLabs, etc.) releases a YouTube video —
+# typically a demo, research explainer, or product announcement.
+youtube_release:
+  name: "YouTube Video from AI Company"
+
+  trigger_keywords:
+    - "youtube.com/watch"
+    - "video"
+    - "demo"
+    - "shows"
+    - "demonstrates"
+    - "watch"
+    - "footage"
+    - "clip"
+    - "revealed in video"
+
+  angle: |
+    A video release from an AI company is often a signal about what they
+    prioritise communicating — and how confident they are in the product.
+    What does the demo actually show? What are the brand and creative
+    implications of the capability on display?
+
+  hook_guidance: |
+    React to what the video demonstrates, not just the fact it was posted.
+    Lead with what you saw that surprised, impressed, or concerned you.
+    Bad: "Google DeepMind posted a new video this week."
+    Good: "I just watched [company]'s new demo — one part changed how I think about [capability/task]."
+
+  angle_variations:
+    - "I watched [company]'s new demo — here's what it actually means for creative teams"
+    - "This video changed my view on [capability] — and what brands can do with it"
+    - "The demo everyone's sharing this week — and the one thing they're not talking about"
+    - "What [company]'s video didn't show (and why that matters as much as what it did)"
+
+  cta_examples:
+    - "Have you watched [company]'s video yet? What's your reaction?"
+    - "What's the creative or brand use case you'd explore with this capability first?"
+    - "Does this demo change how you think about [company]'s product for your work?"
+    - "What would you want to see in the next version of this demo?"
+
+  extra_hashtags:
+    - "#AITools"
+    - "#GenerativeAI"
+    - "#CreativeAI"
+    - "#AIInnovation"
+
+# ── 5. HUMAN-IN-THE-LOOP / PERSONAL EXPERIMENT ────────────
+# Triggered manually or when articles describe personal AI
+# experiments. This is the "I tried X" format — most authentic
+# to the author's brand. Prioritise this type when writing
+# about your own testing.
+personal_experiment:
+  name: "Human-in-the-Loop Experiment"
+
+  # This type is usually triggered manually (run pipeline with
+  # --post-type=personal_experiment), not by keyword matching.
+  trigger_keywords:
+    - "I tried"
+    - "I tested"
+    - "experimenting with"
+    - "hands-on"
+    - "used it for"
+    - "workflow"
+    - "my process"
+    - "real results"
+
+  angle: |
+    You are the human in the loop. You tried an AI tool, workflow, or feature
+    for a specific real task. This post is about what actually happened —
+    not a tutorial, not a summary, but an honest first-person account with
+    a clear verdict on what worked, what didn't, and what it means for brands.
+
+  hook_guidance: |
+    Open with the task you set out to do — not the tool itself.
+    Bad: "I tested Perplexity this week."
+    Good: "I gave an AI tool one of my most tedious brand research tasks — here's what happened."
+    Or: "I used [tool] to do something I normally spend [X hours] on. Here's the honest result."
+
+  post_structure_override: |
+    Use this structure for personal experiment posts:
+    1. HOOK: The task you gave it (not the tool name yet)
+    2. THE SETUP: What you tried to do, why, and which tool(s) you used
+    3. WHAT HAPPENED: Honest blow-by-blow — what worked, what failed, what surprised you
+    4. MY TAKE: What this tells you about the state of AI for this kind of work
+    5. THE RECOMMENDATION: Would you use this for your brand team? When yes, when no?
+    6. CTA: Question for people who've tried something similar
+    7. SOURCES: Links to any articles, tools, or research you referenced
+
+  cta_examples:
+    - "Have you tried using AI for [task] in your own work? What was your experience?"
+    - "What's the most useful AI workflow you've actually stuck with in your day-to-day?"
+    - "Where are you still skeptical about AI in your creative or brand process?"
+    - "What would make this kind of AI workflow actually useful for your team?"
+
+  extra_hashtags:
+    - "#AIExperiment"
+    - "#HumanInTheLoop"
+    - "#AIWorkflow"
+    - "#ContentMarketing"
+
+# ── POST TYPE DETECTION PRIORITY ─────────────────────────
+# The post-generator should determine type in this order:
+# 1. If articles contain YouTube URLs → youtube_release
+# 2. If matched_categories contains "AI Startup Funding" → startup_funding
+# 3. If matched_companies contains a big_tech company AND it's a strategy/product story → big_tech_ai
+# 4. If matched_categories contains "New AI Feature or Product Launch" → feature_launch
+# 5. If the task explicitly requests a personal experiment → personal_experiment
+# 6. Default fallback → feature_launch
+detection_priority:
+  - youtube_release
+  - startup_funding
+  - big_tech_ai
+  - feature_launch
+  - personal_experiment

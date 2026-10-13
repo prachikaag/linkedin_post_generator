@@ -20,6 +20,16 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 [notion-publisher] → published to Notion
 ```
 
+**Config files you can edit (all in `config/`):**
+
+| File | What it controls |
+|------|-----------------|
+| `topics.yaml` | Companies, AI tools, and keywords to track |
+| `sources.yaml` | RSS feeds and news sources |
+| `brand_kit.yaml` | Writing style, structure, hashtag rules, post length |
+| `persona.yaml` | Your name, title, audience, bio |
+| `post_types.yaml` | Templates for each post type (feature launch, funding, big tech, YouTube, experiment) |
+
 ---
 
 ## Parameters
@@ -28,6 +38,7 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `POST_TYPE` — optional override for all posts (default: **auto-detect**). Valid values: `feature_launch`, `startup_funding`, `big_tech_ai`, `youtube_release`, `personal_experiment`
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -74,6 +85,10 @@ Divide the articles into clusters — one cluster per post to generate.
   - Move `articles[i]` to position 0 of the cluster (it becomes the anchor article)
 - Result: `n_posts` clusters, each with up to `SOURCE_POOL_SIZE` articles, each with a distinct anchor
 
+**Post type assignment per cluster:**
+- If `POST_TYPE` is set globally, pass it to every post-generator call
+- Otherwise, let each post-generator detect its own type from the cluster's `matched_categories` and article URLs
+
 ---
 
 ## Step 4 — Generate Posts
@@ -88,13 +103,15 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "post_type": "<POST_TYPE if set, otherwise omit this field>"
 }
 ```
 
 Print progress per post:
 ```
 Post {i+1} — anchor: {cluster[0].title[:65]}
+  Type: {detected or assigned post_type}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -139,7 +156,7 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {post_type}  ·  {source_count} sources ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```

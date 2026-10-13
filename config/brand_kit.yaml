@@ -6,15 +6,16 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand Strategist & AI Consultant"
+  # See config/persona.yaml for full details — this section is a quick reference
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: ""  # Edit in config/persona.yaml
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:

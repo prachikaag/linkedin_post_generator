@@ -1,0 +1,58 @@
+# ============================================================
+# PERSONA — Who You Are
+# ============================================================
+# This file contains your personal and professional identity.
+# It is separate from brand_kit.yaml so you can update your
+# details without accidentally changing writing style rules.
+# ============================================================
+
+# ── Your Identity ──────────────────────────────────────────
+name: "Prachi"
+full_name: "Prachi Kaag"
+pronouns: "she/her"
+
+title: "Brand Strategist & AI Consultant"
+company: ""   # e.g. "Acme Agency" or leave blank if independent
+
+# The one-line descriptor under your name on LinkedIn
+linkedin_headline: "Brand Strategist | Helping brands understand and leverage AI in the real world"
+
+# Your professional story in 2–3 sentences (used as context for post generation)
+bio: |
+  I help brands make sense of AI — not the hype, but the real tools and workflows
+  that change how creative and marketing teams work. I experiment with AI in my own
+  practice and share honest, opinionated takes on what actually matters for brands today.
+
+# Industries / verticals you work in
+industries:
+  - "Marketing & Brand Strategy"
+  - "Artificial Intelligence"
+  - "Digital Innovation"
+  - "Creative Technology"
+
+location: ""   # e.g. "London, UK" — optional, used for localising examples
+
+# ── Your Audience ──────────────────────────────────────────
+# Who reads your LinkedIn posts
+audience:
+  primary:
+    - "CMOs and brand directors at mid-to-large companies"
+    - "Marketing managers exploring AI tools"
+    - "Brand consultants and agency leads"
+    - "Founders building AI-adjacent products"
+  secondary:
+    - "Tech-curious creatives"
+    - "General business audience following AI trends"
+
+# ── Your Credibility ───────────────────────────────────────
+# Why your audience trusts your AI takes
+credibility_markers:
+  - "You experiment with AI tools hands-on and report real outcomes"
+  - "You translate technical news into brand and marketing implications"
+  - "You don't hype — you analyse"
+  - "You have a point of view, not just a summary"
+
+# ── Contact / Attribution ──────────────────────────────────
+email: "prachi11j@gmail.com"
+linkedin_url: ""   # e.g. "https://www.linkedin.com/in/yourprofile"
+website: ""        # e.g. "https://yourwebsite.com"
