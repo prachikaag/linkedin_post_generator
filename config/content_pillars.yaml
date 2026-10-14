@@ -1,0 +1,171 @@
+# ============================================================
+# CONTENT PILLARS
+# The 4 angles you write through on LinkedIn.
+# Edit this file to adjust the focus and framing of each pillar.
+# The post-generator reads this and maps every article to a pillar
+# so each post has a clear, consistent angle.
+# ============================================================
+
+pillars:
+
+  # ── Pillar 1: AI Tool Launches & Feature Updates ──────────
+  - id: "ai_tool_launch"
+    name: "AI Tool Launch or Feature Update"
+    description: >
+      New product launches, model releases, feature drops, and YouTube videos
+      from AI companies. This includes ChatGPT, Claude, Perplexity, Gemini,
+      ElevenLabs, Midjourney, Runway, Pika, and any other AI tool the audience
+      of marketers and brand leaders would care about.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "ships"
+      - "announced"
+      - "introduces"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+      - "available now"
+      - "YouTube"
+      - "video"
+    post_angle: >
+      Frame through the lens of: "What does this mean for the people on
+      my audience who use or are evaluating this tool?" Connect the feature
+      to a real workflow or use case brands and marketers face. Share your
+      own reaction — if you've tried it, say so. If not, say what you'd
+      test first and why.
+    hook_starters:
+      - "Something just changed about how [tool] works — and brands should pay attention."
+      - "[Company] dropped something this week that's worth stopping to look at."
+      - "New: [feature]. Here's what it actually means for your team."
+      - "The thing about [tool]'s latest update that most people are missing..."
+    cta_examples:
+      - "Have you tried [feature] yet? What's your take?"
+      - "Which workflow would you use this for first?"
+      - "Does this change how you think about [tool] for your team?"
+
+  # ── Pillar 2: Big Tech AI Strategy ────────────────────────
+  - id: "big_tech_ai"
+    name: "Big Tech AI Strategy & Moves"
+    description: >
+      Strategic AI moves from Microsoft, Google, Apple, Meta, Amazon, Nvidia,
+      Salesforce, and Adobe. Think: major integrations, platform shifts,
+      partnership deals, AI product announcements that affect everyday
+      software the audience already uses.
+    trigger_keywords:
+      - "Microsoft"
+      - "Google"
+      - "Apple"
+      - "Meta"
+      - "Amazon"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe"
+      - "Copilot"
+      - "Gemini"
+      - "Azure"
+      - "partnership"
+      - "deal"
+      - "integration"
+    post_angle: >
+      Frame through the lens of: "What does this mean for the tools brands
+      already use every day?" Most brands live in Microsoft 365, Google
+      Workspace, or Salesforce. When big tech embeds AI there, the
+      implications are immediate. Connect the news to a concrete workflow
+      change brands need to think about.
+    hook_starters:
+      - "The biggest AI story this week isn't from an AI company."
+      - "[Big Tech Company] just made a move that changes the platform brands already live in."
+      - "This is how AI enters your daily stack — not with a new app, but inside the tools you already use."
+    cta_examples:
+      - "Is your team already using [product/feature]? What's the rollout been like?"
+      - "What's the first [platform] AI feature you'd want your team to actually use?"
+      - "How is your brand thinking about AI adoption inside your existing stack?"
+
+  # ── Pillar 3: AI Startup Funding & the Ecosystem ──────────
+  - id: "ai_startup_funding"
+    name: "AI Startup Funding & Ecosystem Signals"
+    description: >
+      Investment rounds, acquisitions, valuations, and IPOs in the AI space.
+      Read these as signals about where the industry is heading — not just
+      financial news. What does money flowing into a category tell us
+      about what problems people are willing to pay to solve?
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed round"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture capital"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+    post_angle: >
+      Frame through the lens of: "What signal does this investment send about
+      where AI is going?" Funding rounds aren't just financial news — they
+      predict what products will exist in 18 months, what categories are
+      getting crowded, and what problems the market has decided are worth
+      solving. Connect to what brands should watch or prepare for.
+    hook_starters:
+      - "[Company] just raised $[X]. Here's what that number actually tells us."
+      - "Another AI funding round. But this one is different — here's why."
+      - "When [amount] goes into [category], it's worth asking: what does the market know that we don't?"
+      - "Money is following a pattern in AI right now."
+    cta_examples:
+      - "Which AI category do you think is most over-funded right now?"
+      - "Are you watching [company] as a potential tool for your brand?"
+      - "What does this investment tell you about where the AI market is heading?"
+
+  # ── Pillar 4: Human-in-the-Loop Experiments ───────────────
+  - id: "human_in_the_loop"
+    name: "Human-in-the-Loop: My AI Experiments"
+    description: >
+      First-person accounts of testing AI tools in real workflows. The author
+      is the human editor — AI drafts, you direct. These posts share what
+      worked, what surprised, what fell short, and what the experience
+      taught about how brands can (and should) use AI today.
+      This is the most personal pillar and the most differentiated voice.
+    trigger_keywords:
+      - "I tried"
+      - "experiment"
+      - "tested"
+      - "workflow"
+      - "productivity"
+      - "AI agent"
+      - "automation"
+      - "prompt"
+      - "copilot"
+      - "AI assistant"
+    post_angle: >
+      Frame through the lens of: "What I actually learned from doing this —
+      not from reading about it." Share the specific steps you took, what
+      the AI produced, where you had to step in, and the honest verdict.
+      Don't oversell. Don't undersell. Give the real result so your audience
+      can decide if it's worth their time.
+    hook_starters:
+      - "I spent [X hours] testing [tool] for [use case]. Here's the honest result."
+      - "The AI did [X]. I did [Y]. Here's what we made together."
+      - "Everyone says [tool] is great for [use case]. I decided to actually test it."
+      - "I built a [workflow] using AI this week. This is what I learned."
+    cta_examples:
+      - "Have you tried [tool] for [use case]? What was your experience?"
+      - "What's the AI workflow you've found most useful in your day-to-day?"
+      - "Where are you still doing things manually that you think AI should be helping with?"
+
+# ── Pillar Assignment Rules ────────────────────────────────
+# How the post-generator should assign a pillar to an article cluster.
+assignment_rules:
+  - "Score each pillar by counting how many trigger_keywords appear in the
+    combined article titles and summaries. The pillar with the highest count wins."
+  - "If two pillars tie, prefer: ai_tool_launch > ai_startup_funding > big_tech_ai > human_in_the_loop"
+  - "If no pillar has any keyword matches, default to ai_tool_launch."
+  - "The human_in_the_loop pillar is never auto-assigned from news alone —
+    it requires manual creation or an explicit experiment prompt from the author."

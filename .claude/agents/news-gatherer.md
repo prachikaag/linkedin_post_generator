@@ -25,6 +25,16 @@ Read `config/topics.yaml`:
   - `min_relevance_score` (default 2) — minimum score to keep
   - `max_articles_per_run` (default 25) — maximum articles to return
 
+Read `config/ai_watchlist.yaml`:
+- **`watchlist`** — each entry has `keywords` and `priority` (critical / high / medium)
+- Scoring bonus: critical → `+5`, high → `+3`, medium → `+1` (on top of topics.yaml scoring)
+- Record matched watchlist tool name in `matched_watchlist_tools`
+
+Read `data/post_history.json`:
+- Collect the `filename` field from all entries where `status` is NOT `"archived"`
+- Use these to deduplicate: if the anchor article (articles[0]) title normalises to a slug
+  that appears in any existing filename, deprioritise that article cluster (move it to the end)
+
 ---
 
 ## Step 2 — Fetch RSS Feeds
@@ -62,6 +72,13 @@ For each article, build a combined text string: `title + " " + summary` (lowerca
 **Category keywords** (from `topic_categories` → each category's `keywords` list):
 - If a keyword appears in the text → `relevance_score += 1`, append category name to `matched_categories`
 
+**Watchlist keywords** (from `ai_watchlist.yaml` → each tool's `keywords` list):
+- If a keyword appears in the text and tool `priority` is `critical` → `relevance_score += 5`
+- If a keyword appears in the text and tool `priority` is `high` → `relevance_score += 3`
+- If a keyword appears in the text and tool `priority` is `medium` → `relevance_score += 1`
+- Append matched tool name to `matched_watchlist_tools`
+- These bonuses stack with company and category scores
+
 ---
 
 ## Step 5 — Deduplicate
@@ -97,6 +114,7 @@ Each element must have exactly these fields:
   "relevance_score": 9,
   "matched_companies": ["OpenAI", "Anthropic"],
   "matched_categories": ["New AI Feature or Product Launch"],
-  "matched_keywords": ["ChatGPT", "Claude", "launch"]
+  "matched_keywords": ["ChatGPT", "Claude", "launch"],
+  "matched_watchlist_tools": ["Claude / Anthropic", "ChatGPT / OpenAI"]
 }
 ```

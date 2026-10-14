@@ -5,16 +5,18 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — fill in your own details.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Prachi"
+  title: "Brand Strategist & AI Explorer"
+  # This tagline appears in your LinkedIn bio and guides the post voice.
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
@@ -82,9 +84,15 @@ tone_of_voice:
     - "Don't write hype — write insight"
 
 # ── Your Brand Focus ───────────────────────────────────────
+# Detailed content pillar definitions live in config/content_pillars.yaml.
+# The 4 pillars are:
+#   1. ai_tool_launch    — new features, model releases, YouTube drops
+#   2. big_tech_ai       — Microsoft, Google, Apple, Meta, Amazon, Nvidia
+#   3. ai_startup_funding — investment rounds, acquisitions, ecosystem signals
+#   4. human_in_the_loop — your personal AI experiments and workflow stories
 brand:
 
-  # The lenses you write through
+  # The lenses you write through (drives post framing)
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
@@ -92,6 +100,17 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+
+  # The specific AI tools you cover closely (full watchlist in config/ai_watchlist.yaml)
+  primary_tools_to_cover:
+    - "ChatGPT / OpenAI"
+    - "Claude / Anthropic"
+    - "Gemini / Google DeepMind"
+    - "Perplexity"
+    - "ElevenLabs"
+    - "Midjourney"
+    - "Runway"
+    - "Microsoft Copilot"
 
   # Example angles you love to write about
   content_angles:

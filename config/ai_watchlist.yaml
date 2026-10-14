@@ -1,0 +1,201 @@
+# ============================================================
+# AI WATCHLIST
+# The specific AI tools and companies you follow most closely.
+# These get priority treatment in news scoring — any article
+# about a watchlisted tool gets a score bonus of +5 on top of
+# the normal keyword scoring in topics.yaml.
+# Edit freely: add new tools, remove ones you stop caring about,
+# change the watch_reason to adjust the post framing.
+# ============================================================
+
+watchlist:
+
+  # ── AI Assistants & Language Models ───────────────────────
+  language_models:
+    - name: "ChatGPT / OpenAI"
+      priority: critical
+      keywords:
+        - "ChatGPT"
+        - "OpenAI"
+        - "GPT-4o"
+        - "GPT-5"
+        - "o1"
+        - "o3"
+        - "o4"
+        - "Sora"
+        - "Operator"
+        - "Deep Research"
+        - "OpenAI API"
+      watch_reason: >
+        The most widely recognised AI brand. Any new feature, model release,
+        or policy change from OpenAI reaches your audience's awareness
+        faster than any other AI company. First to write about these wins
+        the attention cycle.
+      youtube_channel_id: "UCXZCJLdBC09xxGZ6gcdrc6A"
+
+    - name: "Claude / Anthropic"
+      priority: critical
+      keywords:
+        - "Claude"
+        - "Anthropic"
+        - "claude-3"
+        - "claude-4"
+        - "claude sonnet"
+        - "claude opus"
+        - "claude haiku"
+        - "Model Context Protocol"
+        - "MCP"
+        - "Claude Code"
+        - "Claude Projects"
+      watch_reason: >
+        The AI you use most. Your personal experience with Claude gives you
+        a unique, authentic perspective. Claude releases are a chance to
+        share your own workflow changes alongside the news.
+      youtube_channel_id: "UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+
+    - name: "Gemini / Google DeepMind"
+      priority: high
+      keywords:
+        - "Gemini"
+        - "Google AI"
+        - "DeepMind"
+        - "NotebookLM"
+        - "Gemini Ultra"
+        - "Gemini Flash"
+        - "Gemini 2.0"
+        - "Project Astra"
+        - "Veo"
+        - "Google Search AI"
+        - "AI Overviews"
+      watch_reason: >
+        Google's AI integration into Search and Workspace directly affects
+        how brands appear online and how marketing teams work. Every Gemini
+        release has implications for SEO, content strategy, and daily tools.
+      youtube_channel_id: "UCP7jMXSY2xbc3KCAE0MHQ-A"
+
+    - name: "Perplexity"
+      priority: high
+      keywords:
+        - "Perplexity"
+        - "Perplexity AI"
+        - "Perplexity Pro"
+        - "Perplexity Deep Research"
+        - "Perplexity Pages"
+        - "Perplexity search"
+      watch_reason: >
+        The AI search engine that could change how brands think about SEO
+        and content discoverability. If people stop Googling and start
+        Perplexing, brands need to know about it.
+
+  # ── Creative AI Tools ──────────────────────────────────────
+  creative_ai:
+    - name: "Midjourney"
+      priority: high
+      keywords:
+        - "Midjourney"
+        - "Midjourney v7"
+        - "Midjourney v8"
+        - "MJ"
+        - "AI image generation"
+        - "Midjourney web"
+      watch_reason: >
+        The most widely used AI image tool among creative professionals.
+        Midjourney updates change what brand designers can do and how
+        creative briefs should be written.
+
+    - name: "ElevenLabs"
+      priority: high
+      keywords:
+        - "ElevenLabs"
+        - "Eleven Labs"
+        - "voice AI"
+        - "AI voice cloning"
+        - "text to speech AI"
+        - "ElevenLabs Studio"
+        - "AI dubbing"
+      watch_reason: >
+        The leader in voice AI. As video and podcast content grows,
+        voice cloning and AI narration become live questions for brand
+        content teams. ElevenLabs is the go-to.
+
+    - name: "Runway"
+      priority: high
+      keywords:
+        - "Runway"
+        - "RunwayML"
+        - "Gen-3"
+        - "Gen-4"
+        - "AI video generation"
+        - "Runway Act-One"
+      watch_reason: >
+        The professional-grade AI video tool. As brands add more video,
+        Runway features are directly relevant to content production decisions.
+
+    - name: "Pika Labs"
+      priority: medium
+      keywords:
+        - "Pika"
+        - "Pika Labs"
+        - "Pika 2.0"
+      watch_reason: >
+        A growing Runway competitor in AI video generation. Good to
+        compare and contrast with Runway for a more complete picture.
+
+  # ── AI Coding Tools ────────────────────────────────────────
+  coding_ai:
+    - name: "Cursor"
+      priority: medium
+      keywords:
+        - "Cursor"
+        - "Cursor AI"
+        - "Cursor editor"
+        - "Cursor agent"
+      watch_reason: >
+        Relevant because your audience includes marketers who commission
+        tech builds. AI coding tools change how fast brands can ship
+        digital products and what non-technical teams can ask for.
+
+    - name: "GitHub Copilot"
+      priority: medium
+      keywords:
+        - "GitHub Copilot"
+        - "Copilot Workspace"
+        - "Copilot agent"
+      watch_reason: >
+        The most widely deployed AI coding tool in enterprises — directly
+        affects what in-house dev teams can do.
+
+  # ── AI Productivity & Research ─────────────────────────────
+  productivity_ai:
+    - name: "Notion AI"
+      priority: medium
+      keywords:
+        - "Notion AI"
+        - "Notion Q&A"
+      watch_reason: >
+        Many brand and marketing teams run on Notion. AI features there
+        change how teams brief, plan, and document their work.
+
+    - name: "Microsoft Copilot"
+      priority: high
+      keywords:
+        - "Microsoft Copilot"
+        - "Copilot for Microsoft 365"
+        - "Azure AI"
+        - "Microsoft AI"
+        - "Bing AI"
+        - "Copilot Studio"
+      watch_reason: >
+        The AI entering the daily tools of enterprise brands at scale.
+        Copilot updates affect Word, PowerPoint, Excel, Outlook, Teams —
+        everywhere brand teams already live.
+
+# ── Watchlist Scoring Bonus ────────────────────────────────
+# Any article matching a keyword from a "critical" priority tool gets +5
+# Any article matching a keyword from a "high" priority tool gets +3
+# Any article matching a keyword from a "medium" priority tool gets +1
+# These stack on top of topics.yaml company scoring.
+scoring_bonus:
+  critical: 5
+  high: 3
+  medium: 1

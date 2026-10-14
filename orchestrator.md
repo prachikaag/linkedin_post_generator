@@ -103,6 +103,28 @@ Collect each result's JSON object.
 
 ---
 
+## Step 4b — Update Post History
+
+After all posts are generated, read `data/post_history.json` and append a new entry for each
+generated post result. Add to the `posts` array:
+
+```json
+{
+  "filename": "<result.filename>",
+  "date": "<YYYY-MM-DD today>",
+  "pillar": "<content_pillar from the saved post's YAML frontmatter>",
+  "primary_source": "<result.source_name>",
+  "companies_covered": ["<all companies from matched_companies>"],
+  "status": "draft",
+  "published_date": null,
+  "linkedin_url": null
+}
+```
+
+Write the updated `data/post_history.json` back to disk.
+
+---
+
 ## Step 5 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:

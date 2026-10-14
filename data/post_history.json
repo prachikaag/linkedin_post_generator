@@ -1,0 +1,26 @@
+{
+  "_comment": "Tracks generated and published posts. Updated automatically on each run. Edit status manually to track what's gone live.",
+  "_status_values": ["draft", "reviewed", "scheduled", "published", "archived"],
+  "posts": [
+    {
+      "filename": "2026-05-14_22-55-00_enterprise-ai-market-shift-real-data.md",
+      "date": "2026-05-14",
+      "pillar": "big_tech_ai",
+      "primary_source": "TechCrunch",
+      "companies_covered": ["Anthropic", "OpenAI", "Microsoft"],
+      "status": "draft",
+      "published_date": null,
+      "linkedin_url": null
+    },
+    {
+      "filename": "2026-05-14_23-10-00_vertical-ai-depth-over-horizontal.md",
+      "date": "2026-05-14",
+      "pillar": "ai_startup_funding",
+      "primary_source": "VentureBeat",
+      "companies_covered": [],
+      "status": "draft",
+      "published_date": null,
+      "linkedin_url": null
+    }
+  ]
+}

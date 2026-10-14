@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Pillars
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,18 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_pillars.yaml` and:
+
+1. **Assign a pillar**: For each pillar in `pillars`, count how many `trigger_keywords` appear
+   in the combined text (title + summary) of all articles in the cluster. The pillar with the
+   highest count is the assigned pillar. Tie-breaks: `ai_tool_launch` > `ai_startup_funding` >
+   `big_tech_ai` > `human_in_the_loop`. If no matches, default to `ai_tool_launch`.
+
+2. **Extract the pillar's framing tools**:
+   - `post_angle` — the lens to frame the post through (inject into YOUR TAKE section)
+   - `hook_starters` — choose the most fitting one as inspiration for the HOOK
+   - `cta_examples` — pick the most relevant one for the CTA
 
 ---
 
@@ -96,6 +108,24 @@ Following the brand kit precisely, write a post that:
 
 ---
 
+## Step 2b — Apply the Pillar Framing
+
+The assigned pillar shapes three specific elements of the post:
+
+1. **HOOK**: Use the pillar's `hook_starters` as inspiration — adapt the most fitting one to the
+   specific article cluster. Do not copy it verbatim. Let it inspire the angle.
+
+2. **YOUR TAKE**: Weave the pillar's `post_angle` into this section. The angle is the lens —
+   always answer the question it poses in 1–2 sentences. For example:
+   - `ai_tool_launch` → "What does this change for your team in practice?"
+   - `big_tech_ai` → "What does this mean for the platform your audience already lives in?"
+   - `ai_startup_funding` → "What signal does this investment send about where AI is heading?"
+   - `human_in_the_loop` → "What did I actually learn from doing this — not from reading about it?"
+
+3. **CTA**: Use the pillar's `cta_examples` as the starting point. Adapt to the specific article.
+
+---
+
 ## Step 3 — Save the Post
 
 ### Filename
@@ -116,6 +146,8 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+status: "draft"
+content_pillar: "<assigned pillar id: ai_tool_launch | big_tech_ai | ai_startup_funding | human_in_the_loop>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:
@@ -128,10 +160,11 @@ trending_keywords:
   - "<first 5 trending keywords used>"
 matched_companies:
   - "<all company names across all articles, deduplicated>"
+matched_watchlist_tools:
+  - "<all watchlist tool names across all articles, deduplicated>"
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
-status: "draft"
 ---
 ```
 
