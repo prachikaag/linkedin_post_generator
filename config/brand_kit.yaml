@@ -6,15 +6,14 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi Kaag"
+  title: "Brand Strategist & AI Explorer"
+  tagline: "Helping brands understand and leverage AI in the real world — one experiment at a time"
+  location: ""          # fill in your city/country if you want it in posts
   industries:
-    - "Marketing & Brand Strategy"
+    - "Brand & Marketing Strategy"
     - "Artificial Intelligence"
-    - "Digital Innovation"
+    - "Digital Innovation & Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
