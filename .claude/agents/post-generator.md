@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/my_experiments.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles, trending keywords, and optionally the author's personal AI experiments, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -38,6 +38,34 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+---
+
+## Step 1.5 — Load Personal Experiments (optional)
+
+Read `config/my_experiments.yaml` if it exists.
+
+From the `experiments` list, extract entries where `use_for_posts: true`.
+
+For each experiment, note:
+- `tool` and `company`
+- `what_i_tried`, `what_worked`, `what_surprised_me`, `what_didnt_work`
+- `my_verdict`
+- `use_case`
+
+**Matching rule:** An experiment is "relevant" to the current post if:
+1. The experiment's `company` matches one of the `matched_companies` in any supplied article, OR
+2. The experiment's `tool` name appears in any article's title or summary
+
+If one or more experiments are relevant, you have a pool of personal "first-person angles" to draw from.
+
+**Use experiments to:**
+- Open with "I tried this myself — here's what I found" when it strengthens the hook
+- Add a personal evidence point in the EVIDENCE section: "When I tested [tool] for [use case], [what_surprised_me]"
+- Strengthen YOUR TAKE with a concrete first-hand observation
+- Make the SO WHAT more specific: "If you're a marketer trying [use case], [my_verdict]"
+
+**Do not force experiments** into unrelated posts. If no experiment is relevant, skip this step entirely. Never invent or fabricate personal experience.
 
 ---
 
@@ -130,6 +158,8 @@ matched_companies:
   - "<all company names across all articles, deduplicated>"
 matched_categories:
   - "<all category names across all articles, deduplicated>"
+experiments_used:
+  - "<tool name if a personal experiment was woven in, else leave as empty list>"
 relevance_score: <articles[0].relevance_score>
 status: "draft"
 ---

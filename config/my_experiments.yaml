@@ -1,0 +1,206 @@
+# ============================================================
+# MY AI EXPERIMENTS & OBSERVATIONS
+# This is your personal experiment log — the "human in the loop" file.
+#
+# Add entries here whenever you try something new with an AI tool.
+# The post-generator reads this and weaves your personal experiences
+# into posts to create the "I tried X — here's what happened" angle.
+#
+# Every entry you add becomes a potential post hook or evidence point.
+# The more specific your notes, the better the posts.
+# ============================================================
+
+# ── How to add an entry ────────────────────────────────────
+# Copy the template below and fill in your own details.
+# Leave fields blank if you don't have data — the agent skips blanks.
+#
+# experiment_status options:
+#   "ongoing"   — you're still using it / testing it
+#   "completed" — you've wrapped up this particular test
+#   "abandoned" — you tried it and moved on
+#
+# use_for_posts: true = the agent can draw on this experiment in posts
+# use_for_posts: false = logged for your reference only, not used in posts
+# ============================================================
+
+experiments:
+
+  # ── Experiment Template (copy this block to add new entries) ──
+  # - tool: "Tool or model name"
+  #   company: "Company behind it"
+  #   date_started: "YYYY-MM-DD"
+  #   date_ended: ""              # Leave blank if ongoing
+  #   experiment_status: "ongoing"
+  #   use_case: "What you were trying to do"
+  #   what_i_tried: >
+  #     Describe what you actually did — be specific. What prompt did you use?
+  #     What task? What context did you give it?
+  #   what_worked: >
+  #     What genuinely impressed you or saved you time?
+  #   what_surprised_me: >
+  #     An unexpected result, limitation, or behaviour — positive or negative.
+  #   what_didnt_work: >
+  #     Where it fell flat, made mistakes, or needed too much hand-holding.
+  #   my_verdict: >
+  #     Your honest 1–2 sentence take. Would you recommend it? For what type of person/team?
+  #   time_saved_estimate: ""     # e.g. "2 hours per week" — leave blank if unsure
+  #   link_to_tool: ""            # Public URL to the tool's website or post
+  #   use_for_posts: true
+
+  # ── Sample entries — replace these with your own ─────────
+  - tool: "Claude Code"
+    company: "Anthropic"
+    date_started: "2026-05-01"
+    date_ended: ""
+    experiment_status: "ongoing"
+    use_case: "Building and iterating on this LinkedIn post generator without writing Python"
+    what_i_tried: >
+      Used Claude Code to build an entire multi-agent pipeline from scratch
+      by describing what I wanted in plain English. No manual coding.
+      I edited YAML config files and the agents rewrote themselves to match.
+    what_worked: >
+      Remarkably fast iteration. Going from idea to working prototype in hours
+      instead of days. The agent reads configs, writes files, and self-corrects.
+    what_surprised_me: >
+      How little I had to debug. The agents understood context from other files
+      without me explaining the connection. Like pair programming with a very patient collaborator.
+    what_didnt_work: >
+      Occasionally over-engineers things. Sometimes adds abstractions I didn't ask for.
+      Still need to review every output carefully.
+    my_verdict: >
+      Best AI coding tool I've used for non-engineers. If you're comfortable with YAML
+      and clear thinking, you can build real tools without a developer.
+    time_saved_estimate: "10+ hours on this project alone"
+    link_to_tool: "https://claude.ai/code"
+    use_for_posts: true
+
+  - tool: "Perplexity Pro"
+    company: "Perplexity AI"
+    date_started: "2026-04-15"
+    date_ended: ""
+    experiment_status: "ongoing"
+    use_case: "Replacing traditional Google search for research during client briefs"
+    what_i_tried: >
+      Used Perplexity as my primary research tool for two weeks across five client
+      projects. Asked it everything from competitor landscape questions to
+      regulatory context for AI in marketing.
+    what_worked: >
+      Citation-backed answers saved an enormous amount of source-hunting.
+      The follow-up question feature feels genuinely conversational.
+      Deep Research mode produced outputs close to analyst-quality summaries.
+    what_surprised_me: >
+      It occasionally hallucinates sources. Found two citations that led to
+      real articles with different content than described. Always verify the link.
+    what_didnt_work: >
+      Not great for niche or very recent news. Falls back to summaries
+      when primary sources are paywalled.
+    my_verdict: >
+      I use it daily but never without spot-checking sources. It's faster
+      than Google for broad research, not a replacement for reading the actual article.
+    time_saved_estimate: "3–4 hours per week"
+    link_to_tool: "https://perplexity.ai"
+    use_for_posts: true
+
+  - tool: "Gemini Advanced (in Google Workspace)"
+    company: "Google DeepMind"
+    date_started: "2026-03-01"
+    date_ended: ""
+    experiment_status: "ongoing"
+    use_case: "Drafting client decks and summarising lengthy email threads"
+    what_i_tried: >
+      Connected Gemini to my Gmail and Drive. Used it to summarise month-long
+      email threads before hopping on client calls. Also tried Slides generation
+      from a brief document.
+    what_worked: >
+      Email summarisation is genuinely useful — context retrieval from threads
+      saves real time. The integration with my existing Workspace is frictionless.
+    what_surprised_me: >
+      Slide design from a document was mediocre — better than a blank page
+      but still required significant manual reformatting.
+    what_didnt_work: >
+      Doesn't replace a designer for any client-facing visual work.
+      Writing quality is functional but lacks personality.
+    my_verdict: >
+      Best for people already deep in Google Workspace who want AI without
+      switching tools. Not the most creative or opinionated AI assistant.
+    time_saved_estimate: "1–2 hours per week"
+    link_to_tool: "https://workspace.google.com/solutions/ai/"
+    use_for_posts: true
+
+  - tool: "ElevenLabs Voice Cloning"
+    company: "ElevenLabs"
+    date_started: "2026-02-20"
+    date_ended: "2026-03-10"
+    experiment_status: "completed"
+    use_case: "Creating consistent voiceovers for client training videos without a studio"
+    what_i_tried: >
+      Cloned a brand spokesperson's voice from two minutes of clean audio.
+      Used it to produce seven training module voiceovers across two weeks.
+      Compared audience response to the real recorded version.
+    what_worked: >
+      Production speed was transformational — seven modules in two days
+      instead of four weeks of studio scheduling. Quality was good enough
+      that participants in a blind test could not reliably identify the clone.
+    what_surprised_me: >
+      Emotional range was more limited than expected on complex sentences.
+      The voice worked best for clear, direct instructional content.
+    what_didnt_work: >
+      Background music decisions still required a human. The clone felt
+      emotionally flat when reading anything conversational or warm.
+    my_verdict: >
+      A genuine production tool for training content, explainers, and product demos.
+      Not ready for brand-voice campaigns that need emotional depth.
+    time_saved_estimate: "~3 weeks of studio scheduling per project"
+    link_to_tool: "https://elevenlabs.io"
+    use_for_posts: true
+
+  - tool: "Midjourney v6"
+    company: "Midjourney"
+    date_started: "2026-01-10"
+    date_ended: ""
+    experiment_status: "ongoing"
+    use_case: "Concepting visual directions for brand campaigns before client presentations"
+    what_i_tried: >
+      Used Midjourney to generate 20–30 visual directions for a rebrand project.
+      Presented AI-generated mood boards to the client before any designer hours
+      were spent. Client selected a direction from the boards.
+    what_worked: >
+      Dramatic reduction in early-stage concepting time. Clients can react to
+      visuals rather than describe them in words. Designers start from an
+      approved direction rather than blank-canvas exploration.
+    what_surprised_me: >
+      The client preferred an AI-generated concept over two of the studio-made options.
+      The AI was better at certain aesthetic languages — specifically maximalist editorial styles.
+    what_didnt_work: >
+      Hands, text within images, and consistent characters across multiple frames.
+      Still cannot produce a coherent photo-realistic person reliably.
+    my_verdict: >
+      Non-negotiable in my early-stage process now. It's not a design tool —
+      it's a conversation starter that saves three rounds of briefing.
+    time_saved_estimate: "1 full round of concepting per project (5–8 hours)"
+    link_to_tool: "https://midjourney.com"
+    use_for_posts: true
+
+# ── Planned Experiments ───────────────────────────────────
+# Log tools you want to experiment with next.
+# Set use_for_posts: false so they don't appear in posts yet.
+
+planned_experiments:
+
+  - tool: "ChatGPT o3 for brand strategy frameworks"
+    company: "OpenAI"
+    notes: "Want to test deep reasoning capabilities on competitive landscape analysis"
+    priority: high
+    use_for_posts: false
+
+  - tool: "Runway Gen-4 for client video concepting"
+    company: "Runway"
+    notes: "Testing AI video generation as a brief/concept tool for broadcast clients"
+    priority: medium
+    use_for_posts: false
+
+  - tool: "Suno for branded audio identities"
+    company: "Suno AI"
+    notes: "Curious if AI music generation is ready for small business audio branding"
+    priority: low
+    use_for_posts: false

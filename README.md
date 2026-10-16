@@ -50,13 +50,14 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — each is a separate file you can edit without touching anything else:
 
 | File | Purpose |
 |------|---------|
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/my_experiments.yaml` | Your personal AI experiment log — the "human in the loop" file |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -133,6 +134,31 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Your Personal AI Experiments (Human-in-the-Loop)
+
+Edit `config/my_experiments.yaml` to log your personal AI experiments.
+
+Each entry you add can be woven into posts to create "I tried X — here's what happened" content:
+
+```yaml
+experiments:
+  - tool: "ChatGPT o3"
+    company: "OpenAI"
+    date_started: "2026-10-01"
+    experiment_status: "ongoing"
+    use_case: "Writing competitive landscape briefs for clients"
+    what_i_tried: "Gave it our full brand brief and asked for 3 competitor angles..."
+    what_worked: "Surfaced framing I hadn't considered in under 2 minutes"
+    what_surprised_me: "It pushed back on one of my assumptions — correctly"
+    what_didnt_work: "Needed significant fact-checking on market share figures"
+    my_verdict: "Use it for framing, not for facts."
+    use_for_posts: true
+```
+
+When the post-generator finds an article about a company you've personally tested, it draws on your experiment to add a first-person angle to the post. Set `use_for_posts: false` to keep an experiment in your log but out of posts.
 
 ---
 
