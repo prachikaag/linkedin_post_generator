@@ -1,0 +1,193 @@
+# ============================================================
+# CONTENT TYPES
+# Defines the 5 post formats this pipeline can write.
+# The post-generator agent picks the best type for each
+# article cluster and adapts its structure accordingly.
+#
+# Edit the `hook_templates`, `angle`, and `structure_notes`
+# for each type to match how YOU like to write each one.
+# ============================================================
+
+content_types:
+
+  # ── 1. AI Feature or Product Launch ──────────────────────
+  # Triggered when an AI company ships something new —
+  # a model, a product, a major feature update.
+  # Ideal for: OpenAI, Anthropic, Gemini, ElevenLabs,
+  #            Midjourney, Perplexity, Runway, etc.
+  feature_launch:
+    name: "AI Feature or Product Launch"
+    trigger_categories:
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "ships"
+      - "introduces"
+      - "announces"
+      - "unveils"
+      - "debuts"
+    hook_templates:
+      - "{Company} just {launched/released} {thing}. Here's what it means for brands."
+      - "Big update from {Company}: {one-sentence summary}."
+      - "{thing} is now live. Here's what actually changed — and what didn't."
+    angle: >
+      Lead with what changed. Then zoom out to what it means for brands and
+      marketers — not just what it does, but who gains leverage and why.
+      Include at least one concrete use case a brand team could try this week.
+    structure_notes: >
+      HOOK: The announcement in 1-2 lines, grounded in specifics.
+      CONTEXT: What was missing or broken before this existed?
+      EVIDENCE: Quote official announcements + reaction from early users.
+      YOUR TAKE: Is this genuinely new or incremental? Be honest.
+      SO WHAT: One or two things a brand should do differently because of this.
+      CTA: Ask readers what they'd use it for.
+
+  # ── 2. AI Startup Funding ─────────────────────────────────
+  # Triggered by investment rounds, acquisitions, valuations,
+  # and IPOs in the AI space.
+  startup_funding:
+    name: "AI Startup Funding"
+    trigger_categories:
+      - "AI Startup Funding"
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "IPO"
+      - "unicorn"
+      - "million"
+      - "billion"
+    hook_templates:
+      - "{Company} just raised {amount}. Here's what that bet is really about."
+      - "Another big round in AI. What the investors are betting on — and what you should watch."
+      - "{Company} is now worth {valuation}. Here's the quiet signal nobody's talking about."
+    angle: >
+      Don't just report the number. Explain WHY this round matters:
+      what problem they're solving, what it signals about where the market is going,
+      and what it means for brands who might use their product or compete in this space.
+    structure_notes: >
+      HOOK: Lead with the signal, not the dollar amount.
+      CONTEXT: What gap in the market is this company filling?
+      EVIDENCE: Combine the funding news with related market signals (customer growth, competitor moves).
+      YOUR TAKE: What does this level of investment tell us about what's coming next?
+      SO WHAT: Should brands be watching this company? Using their product? Preparing for disruption?
+      CTA: Ask what signal from AI funding space readers are watching.
+
+  # ── 3. Big Tech AI Move ───────────────────────────────────
+  # Triggered when Microsoft, Google, Apple, Amazon, Meta,
+  # Nvidia, Salesforce, or Adobe make a significant AI move.
+  bigtech_ai:
+    name: "Big Tech AI Move"
+    trigger_categories:
+      - "AI Tools and Productivity"
+      - "New AI Feature or Product Launch"
+    trigger_keywords:
+      - "Microsoft Copilot"
+      - "Azure AI"
+      - "Apple Intelligence"
+      - "Amazon Bedrock"
+      - "Amazon Q"
+      - "Nvidia"
+      - "Google AI"
+      - "Gemini"
+      - "Meta AI"
+      - "Salesforce Agentforce"
+      - "Adobe Firefly"
+    hook_templates:
+      - "The biggest tech company in the room just moved. Here's the part nobody's saying out loud."
+      - "{Company} just made a bet on AI that most brands haven't noticed yet."
+      - "When {Company} does this, marketing teams should pay attention."
+    angle: >
+      Big tech moves create new defaults. When Microsoft embeds something in 365 Copilot,
+      that's what 300M+ workers get. Write through the lens of what this means for brands
+      who don't control the platforms but use them every day.
+    structure_notes: >
+      HOOK: The move in one clear sentence — what changed.
+      CONTEXT: Why is this specific company's move significant at this moment?
+      EVIDENCE: Compare to previous bets, competitor reactions, market data.
+      YOUR TAKE: Does this level the playing field or concentrate power further?
+      SO WHAT: What should a brand's marketing team do — now and in 6 months?
+      CTA: Ask which Big Tech AI feature readers have actually changed their workflow for.
+
+  # ── 4. Personal AI Experiment ─────────────────────────────
+  # For human-in-the-loop posts: "I tried X, here's what happened."
+  # These come from config/experiments.yaml — your own notes.
+  # The post-generator uses experiments.yaml as the primary source
+  # and articles as supporting context.
+  personal_experiment:
+    name: "Personal AI Experiment"
+    trigger_categories:
+      - "AI Tools and Productivity"
+    trigger_keywords:
+      - "personal"
+      - "experiment"
+      - "tried"
+      - "tested"
+      - "workflow"
+    hook_templates:
+      - "I spent {time} using {tool} for {task}. Here's what nobody tells you."
+      - "Honest experiment: {task} with {tool}. Here's exactly what happened."
+      - "The gap between the demo and the reality of {tool}? Let me show you."
+    angle: >
+      This is your most authentic post type. You are the experiment. Be honest:
+      what worked, what failed, what surprised you. Brands need real signal, not hype.
+      The takeaway should help a marketing team decide whether to use this tool.
+    structure_notes: >
+      HOOK: Set up the experiment — what you tried and why.
+      CONTEXT: What problem were you trying to solve? What were you hoping would happen?
+      EVIDENCE: Walk through exactly what you did. Screenshots described in words. Real outputs.
+              Include one thing that went wrong or surprised you.
+      YOUR TAKE: Did it save time? Change your thinking? Where did it fall short?
+      SO WHAT: Based on your experiment, what should a brand team do?
+              Be specific: "Use this for X, not for Y."
+      CTA: Ask what tools readers are currently experimenting with.
+
+  # ── 5. AI Trend Synthesis ─────────────────────────────────
+  # For stepping back and connecting the dots across multiple
+  # stories — pattern recognition across the AI landscape.
+  trend_synthesis:
+    name: "AI Trend Synthesis"
+    trigger_categories:
+      - "AI Research and Breakthroughs"
+      - "AI Regulation and Policy"
+      - "AI for Marketing and Brands"
+    trigger_keywords:
+      - "trend"
+      - "pattern"
+      - "landscape"
+      - "shift"
+      - "direction"
+    hook_templates:
+      - "Three things happened in AI this week that, taken together, change the picture."
+      - "The AI story isn't the headline. It's the pattern underneath it."
+      - "Reading the same AI news everyone else is reading. Seeing something different."
+    angle: >
+      This is synthesis, not summary. Don't list what happened — explain what it MEANS
+      when you put it all together. What's the underlying shift? What's the bet that
+      every company is quietly making? What should brands do differently because of it?
+    structure_notes: >
+      HOOK: State the pattern in one surprising sentence.
+      CONTEXT: Describe the 3-4 developments that form the pattern.
+      EVIDENCE: Cite each with data or specific details — no vague references.
+      YOUR TAKE: What's the single thesis you'd stake your reputation on here?
+      SO WHAT: What does this mean for brand strategy over the next 12 months?
+      CTA: Ask what pattern readers are noticing.
+
+# ── Selection Logic ────────────────────────────────────────
+# The post-generator picks a content type by:
+# 1. Checking matched_categories of the anchor article
+# 2. Checking trigger_keywords against article titles
+# 3. If articles[0] comes from experiments.yaml context → personal_experiment
+# 4. If no clear match → trend_synthesis (safe default)
+selection_priority:
+  - feature_launch
+  - startup_funding
+  - bigtech_ai
+  - personal_experiment
+  - trend_synthesis

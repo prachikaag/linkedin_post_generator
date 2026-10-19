@@ -12,12 +12,12 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Pipeline Overview
 
 ```
-[news-gatherer] → articles JSON
-[trending-tracker] → keywords JSON
+[news-gatherer]     → articles JSON
+[trending-tracker]  → keywords JSON
          ↓ (for each article cluster)
-[post-generator] → saved .md draft
+[post-generator]    → saved .md draft  (picks content type automatically)
          ↓ (optional, if Notion is configured)
-[notion-publisher] → published to Notion
+[notion-publisher]  → published to Notion
 ```
 
 ---
@@ -94,7 +94,7 @@ Input:
 
 Print progress per post:
 ```
-Post {i+1} — anchor: {cluster[0].title[:65]}
+Post {i+1} — type: {content_type} — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```
@@ -118,6 +118,7 @@ Input:
   "article_title": "<result.article_title>",
   "content": "<result.content>",
   "source_count": <result.source_count>,
+  "content_type": "<result.content_type>",
   "page_id": "<NOTION_PAGE_ID>"
 }
 ```
@@ -139,7 +140,7 @@ Print a summary table:
 ║  Posts generated : {N}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
-║  {filename}  ·  {source_count} sources               ║
+║  {filename}  ·  {content_type}  ·  {source_count} sources  ║
 ║  ...                                                 ║
 ╚══════════════════════════════════════════════════════╝
 ```

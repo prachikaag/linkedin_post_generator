@@ -1,0 +1,113 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# Your own "human in the loop" notes — what you've tried,
+# what worked, what surprised you.
+#
+# How to use:
+#   1. Add an entry below each time you try a new AI tool.
+#   2. Be specific: include what you tried, what the output
+#      was, what worked, and what fell short.
+#   3. When you run the pipeline, the post-generator can
+#      draw on these to write authentic "I tried X" posts.
+#
+# Tip: You don't need to write the post here — just your
+# raw honest notes. The agent writes the post.
+# ============================================================
+
+experiments:
+
+  # ── Template ──────────────────────────────────────────────
+  # Copy this block and fill in your own notes.
+  # Set status: "ready" when you want this turned into a post.
+  # Set status: "posted" once it's been published.
+
+  - id: "exp-001"
+    status: "example"     # draft | ready | posted | example
+    date: "2024-01-15"
+    tool: "Claude"
+    version: "claude-sonnet-4-6"
+    use_case: "Rewriting a brand brief"
+    time_spent: "45 minutes"
+
+    setup: >
+      Tried using Claude to condense a 40-page brand brief into a
+      two-page "brand essentials" doc that a freelancer could act on
+      in under 10 minutes.
+
+    what_i_tried: >
+      Pasted the full brief, asked it to extract the 5 most important
+      brand principles and write them in plain language. Then iterated
+      twice on tone.
+
+    what_worked: >
+      The condensation was genuinely good. It caught nuances I would
+      have missed in a manual summary. First draft was 70% there.
+
+    what_surprised_me: >
+      It kept using the word "synergy." I had to explicitly say "do not
+      use this word" — and it fixed it immediately. The fix was faster
+      than noticing the problem.
+
+    what_fell_short: >
+      It couldn't access the brand's visual identity, which lives in a
+      PDF with embedded images. Text-only context limits how far you
+      can take it on design-adjacent briefs.
+
+    takeaway_for_brands: >
+      Best use: compressing long briefs into briefing sheets for
+      agency partners. Worst use: anything where visual identity is
+      the primary reference.
+
+    related_articles: []
+    post_angle: "The gap between what AI can do with text vs. visuals in brand workflows"
+
+  # ── Add your own experiments below ────────────────────────
+
+  - id: "exp-002"
+    status: "draft"
+    date: ""              # Fill in: YYYY-MM-DD
+    tool: ""              # e.g. "Perplexity", "Midjourney", "ElevenLabs", "Cursor"
+    version: ""           # e.g. "v6", "Pro", "claude-3-opus"
+    use_case: ""          # What were you trying to do?
+    time_spent: ""        # e.g. "2 hours", "30 minutes", "one afternoon"
+
+    setup: >
+      Describe the problem you were trying to solve with this tool.
+
+    what_i_tried: >
+      Walk through exactly what you did — step by step. Be specific.
+      Include what prompts or inputs you used if relevant.
+
+    what_worked: >
+      What went better than expected? What surprised you positively?
+
+    what_surprised_me: >
+      What was unexpected — positive or negative? The surprising detail
+      is often the most interesting part of the post.
+
+    what_fell_short: >
+      Where did it break down? What did you have to fix manually?
+      Be honest. Credibility comes from admitting limitations.
+
+    takeaway_for_brands: >
+      The one-sentence "use this for X, not for Y" that a brand team
+      could act on without having tried it themselves.
+
+    related_articles: []    # Add article URLs here if relevant
+    post_angle: ""          # What angle would make this most interesting on LinkedIn?
+
+# ── Experiment Ideas ──────────────────────────────────────
+# Things to try and write about — add them here so you don't
+# forget. Move to experiments when you've actually done them.
+
+experiment_ideas:
+  - "Use Perplexity for competitive brand research: can it replace a desk research brief?"
+  - "Test ElevenLabs voice cloning on a brand's existing video content"
+  - "Build a full marketing brief in under 10 minutes with Claude vs. GPT-4 — side by side"
+  - "Ask Midjourney v6 to generate brand imagery based only on a written brief"
+  - "Use Claude to analyse a competitor's content strategy from their last 20 LinkedIn posts"
+  - "Run a full campaign ideation session with an AI agent — no human brief, just a product page"
+  - "Test Gemini's multimodal features on a brand presentation deck"
+  - "Use Cursor to build a simple brand dashboard without writing a line of code"
+  - "Ask Suno to write a jingle from a brand's positioning statement"
+  - "Compare AI-written press releases vs. human-written: can a brand comms team tell the difference?"
