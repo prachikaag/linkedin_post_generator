@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# Edit this section with your real details before generating posts.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"
+  title: "Brand & AI Strategist"
+  # Your LinkedIn headline — the one-liner that shows in search results
+  tagline: "Helping brands understand and leverage AI in the real world | I experiment so you don't have to"
+  location: "Your City, Country"        # ← update this
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -84,22 +85,24 @@ tone_of_voice:
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
-  # The lenses you write through
+  # The lenses you write through — these should drive every post angle
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Practical AI tools for marketing and brand building — what actually works today"
+    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter, honest results"
+    - "New AI product launches and what they mean for brands right now"
+    - "Big tech AI moves and how they reshape the landscape for marketers"
+    - "AI startup funding — what the money tells us about where AI is heading"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Experimenting with AI in your own work and sharing what surprised you"
 
-  # Example angles you love to write about
+  # The 4 core post types — see config/content_categories.yaml for full definitions
+  # The post generator reads that file directly; edit it to shape what gets written
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "AI TOOL LAUNCH: [Company] just released [feature] — here's what it means for brands"
+    - "BIG TECH MOVE: [Company]'s latest AI push changes the game for [use case]"
+    - "FUNDING NEWS: [Startup] raised $[X]M — what this bet tells us about AI's direction"
+    - "HUMAN IN THE LOOP: I tested [AI tool] for [use case] — here's exactly what happened"
+    - "SYNTHESIS: Three things happening in AI right now and what brands should do about them"
 
   # Hashtag strategy
   hashtags:

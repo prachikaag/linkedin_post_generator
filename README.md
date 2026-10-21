@@ -50,13 +50,35 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any file and changes take effect on the next run:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/brand_kit.yaml` | **Your identity** — name, title, tone of voice, writing rules, hashtag strategy |
+| `config/content_categories.yaml` | **Post types** — the 4 content angles: AI launches, big tech, funding, human-in-loop |
+| `config/watchlist.yaml` | **Priority companies** — tier-1 (always post) and tier-2 (watch closely) watchlists |
+| `config/topics.yaml` | **Keywords** — all tracked companies, topic categories, and trending seed terms |
+| `config/sources.yaml` | **News sources** — RSS feeds, company blogs, YouTube channels, optional APIs |
+
+### Quick-start: personalise your brand kit
+
+Open `config/brand_kit.yaml` and set:
+```yaml
+author:
+  name: "Your Name"          # used in every post signature
+  title: "Your Title"        # brand strategist, CMO, founder — whatever fits
+  tagline: "..."             # your LinkedIn headline
+  location: "City, Country"  # optional
+```
+
+### Quick-start: add a company to watch
+
+Open `config/watchlist.yaml` and add to `tier_1_must_post` or `tier_2_watch_closely`:
+```yaml
+- name: "Company Name"
+  keywords: ["keyword1", "keyword2"]
+  why: "Why this matters to your audience"
+```
 
 Edit these files directly — changes take effect on the next run.
 
@@ -99,9 +121,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `news-gatherer`
 - **Tools**: Read, WebFetch
-- **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
-- **Output**: JSON array of scored article objects
+- **Reads**: `config/sources.yaml`, `config/topics.yaml`, `config/watchlist.yaml`
+- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance + watchlist tier, deduplicates, returns ranked JSON array
+- **Output**: JSON array of scored article objects (includes `watchlist_tier` field)
 
 ### `trending-tracker`
 - **Tools**: Read, WebSearch
@@ -111,9 +133,9 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
-- **Output**: JSON object with filename, filepath, content, and source metadata
+- **Reads**: `config/brand_kit.yaml`, `config/content_categories.yaml`
+- **Does**: Selects the best content category, synthesises articles into a branded LinkedIn post, saves as `.md` draft with YAML frontmatter
+- **Output**: JSON object with filename, filepath, content, category, and source metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

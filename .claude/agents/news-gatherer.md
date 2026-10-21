@@ -25,6 +25,12 @@ Read `config/topics.yaml`:
   - `min_relevance_score` (default 2) — minimum score to keep
   - `max_articles_per_run` (default 25) — maximum articles to return
 
+Read `config/watchlist.yaml`:
+- **`tier_1_must_post`** companies → Matching a keyword → `+5` score bonus (on top of topics.yaml scoring)
+- **`tier_2_watch_closely`** companies → Matching a keyword → `+2` score bonus
+- Add a `watchlist_tier` field: `"tier1"`, `"tier2"`, or `null`
+- Also read `always_post_signal_types` — articles whose text strongly matches these signal descriptions get `+3` bonus
+
 ---
 
 ## Step 2 — Fetch RSS Feeds
@@ -97,6 +103,9 @@ Each element must have exactly these fields:
   "relevance_score": 9,
   "matched_companies": ["OpenAI", "Anthropic"],
   "matched_categories": ["New AI Feature or Product Launch"],
-  "matched_keywords": ["ChatGPT", "Claude", "launch"]
+  "matched_keywords": ["ChatGPT", "Claude", "launch"],
+  "watchlist_tier": "tier1"
 }
 ```
+
+`watchlist_tier` must be `"tier1"`, `"tier2"`, or `null`.

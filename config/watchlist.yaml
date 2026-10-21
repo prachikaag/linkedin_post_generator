@@ -1,0 +1,115 @@
+# ============================================================
+# WATCHLIST — High-Priority Companies & Signals
+# These are the companies and signals you care about most.
+# When an article matches this list it gets a +5 score bonus
+# on top of the standard keyword scoring in topics.yaml.
+#
+# Edit this file to add or remove priority companies.
+# ============================================================
+
+# ── Tier 1: Always Post About ─────────────────────────────
+# Any significant news from these companies is post-worthy.
+tier_1_must_post:
+
+  ai_tools_i_use_personally:
+    description: "Tools I actively experiment with and can speak to from experience"
+    companies:
+      - name: "ChatGPT / OpenAI"
+        keywords: ["ChatGPT", "GPT-5", "GPT-4o", "OpenAI", "o1", "o3", "Sora", "Operator"]
+        why: "The dominant consumer AI — my audience uses this daily"
+
+      - name: "Claude / Anthropic"
+        keywords: ["Claude", "Anthropic", "claude-3", "claude-4", "MCP", "Model Context Protocol"]
+        why: "My primary coding and writing AI — I have direct experience"
+
+      - name: "Perplexity"
+        keywords: ["Perplexity", "Perplexity AI", "Perplexity Pro", "Perplexity Deep Research"]
+        why: "Replacing Google Search for me — relevant to any brand with SEO concerns"
+
+      - name: "Gemini / Google"
+        keywords: ["Gemini", "Gemini Ultra", "Gemini Flash", "NotebookLM", "Google AI", "Project Astra"]
+        why: "Google's AI push affects every brand on Google Workspace"
+
+      - name: "ElevenLabs"
+        keywords: ["ElevenLabs", "Eleven Labs", "voice AI", "AI voice", "voice cloning"]
+        why: "Transforming audio content for brands and creators"
+
+      - name: "Midjourney"
+        keywords: ["Midjourney", "Midjourney v7", "AI image generation"]
+        why: "The creative AI brands reach for first"
+
+  ai_video_and_creative:
+    description: "AI tools reshaping creative production for brands"
+    companies:
+      - name: "Runway"
+        keywords: ["Runway", "RunwayML", "Gen-3", "AI video"]
+        why: "Brands and agencies use this for video — big creative shift"
+
+      - name: "Suno"
+        keywords: ["Suno", "Suno AI", "AI music"]
+        why: "AI-generated audio for brand campaigns"
+
+      - name: "Synthesia"
+        keywords: ["Synthesia", "AI avatar", "AI presenter"]
+        why: "AI video at scale — relevant for brand content teams"
+
+      - name: "Pika Labs"
+        keywords: ["Pika", "Pika Labs", "Pika AI"]
+        why: "Fast-moving AI video that brands can use now"
+
+# ── Tier 2: Watch Closely ─────────────────────────────────
+# Post when there's a significant development (funding, major launch, acquisition).
+tier_2_watch_closely:
+
+  big_tech_ai:
+    description: "Big tech AI plays that affect tools brands already use"
+    companies:
+      - name: "Microsoft Copilot"
+        keywords: ["Microsoft Copilot", "Copilot", "Azure AI", "Microsoft 365 AI"]
+      - name: "Adobe AI"
+        keywords: ["Adobe Firefly", "Adobe AI", "Generative Fill", "Adobe Sensei"]
+      - name: "Apple Intelligence"
+        keywords: ["Apple Intelligence", "Apple AI", "Siri AI"]
+      - name: "Amazon AI"
+        keywords: ["Amazon Bedrock", "Amazon Q", "Alexa+", "AWS AI"]
+      - name: "Nvidia"
+        keywords: ["Nvidia AI", "Jensen Huang", "Nvidia Blackwell", "Nvidia NIM"]
+
+  rising_stars:
+    description: "AI startups to watch — post on funding or major launches"
+    companies:
+      - name: "Cursor"
+        keywords: ["Cursor", "Cursor AI", "AI code editor"]
+      - name: "Cognition / Devin"
+        keywords: ["Cognition AI", "Devin AI", "AI software engineer"]
+      - name: "Harvey AI"
+        keywords: ["Harvey AI", "legal AI"]
+      - name: "Groq"
+        keywords: ["Groq", "LPU inference", "fast inference"]
+      - name: "Cerebras"
+        keywords: ["Cerebras", "Cerebras IPO", "Cerebras Systems"]
+
+# ── Signal Types — Always Notify ──────────────────────────
+# Beyond company names, these signal types always warrant a post
+# regardless of which company they concern.
+always_post_signal_types:
+  - "YouTube video launch from an AI company showing new capabilities"
+  - "Funding round above $50M for any AI startup"
+  - "Acquisition of an AI company by big tech"
+  - "New model release with public benchmark results"
+  - "AI company IPO or S-1 filing"
+  - "Major brand (Fortune 500) announcing AI-first strategy"
+  - "AI tool reaches 1M+ users milestone"
+
+# ── YouTube Channel Watch ─────────────────────────────────
+# When these channels post a new video, treat it as news.
+# These are already in sources.yaml as RSS feeds.
+youtube_watch_channels:
+  - name: "OpenAI"
+    channel_id: "UCXZCJLdBC09xxGZ6gcdrc6A"
+  - name: "Anthropic"
+    channel_id: "UCVGHYWgqMqsZ5Yq6VCu-XxQ"
+  - name: "Google DeepMind"
+    channel_id: "UCP7jMXSY2xbc3KCAE0MHQ-A"
+  - name: "Midjourney"
+    note: "No official YouTube feed — track via Twitter/X announcements"

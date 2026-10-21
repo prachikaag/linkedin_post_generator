@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml and config/content_categories.yaml, selects the best post category for the article cluster, then writes a research-backed LinkedIn post and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,20 +24,29 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read Brand Kit and Content Categories
 
-Read `config/brand_kit.yaml` and extract:
-
+**Read `config/brand_kit.yaml`** and extract:
 - `author.name`, `author.title`, `author.tagline`
-- `tone_of_voice.primary_traits` — how the author comes across
-- `tone_of_voice.writing_style` — rules for every post
-- `tone_of_voice.post_structure` — the ordered blueprint to follow
-- `tone_of_voice.dos` and `tone_of_voice.donts`
-- `brand.focus_areas` — the lenses the author writes through
-- `brand.hashtags.always_include` — hashtags in every post
-- `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
-- `brand.post_length` — target length (short / medium / long)
-- `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+- `tone_of_voice.primary_traits`, `writing_style`, `post_structure`, `dos`, `donts`
+- `brand.focus_areas`, `brand.content_angles`
+- `brand.hashtags.always_include` and `brand.hashtags.rotate_from`
+- `brand.post_length`, `brand.max_hashtags`
+- `research_standards.min_sources` (default 4)
+
+**Read `config/content_categories.yaml`** and select the best matching category for this article cluster:
+
+1. Check each article's `matched_categories` and `matched_keywords`
+2. Compare against each category's `trigger_keywords`
+3. Apply the priority order: `human_in_the_loop` > `startup_funding` > `ai_tool_launch` > `big_tech_news`
+4. If no clear match, use `default_category`
+
+Extract from the selected category:
+- `label` — include in frontmatter as `post_category`
+- `angle` — the specific writing framing to use
+- `hook_templates` — starting-point inspiration for the hook (don't copy verbatim)
+- `cta_style` — the type of question to ask at the end
+- `post_length_preference` — override `brand.post_length` if the category specifies one
 
 ---
 
@@ -116,6 +125,7 @@ Write the file with this frontmatter before the post body:
 ---
 title: "<primary article title>"
 date: "YYYY-MM-DD"
+post_category: "<selected category label from content_categories.yaml>"
 primary_source_url: "<articles[0].url>"
 primary_source_name: "<articles[0].source_name>"
 all_sources:

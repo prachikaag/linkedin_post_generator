@@ -46,7 +46,11 @@ Then stop.
 
 Print a summary line: `✓ {N} relevant articles fetched and scored.`
 
-If `DRY_RUN` is true, print the top 12 articles (title, score, source) and stop here.
+Also print tier-1 watchlist hits: `⭐ Tier 1 watchlist: {N} article(s) from priority companies`
+
+Sort the article list so tier-1 articles appear first, then tier-2, then unranked. Within each tier, sort by `relevance_score` descending.
+
+If `DRY_RUN` is true, print the top 12 articles (title, score, watchlist tier, source) and stop here.
 
 ---
 
@@ -94,7 +98,7 @@ Input:
 
 Print progress per post:
 ```
-Post {i+1} — anchor: {cluster[0].title[:65]}
+Post {i+1} [{post_category}] — anchor: {cluster[0].title[:65]}
   Sources: {comma-joined source_names of first 4 articles}
   ✓ Saved → {result.filename} ({result.source_count} sources cited)
 ```

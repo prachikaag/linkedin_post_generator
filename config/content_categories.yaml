@@ -1,0 +1,165 @@
+# ============================================================
+# CONTENT CATEGORIES
+# The four post types this pipeline generates.
+# Each category has its own prompt instructions, angle,
+# hook templates, and CTA style.
+#
+# The post-generator agent reads this file and selects the
+# best-matching category based on the incoming article cluster.
+# Edit freely — changes take effect on the next run.
+# ============================================================
+
+categories:
+
+  # ── Category 1: AI Tool / Product Launch ──────────────────
+  ai_tool_launch:
+    label: "AI Tool or Product Launch"
+    description: >
+      A new feature, model release, update, or product from an AI company.
+      Covers: ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, Midjourney,
+      Runway, Suno, Cursor, Stable Diffusion, Meta AI, Grok, etc.
+      Also covers YouTube videos published by AI companies showing new capabilities.
+    trigger_keywords:
+      - "launch"
+      - "release"
+      - "new feature"
+      - "update"
+      - "announces"
+      - "ships"
+      - "available now"
+      - "unveils"
+      - "rolls out"
+      - "debuts"
+      - "YouTube"
+      - "demo"
+      - "walkthrough"
+    angle: >
+      React as someone who immediately tried or thought deeply about the feature.
+      Frame it around what this unlocks for brands and marketers — not just what it does.
+      Acknowledge if you haven't tested it yet, but share your instinct on what it means.
+    hook_templates:
+      - "[Company] just changed how [use case] works. Here's why that matters."
+      - "Something new from [Company] caught my attention this week."
+      - "I spent time with [Product/Feature]. Here's my honest read."
+      - "Every brand team needs to know what [Company] just released."
+    cta_style: >
+      Ask whether readers have tried the feature, or invite them to share
+      what use case they'd apply it to first.
+    post_length_preference: "medium"
+
+  # ── Category 2: Big Tech AI Move ──────────────────────────
+  big_tech_news:
+    label: "Big Tech AI Move"
+    description: >
+      Significant AI announcements, strategy shifts, or product decisions from
+      Microsoft, Apple, Google, Amazon, Adobe, Nvidia, Salesforce, Meta.
+      Includes Copilot, Apple Intelligence, Azure AI, Bedrock, Firefly, etc.
+    trigger_keywords:
+      - "Microsoft"
+      - "Apple Intelligence"
+      - "Google AI"
+      - "Amazon Bedrock"
+      - "Nvidia"
+      - "Salesforce"
+      - "Adobe Firefly"
+      - "strategy"
+      - "partnership"
+      - "integration"
+    angle: >
+      Frame this through the lens of what it means for marketing teams and brands
+      that already use these platforms daily. Most of your audience is already
+      in Microsoft 365, Google Workspace, or Adobe Creative Cloud — make it
+      real for them. Include the competitive dimension when relevant.
+    hook_templates:
+      - "[Big Tech Company] made a move this week that most brands missed."
+      - "The AI embedded in tools your team uses every day just got more powerful."
+      - "This is what it looks like when AI goes from experiment to infrastructure."
+      - "[Company]'s latest move tells us something important about where AI is heading."
+    cta_style: >
+      Ask what tool in their existing stack they wish had better AI built in,
+      or what change they've noticed in a platform they already use.
+    post_length_preference: "medium"
+
+  # ── Category 3: AI Startup Funding ────────────────────────
+  startup_funding:
+    label: "AI Startup Funding News"
+    description: >
+      Funding rounds, acquisitions, valuations, IPOs, and major investments
+      in AI startups. Includes Series A through D, seed rounds, and exits.
+    trigger_keywords:
+      - "funding"
+      - "raises"
+      - "Series A"
+      - "Series B"
+      - "Series C"
+      - "seed"
+      - "valuation"
+      - "acquired"
+      - "acquisition"
+      - "investment"
+      - "venture"
+      - "million"
+      - "billion"
+      - "IPO"
+      - "unicorn"
+    angle: >
+      Follow the money to find the signal. A funding round is a bet on a
+      thesis — explain what thesis investors are backing and why that bet
+      matters for brands and marketers. Connect it to the broader pattern
+      of where AI investment is flowing. Share your own read on whether the
+      bet makes sense.
+    hook_templates:
+      - "Investors just made a $[X]M bet on [company/use case]. Here's what they're seeing."
+      - "Another week, another massive AI funding round. But this one is different."
+      - "The money in AI is moving toward [use case/company]. That tells us something."
+      - "[Company] raised $[X]M. Follow the money and here's what it means."
+    cta_style: >
+      Ask readers which AI startup space (marketing, legal, healthcare, creative)
+      they think will see the next big exit, or what problem they'd fund a startup to solve.
+    post_length_preference: "medium"
+
+  # ── Category 4: Human in the Loop ─────────────────────────
+  human_in_the_loop:
+    label: "Human-in-the-Loop Experiment"
+    description: >
+      First-person experiments where you tested an AI tool, workflow, or model
+      in your own work. These posts share honest results — what worked, what
+      didn't, and what you learned. The authenticity is the value.
+    trigger_keywords:
+      - "I tried"
+      - "I tested"
+      - "experiment"
+      - "workflow"
+      - "prompt"
+      - "human in the loop"
+      - "my experience"
+      - "productivity"
+      - "AI assistant"
+      - "copilot"
+      - "automation"
+    angle: >
+      You are the guinea pig. You ran the test so readers don't have to.
+      Be specific: name the tool, describe the task, share the actual output
+      quality or time saved. Don't over-generalise — one honest data point
+      beats a sweeping claim. Include the failure or the surprise — that's
+      what makes it useful.
+    hook_templates:
+      - "I tried [AI tool] for [specific task]. Here's what actually happened."
+      - "Running [task] through AI vs. doing it manually. The results surprised me."
+      - "I spent [X time] building a workflow with [tool]. Here's my honest verdict."
+      - "Most AI experiments fail quietly. This one had a plot twist."
+    cta_style: >
+      Ask readers to share their own experiments — what AI workflow have they
+      tried recently, what surprised them, or what they're still trying to crack.
+    post_length_preference: "long"
+
+# ── Category Selection Logic ───────────────────────────────
+# The post-generator agent uses this priority order when an article
+# cluster could match multiple categories:
+#   1. human_in_the_loop  (if experiment/test language is prominent)
+#   2. startup_funding     (if funding keywords dominate)
+#   3. ai_tool_launch      (if launch/release keywords dominate)
+#   4. big_tech_news       (if big tech company is the primary subject)
+#
+# Default category when no clear match: ai_tool_launch
+default_category: "ai_tool_launch"
