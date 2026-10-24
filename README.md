@@ -6,14 +6,21 @@ An AI-powered pipeline that fetches trending AI news, tracks what's buzzing, and
 
 ## Architecture
 
-The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents:
+The pipeline is a **multi-agent system** where an orchestrator spawns specialised subagents. Two modes — **news** (default) and **experiment** — cover the two main content pillars.
 
 ```
 orchestrator.md
-├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
-├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+│
+├── NEWS MODE (default)
+│   ├── .claude/agents/news-gatherer.md           → fetches + scores RSS articles
+│   ├── .claude/agents/trending-tracker.md        → finds trending keyword phrases
+│   ├── .claude/agents/post-generator.md          → writes & saves news-reaction drafts
+│   └── .claude/agents/notion-publisher.md        → publishes drafts to Notion (optional)
+│
+└── EXPERIMENT MODE
+    ├── reads config/experiments.yaml             → your personal AI experiments log
+    ├── .claude/agents/experiment-post-generator.md → writes "I tried X" post drafts
+    └── .claude/agents/notion-publisher.md        → publishes drafts to Notion (optional)
 ```
 
 Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
@@ -26,15 +33,33 @@ Each agent is a self-contained markdown file with its own role, tools, and input
 
 Open this project in Claude Code and say:
 
+**For news-based posts (default):**
 ```
 Run the LinkedIn Post Generator pipeline.
 ```
 
-Claude Code will read `orchestrator.md` and execute the full pipeline:
+**For personal experiment posts:**
+```
+Generate experiment posts from my experiments log.
+```
+
+**For both:**
+```
+Run the LinkedIn Post Generator pipeline in both modes.
+```
+
+Claude Code reads `orchestrator.md` and executes the full pipeline.
+
+**News mode steps:**
 1. Spawns **news-gatherer** → reads RSS feeds via WebFetch, returns scored articles
 2. Spawns **trending-tracker** → searches trending AI topics via WebSearch
-3. For each article cluster, spawns **post-generator** → writes and saves a draft
+3. For each article cluster, spawns **post-generator** → matches content angle, writes and saves a draft
 4. Spawns **notion-publisher** → pushes drafts to Notion (if `NOTION_PAGE_ID` is set)
+
+**Experiment mode steps:**
+1. Reads `config/experiments.yaml` → finds entries with `post_worthy: true` + `status: draft`
+2. For each experiment, spawns **experiment-post-generator** → writes an "I tried X" draft
+3. Spawns **notion-publisher** → pushes to Notion (optional)
 
 ### Custom parameters
 
@@ -50,15 +75,15 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any file directly, changes take effect immediately on the next run.
 
-| File | Purpose |
-|------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
-
-Edit these files directly — changes take effect on the next run.
+| File | Purpose | Edit when... |
+|------|---------|-------------|
+| `config/topics.yaml` | AI companies, keywords, and freshness settings | Adding a new AI company/tool to track |
+| `config/sources.yaml` | RSS feeds, company blogs, YouTube channels, APIs | Adding or removing a news source |
+| `config/brand_kit.yaml` | Your name, title, tone of voice, writing rules | Updating your personal brand voice |
+| `config/content_angles.yaml` | 5 post type templates (launch, funding, experiment, etc.) | Adjusting how a post type is framed |
+| `config/experiments.yaml` | Your personal AI experiments log | After testing a new AI tool |
 
 ### Environment Variables
 
@@ -111,9 +136,15 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ### `post-generator`
 - **Tools**: Read, Write
-- **Reads**: `config/brand_kit.yaml`
-- **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
+- **Reads**: `config/brand_kit.yaml`, `config/content_angles.yaml`
+- **Does**: Matches article cluster to a content angle (product_launch, funding_take, trend_analysis, brand_lens), writes a branded LinkedIn post, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
+
+### `experiment-post-generator`
+- **Tools**: Read, Write
+- **Reads**: `config/experiments.yaml`, `config/brand_kit.yaml`, `config/content_angles.yaml`
+- **Does**: Reads a personal AI experiment entry, writes a first-person "I tried X" post in brand voice, saves as `.md` draft
+- **Output**: JSON object with filename, filepath, content, and experiment metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

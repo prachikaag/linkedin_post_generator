@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Content Angles
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,17 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Read `config/content_angles.yaml`.
+
+Match the dominant topic of the supplied articles to one of the 5 post types:
+- `product_launch` — articles about a feature release, new model, or product launch
+- `funding_take` — articles about funding rounds, acquisitions, IPOs, valuations
+- `experiment_recap` — skip (handled by experiment-post-generator)
+- `trend_analysis` — articles from 3+ different companies pointing to the same pattern
+- `brand_lens` — articles where the primary angle is brand, marketing, or creative use
+
+Use the matched post type's `hook_templates` and `what_to_cover` list as your structural guide on top of the standard post structure below.
 
 ---
 

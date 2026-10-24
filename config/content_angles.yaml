@@ -1,0 +1,146 @@
+# ============================================================
+# CONTENT ANGLES & POST TYPES
+# ============================================================
+# These are the 5 types of LinkedIn posts you write.
+# Each has a trigger, hook templates, what to cover, and tone notes.
+#
+# The post-generator reads these to match the right template
+# to the type of news in each article cluster.
+#
+# Used by: .claude/agents/post-generator.md
+#          .claude/agents/experiment-post-generator.md
+# ============================================================
+
+post_types:
+
+  # ── 1. Product Launch Reaction ──────────────────────────
+  # Trigger: AI company launches new feature, model, product, or YouTube demo video
+  - type: "product_launch"
+    label: "Product Launch Reaction"
+    trigger: >
+      An AI company (OpenAI, Anthropic, Google, Perplexity, ElevenLabs, Midjourney,
+      Runway, etc.) launches a new feature, ships a new model, releases a YouTube demo,
+      or announces something new to their platform.
+    hook_templates:
+      - "[Company] just changed something. Here's what it actually means for brands."
+      - "New from [Company]: [feature]. Most coverage missed the real implication."
+      - "[Company] launched [thing] this week. Here's why brands should care."
+      - "Something shifted in [space] this week. Here's the detail that matters."
+    what_to_cover:
+      - "What was launched and what it actually does (in plain language)"
+      - "Why it matters — or doesn't — for brands and marketing teams right now"
+      - "A specific use case you'd actually apply it to"
+      - "What it signals about where this company (or the space) is heading"
+      - "What other companies are doing in the same space (put it in context)"
+    tone: "Curious and specific. Cut through the hype. Say whether it's a real shift or noise."
+    length: "medium"
+    hashtag_priority:
+      - "#GenerativeAI"
+      - "#AITools"
+      - "#AIInnovation"
+
+  # ── 2. Funding & Acquisition Perspective ────────────────
+  # Trigger: AI startup raises funding, gets acquired, unicorn, IPO
+  - type: "funding_take"
+    label: "Funding & Acquisition Perspective"
+    trigger: >
+      An AI startup raises a funding round (Seed, Series A–D, etc.),
+      gets acquired, reaches unicorn status ($1B+ valuation), or IPOs.
+    hook_templates:
+      - "[Company] just raised $[X]. Here's what the smart money is actually betting on."
+      - "Another AI funding round. This one's different — here's why."
+      - "The real story behind [Company]'s [funding round] isn't the number. It's the direction."
+      - "[Amount] into [space]. Here's what it tells us about where AI is heading for brands."
+    what_to_cover:
+      - "Who the company is and what they actually do (be specific, not generic)"
+      - "What the funding signals about the broader market or sector"
+      - "What it means for brands: new tools coming, new competition, new opportunities"
+      - "Whether this is smart money or hype — your honest read"
+      - "One thing brands or marketing teams should watch or do as a result"
+    tone: "Analytical and opinionated. Make the signal-vs-noise call clearly. Have a view."
+    length: "medium"
+    hashtag_priority:
+      - "#AIStartup"
+      - "#AIInnovation"
+      - "#FutureOfWork"
+
+  # ── 3. Human-in-the-Loop Experiment ──────────────────────
+  # Trigger: You test an AI tool for a real use case
+  - type: "experiment_recap"
+    label: "Human-in-the-Loop Experiment"
+    trigger: >
+      You personally test an AI tool for a real professional use case and have
+      honest, specific observations to share — what worked, what didn't, what
+      surprised you, and where the human judgment was still essential.
+    hook_templates:
+      - "I spent [time] testing [tool] for [use case]. Here's the honest version."
+      - "[Tool] can do [thing]. But here's what it still can't do."
+      - "I tried [tool] for [use case] so you don't have to. The real verdict:"
+      - "Tested: [tool] for [use case]. [Surprising finding] — here's the full breakdown."
+    what_to_cover:
+      - "What you were actually trying to do (specific use case, not vague)"
+      - "What the tool did well — with concrete examples, not generalities"
+      - "What surprised you — the thing you didn't expect"
+      - "Where you still had to step in (the human-in-the-loop moment)"
+      - "Whether you'd recommend it for brands — and for what specifically"
+      - "Your key takeaway about where AI helps vs where humans are still essential"
+    tone: "First-person, honest, personal. This is your experience, not a product review."
+    length: "medium"
+    note: "Generated from config/experiments.yaml entries with post_worthy: true and status: draft"
+    hashtag_priority:
+      - "#AITools"
+      - "#FutureOfWork"
+      - "#CreativeAI"
+
+  # ── 4. Trend Synthesis ────────────────────────────────────
+  # Trigger: Multiple AI developments point to the same underlying shift
+  - type: "trend_analysis"
+    label: "Trend Synthesis & Pattern Recognition"
+    trigger: >
+      Multiple AI developments across the same week or month point to the same
+      underlying pattern. You're not summarising individual stories — you're
+      connecting them into a single observation that cuts across companies.
+    hook_templates:
+      - "Three things happened in AI this week. They're telling the same story."
+      - "The pattern most people are missing in AI right now."
+      - "Something is shifting across the AI space. Here's the evidence."
+      - "Look past the individual announcements. Here's what they add up to."
+    what_to_cover:
+      - "3–4 distinct data points or developments from different companies/sources"
+      - "The underlying pattern you see connecting them (your synthesis, not a summary)"
+      - "Why this pattern matters right now — not in theory"
+      - "What brands should be watching or doing in response"
+      - "A specific, actionable call to action for your audience"
+    tone: "Pattern-finder, analytical. Show you see things others miss. Be specific."
+    length: "long"
+    hashtag_priority:
+      - "#GenerativeAI"
+      - "#AIForBusiness"
+      - "#BrandStrategy"
+
+  # ── 5. Brand & Marketing Lens ────────────────────────────
+  # Trigger: AI development with a direct implication for brand/marketing teams
+  - type: "brand_lens"
+    label: "Brand & Marketing Angle"
+    trigger: >
+      Any AI development that has a direct, specific implication for how brands
+      operate, create content, run campaigns, manage creative teams, or build
+      customer experiences — the kind of thing a CMO or brand lead should know.
+    hook_templates:
+      - "Marketers: this one is actually for you."
+      - "The AI story brand teams keep overlooking this week."
+      - "What [development] means for your brand team. Specifically."
+      - "Here's the AI development that matters most for creative and marketing right now."
+    what_to_cover:
+      - "The AI development in plain language (assume your reader isn't technical)"
+      - "The direct brand / marketing implication — be specific, not general"
+      - "What a forward-thinking brand team would do with this today"
+      - "What waiting costs — the opportunity cost of sitting this one out"
+      - "One concrete thing to try or watch"
+    tone: "Practical and direct. You're talking to brand and marketing leaders. Be actionable."
+    length: "medium"
+    hashtag_priority:
+      - "#MarketingAI"
+      - "#AIMarketing"
+      - "#BrandStrategy"
+      - "#ContentMarketing"

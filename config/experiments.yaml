@@ -1,0 +1,192 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# ============================================================
+# This is your "human-in-the-loop" content pillar.
+#
+# Add your own AI experiments here as you run them.
+# Each entry with post_worthy: true can become an "I tried X" LinkedIn post.
+#
+# To generate experiment posts, say in Claude Code:
+#   "Generate experiment posts from my experiments log"
+# ============================================================
+
+experiments:
+
+  # ── Your first experiment entry (edit and set post_worthy: true to activate) ──
+  - id: "claude-code-linkedin-pipeline"
+    tool: "Claude Code"
+    use_case: "Automated LinkedIn post drafting from AI news"
+    date_tested: "2026-10-24"
+    what_i_tested: >
+      Built a multi-agent pipeline in Claude Code that automatically fetches
+      AI news from RSS feeds, scores relevance, tracks trending keywords,
+      and drafts LinkedIn posts in my brand voice. The whole thing runs
+      without me writing a line of code.
+    what_worked: >
+      Article scoring and synthesis worked better than expected. Post quality
+      was high when given 5+ sources to pull from. The brand voice stayed
+      consistent across different post types.
+    what_surprised_me: >
+      How good the synthesis step was — combining 5-6 articles into one
+      coherent narrative with a clear opinion. That's the hardest part to do
+      manually and the AI handled it well.
+    what_didnt_work: >
+      Sometimes the hook felt like a news headline, not a scroll-stopper.
+      I end up rewriting the opening about 40% of the time. Still very
+      much human-in-the-loop on that layer.
+    time_saved: "~45 minutes per post draft"
+    would_recommend: true
+    key_insight: >
+      AI is brilliant at structure and synthesis. The human layer is the
+      opinion, the personal experience, and the judgment call on what
+      actually matters to your audience. Those can't be delegated.
+    post_worthy: true
+    post_angle: "I built an AI pipeline to draft my LinkedIn posts — it works, but here's where I still have to show up"
+    post_type: "experiment_recap"
+    status: "draft"   # draft | posted | skip
+
+  # ── Templates — fill in any of these when you run an experiment ───────────
+
+  - id: ""
+    tool: "ChatGPT"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Gemini"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Perplexity"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Midjourney"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "ElevenLabs"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Runway / Sora / Pika"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Suno / Udio"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "Cursor"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"
+
+  - id: ""
+    tool: "NotebookLM"
+    use_case: ""
+    date_tested: ""
+    what_i_tested: ""
+    what_worked: ""
+    what_surprised_me: ""
+    what_didnt_work: ""
+    time_saved: ""
+    would_recommend: null
+    key_insight: ""
+    post_worthy: false
+    post_angle: ""
+    post_type: "experiment_recap"
+    status: "skip"

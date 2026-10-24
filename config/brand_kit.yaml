@@ -6,13 +6,14 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"                    # Update with your full name when ready
+  title: "Brand & AI Strategist"    # Adjust to match your actual LinkedIn headline
+  # The line under your name on LinkedIn
+  tagline: "Helping brands understand and actually use AI — before their competitors do."
+  location: "Update with your city"
   industries:
-    - "Marketing & Brand Strategy"
+    - "Brand Strategy"
+    - "Marketing & Communications"
     - "Artificial Intelligence"
     - "Digital Innovation"
 
@@ -84,22 +85,22 @@ tone_of_voice:
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
-  # The lenses you write through
+  # The lenses you write through — all 5 post types map to these
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "Human-in-the-loop AI workflows — you as the editor and strategist, AI as the drafter"
+    - "Practical AI tools for brand building, marketing, and creative teams"
+    - "Product launches and new features — what they mean for brands right now"
+    - "AI startup funding and acquisitions — reading the signal behind the money"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Trend synthesis — connecting dots across the AI space others miss"
 
-  # Example angles you love to write about
+  # The 5 content angles you write — see config/content_angles.yaml for full templates
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "experiment_recap: I tested [AI tool] for [use case] — honest results"
+    - "product_launch: [Company] just launched [feature] — here's what brands should know"
+    - "funding_take: What [funding/acquisition] tells us about where AI is heading"
+    - "trend_analysis: Three things happened in AI this week — they're telling the same story"
+    - "brand_lens: The AI story brand teams keep overlooking this week"
 
   # Hashtag strategy
   hashtags:
