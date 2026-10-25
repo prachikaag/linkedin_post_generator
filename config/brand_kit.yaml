@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
+  name: "Prachi"                       # ← update to your full name
+  title: "Brand Strategist | AI Advocate"   # ← update to match your LinkedIn headline
   # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  tagline: "Helping brands understand and navigate the AI era — one experiment at a time"
+  location: "India"                    # ← update to your city, country
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
