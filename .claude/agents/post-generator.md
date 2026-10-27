@@ -34,10 +34,25 @@ Read `config/brand_kit.yaml` and extract:
 - `tone_of_voice.post_structure` — the ordered blueprint to follow
 - `tone_of_voice.dos` and `tone_of_voice.donts`
 - `brand.focus_areas` — the lenses the author writes through
+- `brand.content_angles` — the six named post types with their triggers, angles, hooks, and notes
 - `brand.hashtags.always_include` — hashtags in every post
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+### Step 1b — Select the Post Type
+
+Look at `brand.content_angles`. For each angle, read its `trigger` field.
+
+Compare the topics, companies, and categories of the supplied articles against each trigger:
+- YouTube video / demo from an AI company → use angle "YouTube/video launch"
+- New model, feature, or product launch → use angle "Tool or feature launch"
+- Big Tech company (Microsoft, Google, Apple, Amazon, Adobe, Nvidia, Salesforce) → use angle "Big Tech AI move"
+- Startup funding, acquisition, or valuation → use angle "AI startup funding"
+- Research paper, benchmark, or capability milestone → use angle "Research or breakthrough"
+- If the articles involve personal/workflow use cases, or if no other angle fits → use angle "Human in the loop experiment"
+
+Once you have selected the angle, use its `example_hook` as inspiration for the HOOK and its `notes` to shape the post's SO WHAT section. Do not copy the example hook literally — adapt it.
 
 ---
 

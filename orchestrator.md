@@ -153,3 +153,20 @@ Then print each post's content in full so the author can review immediately.
 - If any subagent fails or returns malformed JSON, log a warning and continue with the remaining steps
 - If post generation fails for one cluster, skip it and continue to the next
 - Never stop the entire pipeline because of a single subagent failure
+
+---
+
+## Content Angle Logic
+
+The post-generator automatically selects one of these post types based on the articles in each cluster:
+
+| Trigger | Post Angle |
+|---------|-----------|
+| YouTube video / demo from an AI company | "Watch this. Then think about what it means for brand storytelling." |
+| New model, feature, or product launch | "I tested [tool]'s new [feature] — here's what brands should know" |
+| Big tech AI move (Microsoft, Google, Apple, etc.) | "What [company]'s move means for every brand's marketing stack" |
+| Startup funding, acquisition, or valuation | "What [funding] tells us about where AI is heading for marketers" |
+| Personal experiment or workflow | "I used AI to [task] — here's what the human still has to do" |
+| Research paper, benchmark, or breakthrough | "The real-world implication the research community isn't talking about" |
+
+Each angle is defined in `config/brand_kit.yaml` under `brand.content_angles` — edit them to steer what gets written.

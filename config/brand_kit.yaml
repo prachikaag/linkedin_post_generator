@@ -6,31 +6,32 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Your Name"           # ← EDIT: e.g. "Prachi Jain"
+  title: "Your Title"         # ← EDIT: e.g. "Brand Strategist & AI Practitioner"
+  tagline: "Helping brands understand and leverage AI in the real world — from experiments to strategy."
+  location: "Your City, Country"   # ← EDIT: e.g. "London, UK"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
     - "Digital Innovation"
+    - "Creative Technology"
 
 # ── Your Voice ────────────────────────────────────────────
 tone_of_voice:
 
   # How you come across to your audience
   primary_traits:
-    - "Curious and experimental — you try AI tools and share honest results"
-    - "Pragmatic and business-focused — you connect AI news to real brand outcomes"
-    - "Accessible, not overly technical — you translate complexity into plain language"
-    - "Forward-thinking but grounded — optimistic with healthy, well-reasoned skepticism"
-    - "Opinionated — you have a clear point of view, not just a neutral summary"
-    - "Human — you write like a person, not a press release"
+    - "Curious and experimental — you try AI tools first-hand and share honest, unsponsored results"
+    - "Pragmatic and brand-focused — you connect every AI development to real marketing and brand outcomes"
+    - "Accessible, not overly technical — you translate complexity into plain English that a CMO can act on"
+    - "Forward-thinking but grounded — optimistic about AI, with healthy well-reasoned skepticism about hype"
+    - "Opinionated — you have a clear point of view, not just a neutral summary of the news"
+    - "Human in the loop — you position yourself as the editor, AI as the drafter, never the other way round"
+    - "Personal — you write like a real person sharing real experiments, not a press release or listicle"
 
   # Rules for how you write every post
   writing_style:
-    - "Write in first person. Share personal experiments and real observations."
+    - "Write in first person. Share personal experiments, real observations, and honest reactions."
     - "Short paragraphs only — 1 to 3 sentences max per paragraph."
     - "Start with a hook: a bold statement, a provocative question, or a surprising fact. Never start with 'I'."
     - "Use generous line breaks — LinkedIn rewards whitespace."
@@ -44,17 +45,17 @@ tone_of_voice:
     - "Tone is engaging and upbeat — curious, alive, not dry. Write like someone excited by what they're seeing."
     - "One emoji per paragraph maximum. Place it where it adds energy, never as decoration. Never two in the same paragraph."
     - "Write as a third-party observer. Present the full picture across companies — never frame the story as one company winning."
-    - "Lead with impact and meaning. What does this change for real people and teams? Numbers are a last resort, not a first instinct."
+    - "Lead with impact and meaning. What does this change for real brands and marketing teams? Numbers are a last resort."
     - "Only use numbers when they are the single most powerful way to make the point. Otherwise describe the impact in human terms."
     - "Never reference past news as current. Before writing 'this week', 'today', or 'yesterday', verify the event date against today's actual date. If it happened more than 7 days ago, say 'recently' or give the context without a time reference."
 
   # The blueprint for every post
   post_structure:
     - "HOOK (1-2 lines): A bold statement, surprising stat, or question that stops the scroll. Never start with 'I am excited to share...'"
-    - "CONTEXT (2-3 lines): The broader picture — what is happening across the space, not just one article. Reference multiple developments."
+    - "CONTEXT (2-3 lines): The broader picture — what is happening across the AI space, not just one article. Reference multiple developments."
     - "EVIDENCE (4-6 lines): Cite data points, developments, and quotes from multiple sources. Weave citations naturally. Direct quotes must be attributed as: \"[quote]\" — Full Name, Title, Company"
-    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean? Be specific and opinionated."
-    - "SO WHAT (2-3 lines): What this means for brands, marketers, or business leaders. One or two concrete, actionable things they should do or watch."
+    - "YOUR TAKE (3-5 lines): Your synthesis and personal opinion across everything you have read. What is the pattern? What does it mean for brands specifically? Be specific and opinionated."
+    - "SO WHAT (2-3 lines): What this means for brands, marketers, or marketing leaders right now. One or two concrete, actionable things they should do or watch."
     - "CTA (1 line): A question that invites genuine discussion in the comments."
     - "SOURCES (minimum 4, each on its own line): Numbered list of all cited sources with full URLs."
     - "HASHTAGS: 4-5 relevant hashtags on the very last line."
@@ -67,8 +68,9 @@ tone_of_voice:
     - "Ask engaging questions that invite genuine discussion in the comments"
     - "Use specific numbers, quotes, or data points when available"
     - "Acknowledge uncertainty when you genuinely don't know something"
-    - "React to news within your own professional lens — branding, marketing, creativity"
+    - "React to news through your professional lens — branding, marketing creativity, and strategy"
     - "Share your contrarian take when you disagree with the mainstream narrative"
+    - "Position yourself as an experimenter: 'I tested this', 'I asked Claude to...', 'Here's what happened'"
 
   # What undermines your credibility
   donts:
@@ -80,26 +82,58 @@ tone_of_voice:
     - "Don't summarise without adding your own perspective"
     - "Don't use buzzwords like 'game-changer', 'revolutionary', 'disruptive' without specifics"
     - "Don't write hype — write insight"
+    - "Don't position AI as replacing human creativity — the story is always human + AI"
 
 # ── Your Brand Focus ───────────────────────────────────────
 brand:
 
   # The lenses you write through
   focus_areas:
-    - "Practical AI tools for marketing and brand building"
-    - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
-    - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "Practical AI tools for marketing and brand building — tools you've actually used"
+    - "Human-in-the-loop AI workflows — you as the strategist and editor, AI as the drafter and researcher"
+    - "Future of creative work with generative AI — what changes for brand teams and agencies"
+    - "AI strategy and literacy for marketing teams and brand leaders who aren't technical"
+    - "The AI startup ecosystem and what it means for brands, agencies, and marketers"
+    - "Experimenting with AI in your own day-to-day work and sharing honest results — wins and failures"
+    - "How big brands are using AI in marketing, campaigns, and creative production"
 
-  # Example angles you love to write about
+  # The exact types of posts you want to write (one per content_angle)
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
-    - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    # ── Post type 1: Tool or feature launch ─────────────────
+    - trigger: "New AI tool feature or product launch"
+      angle: "I tested [AI tool]'s new [feature] — here's what brands should know"
+      example_hook: "A new feature just landed that changes how fast a brand team can produce [content type]."
+      notes: "Trigger on: any model update, new product launch, YouTube video from AI company, major feature release. Focus on: what it does, what brands can do with it now, your quick test if you can."
+
+    # ── Post type 2: Big Tech AI move ───────────────────────
+    - trigger: "Big tech AI news (Microsoft, Google, Apple, Amazon, Adobe, Nvidia, Salesforce)"
+      angle: "What [company]'s latest move means for every brand's marketing stack"
+      example_hook: "When a company that handles [X million/billion] users adds AI to [product], that's not a product update — it's a platform shift."
+      notes: "Focus on downstream implications for marketing teams, agencies, and brand managers. Avoid just summarising the news."
+
+    # ── Post type 3: AI startup funding ─────────────────────
+    - trigger: "AI startup raises funding, gets acquired, or reaches milestone valuation"
+      angle: "What [funding/acquisition] tells us about where AI is heading for marketers"
+      example_hook: "When [company] raises [$X], ask what problem investors are betting on."
+      notes: "Connect the funding to a real use case in marketing, brand, or creative work. What does it validate? What should brands watch for?"
+
+    # ── Post type 4: Human in the loop experiment ────────────
+    - trigger: "Personal AI experiment or workflow you've been testing"
+      angle: "I used AI to [task] — here's what the human still has to do"
+      example_hook: "I spent [time] using AI to [task]. Here's what worked, what didn't, and what it still can't do."
+      notes: "This is the most authentic post type. Be specific about the tool, the task, the result. Show the edit you made, the prompt that worked, the output that was wrong. Human in the loop = you directing the AI, not the AI running solo."
+
+    # ── Post type 5: YouTube/video launch from AI company ────
+    - trigger: "AI company ships a YouTube video, demo, or visual product launch"
+      angle: "Watch this. Then think about what it means for brand storytelling."
+      example_hook: "A [company] just dropped a [video/demo] that shows [capability]. I watched it three times."
+      notes: "When AI companies ship demos — Sora, Runway, Pika, ElevenLabs voice demos — write about what it means for creative teams and brand production workflows. Ask: what can a lean brand team do with this now?"
+
+    # ── Post type 6: Research or breakthrough ───────────────
+    - trigger: "AI research paper, benchmark result, or capability milestone"
+      angle: "The real-world implication that the research community isn't talking about"
+      example_hook: "A new [paper/benchmark/model] dropped this week. Most coverage focuses on [technical detail]. Here's what matters for brands."
+      notes: "Translate from technical to practical. Skip the jargon. Focus on one specific implication for a marketing or brand use case."
 
   # Hashtag strategy
   hashtags:
@@ -124,6 +158,9 @@ brand:
       - "#CreativeAI"
       - "#LLM"
       - "#AIAgent"
+      - "#HumanInTheLoop"
+      - "#BrandBuilding"
+      - "#MarketingStrategy"
 
   max_hashtags: 5
 
@@ -139,6 +176,8 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I tested this so you don't have to."
+    - "The human still has to..."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.
