@@ -28,8 +28,27 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `EXPERIMENTS_MODE` — if true, skip news pipeline and only generate posts from experiments (default: **false**)
+- `INCLUDE_EXPERIMENTS` — if true, also generate any queued experiment posts alongside news posts (default: **true**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
+
+---
+
+## Step 0 — Check for Queued Experiments
+
+Read `config/experiments.yaml`.
+Find any experiments where `want_to_write_about: true`.
+
+If `EXPERIMENTS_MODE` is true:
+- Skip Steps 1–3 entirely
+- Go directly to Step 3.5 (Experiments) with all queued experiments
+
+If `INCLUDE_EXPERIMENTS` is true and there are queued experiments:
+- Note them — they will be processed in Step 3.5 after the news pipeline
+- Print: `✓ {N} experiment(s) queued for posts.`
+
+If no experiments are queued, print nothing and continue.
 
 ---
 
@@ -103,6 +122,36 @@ Collect each result's JSON object.
 
 ---
 
+## Step 3.5 — Generate Experiment Posts (optional)
+
+If there are queued experiments (from Step 0):
+
+For each experiment with `want_to_write_about: true`, spawn the **experiment-post-generator** subagent (defined in `.claude/agents/experiment-post-generator.md`).
+
+Task for the subagent (include the full JSON data inline):
+```
+Generate a LinkedIn experiment post from the following data and save it to posts/.
+
+Input:
+{
+  "experiment": {<experiment object as JSON>},
+  "posts_dir": "posts/"
+}
+```
+
+Print progress per experiment:
+```
+Experiment post — tool: {experiment.tool}
+  Task: {experiment.task}
+  ✓ Saved → {result.filename}
+```
+
+Collect each result's JSON. Append to the main results list.
+
+After generating, remind the author to set `want_to_write_about: false` in `config/experiments.yaml` for each experiment written about, to avoid regenerating the same post on the next run.
+
+---
+
 ## Step 5 — Publish to Notion (optional)
 
 Read `.env` and check for `NOTION_PAGE_ID`. If it is set and non-empty:
@@ -136,7 +185,8 @@ Print a summary table:
 ╔══════════════════════════════════════════════════════╗
 ║  LinkedIn Post Generator — Run Complete              ║
 ╠══════════════════════════════════════════════════════╣
-║  Posts generated : {N}                               ║
+║  News posts      : {N}                               ║
+║  Experiment posts: {M}                               ║
 ║  Saved to        : posts/                            ║
 ╠══════════════════════════════════════════════════════╣
 ║  {filename}  ·  {source_count} sources               ║
@@ -145,6 +195,9 @@ Print a summary table:
 ```
 
 Then print each post's content in full so the author can review immediately.
+
+If any experiment posts were generated, remind the author:
+> "Set `want_to_write_about: false` in `config/experiments.yaml` for the experiments above to prevent re-generating them next run."
 
 ---
 

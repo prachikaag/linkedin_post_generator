@@ -10,11 +10,19 @@ The pipeline is a **multi-agent system** where an orchestrator spawns specialise
 
 ```
 orchestrator.md
-├── .claude/agents/news-gatherer.md      → fetches + scores RSS articles
-├── .claude/agents/trending-tracker.md   → finds trending keyword phrases
-├── .claude/agents/post-generator.md     → writes & saves LinkedIn post drafts
-└── .claude/agents/notion-publisher.md   → publishes drafts to Notion (optional)
+├── .claude/agents/news-gatherer.md              → fetches + scores RSS articles
+├── .claude/agents/trending-tracker.md           → finds trending keyword phrases
+├── .claude/agents/post-generator.md             → writes news-driven post drafts
+├── .claude/agents/experiment-post-generator.md  → writes personal "I tried X" posts
+└── .claude/agents/notion-publisher.md           → publishes drafts to Notion (optional)
 ```
+
+### Two post types
+
+| Type | Source | How to trigger |
+|------|--------|----------------|
+| **News posts** | RSS feeds + trending search | Runs automatically every pipeline run |
+| **Experiment posts** | `config/experiments.yaml` | Add entry, set `want_to_write_about: true`, run pipeline |
 
 Each agent is a self-contained markdown file with its own role, tools, and input/output contract. The orchestrator passes data between them — no Python glue code required.
 
@@ -54,9 +62,10 @@ All settings live in `config/`:
 
 | File | Purpose |
 |------|---------|
+| `config/brand_kit.yaml` | **Start here** — author voice, tone, writing style, and hashtag rules |
+| `config/topics.yaml` | AI companies, keywords, and freshness settings |
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/experiments.yaml` | Personal AI experiments log — queue posts about what you've tried |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -114,6 +123,12 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Reads**: `config/brand_kit.yaml`
 - **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
+
+### `experiment-post-generator`
+- **Tools**: Read, Write
+- **Reads**: `config/brand_kit.yaml`, a single experiment entry from `config/experiments.yaml`
+- **Does**: Writes a first-person "I tried this AI tool" post from the author's experiment notes
+- **Output**: JSON object with filename, filepath, and experiment metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP

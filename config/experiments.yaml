@@ -1,0 +1,69 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# Add entries here for any AI tools or workflows you've tried.
+# Set want_to_write_about: true to queue it for a LinkedIn post.
+# The experiment-post-generator agent reads this file.
+# ============================================================
+
+experiments:
+
+  # ── Example entry — edit or delete this ────────────────────
+  - tool: "Claude Code"
+    task: "Automated LinkedIn post drafting pipeline"
+    date: "2024-10-30"
+    what_i_did: >
+      Built a multi-agent pipeline that reads RSS feeds, checks trending
+      keywords, and writes LinkedIn posts in my own voice — entirely
+      through Claude agents with no Python code.
+    what_surprised_me: >
+      The posts came out sounding like me on the first try. I expected
+      to spend hours editing. I spent 10 minutes.
+    what_didnt_work: >
+      RSS feeds for some sources (The Information, CNBC) returned
+      paywalled content summaries rather than full articles. Need
+      to find better sources for those.
+    honest_verdict: >
+      Human-in-the-loop still essential — the agent writes the draft,
+      I make the call on whether the angle is right. That's the sweet
+      spot. Fully automated would miss nuance; no AI would leave speed
+      on the table.
+    outcome: "Saved 2–3 hours of manual research and drafting per week"
+    want_to_write_about: false   # flip to true to queue for a post
+
+  # ── Template for new experiments ───────────────────────────
+  # Uncomment and fill in when you try something new:
+  #
+  # - tool: "Tool or Platform Name"
+  #   task: "What you were trying to do"
+  #   date: "YYYY-MM-DD"
+  #   what_i_did: >
+  #     1-3 sentences on the actual workflow or test.
+  #   what_surprised_me: >
+  #     The unexpected result — good or bad. Be specific.
+  #   what_didnt_work: >
+  #     Honest about limitations. This builds credibility.
+  #   honest_verdict: >
+  #     Your bottom line. Would you use it again? For what?
+  #   outcome: "Time saved / quality change / key insight (one line)"
+  #   want_to_write_about: false
+
+# ── Experiment Ideas (not tried yet) ──────────────────────────
+# Track things you want to test but haven't yet.
+# The post generator will skip these (no want_to_write_about field).
+
+experiment_ideas:
+  - idea: "Use ElevenLabs to create a voice version of my LinkedIn posts"
+    why_interesting: "Audio content on LinkedIn is underused — could stand out"
+    status: "not started"
+
+  - idea: "Run Midjourney prompts for every post visual instead of stock photos"
+    why_interesting: "Test whether custom AI art outperforms generic images"
+    status: "not started"
+
+  - idea: "Use Perplexity Deep Research to pre-brief me before writing a post"
+    why_interesting: "Compare depth of research vs my current RSS-only method"
+    status: "not started"
+
+  - idea: "Draft a post entirely in ChatGPT, then rewrite it in Claude — compare"
+    why_interesting: "Shows audience the difference in output quality side by side"
+    status: "not started"
