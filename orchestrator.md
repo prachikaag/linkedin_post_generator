@@ -25,9 +25,10 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many news posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `INCLUDE_EXPERIMENTS` — if true, also generate posts from personal experiments (default: **true**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -100,6 +101,38 @@ Post {i+1} — anchor: {cluster[0].title[:65]}
 ```
 
 Collect each result's JSON object.
+
+---
+
+## Step 4b — Generate Experiment Posts (optional)
+
+If `INCLUDE_EXPERIMENTS` is true:
+
+Read `config/personal_experiments.yaml` and collect all entries where `status: "ready"`.
+
+If there are any `ready` experiments, spawn the **experiment-writer** subagent (defined in `.claude/agents/experiment-writer.md`) once per experiment.
+
+Task for the subagent (include the full JSON data inline):
+```
+Generate a personal experiment LinkedIn post draft from the following data and save it to posts/.
+
+Input:
+{
+  "experiment": {<experiment object as JSON>},
+  "trending_keywords": [<trending keywords as JSON>],
+  "posts_dir": "posts/"
+}
+```
+
+Print progress per experiment post:
+```
+Experiment Post — tool: {experiment.tool} / use case: {experiment.use_case}
+  ✓ Saved → {result.filename}
+```
+
+Collect each result's JSON object and add to the main results list.
+
+If there are no `ready` experiments, print: `No ready experiments found — add entries with status: "ready" in config/personal_experiments.yaml to generate experiment posts.`
 
 ---
 

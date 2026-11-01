@@ -1,0 +1,89 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS
+# Log your own hands-on experiments with AI tools here.
+# These feed the "I tried X" and "human in the loop" posts
+# that make your content stand out from pure news summaries.
+# ============================================================
+#
+# HOW TO ADD AN EXPERIMENT:
+#   1. Copy the template at the bottom of this file
+#   2. Fill in all fields
+#   3. Set status: "ready" when you're happy for it to be turned into a post
+#   4. The experiment-writer agent will pick up anything with status: "ready"
+#
+# STATUSES:
+#   draft     → still gathering notes, not ready to write
+#   ready     → complete, generate a post from this
+#   published → post has been generated and you've posted it to LinkedIn
+# ============================================================
+
+experiments:
+
+  # ── Template (copy this to add a new experiment) ──────────
+  # - tool: "Tool Name"
+  #   use_case: "What you were trying to do"
+  #   what_i_did: |
+  #     Brief description of what you actually tried —
+  #     what you tested, how long it took, what inputs you gave.
+  #   what_worked: |
+  #     What genuinely impressed you or worked better than expected.
+  #   what_didnt_work: |
+  #     Where it fell short, surprised you, or made you adjust your approach.
+  #   key_insight: |
+  #     The one thing you'd tell a brand or marketer. Your honest take.
+  #   context: "Marketing / Content / Strategy / Ops / Design / Dev / Research"
+  #   status: "draft"
+  #   date_tested: "YYYY-MM-DD"
+  # ---------------------------------------------------------
+
+  # Add your experiments below. The example below can be deleted.
+  - tool: "Claude"
+    use_case: "Drafting a brand positioning brief"
+    what_i_did: |
+      Used Claude to co-write a positioning brief for a client pitch.
+      Gave it the brand's existing messaging, three competitor briefs,
+      and a rough notes doc from a stakeholder workshop.
+    what_worked: |
+      The synthesis was impressive — it spotted a gap neither we nor the
+      client had named explicitly. Draft came back 80% usable.
+    what_didnt_work: |
+      The tone defaulted to consulting-speak. Needed two rounds of edits
+      to make it sound like a real brand document, not a McKinsey slide.
+    key_insight: |
+      AI is a thinking partner, not a copywriter. Use it to synthesise
+      and structure; keep the voice for yourself.
+    context: "Strategy / Brand"
+    status: "draft"
+    date_tested: "2026-01-01"
+
+  - tool: "Midjourney"
+    use_case: "Creating mood boards for a brand refresh"
+    what_i_did: |
+      Generated 40+ images across 6 visual directions using v6 prompts.
+      Ran this alongside a human designer doing the same brief.
+    what_worked: |
+      Speed was transformative — what normally takes a week of sourcing
+      took two hours. Client had tangible references to react to immediately.
+    what_didnt_work: |
+      Midjourney is literal. Nuanced brand language — 'quiet confidence',
+      'understated warmth' — needed careful prompting to translate visually.
+    key_insight: |
+      Human designers still own interpretation. Midjourney owns iteration speed.
+      The best workflow uses both.
+    context: "Design / Brand"
+    status: "draft"
+    date_tested: "2026-01-15"
+
+# ── Experiment Categories ──────────────────────────────────
+# Used by the experiment-writer agent to tag and cluster posts.
+categories:
+  - "Content creation"
+  - "Brand strategy"
+  - "Campaign ideation"
+  - "Market research"
+  - "Design and visuals"
+  - "Copywriting"
+  - "Data analysis"
+  - "Client presentations"
+  - "Workflow automation"
+  - "Team productivity"

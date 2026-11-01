@@ -57,6 +57,7 @@ All settings live in `config/`:
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/personal_experiments.yaml` | Your own AI experiments — generates "I tried X" posts |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -115,6 +116,13 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
 
+### `experiment-writer`
+- **Tools**: Read, Write
+- **Reads**: `config/brand_kit.yaml`, `config/personal_experiments.yaml`
+- **Does**: Turns your personal AI experiment notes into first-person "I tried X" LinkedIn posts
+- **Output**: JSON object with filename, filepath, content, and experiment metadata
+- **Trigger**: Any entry in `config/personal_experiments.yaml` with `status: "ready"`
+
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
 - **Does**: Appends the post as a toggle block on a Notion page
@@ -133,6 +141,26 @@ Edit `config/brand_kit.yaml` to set:
 - Minimum sources per post
 
 The post-generator agent reads this file on every run — no restarts needed.
+
+---
+
+## Writing "I Tried X" Posts (Personal Experiments)
+
+Open `config/personal_experiments.yaml` and add an experiment entry:
+
+```yaml
+- tool: "Claude"
+  use_case: "Writing a brand brief from workshop notes"
+  what_i_did: "Fed it three competitor briefs and a workshop notes doc..."
+  what_worked: "Synthesis spotted a positioning gap neither we nor the client had named..."
+  what_didnt_work: "Tone defaulted to consulting-speak. Needed two rounds of edits..."
+  key_insight: "AI is a thinking partner, not a copywriter. Keep the voice for yourself."
+  context: "Strategy / Brand"
+  status: "ready"
+  date_tested: "2024-01-15"
+```
+
+Set `status: "ready"` and the next pipeline run will generate a post from it automatically.
 
 ---
 
