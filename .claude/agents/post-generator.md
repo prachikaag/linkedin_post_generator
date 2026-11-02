@@ -65,6 +65,11 @@ Following the brand kit precisely, write a post that:
 - No walls of text; no corporate jargon
 - Write as `author.name` in first person
 
+### Human-in-the-loop angle (use when relevant):
+- If the news is about a tool the author could plausibly test (ChatGPT, Claude, Perplexity, Midjourney, ElevenLabs, etc.), frame the YOUR TAKE section as: "Here's how I'd use this in practice" or "I tested something similar — here's what actually changes"
+- If articles cover a YouTube video or product demo, acknowledge it directly: "Watch the demo — the [specific moment] is worth your attention"
+- The goal is to show the author is actively experimenting with AI, not just reporting on it
+
 ### URL rule (zero exceptions):
 - You may **only** use URLs that appear verbatim in the `"url"` fields of the supplied articles
 - Never construct, guess, shorten, or modify a URL — not even for well-known sites like openai.com or techcrunch.com

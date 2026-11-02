@@ -5,12 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# ACTION REQUIRED: Replace the placeholder values below with your real details.
+# These appear in every generated post and control how Claude writes "in your voice."
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                  # ← Replace with your real name
+  title: "Your Professional Title"   # ← Replace with your LinkedIn headline
+  # Example tagline: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"     # ← Replace with your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -95,11 +97,19 @@ brand:
 
   # Example angles you love to write about
   content_angles:
+    # Human-in-the-loop / personal experimentation angles
     - "I tried [AI tool] for [use case] — here's what actually happened"
+    - "I used [Claude/ChatGPT/Perplexity] to [task] — honest results"
+    - "Testing [new feature] in real work: what changed, what didn't"
+    - "What I learned experimenting with [AI tool] this week"
+    # News reaction angles
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    # Opinion angles
+    - "Unpopular opinion: [AI development] is being misread by most brands"
+    - "How brands can actually use [new AI capability] today (not in 2 years)"
 
   # Hashtag strategy
   hashtags:
