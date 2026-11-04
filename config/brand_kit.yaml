@@ -5,12 +5,13 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# ACTION REQUIRED: Replace the placeholder values below with your real details.
+# These values appear in every generated post.
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  name: "Your Name"                           # e.g. "Prachi Kaag"
+  title: "Your LinkedIn Headline"             # e.g. "Brand Strategist | AI Marketing | Helping brands navigate the AI era"
   tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  location: "Your City, Country"              # e.g. "Sydney, Australia"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -95,11 +96,28 @@ brand:
 
   # Example angles you love to write about
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
+    # Human-in-the-loop experimentation (your signature angle)
+    - "I used [AI tool] for [specific task] — here's what actually happened (and what it still can't do)"
+    - "I spent [time period] testing [AI tool] — here's the honest breakdown"
+    - "Here's my current AI workflow for [task]. It took me [X tries] to get it right."
+
+    # News reaction through a brand lens
     - "[Company] just launched [feature] — here's what brands should know"
-    - "The real reason [AI development] matters for marketers"
-    - "[Trending topic] explained without the hype"
-    - "What [funding/acquisition] tells us about where AI is heading"
+    - "What [AI company]'s latest move tells us about where the industry is heading"
+    - "[AI company] shipped something interesting. Here's the brand marketing angle nobody is talking about."
+
+    # Funding and market signals
+    - "[Startup] just raised $[X]M. Here's why that matters for brands, not just builders."
+    - "Every time [AI category] gets a big funding round, brands should pay attention. Here's why."
+
+    # Synthesis and opinion
+    - "The real reason [AI development] matters for marketers (it's not what you think)"
+    - "[Trending topic] explained without the hype — and what brands should actually do about it"
+    - "I've been watching [AI trend] for [period]. Here's the pattern I'm seeing."
+
+    # YouTube and feature launches
+    - "[Company] just dropped a [video/demo] showing [feature]. Here's what I noticed."
+    - "Watched [Company]'s latest demo. Three things stood out for anyone in brand or marketing."
 
   # Hashtag strategy
   hashtags:
@@ -139,6 +157,10 @@ brand:
     - "The real question is..."
     - "Worth paying attention to."
     - "What does this mean for brands?"
+    - "I've been experimenting with this..."
+    - "Here's my honest take:"
+    - "Most brands aren't paying attention to this yet."
+    - "This is the part nobody is talking about."
 
 # ── Research & Citation Standards ─────────────────────────
 # These rules are injected directly into the AI prompt as hard requirements.
