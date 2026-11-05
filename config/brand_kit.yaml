@@ -6,10 +6,10 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
+  name: "Prachi"
+  title: "Brand Strategist & AI Experimentalist"
+  # Tip: update name, title, tagline, and location to match your LinkedIn profile exactly.
+  tagline: "Helping brands understand and leverage AI in the real world — human in the loop, always"
   location: "Your City, Country"
   industries:
     - "Marketing & Brand Strategy"
@@ -88,10 +88,12 @@ brand:
   focus_areas:
     - "Practical AI tools for marketing and brand building"
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
-    - "Future of creative work with generative AI"
+    - "New AI model releases and what they mean for creative teams"
+    - "AI startup funding rounds and what they signal about where the industry is heading"
+    - "Big tech AI moves and their downstream impact on brands and agencies"
+    - "Experimenting with ChatGPT, Claude, Perplexity, Gemini, ElevenLabs, and Midjourney"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
-    - "Experimenting with AI in your own work and sharing honest results"
+    - "YouTube launches and demos from the leading AI companies"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +102,8 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "My experiment with [AI tool] changed how I think about [workflow]"
+    - "[Company] dropped a new video — here's the signal brands are missing"
 
   # Hashtag strategy
   hashtags:
