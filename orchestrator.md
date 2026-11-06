@@ -25,9 +25,10 @@ Your job is to run the full pipeline end-to-end by delegating to four specialise
 ## Parameters
 
 Before starting, determine:
-- `MAX_POSTS` — how many posts to generate (default: **2**)
+- `MAX_POSTS` — how many posts to generate from news (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `INCLUDE_EXPERIMENTS` — if true, also generate posts from ready experiments (default: **true**)
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -100,6 +101,36 @@ Post {i+1} — anchor: {cluster[0].title[:65]}
 ```
 
 Collect each result's JSON object.
+
+---
+
+## Step 4b — Generate Experiment Posts (optional)
+
+If `INCLUDE_EXPERIMENTS` is true:
+
+Read `config/experiments.yaml` and collect all experiments where `status: "ready_to_post"`.
+
+For each such experiment, spawn the **experiment-writer** subagent (defined in `.claude/agents/experiment-writer.md`).
+
+Task for the subagent (include the full data inline):
+```
+Generate a LinkedIn post from this personal experiment and save it to posts/.
+
+Input:
+{
+  "experiment": {<experiment object as JSON>},
+  "trending_keywords": [<trending keywords as JSON>],
+  "posts_dir": "posts/"
+}
+```
+
+Print progress per experiment post:
+```
+Experiment Post — {experiment.tool}: {experiment.use_case[:60]}
+  ✓ Saved → {result.filename}
+```
+
+Collect each result's JSON object alongside the news-based post results.
 
 ---
 

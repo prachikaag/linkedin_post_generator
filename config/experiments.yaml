@@ -1,0 +1,146 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS
+# This is your "human in the loop" content bank.
+# Log AI experiments you've run — these become LinkedIn posts.
+#
+# HOW TO USE:
+#   1. Add an entry under experiments: each time you test an AI tool
+#   2. Set status: "draft" while you're writing notes
+#   3. Set status: "ready_to_post" when you're ready for a post to be generated
+#   4. Set status: "published" after the post goes live on LinkedIn
+#   5. Add the LinkedIn URL to linkedin_post_url once published
+#
+# The pipeline's post-generator can write a full LinkedIn post
+# from any experiment with status: "ready_to_post"
+# ============================================================
+
+experiments:
+
+  # ── TEMPLATE — copy this block for each new experiment ──
+  # - id: "exp-001"
+  #   tool: "Claude Sonnet"
+  #   use_case: "Writing a full brand brief from a one-line prompt"
+  #   date_tested: "2024-01-15"
+  #   status: "ready_to_post"   # draft | ready_to_post | published
+  #   linkedin_post_url: ""     # fill in after publishing
+  #
+  #   # What you actually did — be specific
+  #   what_i_tried: >
+  #     I gave Claude a single sentence: "Write a brand brief for a sustainable activewear brand
+  #     targeting Gen Z women in Australia." No other context. No example.
+  #
+  #   # What you got — honest, specific results
+  #   what_happened: >
+  #     First draft was surprisingly structured — 8 sections, correct format,
+  #     plausible tone. But the audience insight was generic. Needed 2 refinement
+  #     prompts to get to something a real strategist would be proud of.
+  #
+  #   # The honest verdict — what brands should take away
+  #   takeaway: >
+  #     AI gets you to 70% faster than any human. The last 30% — the insight that
+  #     makes it ownable — still needs you. That's not a limitation. That's the job.
+  #
+  #   # Optional: attach related URLs / sources
+  #   related_urls: []
+  #
+  #   # Optional: specific AI tool version tested
+  #   tool_version: "claude-sonnet-4-6"
+
+
+  # ── EXAMPLE EXPERIMENTS (replace with your real ones) ────
+
+  - id: "exp-001"
+    tool: "ChatGPT"
+    use_case: "Generating social media copy variations for a product launch"
+    date_tested: "2024-01-10"
+    status: "draft"
+    linkedin_post_url: ""
+
+    what_i_tried: >
+      Asked ChatGPT to write 5 LinkedIn post variations for a hypothetical product launch.
+      Same brief, different angles — urgent, conversational, data-led, storytelling, provocative.
+
+    what_happened: >
+      The first three were average. The fourth one — storytelling angle — was actually usable.
+      The fifth (provocative) crossed a line I wouldn't publish. Needed editing on all of them
+      but the storytelling one took me to 80% in about 2 minutes.
+
+    takeaway: >
+      Volume is the real value here. 5 options in 2 minutes means you can pick the best angle
+      instead of defending the only one you wrote. The edit is still yours to make.
+
+    related_urls: []
+
+  - id: "exp-002"
+    tool: "Midjourney"
+    use_case: "Creating brand imagery for a pitch deck without a designer"
+    date_tested: "2024-01-20"
+    status: "draft"
+    linkedin_post_url: ""
+
+    what_i_tried: >
+      Used Midjourney v6 to generate 10 hero images for a pitch deck. Brief was:
+      modern, premium, human-centred tech brand. No stock photo look.
+
+    what_happened: >
+      Images were visually impressive but required very specific prompts to avoid the "AI look".
+      After about 15 iterations found a style that felt authentic. Total time: 45 mins.
+      Would have taken 3-4 hours sourcing/commissioning alternatives.
+
+    takeaway: >
+      Midjourney is not "just describe what you want". It's a craft with a learning curve.
+      The brands that figure this out early will have a real production advantage.
+
+    related_urls: []
+
+  - id: "exp-003"
+    tool: "ElevenLabs"
+    use_case: "Creating a voiceover for a brand explainer video"
+    date_tested: "2024-02-01"
+    status: "draft"
+    linkedin_post_url: ""
+
+    what_i_tried: >
+      Used ElevenLabs to clone a consistent brand voice for a 90-second explainer video.
+      Tested 3 different voice presets before settling on one that matched the brand tone.
+
+    what_happened: >
+      The result was surprisingly good — better than expected for a free tier test.
+      Pacing still needed manual editing in the video tool. The voice itself was believable.
+      Total cost: $0 for the test. Would cost less than hiring a voiceover artist for a draft.
+
+    takeaway: >
+      Audio branding is about to change. If your brand doesn't have a voice guidelines
+      document that covers AI voice use, you need one before 2025.
+
+    related_urls: []
+
+  - id: "exp-004"
+    tool: "Perplexity"
+    use_case: "Competitor analysis for a brand strategy presentation"
+    date_tested: "2024-02-10"
+    status: "published"
+    post_file: "posts/2026-11-06_10-00-00_perplexity-competitor-analysis.md"
+    linkedin_post_url: ""  # fill in after posting to LinkedIn
+
+    what_i_tried: >
+      Used Perplexity Pro to run a competitor analysis across 5 brands in the same category.
+      Asked it to summarise positioning, recent campaigns, and tone of voice for each.
+      Then compared Perplexity's output against my own manual desk research.
+
+    what_happened: >
+      Perplexity got the positioning summaries right on 4 out of 5 brands. The fifth was out
+      of date — it had missed a recent rebrand. It cited sources for everything, which made
+      fact-checking fast. The manual version took me 3 hours. Perplexity: 20 minutes.
+      I still had to do strategic synthesis — Perplexity gave me information, not insight.
+
+    takeaway: >
+      Perplexity doesn't replace strategic thinking. It eliminates the data-gathering phase.
+      That's still a 2-3 hour gift back to every strategist who starts using it properly.
+
+    related_urls: []
+
+# ── Experiment Archive ─────────────────────────────────────
+# Move experiments here once they are published to keep the
+# active list clean, or just change status to "published"
+archive: []

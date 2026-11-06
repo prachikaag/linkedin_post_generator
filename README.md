@@ -50,13 +50,18 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — edit any file directly, changes take effect on the next run.
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds, API sources, and YouTube channels to fetch from |
+| `config/topics.yaml` | Companies, keywords, freshness settings, and category scoring |
+| `config/brand_kit.yaml` | Your name, voice, tone, writing style, post types, and hashtag rules |
+| `config/experiments.yaml` | Your personal AI experiments — the "human in the loop" content bank |
+
+### Adding a personal experiment
+
+Open `config/experiments.yaml` and add an entry. Set `status: "ready_to_post"` when you want the pipeline to write a post from it. The experiment-writer agent picks it up automatically on the next run.
 
 Edit these files directly — changes take effect on the next run.
 
@@ -100,7 +105,7 @@ Change `status: draft` to `status: published` to track what's gone live.
 ### `news-gatherer`
 - **Tools**: Read, WebFetch
 - **Reads**: `config/sources.yaml`, `config/topics.yaml`
-- **Does**: Fetches all enabled RSS feeds, scores articles by keyword relevance, deduplicates, returns top articles as JSON
+- **Does**: Fetches all enabled RSS feeds and YouTube channels, scores articles by keyword relevance, deduplicates, returns top articles as JSON
 - **Output**: JSON array of scored article objects
 
 ### `trending-tracker`
@@ -114,6 +119,12 @@ Change `status: draft` to `status: published` to track what's gone live.
 - **Reads**: `config/brand_kit.yaml`
 - **Does**: Synthesises a cluster of articles into a branded LinkedIn post, validates URLs, saves as `.md` draft
 - **Output**: JSON object with filename, filepath, content, and source metadata
+
+### `experiment-writer`
+- **Tools**: Read, Write
+- **Reads**: `config/brand_kit.yaml`
+- **Does**: Turns a personal AI experiment from `config/experiments.yaml` into a first-person "human in the loop" LinkedIn post
+- **Output**: JSON object with filename, filepath, content, and experiment metadata
 
 ### `notion-publisher`
 - **Tools**: Read, Notion MCP
