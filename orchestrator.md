@@ -28,6 +28,8 @@ Before starting, determine:
 - `MAX_POSTS` — how many posts to generate (default: **2**)
 - `SOURCE_POOL_SIZE` — articles per post cluster (default: **6**)
 - `DRY_RUN` — if true, run steps 1–2 only and stop before post generation (default: **false**)
+- `ANGLE` — optional post angle from `config/post_angles.yaml` (e.g. `feature_launch`, `funding_news`, `big_tech_move`, `youtube_reaction`, `experiment`). If not supplied, auto-select per the rules in that file.
+- `EXPERIMENT_ID` — optional ID from `config/experiments.yaml`. If supplied with `ANGLE=experiment`, the post-generator weaves that experiment into the post.
 
 Check `.env` for `NOTION_PAGE_ID` to determine if Notion publishing is enabled.
 
@@ -62,6 +64,19 @@ Print: `✓ Trending keywords: {first 8 keywords joined by ", "}`
 
 ---
 
+## Step 2b — Select Post Angle
+
+Read `config/post_angles.yaml`.
+
+If `ANGLE` was specified by the user, use that angle for all posts.
+
+If `ANGLE` was not specified, auto-select per the `auto_select_rules` in that file:
+- For each article cluster (using the anchor article's `matched_categories` and `matched_companies`), find the first matching rule and assign that angle to the cluster.
+
+If `EXPERIMENT_ID` is set, read `config/experiments.yaml` and extract the matching experiment entry. Pass it to the post-generator with the cluster.
+
+---
+
 ## Step 3 — Build Article Clusters
 
 Divide the articles into clusters — one cluster per post to generate.
@@ -88,7 +103,9 @@ Input:
 {
   "articles": [<cluster articles as JSON>],
   "trending_keywords": [<trending keywords as JSON>],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "angle": "<selected angle key, e.g. feature_launch>",
+  "experiment": <experiment object from experiments.yaml, or null>
 }
 ```
 

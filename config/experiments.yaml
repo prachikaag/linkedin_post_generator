@@ -1,0 +1,85 @@
+# ============================================================
+# PERSONAL AI EXPERIMENTS LOG
+# Record your own hands-on AI experiments here.
+# The post-generator can reference these when writing
+# "human-in-the-loop" posts about your direct experience.
+#
+# HOW TO USE:
+#   1. Add a new entry each time you try something interesting.
+#   2. Be specific — exact tool names, what you asked it to do,
+#      what surprised you, and your honest verdict.
+#   3. When you want to write an experiment post, tell the
+#      orchestrator: "Write an experiment post using my entry
+#      about [topic]."
+#
+# The generator will blend your experience with supporting
+# news coverage and cite both.
+# ============================================================
+
+experiments:
+
+  # ── Template (copy this block to add a new experiment) ────
+  #
+  # - id: "experiment-001"
+  #   date: "2026-01-01"
+  #   tool: "Claude 3.5 Sonnet"
+  #   task: "Brief description of what you tried to accomplish"
+  #   workflow: >
+  #     Step-by-step description of what you actually did.
+  #     Be specific: what prompts you used, how many iterations,
+  #     what you fed into it, what format you asked for.
+  #   what_worked: >
+  #     What exceeded your expectations. Be specific.
+  #   what_didnt: >
+  #     What fell flat, got wrong, or still needed heavy editing.
+  #   honest_verdict: >
+  #     Would you use this workflow again? For what exact use cases?
+  #     What would you change?
+  #   time_saved: "Approx time saved vs doing this manually (optional)"
+  #   key_insight: >
+  #     The single most important thing you learned.
+  #     This is usually the core of your LinkedIn post.
+  #   post_hook: >
+  #     Optional: a draft first line for the LinkedIn post.
+  #   status: "draft"   # draft | published | skip
+
+  # ── Example Experiment (replace with your own) ────────────
+  - id: "experiment-001"
+    date: "2026-05-01"
+    tool: "Claude 3.5 Sonnet + Claude Code"
+    task: >
+      Write a full brand strategy brief for a hypothetical product
+      launch using Claude as a co-strategist, not just a copywriter.
+    workflow: >
+      Started with a raw brief (100 words, messy notes). Used Claude
+      to identify audience tensions, then ran a "steelman / attack"
+      prompt to stress-test the positioning. Iterated 4 times on the
+      messaging hierarchy. Final step: asked Claude to write the
+      executive summary from the refined brief.
+    what_worked: >
+      The steelman/attack prompt was surprisingly useful — it
+      surfaced weak points in the positioning I'd glossed over.
+      The executive summary was 90% usable on the first draft.
+    what_didnt: >
+      Claude defaulted to generic brand language in the first
+      2 iterations. Required very specific prompts about the target
+      audience's actual fears and tensions to get real insight.
+    honest_verdict: >
+      Yes, I'd use this again — specifically for the tension-finding
+      and stress-testing steps. I still write the final brief myself.
+      Claude is best as a thinking partner at the strategy stage,
+      not a solo writer.
+    time_saved: "~3 hours on initial drafts"
+    key_insight: >
+      The real value isn't in writing faster — it's in identifying
+      what I'm not thinking about. That's a different kind of AI use
+      than most brand strategists are exploring.
+    post_hook: >
+      I used Claude to stress-test a brand brief. It found holes I
+      didn't know were there.
+    status: "draft"
+
+  # ── Add your experiments below ────────────────────────────
+  # - id: "experiment-002"
+  #   ...
+

@@ -1,0 +1,164 @@
+# ============================================================
+# POST ANGLES & CONTENT TEMPLATES
+# Each angle defines a content type, its hook formula,
+# the narrative arc, and what makes a great post for that type.
+#
+# The post-generator reads this file when asked to write in
+# a specific angle. Add, rename, or rewrite angles freely.
+# ============================================================
+
+# How to use:
+#   Tell the orchestrator which angle to use, e.g.:
+#   "Run the pipeline. Use the feature_launch angle."
+#   If no angle is given, the orchestrator picks the best fit
+#   based on the top-scoring article's matched_categories.
+
+angles:
+
+  # ── 1. AI Feature or Product Launch ───────────────────────
+  # Use when: a company ships a new model, feature, or product
+  # Triggers: "launch", "release", "announces", "ships", "introduces"
+  feature_launch:
+    name: "AI Feature or Product Launch"
+    description: >
+      React to a new AI tool, model, or feature launch.
+      Your angle: cut through the announcement noise and tell
+      brands what this actually changes for them.
+    hook_formulas:
+      - "[Company] just [launched/released] [feature]. Here's what brands actually need to know."
+      - "Everyone is talking about [feature]. I want to talk about what it means for [specific use case]."
+      - "[Feature] dropped [today/this week]. I went straight to testing it. Here's the honest take."
+      - "The [Company] announcement everyone missed in the [big launch] news."
+    narrative_arc:
+      - "Name the launch and give one line of context. Don't hype it."
+      - "What specifically is new — be precise, not vague."
+      - "What you tested or observed directly (even if brief)."
+      - "What this means for a brand marketer, creative team, or agency."
+      - "One specific thing brands should do or watch."
+    avoid:
+      - "Generic praise ('This is amazing')"
+      - "Just summarising the press release"
+      - "Jargon without explaining the practical impact"
+
+  # ── 2. YouTube Video Reaction ─────────────────────────────
+  # Use when: an AI company or key figure releases a YouTube video
+  # Triggers: YouTube channel updates, demo videos, keynote releases
+  youtube_reaction:
+    name: "YouTube Video Reaction"
+    description: >
+      React to a notable YouTube video from an AI company or researcher.
+      Your angle: you watched it so your audience doesn't have to —
+      pull out the one thing that matters for brands.
+    hook_formulas:
+      - "I just watched [Company]'s new [video title]. One thing stood out."
+      - "[Company] published a [demo/keynote/explainer]. The part brands should care about is buried at [timestamp]."
+      - "Most people will skim [Company]'s new video. Here's the bit that changes how I think about [topic]."
+    narrative_arc:
+      - "Name the video, link it, give 1-line context."
+      - "The specific moment, claim, or demo that caught your attention."
+      - "What you think it signals about where this company is heading."
+      - "What a brand or marketing team should take from it."
+      - "Your honest reaction — was it impressive, overhyped, or quietly important?"
+    avoid:
+      - "Recapping the whole video"
+      - "Being vague about what in the video you're reacting to"
+
+  # ── 3. AI Startup Funding & Deals ─────────────────────────
+  # Use when: an AI startup raises a round, gets acquired, or goes public
+  # Triggers: "funding", "raises", "Series", "acquired", "IPO", "valuation"
+  funding_news:
+    name: "AI Startup Funding & Deals"
+    description: >
+      React to a funding round, acquisition, or IPO in the AI space.
+      Your angle: don't just report the number — explain what the bet
+      tells us about where AI is heading for brands.
+    hook_formulas:
+      - "[Company] just raised [$X]. The interesting part isn't the number."
+      - "Another AI funding round. But this one is different — here's why."
+      - "[Company] was just acquired by [Acquirer]. Here's what that means for everyone using AI in marketing."
+      - "$[X] went into [category] AI this [week/month]. This is what investors are betting on."
+    narrative_arc:
+      - "Name the deal and the number in one clean sentence."
+      - "What the company actually does — in plain language."
+      - "Why investors are betting on this category right now."
+      - "What this tells us about where enterprise AI is heading."
+      - "One thing brands or agencies should watch as a result."
+    avoid:
+      - "Being impressed by the number alone"
+      - "Failing to connect the deal to a real brand or marketing implication"
+      - "Uncritical hype ('This will change everything')"
+
+  # ── 4. Big Tech AI Move ────────────────────────────────────
+  # Use when: Google, Microsoft, Apple, Amazon, Meta, Nvidia make a
+  # significant AI announcement, partnership, or strategic shift
+  big_tech_move:
+    name: "Big Tech AI Move"
+    description: >
+      React to a significant AI development from a major tech company.
+      Your angle: big tech moves shift the entire market — tell brands
+      what this means for tools, strategy, and competitive landscape.
+    hook_formulas:
+      - "[Company] just made a move in AI that will affect every brand's tech stack."
+      - "The [Company] AI announcement that most marketing teams aren't paying attention to."
+      - "[Company] is [doing X]. The implications for brands are bigger than the headlines suggest."
+      - "What [Company]'s [announcement] really means — without the spin."
+    narrative_arc:
+      - "Name the move and what specifically changed."
+      - "Why this is strategically significant (not just interesting)."
+      - "How this compares to what others in big tech are doing."
+      - "The practical effect on a marketing team, agency, or brand using these platforms."
+      - "One concrete action brands should consider taking."
+    avoid:
+      - "Picking a winner between tech companies"
+      - "Ignoring the competitive context"
+      - "Failing to connect back to brand/marketing impact"
+
+  # ── 5. Human-in-the-Loop Experiment ───────────────────────
+  # Use when: you've personally tried an AI tool, workflow, or approach
+  # and want to share what you actually found — raw, honest, specific
+  experiment:
+    name: "Human-in-the-Loop Experiment"
+    description: >
+      Share a personal experiment where you used an AI tool for a real task.
+      This is your highest-value content angle — first-person, specific,
+      honest results. Not a review. Not a tutorial. A field report.
+    hook_formulas:
+      - "I spent [X hours/days] using [Tool] for [use case]. Here's what actually happened."
+      - "Everyone says [Tool] is [X]. I tried it. The truth is more interesting."
+      - "I ran the same brief through 3 different AI tools. The results surprised me."
+      - "Before and after: what [task] looks like with AI vs without it."
+      - "[Tool] can [claim]. I put that claim to the test."
+    narrative_arc:
+      - "What you tried to do and which tool(s) you used."
+      - "The specific test or workflow — be precise about what you did."
+      - "What worked better than expected."
+      - "What didn't work, or what the AI got wrong."
+      - "The honest verdict: would you use it again? For what?"
+      - "One thing other marketers/brand builders should know before trying it."
+    avoid:
+      - "Vague praise ('It was amazing')"
+      - "Summarising the tool's features instead of your experience"
+      - "Glossing over failures — they make the post more credible"
+    source_note: >
+      For experiment posts, your primary source is your own experience.
+      Still cite the tool's official documentation, pricing page, or any
+      news coverage you reference — minimum 2 external sources.
+
+# ── Auto-selection Rules ───────────────────────────────────
+# When no angle is specified, the orchestrator picks using these rules.
+# Priority: first matching rule wins.
+auto_select_rules:
+  - matched_category: "New AI Feature or Product Launch"
+    matched_source_type: "youtube_channels"
+    angle: "youtube_reaction"
+
+  - matched_category: "New AI Feature or Product Launch"
+    angle: "feature_launch"
+
+  - matched_category: "AI Startup Funding"
+    angle: "funding_news"
+
+  - matched_company_category: "big_tech"
+    angle: "big_tech_move"
+
+  - default: "feature_launch"

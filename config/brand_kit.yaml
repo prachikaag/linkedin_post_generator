@@ -5,10 +5,14 @@
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
+# EDIT THIS SECTION — replace the placeholder values with your own.
+# This information appears in every post written by the AI.
 author:
   name: "Your Name"
+  # e.g. "Brand Strategist & AI Experimentalist"
   title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
+  # Your LinkedIn headline — keep it under 220 characters
+  # e.g. "Helping brands cut through the AI noise and actually use it | Brand strategy × generative AI"
   tagline: "Helping brands understand and leverage AI in the real world"
   location: "Your City, Country"
   industries:

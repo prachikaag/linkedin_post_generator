@@ -18,13 +18,19 @@ The orchestrator will supply a JSON object in your task with:
 {
   "articles": [ /* array of article objects from the News Gatherer */ ],
   "trending_keywords": [ /* array of trending phrases from the Trending Tracker */ ],
-  "posts_dir": "posts/"
+  "posts_dir": "posts/",
+  "angle": "feature_launch",
+  "experiment": null
 }
 ```
 
+`angle` is a key from `config/post_angles.yaml` (e.g. `feature_launch`, `funding_news`, `big_tech_move`, `youtube_reaction`, `experiment`). If absent, default to `feature_launch`.
+
+`experiment` is an experiment object from `config/experiments.yaml`, or `null`. Only present when `angle` is `experiment`.
+
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Angle
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -39,11 +45,24 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
 
+Then read `config/post_angles.yaml` and find the entry matching the supplied `angle` key.
+Extract:
+- `hook_formulas` — pick the most fitting one for the articles at hand
+- `narrative_arc` — the step-by-step story structure to follow for this angle
+- `avoid` — things to actively not do for this angle
+- `source_note` (if present) — special sourcing rules for this angle (e.g. the `experiment` angle)
+
 ---
 
 ## Step 2 — Write the LinkedIn Post
 
-Following the brand kit precisely, write a post that:
+Following the brand kit and the selected angle precisely, write a post that:
+
+### Angle-specific rules (apply BEFORE the structure below):
+- Use the selected angle's `hook_formulas` to shape the opening line. Adapt — don't copy verbatim.
+- Follow the angle's `narrative_arc` as the internal skeleton of the post.
+- Respect the angle's `avoid` list as hard rules.
+- If `angle` is `experiment` and an `experiment` object was supplied: weave the author's specific observations (what_worked, what_didnt, honest_verdict, key_insight) directly into the EVIDENCE and YOUR TAKE sections. These are first-person lived details — treat them as the most credible evidence in the post.
 
 ### Must follow this structure (in order):
 1. **HOOK** (1–2 lines): Bold statement, surprising stat, or provocative question. Never start with "I".
@@ -131,6 +150,7 @@ matched_companies:
 matched_categories:
   - "<all category names across all articles, deduplicated>"
 relevance_score: <articles[0].relevance_score>
+angle: "<the angle key used, e.g. feature_launch>"
 status: "draft"
 ---
 ```

@@ -46,17 +46,49 @@ Run the LinkedIn Post Generator pipeline. Generate 3 posts. Use 5 articles per c
 Run the pipeline in dry-run mode — fetch and rank news only, don't generate posts.
 ```
 
+### Choose a specific post angle
+
+```
+Run the pipeline. Use the funding_news angle.
+```
+
+```
+Run the pipeline. Use the youtube_reaction angle.
+```
+
+Available angles (defined in `config/post_angles.yaml`):
+
+| Angle | Use when |
+|-------|----------|
+| `feature_launch` | A new AI model, tool, or feature was released |
+| `youtube_reaction` | An AI company published a notable YouTube video |
+| `funding_news` | An AI startup raised a round, was acquired, or went public |
+| `big_tech_move` | Google, Microsoft, Apple, Amazon, or Meta made a significant AI announcement |
+| `experiment` | You personally tested an AI tool and want to share the results |
+
+### Write an experiment post from your log
+
+Add your experiment to `config/experiments.yaml`, then:
+
+```
+Run the pipeline. Use the experiment angle. Use experiment-002.
+```
+
+The generator will blend your first-person observations with supporting news coverage.
+
 ---
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — every file is designed to be edited directly:
 
 | File | Purpose |
 |------|---------|
 | `config/sources.yaml` | RSS feeds and API sources to fetch from |
 | `config/topics.yaml` | Companies, keywords, and freshness settings |
 | `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/post_angles.yaml` | 5 content angle templates — feature launches, YouTube reactions, funding news, big tech moves, experiments |
+| `config/experiments.yaml` | Your personal AI experiment log — the source for "I tried X" posts |
 
 Edit these files directly — changes take effect on the next run.
 
@@ -124,15 +156,19 @@ Change `status: draft` to `status: published` to track what's gone live.
 
 ## Customising Your Brand
 
-Edit `config/brand_kit.yaml` to set:
-- Your name, title, and professional tagline
-- Tone traits (curious, pragmatic, opinionated, etc.)
-- Writing style rules (paragraph length, hook style, etc.)
-- Post structure preferences
-- Hashtag strategy
-- Minimum sources per post
+**Start here**: edit `config/brand_kit.yaml` to set your name, title, and tagline — the generator uses these for every post.
 
-The post-generator agent reads this file on every run — no restarts needed.
+| What you want to change | Where to edit |
+|-------------------------|---------------|
+| Your name, title, tagline | `config/brand_kit.yaml` → `author` section |
+| Your tone of voice and writing rules | `config/brand_kit.yaml` → `tone_of_voice` section |
+| Your hashtag strategy | `config/brand_kit.yaml` → `brand.hashtags` |
+| Which companies and topics to track | `config/topics.yaml` |
+| Which news sources to follow | `config/sources.yaml` |
+| How each type of post is structured | `config/post_angles.yaml` |
+| Your personal AI experiments | `config/experiments.yaml` |
+
+All files are read fresh on every run — no restart needed after editing.
 
 ---
 
