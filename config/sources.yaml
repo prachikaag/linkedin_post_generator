@@ -146,6 +146,26 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCuIrfgHJxp_Y-M5Rqua1wWg"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbmNph6atAoGfqLoCL_duAg"
+      priority: medium
+      enabled: true
+
+    - name: "Perplexity AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCOtSrx5dVGjxCFc4Sj96JRg"
+      priority: medium
+      enabled: true
+
+    - name: "Meta AI YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCVHd9bUWBSz_2MJjAqjzJXg"
+      priority: low
+      enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:

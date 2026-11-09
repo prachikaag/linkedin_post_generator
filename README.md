@@ -50,15 +50,24 @@ Run the pipeline in dry-run mode — fetch and rank news only, don't generate po
 
 ## Configuration
 
-All settings live in `config/`:
+All settings live in `config/` — every file is standalone and editable:
 
 | File | Purpose |
 |------|---------|
-| `config/sources.yaml` | RSS feeds and API sources to fetch from |
-| `config/topics.yaml` | Companies, keywords, and freshness settings |
-| `config/brand_kit.yaml` | Author voice, tone, writing style, and hashtag rules |
+| `config/sources.yaml` | RSS feeds and YouTube channels to monitor |
+| `config/topics.yaml` | Companies, keywords, freshness, and scoring settings |
+| `config/brand_kit.yaml` | **Your** name, tone, writing style, hashtags, and post rules |
+| `config/post_ideas.yaml` | Your editorial backlog — story ideas and experiments to write about |
+| `config/post_history.yaml` | Tracks posts already generated to avoid duplicate topics |
 
 Edit these files directly — changes take effect on the next run.
+
+### What to customise first
+
+1. **`config/brand_kit.yaml`** — Fill in your name, title, location, and tagline at the top
+2. **`config/post_ideas.yaml`** — Add angles you want to write about from your own experience
+3. **`config/topics.yaml`** — Add companies or keywords you want to track
+4. **`config/sources.yaml`** — Add any RSS feeds or YouTube channels you follow
 
 ### Environment Variables
 

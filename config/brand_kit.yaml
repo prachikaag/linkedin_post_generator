@@ -6,11 +6,11 @@
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi Kaag"
+  title: "Brand Strategist & AI Experimenter"
+  # Customize this to match your LinkedIn headline
+  tagline: "Helping brands understand and leverage AI in the real world — one experiment at a time"
+  location: "Your City, Country"   # ← update with your location
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
@@ -90,16 +90,21 @@ brand:
     - "Human-in-the-loop AI workflows — you as the editor, AI as the drafter"
     - "Future of creative work with generative AI"
     - "AI strategy and literacy for marketing teams and brand leaders"
-    - "The AI startup ecosystem and what it means for brands and agencies"
+    - "The AI startup ecosystem — funding, launches, what it signals for brands"
+    - "Big tech AI news (OpenAI, Anthropic, Google, Meta, Microsoft) and brand implications"
+    - "New AI tool features and YouTube launches (ChatGPT, Claude, Gemini, Perplexity, ElevenLabs, Midjourney)"
     - "Experimenting with AI in your own work and sharing honest results"
 
   # Example angles you love to write about
   content_angles:
-    - "I tried [AI tool] for [use case] — here's what actually happened"
+    - "I tried [AI tool] for [use case] — here's what actually happened (human-in-the-loop)"
     - "[Company] just launched [feature] — here's what brands should know"
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI tool] shipped a new [feature/video] — I tested it. Here's the brand angle."
+    - "Spent [X hours] with [AI tool]. The surprising thing brands keep missing is..."
+    - "Every brand I talk to asks about [topic]. Here's what I actually think."
 
   # Hashtag strategy
   hashtags:

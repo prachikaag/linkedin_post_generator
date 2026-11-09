@@ -1,0 +1,56 @@
+# ============================================================
+# POST IDEAS — EDITORIAL BACKLOG
+# ============================================================
+# Add story ideas, angles, and experiments here.
+# The pipeline can prioritise these over raw news if you want
+# to write from your own backlog instead of pure news feed.
+#
+# Status options: idea | planned | in_progress | done | skipped
+# ============================================================
+
+ideas:
+  # ── Template entry ──────────────────────────────────────
+  # - title: "Short idea title"
+  #   angle: "The specific angle or question you want to explore"
+  #   trigger: "What prompted this — a tool, a news story, an experiment"
+  #   status: idea
+  #   priority: high   # high | medium | low
+  #   notes: "Any additional context or links"
+
+  # ── Experiment ideas (human-in-the-loop) ─────────────────
+  - title: "Testing Claude Projects vs ChatGPT Projects for brand strategy"
+    angle: "Which one actually helps you maintain a consistent brand voice?"
+    trigger: "Both tools have memory/projects features — worth comparing for brand work"
+    status: idea
+    priority: high
+
+  - title: "Using Perplexity vs Google for competitive brand research"
+    angle: "AI search vs traditional search for brand monitoring"
+    trigger: "Perplexity's growing market share in search"
+    status: idea
+    priority: medium
+
+  - title: "ElevenLabs voice cloning for brand content — what brands need to know"
+    angle: "Opportunities and risks for brand voice consistency"
+    trigger: "ElevenLabs new feature launches"
+    status: idea
+    priority: medium
+
+  - title: "Midjourney v7 for brand visual identity — real test"
+    angle: "Can AI generate consistent brand visuals? Honest experiment results"
+    trigger: "Midjourney's latest model capabilities"
+    status: idea
+    priority: medium
+
+  # ── Evergreen angles ─────────────────────────────────────
+  - title: "The AI tools stack I'm actually using this month"
+    angle: "Monthly honest roundup of what's working and what isn't"
+    trigger: "Regular cadence — one per month"
+    status: idea
+    priority: low
+
+  - title: "AI startup funding this week — what it means for brands"
+    angle: "Connect the investment dots to brand tool availability"
+    trigger: "Weekly funding round aggregation"
+    status: idea
+    priority: low

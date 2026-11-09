@@ -1,0 +1,27 @@
+# ============================================================
+# POST HISTORY — TOPIC DEDUPLICATION
+# ============================================================
+# The pipeline checks this file before generating a post.
+# Articles whose topic slug appears here are skipped so you
+# never write about the same story twice.
+#
+# How it works:
+#   - After a post is generated, its slug + date are added here
+#   - The post-generator agent reads this before writing
+#   - Slugs are matched against the first 40 chars of article titles
+#
+# To reset and allow a topic again: delete its entry.
+# To block a topic permanently: add it with blocked: true
+# ============================================================
+
+published:
+  []  # Entries added automatically after each post is published
+
+# ── Manually block topics ──────────────────────────────────
+# Add any topic slugs you've already covered or want to skip.
+# Example:
+#   - slug: "openai-launches-gpt5"
+#     date: "2026-11-09"
+#     reason: "already covered"
+blocked:
+  []
