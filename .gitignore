@@ -12,5 +12,8 @@ env/
 # Generated posts (tracked individually when ready)
 # posts/*.md   ← uncomment this line to stop tracking generated posts
 
+# Deduplication tracking — commit data/.gitkeep but not the JSON
+data/seen_articles.json
+
 # OS
 .DS_Store
