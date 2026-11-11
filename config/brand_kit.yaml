@@ -92,6 +92,9 @@ brand:
     - "AI strategy and literacy for marketing teams and brand leaders"
     - "The AI startup ecosystem and what it means for brands and agencies"
     - "Experimenting with AI in your own work and sharing honest results"
+    - "Following every major AI lab: OpenAI, Anthropic, Google, Perplexity, ElevenLabs, Midjourney, Meta, xAI"
+    - "BigTech AI moves and what they signal for creative and marketing industries"
+    - "AI startup funding — what the investment thesis tells us about where the market is going"
 
   # Example angles you love to write about
   content_angles:
@@ -100,6 +103,21 @@ brand:
     - "The real reason [AI development] matters for marketers"
     - "[Trending topic] explained without the hype"
     - "What [funding/acquisition] tells us about where AI is heading"
+    - "[AI lab] shipped a [video/feature/model] — here's the brand implication"
+    - "I ran [AI experiment] in my actual workflow — honest results"
+    - "The pattern I'm seeing across this week's AI news"
+    - "What [BigTech company]'s AI move means for the brands that use their tools"
+
+  # Human-in-the-loop content — posts about personal AI experiments
+  # These are the highest-performing post type for building authority
+  # Suggested cadence: 1 per 2 weeks minimum
+  human_in_the_loop_angles:
+    - "I used [AI tool] to [task] — here's the full before/after"
+    - "AI did the first draft. Here's what I changed and why."
+    - "I ran the same brief through [Tool A] and [Tool B]. The difference surprised me."
+    - "My prompt for [task] — steal it"
+    - "The AI got it 80% right. Here's the 20% that still needs a human."
+    - "I've been using [AI workflow] for [N] weeks. Here's my honest verdict."
 
   # Hashtag strategy
   hashtags:
