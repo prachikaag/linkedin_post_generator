@@ -146,6 +146,32 @@ rss_feeds:
       priority: low
       enabled: true
 
+    - name: "ElevenLabs YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCiCDGWNLSRFwIkgW7u2-kNQ"
+      priority: medium
+      enabled: true
+
+    - name: "Runway YouTube"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCiRPSFUKE5WLKZ8oHv_-hzQ"
+      priority: medium
+      enabled: true
+
+    - name: "Midjourney (placeholder — paste channel ID)"
+      # To find the channel ID: go to Midjourney's YouTube → View Page Source → search "channelId"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=MIDJOURNEY_CHANNEL_ID"
+      priority: medium
+      enabled: false   # enable once you've verified the channel ID above
+
+    - name: "Fireship (AI dev news)"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA"
+      priority: low
+      enabled: true
+
+    - name: "Lex Fridman"
+      url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA"
+      priority: low
+      enabled: true
+
 # ── Optional API Sources ───────────────────────────────────
 # These require API keys set in your .env file.
 optional_apis:
