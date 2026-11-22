@@ -1,5 +1,5 @@
 ---
-description: Reads config/brand_kit.yaml, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
+description: Reads config/brand_kit.yaml, config/tone_of_voice.md, config/content_pillars.md, and config/experiments_log.md, then writes a research-backed LinkedIn post synthesising a supplied cluster of articles and trending keywords, and saves it as a YAML-frontmatter markdown draft in posts/.
 tools: Read, Write
 ---
 
@@ -24,7 +24,7 @@ The orchestrator will supply a JSON object in your task with:
 
 ---
 
-## Step 1 — Read the Brand Kit
+## Step 1 — Read the Brand Kit and Voice Files
 
 Read `config/brand_kit.yaml` and extract:
 
@@ -38,6 +38,14 @@ Read `config/brand_kit.yaml` and extract:
 - `brand.hashtags.rotate_from` — pick from these to reach `brand.max_hashtags` total
 - `brand.post_length` — target length (short / medium / long)
 - `research_standards.min_sources` — minimum distinct sources to cite (default 4)
+
+Also read `config/tone_of_voice.md` for the extended voice guide — it has hook formulas, forbidden words, and tone examples that must shape the post.
+
+Also read `config/content_pillars.md` and select the **single best-fit pillar** for this cluster of articles. Use the pillar's angle starters to frame the post's perspective and CTA.
+
+Also read `config/experiments_log.md` and check if any recent experiment (last 30 days) is **directly relevant** to the article cluster. If one is, weave a brief personal reference into YOUR TAKE section — no more than 1–2 sentences.
+
+The brand kit, tone guide, and content pillar file are equally authoritative. Where they overlap, follow the more specific instruction.
 
 ---
 

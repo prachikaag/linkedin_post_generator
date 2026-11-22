@@ -2,15 +2,22 @@
 # BRAND KIT & TONE OF VOICE
 # Edit this file to match your personal brand and voice.
 # This drives how every LinkedIn post is written.
+#
+# COMPANION FILES — also edit these for full control:
+#   config/tone_of_voice.md   → Full writing voice guide with examples
+#   config/content_pillars.md → The 6 things you write about + angle starters
+#   config/experiments_log.md → Your AI experiment diary (Pillar 1 source material)
+#   config/topics.yaml        → Companies and keywords to track
+#   config/sources.yaml       → RSS feeds and news sources
 # ============================================================
 
 # ── Who You Are ───────────────────────────────────────────
 author:
-  name: "Your Name"
-  title: "Your Professional Title"
-  # Example: "Brand Strategist | AI Enthusiast | Helping brands navigate the AI era"
-  tagline: "Helping brands understand and leverage AI in the real world"
-  location: "Your City, Country"
+  name: "Prachi"
+  title: "Brand Strategist & AI Practitioner"
+  # Update your tagline below — it appears in your post voice and LinkedIn bio context
+  tagline: "Helping brands understand and leverage AI — by actually using it, not just talking about it"
+  location: "Update with your city & country"
   industries:
     - "Marketing & Brand Strategy"
     - "Artificial Intelligence"
