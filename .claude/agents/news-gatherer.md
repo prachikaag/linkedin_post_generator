@@ -27,8 +27,9 @@ Read `config/topics.yaml`:
 
 ---
 
-## Step 2 — Fetch RSS Feeds
+## Step 2 — Fetch News
 
+### Primary: RSS Feeds
 Process feeds in batches of 8. For each feed URL, use **WebFetch** to retrieve the XML.
 
 Parse the XML for articles — look for `<item>` (RSS 2.0) or `<entry>` (Atom) elements. Extract per article:
@@ -42,6 +43,17 @@ Parse the XML for articles — look for `<item>` (RSS 2.0) or `<entry>` (Atom) e
 | `source_name` | The feed's `name` from sources.yaml |
 
 If a feed errors or cannot be parsed, skip it silently and continue.
+
+### Fallback: WebSearch (when RSS feeds are unavailable)
+If fewer than 5 articles have been collected after attempting RSS feeds (e.g. due to network restrictions), switch to WebSearch mode:
+
+Run these searches targeting the last 7 days:
+1. "latest AI model release OR launch this week" — to catch new model announcements
+2. "AI startup funding round million billion 2026" — to catch investment news
+3. "ChatGPT OR Claude OR Gemini new feature OR update 2026" — to catch product updates
+4. "AI tools productivity agents 2026" — to catch tooling news
+
+For each search result that has a real article URL, build an article object using the search snippet as `summary` and today's date as `published`. Set `source_name` to the domain name of the URL.
 
 ---
 

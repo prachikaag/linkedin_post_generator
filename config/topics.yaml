@@ -14,12 +14,15 @@ companies_to_track:
         - "ChatGPT"
         - "GPT-4"
         - "GPT-5"
+        - "GPT-6"
         - "o1"
         - "o3"
         - "o4"
         - "Sora"
         - "Operator"
         - "Deep Research"
+        - "ChatGPT Work"
+        - "ChatGPT desktop"
 
     - name: "Anthropic"
       keywords:
@@ -27,9 +30,14 @@ companies_to_track:
         - "Claude"
         - "claude-3"
         - "claude-4"
+        - "claude-5"
         - "claude sonnet"
         - "claude opus"
         - "claude haiku"
+        - "claude fable"
+        - "Fable 5.2"
+        - "Claude Cowork"
+        - "Claude Design"
         - "Model Context Protocol"
         - "MCP"
 
@@ -41,10 +49,14 @@ companies_to_track:
         - "NotebookLM"
         - "Gemini Ultra"
         - "Gemini Flash"
+        - "Gemini 4"
+        - "Gemini Carbon"
         - "Project Astra"
         - "Veo"
         - "Imagen"
         - "Google Search AI"
+        - "Gemini Personal Intelligence"
+        - "Gemini Deep Research"
 
     - name: "Perplexity"
       keywords:
@@ -130,6 +142,33 @@ companies_to_track:
         - "open source AI model"
 
   ai_builders:
+    - name: "Moonshot AI / Kimi"
+      keywords:
+        - "Kimi"
+        - "Moonshot AI"
+        - "Kimi K3"
+        - "Kimi K3.1"
+        - "open weights"
+
+    - name: "Manus AI"
+      keywords:
+        - "Manus AI"
+        - "Manus"
+        - "Manus agent"
+
+    - name: "SSI"
+      keywords:
+        - "SSI"
+        - "Safe Superintelligence"
+        - "Ilya Sutskever"
+
+    - name: "Skild AI"
+      keywords:
+        - "Skild AI"
+        - "Skild"
+        - "robotics AI"
+        - "robot foundation model"
+
     - name: "Cerebras"
       keywords:
         - "Cerebras"
